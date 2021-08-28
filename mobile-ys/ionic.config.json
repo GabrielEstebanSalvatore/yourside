@@ -1,0 +1,7 @@
+{
+    "name": "Yourside",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "angular"
+}
