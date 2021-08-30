@@ -25,11 +25,6 @@ server.listen(4000, ()=>{console.log('Server on port', {port});})
 module.exports.io = socketIO(server);
 require('./sockets/socket');
 
-// const io = socketIo(server)
-// io.on('connection', socket => {
-//     socket.on('conectado', () => { console.log("usuario conectado")})
-// })
-
 //Middleware
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -39,13 +34,7 @@ app.use(session({
     resave:true,
     saveUninitialized:true
 }));
-// const storage = multer.diskStorage({
-//     destination:path.join(__dirname, 'public/img/uploads'),
-//     filename: (req,file,cb,filename)=>{
-//         cb(null, uuid() + path.extname(file.originalname))
-//     }
-// })
-// app.use(multer({storage : storage}).single('image'));
+
 app.use((req, res, next)=>{
     app.locals.format = format; 
     next();
@@ -54,11 +43,6 @@ app.use((req, res, next)=>{
 //Static Files 
 app.set('public', path.join(__dirname, 'public'))
 app.use(express.static(path.join(__dirname, 'public')));
-
-//Setting
-//app.set('port',  4000);
-// server.listen(app.get('port'), ()=>{console.log('Server on port', app.get('port') );
-// })
 
 //Routes
 app.use(require('./routers/localidadRoute'));

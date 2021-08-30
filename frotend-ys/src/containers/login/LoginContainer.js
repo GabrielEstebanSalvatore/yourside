@@ -23,9 +23,9 @@ const LoginContainer = () => {
     const [cliente, guardarCliente] = useState({
         name: '',
         address: '',
-        email: 'prueba06',
+        email: '',
         cell: '',
-        password: 'prueba06',
+        password: '',
         role: ''
     });
 

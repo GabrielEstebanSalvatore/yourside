@@ -23,18 +23,16 @@ export default (state, action) => {
         case AppConstant.CREATE_CONFIGURACION:
             return {
                 ...state,
-                configuration: action.payload.newConfiguracion,
-                message:action.payload.message
+                configuration: action.payload.configuration,
+                message: action.payload.message
             }
-        case AppConstant.TRAER_CONFIGURACION:
+        case AppConstant.GET_CONFIGURATION:
             return {
                 ...state,
                 configuration: action.payload.configuration,
             }
         case AppConstant.SUCCESSFUL_PURCHASE:
         case AppConstant.CREATE_TIPOARTICULO:
-            console.log(action.payload)
-            console.log(action.payload.message)
             return {
                 ...state,
                 message: action.payload.message, 

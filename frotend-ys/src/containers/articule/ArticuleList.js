@@ -11,7 +11,7 @@ const ArticuleList = () => {
     const {handleModal,getArticles,articles,deleteArticle,current } = appContext;
 
     const [localState, setLocalState] = useState({              
-        modalView: 'Articulo', 
+        modalView: 'Article', 
         showModal: true})
 
     const setShowModalTipoArticulo = (articulo) => {

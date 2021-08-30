@@ -12,10 +12,9 @@ const ArticuleContainer = () => {
     const {handleModal,showModal } = appContext;
   
     const [localState, setLocalState] = useState({              
-    modalView: 'Articulo', 
+    modalView: 'Article', 
     showModal: true})
    
-  
     const setShowModal = () => handleModal(localState.modalView, localState.showModal)
 
     return (

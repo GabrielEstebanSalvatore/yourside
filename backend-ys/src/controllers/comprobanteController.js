@@ -90,7 +90,7 @@ class comprobanteController {
 
         let id = req.params.id;
 
-        Articulo.findById(id)
+        Article.findById(id)
             .exec((err, comprobanteDB)=>{
 
                 if(err){

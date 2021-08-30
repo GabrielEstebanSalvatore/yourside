@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 let comprobanteDetalleSchema = new Schema({
 article:[{
     type: mongoose.Schema.Types.ObjectId,    
-    ref: 'Articulo'
+    ref: 'Article'
 }],
 amount:{
     type: Number,

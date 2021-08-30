@@ -11,7 +11,7 @@ const OfferContainer = () => {
     const {handleModal,showModal } = appContext;
 
     const [localState, setLocalState] = useState({              
-        modalView: 'Ofertas', 
+        modalView: 'Offers', 
         showModal: true})
   
     const setShowModal = () => handleModal(localState.modalView, localState.showModal)

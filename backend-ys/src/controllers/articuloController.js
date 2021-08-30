@@ -47,7 +47,7 @@ class articuloController {
             negativeStock,sellPrice,costPrice,amount,image, branch,offer} = req.body;
 
         try {
-            let articulo = await Articulo.findOne({ code });
+            let articulo = await Article.findOne({ code });
     
             if(articulo) {
                 return res.status(400).json({ msg: 'El articulo ya existe' });
@@ -85,7 +85,7 @@ class articuloController {
 
     static async getAll(req, res) {
 
-        //await Articulo.find( name: /c/i }, 'name',{available : 1})
+        //await Article.find( name: /c/i }, 'name',{available : 1})
         await Article.find({available : 1})
             .populate('articleType')
             .populate('image')
@@ -227,10 +227,10 @@ class articuloController {
 
             for(const element of body){
                 try{
-                    var articulo = await Articulo.findOne({_id:element._id})
-                    var id = articulo._id
-                    await Articulo.replaceOne({id}, { amount: articulo.amount-- });
-                    await articulo.save()
+                    var articule = await Article.findOne({_id:element._id})
+                    var id = articule._id
+                    await Article.replaceOne({id}, { amount: articule.amount-- });
+                    await articule.save()
                 }catch (error){ 
                     return res.status(200).json({
                         ok: true,

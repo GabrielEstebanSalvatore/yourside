@@ -16,7 +16,7 @@ total:{
 },
 articles:[{
     type: mongoose.Schema.Types.ObjectId,    
-    ref: 'Articulo'
+    ref: 'Article'
 }],});
 
 module.exports = mongoose.model('Trolley', trolleySchema);

@@ -6,27 +6,29 @@ class configurationController {
 
     static async create(req, res){
 
-        console.log(req.body)
         const errores = validationResult(req);
+
         if( !errores.isEmpty() ) {
             return res.status(400).json({errores: errores.array() })
         }
-        const{name} = req.body;
 
         try {
-            let configuration = await Configuration.findOne({ name });
-    
-            if(configuration) {
-                return res.status(400).json({ msg: 'La configuracion ya existe' });
-            }
-
-            let newConfiguration = new Configuration(req.body);
-            await newConfiguration.save();
+         
+            let configuration = new Configuration();
+            configuration.name = req.body.name;
+            configuration.adminCode= req.body.adminCode
+            configuration.demo= req.body.demo
+            configuration.lastSellName= req.body.lastSellName
+            configuration.useDecimal= req.body.useDecimal
+            configuration.address= req.body.address
+            configuration.cellPhone= req.body.cellPhone
+            
+            await configuration.save();
 
             res.json({
                 ok: true,
                 message:"Configuración creada con Exito",
-                newConfiguration
+                configuration
             })
         } catch (error) {
             console.log(error);
@@ -49,8 +51,6 @@ class configurationController {
                     configuration
                 })
             });
-
-            console.log('config',response)
     };   
 
     static async updateConfiguration(req, res){
@@ -72,7 +72,6 @@ class configurationController {
            }
         }); 
     };
-
 }
 
 module.exports = configurationController;
