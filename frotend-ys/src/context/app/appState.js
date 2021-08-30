@@ -24,7 +24,6 @@ const AppState = (props) =>{
     }
 
     const [ state, dispatch ] = useReducer(AppReducer, initialState);
-
    
     const  handleModal= (modalView,showModal) => {
 
@@ -42,7 +41,6 @@ const AppState = (props) =>{
         })
     }
     const addArticleView = async (article)=>{
-        //console.log(article)
          dispatch({
              
              type: AppConstant.ADDARTICLEVIEW,

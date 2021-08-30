@@ -8,7 +8,7 @@ import ModalContainer from '../../containers/modal/ModalContainer'
 const ConfigurationContainer = () => {
 
     const appContext = useContext(AppContext);
-    const { newConfiguration, getConfiguration, configuration, editConfiguration, showModal, handleModal } = appContext;
+    const { newConfiguration, configuration, editConfiguration, showModal, handleModal } = appContext;
 
     let history = useHistory();
 
@@ -154,9 +154,7 @@ const ConfigurationContainer = () => {
 
                 </Fragment>
             }
-
         />
-
     )
 }
 

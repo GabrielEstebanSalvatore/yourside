@@ -6,14 +6,12 @@ class configurationController {
 
     static async create(req, res){
 
-        console.log(req.body)
         const errores = validationResult(req);
 
         if( !errores.isEmpty() ) {
             return res.status(400).json({errores: errores.array() })
         }
 
-        
         try {
          
             let configuration = new Configuration();
@@ -53,8 +51,6 @@ class configurationController {
                     configuration
                 })
             });
-
-            console.log('config',response)
     };   
 
     static async updateConfiguration(req, res){
@@ -76,7 +72,6 @@ class configurationController {
            }
         }); 
     };
-
 }
 
 module.exports = configurationController;
