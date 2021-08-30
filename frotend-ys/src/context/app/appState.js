@@ -79,7 +79,7 @@ const AppState = (props) =>{
             const response = await clienteAxios.get('/configuracion',data);
             if(response.data.configuration == null)return;
             dispatch({
-                type: AppConstant.GET_CONFIGURACION,
+                type: AppConstant.GET_CONFIGURATION,
                 payload: response.data
             })
                

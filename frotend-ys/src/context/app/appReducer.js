@@ -26,7 +26,7 @@ export default (state, action) => {
                 configuration: action.payload.configuration,
                 message: action.payload.message
             }
-        case AppConstant.GET_CONFIGURACION:
+        case AppConstant.GET_CONFIGURATION:
             return {
                 ...state,
                 configuration: action.payload.configuration,
