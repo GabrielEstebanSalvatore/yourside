@@ -25,7 +25,7 @@ const ModalContainer = () => {
                 return <Message />
             case 'TipoArticulo':
                 return <NewArticleType />
-            case 'Articulo':
+            case 'Article':
                 return <NewArticule />
             case 'Pucharse':
                 return <Pucharse />
@@ -33,7 +33,7 @@ const ModalContainer = () => {
                 return <Branch />
             case 'ArticuleView':
                 return <ArticleView />
-            case 'Ofertas':
+            case 'Offers':
                 return <Offer />
             default:
                 return null;

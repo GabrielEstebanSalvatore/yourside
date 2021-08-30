@@ -1,5 +1,6 @@
 const Offer = require('../models/offerModel');
 const { validationResult} =require('express-validator');
+const _ =require('underscore');
 
 class offerController {
 
@@ -10,13 +11,14 @@ class offerController {
             return res.status(400).json({errores: errores.array() })
         }
 
-        const{percent,name,active} = req.body;
+        const{percent,name,active,disableDate} = req.body;
 
         try {
            
             let newOffer = new Offer({
                 percent:percent,
                 name:name,
+                disableDate:disableDate,
                 active:active
             });
 
@@ -87,7 +89,26 @@ class offerController {
                     offer:offerDB
                 })
         });
-    };   
+    };
+    
+    static async updateOffer(req, res){
+        let id = req.params.id;
+        let body = _.pick(req.body,['name','percent','disableDate']);
+
+        await Offer.findByIdAndUpdate(id,body,(err,OfferDB)=>{
+            if (err){
+                return res.status(400).json({
+                   ok: false,
+                   err
+           })
+            }else {
+                res.status(200).json({
+                    ok: true,
+                    message: `La oferta ${OfferDB.name} fue actualizado`
+                })
+           }
+        }); 
+    };
 
     static async deleted(req,res){
         let id = req.params.id;

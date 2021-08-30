@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../../context/app/appContext';
-
 import { Table } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2'
@@ -8,15 +7,14 @@ import Swal from 'sweetalert2'
 const OffertList = () => {
 
     const appContext = useContext(AppContext);
-    const { handleModal, traerMarcas, getOffers, offerList, current, deleteOffer } = appContext;
+    const { handleModal, getOffers, offerList, current, deleteOffer } = appContext;
 
     const [localState, setLocalState] = useState({
-        modalView: 'Branch',
+        modalView: 'Offers',
         showModal: true
     })
 
     const setToEdit = (offer) => {
-        console.log(offer)
         current(offer)
         handleModal(localState.modalView, localState.showModal)
     }
@@ -81,7 +79,7 @@ const OffertList = () => {
                     'success'
                 )
             }
-            traerMarcas()
+            getOffers()
         })
     }
 

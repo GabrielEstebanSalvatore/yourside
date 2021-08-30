@@ -8,7 +8,7 @@ import ModalContainer from '../../containers/modal/ModalContainer'
 const ConfigurationContainer = () => {
 
     const appContext = useContext(AppContext);
-    const { newConfiguration, configuration, editConfiguration, showModal, handleModal } = appContext;
+    const { newConfiguration, getConfiguration, configuration, editConfiguration, showModal, handleModal } = appContext;
 
     let history = useHistory();
 
@@ -34,6 +34,12 @@ const ConfigurationContainer = () => {
         e.preventDefault();
         newConfiguration(sistemConfiguration)
         handleModal('MensajeRegistro', true)
+    }
+
+    const onSubmitUpdate = e => {
+        e.preventDefault();
+        editConfiguration(sistemConfiguration)
+        handleModal('MensajeRegistro', true)
         saveSistemConfiguration({
             ...sistemConfiguration,
             name: null,
@@ -44,12 +50,6 @@ const ConfigurationContainer = () => {
             address: null,
             cellPhone: null,
         })
-    }
-
-    const onSubmitUpdate = e => {
-        e.preventDefault();
-        editConfiguration(sistemConfiguration)
-        handleModal('MensajeRegistro', true)
     }
 
     const redirect = () => {
@@ -147,8 +147,8 @@ const ConfigurationContainer = () => {
                 <Fragment>
                     {
                         configuration.name
-                            ? <ButtonItemView type="submit" onClick={onSubmit} title="Aceptar"></ButtonItemView>
-                            : <ButtonItemView type="submit" onClick={onSubmitUpdate} title="Aceptar"></ButtonItemView>
+                            ? <ButtonItemView type="submit" onClick={onSubmitUpdate} title="Aceptar"></ButtonItemView>
+                            : <ButtonItemView type="submit" onClick={onSubmit} title="Aceptar"></ButtonItemView>
                     }
                     <ButtonCancel title="Cancelar" onClick={redirect}></ButtonCancel>
 

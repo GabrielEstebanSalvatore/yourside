@@ -36,7 +36,6 @@ const AppState = (props) =>{
         })
     }
     const setMessage = (message) => {
-       
         dispatch({
             type: AppConstant.SET_MESSAGE,
             message
@@ -58,16 +57,18 @@ const AppState = (props) =>{
         })
         handleModal('',false)
     } 
+    
     const newConfiguration = async (data)=>{
+        
         try {
             const response = await clienteAxios.post('/configuracion',data);
-            console.log(response);
+            console.log("newConfiguration",response)
             dispatch({
                 type: AppConstant.CREATE_CONFIGURACION,
                 payload: response.data
             })
-      
-            
+            handleModal('MensajeRegistro',true);
+
         } catch (error) {
             console.log(error );
         }
@@ -76,14 +77,12 @@ const AppState = (props) =>{
        
         try {
             const response = await clienteAxios.get('/configuracion',data);
-            console.log("GET",response)
-            if(response.data.configuration == null) return;
-            
+            if(response.data.configuration == null)return;
             dispatch({
-                type: AppConstant.TRAER_CONFIGURACION,
+                type: AppConstant.GET_CONFIGURACION,
                 payload: response.data
             })
-            
+               
         } catch (error) {
             console.log(error );
         }
@@ -134,11 +133,10 @@ const AppState = (props) =>{
         }
     }
 
-    const deleteOffer = async(branchId)=>{
+    const deleteOffer = async(offerId)=>{
         try{
-            const respuesta = await clienteAxios.delete(`/offer/${branchId}`)
+            const respuesta = await clienteAxios.put(`/offer/${offerId}`)
             console.log(respuesta)
-            
             getOffers();
         }
         catch(error){
@@ -192,8 +190,9 @@ const AppState = (props) =>{
     } 
 
     const editOffer = async (data)=>{
+        console.log("OFERTAS",data)
         try {
-            const respuesta = await clienteAxios.put(`/offer/${data.id}`,data);
+            const respuesta = await clienteAxios.post(`/offer/${data.id}`,data);
             console.log(respuesta)
             dispatch(getOffers())
             

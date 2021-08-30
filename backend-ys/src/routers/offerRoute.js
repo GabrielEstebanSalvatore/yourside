@@ -14,6 +14,10 @@ router.get('/offer/:id', async (req, res )=>{
     await offerController.getOne(req, res);
 });
 
+router.post('/offer/:id', async (req,res)=>{
+    await offerController.updateOffer(req,res);
+});
+
 router.put('/offer/:id', async (req,res)=>{
     await offerController.deleted(req,res);
 });

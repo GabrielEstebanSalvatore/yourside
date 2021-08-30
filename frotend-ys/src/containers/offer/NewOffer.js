@@ -31,7 +31,7 @@ const NewOffer = () => {
     }
 
     const editCurrent = () => {
-        editOffer({id:localState.idOffer, name:localState.OfferName, disableDate:currentState.disableDate})
+        editOffer({id:localState.idOffer, name:localState.OfferName, disableDate:localState.disableDate , percent: localState.percent})
         handleModal(localState.modalView, localState.showModal)
         current({})
         setLocalState({
@@ -44,7 +44,7 @@ const NewOffer = () => {
     }
 
     const createCurrent = async() => {
-        newOffer({name:localState.OfferName, percent:localState.percent , disableDate:currentState.disableDate})
+        newOffer({name:localState.OfferName, percent:localState.percent , disableDate:localState.disableDate})
         handleModal('MensajeRegistro', true)
         setLocalState({
             ...localState,
