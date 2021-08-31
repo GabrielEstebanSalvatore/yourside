@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 let ticket = new Schema({
-    number:{type: Number},
-    desk:{type: Number},
-    date:{
+    number: { type: Number },
+    desk: { type: Number },
+    date: {
         type: Date,
-        default: Date.now
-    }
-});
+        default: Date.now,
+    },
+})
 
-module.exports = mongoose.model('ticket', ticket);
+module.exports = mongoose.model('ticket', ticket)

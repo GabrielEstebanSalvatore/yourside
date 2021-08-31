@@ -1,24 +1,23 @@
-import React,{useContext} from 'react'
-import LoginConteiner from '../login/LoginContainer';
-import NewArticleType from '../articleType/NewArticleType';
-import NewArticule from '../articule/NewArticule';
-import Pucharse from '../market/Pucharse';
-import Branch from '../branch/NewBranch';
+import React, { useContext } from 'react'
+import LoginConteiner from '../login/LoginContainer'
+import NewArticleType from '../articleType/NewArticleType'
+import NewArticule from '../articule/NewArticule'
+import Pucharse from '../market/Pucharse'
+import Branch from '../branch/NewBranch'
 import ArticleView from '../market/ArticleView'
 import Offer from '../offer/NewOffer'
 
 import Message from './Message'
-import AppContext from '../../context/app/appContext';
+import AppContext from '../../context/app/appContext'
 
-import {Animated} from "react-animated-css";
+import { Animated } from 'react-animated-css'
 
 const ModalContainer = () => {
-    
-    const appContext = useContext(AppContext);
-    const {modalView } = appContext;
+    const appContext = useContext(AppContext)
+    const { modalView } = appContext
 
     const renderModalView = () => {
-        switch (modalView ) {
+        switch (modalView) {
             case 'Login':
                 return <LoginConteiner />
             case 'MensajeRegistro':
@@ -36,22 +35,18 @@ const ModalContainer = () => {
             case 'Offers':
                 return <Offer />
             default:
-                return null;
+                return null
         }
     }
-  
+
     return (
-        <div className='modal-container' >
-            <div className='modal-container__header'></div>
-            <div className='modal-container__body'>
-                <Animated  isVisible={true}>
-                    {
-                        renderModalView()
-                    }
-                </Animated>
+        <div className="modal-container">
+            <div className="modal-container__header"></div>
+            <div className="modal-container__body">
+                <Animated isVisible={true}>{renderModalView()}</Animated>
             </div>
         </div>
     )
 }
 
-export default ModalContainer;
+export default ModalContainer

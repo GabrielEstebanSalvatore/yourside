@@ -1,15 +1,15 @@
-.container_general{
+.container_general {
     width: 100%;
     height: 100%;
-    padding:60px 20px 20px 20px;
-    &_total{
-        display:flex;
-        align-items:center;
-        text-align:center;
-        justify-content:center;
+    padding: 60px 20px 20px 20px;
+    &_total {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
     }
 }
 
-.admin_container{
+.admin_container {
     z-index: -2;
 }

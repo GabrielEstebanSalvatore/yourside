@@ -1,20 +1,11 @@
-import React,{useContext} from 'react'
-
+import React, { useContext } from 'react'
 
 const Orders = () => {
-    
- 
-
     return (
         <div className="orders">
-            <div>
-
-            </div>
-
-           
+            <div></div>
         </div>
     )
 }
 
-
-export default Orders;
+export default Orders

@@ -1,18 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
-import AppContext from '../../context/app/appContext';
-import { Table } from 'antd';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import React, { useContext, useEffect, useState } from 'react'
+import AppContext from '../../context/app/appContext'
+import { Table } from 'antd'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
 import ModalContainer from '../../containers/modal/ModalContainer'
 
 const ArticleTypeList = () => {
-
-    const appContext = useContext(AppContext);
-    const { getArticleType, articleTypeList, deleteArticleType, current, handleModal,showModal } = appContext;
+    const appContext = useContext(AppContext)
+    const {
+        getArticleType,
+        articleTypeList,
+        deleteArticleType,
+        current,
+        handleModal,
+        showModal,
+    } = appContext
 
     const [localState, setLocalState] = useState({
         modalView: 'TipoArticulo',
-        showModal: true
+        showModal: true,
     })
 
     const setToEdit = (tipoArticulo) => {
@@ -23,7 +29,7 @@ const ArticleTypeList = () => {
     useEffect(() => {
         getArticleType()
         // eslint-disable-next-line
-    }, []);
+    }, [])
 
     const columns = [
         { title: 'TipoArticulos', dataIndex: 'name' },
@@ -34,15 +40,21 @@ const ArticleTypeList = () => {
             render: (text, record) => (
                 <div className="actions_table">
                     <i>
-                        <DeleteOutlined onClick={() => setToEliminar(record.key)} style={{ color: 'red' }} />
+                        <DeleteOutlined
+                            onClick={() => setToEliminar(record.key)}
+                            style={{ color: 'red' }}
+                        />
                     </i>
                     <i>
-                        <EditOutlined onClick={(e) => setToEdit(record)} style={{ color: 'blue' }} />
+                        <EditOutlined
+                            onClick={(e) => setToEdit(record)}
+                            style={{ color: 'blue' }}
+                        />
                     </i>
                 </div>
-            )
-        }
-    ];
+            ),
+        },
+    ]
 
     const getRow = () => {
         return articleTypeList.map((tipoArt) => {
@@ -56,13 +68,13 @@ const ArticleTypeList = () => {
     const setToEliminar = (id) => {
         Swal.fire({
             title: '¿Estas seguro?',
-            text: "!Si eliminas la localidad, sera dada de baja!",
+            text: '!Si eliminas la localidad, sera dada de baja!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             cancelButtonText: 'Cancelar',
-            confirmButtonText: 'Si, eliminar'
+            confirmButtonText: 'Si, eliminar',
         }).then((result) => {
             if (result.value) {
                 deleteArticleType(id)
@@ -77,14 +89,10 @@ const ArticleTypeList = () => {
     }
 
     return (
-
         <div className="tabla">
-            <Table
-                columns={columns}
-                dataSource={getRow()}
-            />
+            <Table columns={columns} dataSource={getRow()} />
         </div>
     )
 }
 
-export default ArticleTypeList;
+export default ArticleTypeList

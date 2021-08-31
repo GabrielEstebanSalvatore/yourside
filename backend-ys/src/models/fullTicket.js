@@ -1,17 +1,19 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 let fullTicket = new Schema({
-    last:{type: Number},
-    date:{
+    last: { type: Number },
+    date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
     },
-    tickets:[{
-        type: mongoose.Schema.Types.ObjectId,    
-        ref: 'ticket'
-    }],
-    last4:[{type: Number,type: Number}]
-});
+    tickets: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'ticket',
+        },
+    ],
+    last4: [{ type: Number, type: Number }],
+})
 
-module.exports = mongoose.model('fullTicket', fullTicket);
+module.exports = mongoose.model('fullTicket', fullTicket)

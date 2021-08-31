@@ -1,18 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
-import AppContext from '../../../context/app/appContext';
-import { Table } from 'antd';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import React, { useContext, useEffect, useState } from 'react'
+import AppContext from '../../../context/app/appContext'
+import { Table } from 'antd'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
 
-
 const BoxList = () => {
-
-    const appContext = useContext(AppContext);
-    const { current, handleModal,showModal,getBox,boxesList } = appContext;
+    const appContext = useContext(AppContext)
+    const { current, handleModal, showModal, getBox, boxesList } = appContext
 
     const [localState, setLocalState] = useState({
         modalView: 'box',
-        showModal: true
+        showModal: true,
     })
 
     const setToEdit = (box) => {
@@ -23,7 +21,7 @@ const BoxList = () => {
     useEffect(() => {
         getBox()
         // eslint-disable-next-line
-    }, []);
+    }, [])
 
     const columns = [
         { title: 'N°', dataIndex: 'number' },
@@ -38,12 +36,15 @@ const BoxList = () => {
             render: (text, record) => (
                 <div className="actions_table">
                     <i>
-                        <EditOutlined onClick={(e) => setToEdit(record)} style={{ color: 'blue' }} />
+                        <EditOutlined
+                            onClick={(e) => setToEdit(record)}
+                            style={{ color: 'blue' }}
+                        />
                     </i>
                 </div>
-            )
-        }
-    ];
+            ),
+        },
+    ]
 
     const getRow = () => {
         return boxesList.map((box) => {
@@ -59,14 +60,10 @@ const BoxList = () => {
     }
 
     return (
-
         <div className="tabla">
-            <Table
-                columns={columns}
-                dataSource={getRow()}
-            />
+            <Table columns={columns} dataSource={getRow()} />
         </div>
     )
 }
 
-export default BoxList;
+export default BoxList

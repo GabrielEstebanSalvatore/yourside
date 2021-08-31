@@ -1,29 +1,32 @@
-import React from 'react';
+import React from 'react'
 
-const ContainerGeneral = ({title, button, list, modal,total}) => {
-
-    return ( 
+const ContainerGeneral = ({ title, button, list, modal, total }) => {
+    return (
         <div className="container_general">
-            <h2 >{title} </h2>
+            <h2>{title} </h2>
             {button}
-            {
-                total &&     
+            {total && (
                 <div className="container_general_total">
                     <h2>
                         TOTAL:
-                        {
-                            total
-                        }
+                        {total}
                     </h2>
                 </div>
-            }
+            )}
             {modal}
             {list}
         </div>
-    );
+    )
 }
 
-export const ContainerAdmin = ({headerName,headerSection,body,footer,modal, className="admin"}) => {
+export const ContainerAdmin = ({
+    headerName,
+    headerSection,
+    body,
+    footer,
+    modal,
+    className = 'admin',
+}) => {
     return (
         <div className={className}>
             <div className="admin_container">
@@ -33,15 +36,11 @@ export const ContainerAdmin = ({headerName,headerSection,body,footer,modal, clas
                         {headerName} - {headerSection}
                     </div>
                 </div>
-                <div className="admin_body">
-                    {body}
-                </div>
-                <div className="admin_footer">
-                    {footer}
-                </div>
+                <div className="admin_body">{body}</div>
+                <div className="admin_footer">{footer}</div>
             </div>
         </div>
     )
 }
 
-export default ContainerGeneral;
+export default ContainerGeneral

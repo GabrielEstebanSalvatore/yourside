@@ -1,27 +1,27 @@
-import React, {useContext, useEffect,useState }from 'react';
-import AppContext from '../../context/app/appContext';
-import ClientContext from '../../context/client/clientContext';
-import { Input, Button, Space,Table } from 'antd';
-import { DeleteOutlined, SearchOutlined, EditOutlined } from '@ant-design/icons';
+import React, { useContext, useEffect, useState } from 'react'
+import AppContext from '../../context/app/appContext'
+import ClientContext from '../../context/client/clientContext'
+import { Input, Button, Space, Table } from 'antd'
+import { DeleteOutlined, SearchOutlined, EditOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
 
 const ListReceipt = () => {
+    const appContext = useContext(AppContext)
+    const { traerComprobantes, comprobantes } = appContext
 
-    const appContext = useContext(AppContext);
-    const {traerComprobantes,comprobantes} = appContext;
+    const clientContext = useContext(ClientContext)
+    const { client } = clientContext
 
-    const clientContext = useContext(ClientContext);
-    const {client} = clientContext;
-
-    const [localState, setLocalState] = useState({              
-    modalView: 'Recibo', 
-    showModal: true})
+    const [localState, setLocalState] = useState({
+        modalView: 'Recibo',
+        showModal: true,
+    })
 
     useEffect(() => {
         traerComprobantes(client)
-      
+
         // eslint-disable-next-line
-    }, []);
+    }, [])
 
     const [pagination] = useState({
         bottom: 'bottomCenter',
@@ -29,11 +29,16 @@ const ListReceipt = () => {
 
     const [buscar, setBuscar] = useState({
         searchText: '',
-        searchedColumn: ''
+        searchedColumn: '',
     })
 
-    const buscarDatoTabla = dataIndex => ({
-        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+    const buscarDatoTabla = (dataIndex) => ({
+        filterDropdown: ({
+            setSelectedKeys,
+            selectedKeys,
+            confirm,
+            clearFilters,
+        }) => (
             <div style={{ padding: 8 }}>
                 <Input
                     /*ref={node => {
@@ -41,31 +46,48 @@ const ListReceipt = () => {
                     }}*/
                     placeholder={`Search ${dataIndex}`}
                     value={selectedKeys[0]}
-                    onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    onChange={(e) =>
+                        setSelectedKeys(e.target.value ? [e.target.value] : [])
+                    }
+                    onPressEnter={() =>
+                        handleSearch(selectedKeys, confirm, dataIndex)
+                    }
                     style={{ width: 188, marginBottom: 8, display: 'block' }}
                 />
                 <Space>
                     <Button
                         type="primary"
-                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        onClick={() =>
+                            handleSearch(selectedKeys, confirm, dataIndex)
+                        }
                         icon={<SearchOutlined />}
                         size="small"
                         style={{ width: 90 }}
                     >
                         Search
                     </Button>
-                    <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+                    <Button
+                        onClick={() => handleReset(clearFilters)}
+                        size="small"
+                        style={{ width: 90 }}
+                    >
                         Reset
                     </Button>
                 </Space>
             </div>
         ),
-        filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+        filterIcon: (filtered) => (
+            <SearchOutlined
+                style={{ color: filtered ? '#1890ff' : undefined }}
+            />
+        ),
         onFilter: (value, record) =>
-            record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+            record[dataIndex]
+                .toString()
+                .toLowerCase()
+                .includes(value.toLowerCase()),
 
-        render: text =>
+        render: (text) =>
             buscar.searchedColumn === dataIndex ? (
                 <Button
                     highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
@@ -76,63 +98,68 @@ const ListReceipt = () => {
             ) : (
                 text
             ),
-    });
+    })
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
-        confirm();
+        confirm()
+    }
 
-    };
-
-    const handleReset = clearFilters => {
-        clearFilters();
+    const handleReset = (clearFilters) => {
+        clearFilters()
         //this.setState({ ...turno,searchText: '' });
-    };
+    }
 
     const columns = [
-        {title: 'Numero de C.',dataIndex: 'name'},{ ...buscarDatoTabla('name') },
-        {title: 'Cliente',dataIndex: 'client'},
-        {title: 'Correo',dataIndex: 'email'},
-        {title: 'Fecha',dataIndex: 'date'},{ ...buscarDatoTabla('date') },
-        {title: 'Total',dataIndex: 'price'},
-   
-        {   title: 'Acciones',
+        { title: 'Numero de C.', dataIndex: 'name' },
+        { ...buscarDatoTabla('name') },
+        { title: 'Cliente', dataIndex: 'client' },
+        { title: 'Correo', dataIndex: 'email' },
+        { title: 'Fecha', dataIndex: 'date' },
+        { ...buscarDatoTabla('date') },
+        { title: 'Total', dataIndex: 'price' },
+
+        {
+            title: 'Acciones',
             key: 'actions',
             render: (text, record) => (
                 <div className="actions_table">
                     <i>
-                        <DeleteOutlined  onClick={() => onClickEliminar(record.key)} style={{color: 'red'}}/>
-                    </i> 
+                        <DeleteOutlined
+                            onClick={() => onClickEliminar(record.key)}
+                            style={{ color: 'red' }}
+                        />
+                    </i>
                     {/* <i>
                         <EditOutlined onClick={(e) => setShowModalLocalidad(record)} style={{color: 'blue'}}/>
                     </i> */}
                 </div>
-            )
-        }
-    ];
+            ),
+        },
+    ]
 
-    const getRow = () =>{
-    return comprobantes.map((comprobante)=>{
-        return{
-            key:comprobante._id,
-            name:comprobante.number,
-            client:comprobante.client.name,
-            email:comprobante.client.email,
-            date:comprobante.date,
-            price:comprobante.price,
-        }
-    })
-   }
+    const getRow = () => {
+        return comprobantes.map((comprobante) => {
+            return {
+                key: comprobante._id,
+                name: comprobante.number,
+                client: comprobante.client.name,
+                email: comprobante.client.email,
+                date: comprobante.date,
+                price: comprobante.price,
+            }
+        })
+    }
 
-   const onClickEliminar =(id)=>{
+    const onClickEliminar = (id) => {
         Swal.fire({
             title: '¿Estas seguro?',
-            text: "!Si eliminas la localidad, sera dada de baja!",
+            text: '!Si eliminas la localidad, sera dada de baja!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             cancelButtonText: 'Cancelar',
-            confirmButtonText: 'Si, eliminar'
+            confirmButtonText: 'Si, eliminar',
         }).then((result) => {
             if (result.value) {
                 //eliminarRecibo(id)
@@ -143,17 +170,13 @@ const ListReceipt = () => {
                 )
             }
         })
-   }
-   
-    return(
-        
+    }
+
+    return (
         <div className="tabla">
-            <Table 
-            columns={columns}
-            dataSource={getRow()} 
-            />
-        </div> 
+            <Table columns={columns} dataSource={getRow()} />
+        </div>
     )
 }
 
-export default ListReceipt;
+export default ListReceipt

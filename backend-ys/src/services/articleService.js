@@ -1,15 +1,7 @@
-const Comprabante = require('../models/comprabanteModel');
-
+const Comprabante = require('../models/comprabanteModel')
 
 class articleService {
-
-    static async getCurrentBox(box){
-        
-   
-        
-
-    }
-
+    static async getCurrentBox(box) {}
 }
-    
-module.exports = articleService;
+
+module.exports = articleService

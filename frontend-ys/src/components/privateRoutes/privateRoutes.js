@@ -1,23 +1,27 @@
-import React, {useContext,useEffect} from 'react';
-import { Route, Redirect} from 'react-router-dom';
-import ClientContext from '../../context/client/clientContext';
+import React, { useContext, useEffect } from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import ClientContext from '../../context/client/clientContext'
 
-const PrivateRoute = ({ component: Component, ...props}) => {
+const PrivateRoute = ({ component: Component, ...props }) => {
     const clientContext = useContext(ClientContext)
-    const {authenticated, authenticatedClient, loading} = clientContext;
+    const { authenticated, authenticatedClient, loading } = clientContext
 
     useEffect(() => {
-       
-        authenticatedClient();
+        authenticatedClient()
         //eslint-disable-next-line
     }, [])
 
     return (
-        <Route {...props} render={props => !authenticated && !loading ? (
-            <Redirect to="/"/>
-        ) : (
-            <Component {...props} />
-        )}/>
-    );
+        <Route
+            {...props}
+            render={(props) =>
+                !authenticated && !loading ? (
+                    <Redirect to="/" />
+                ) : (
+                    <Component {...props} />
+                )
+            }
+        />
+    )
 }
-export default PrivateRoute;
+export default PrivateRoute

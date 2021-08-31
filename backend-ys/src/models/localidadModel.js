@@ -1,15 +1,16 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 let localidadSchema = new Schema({
-available:{
-    type: Number,
-    default : true
-},
-name:{
-    type: String,
-    unique:true,
-    required: true
-}});
+    available: {
+        type: Number,
+        default: true,
+    },
+    name: {
+        type: String,
+        unique: true,
+        required: true,
+    },
+})
 
-module.exports = mongoose.model('Localidad', localidadSchema);
+module.exports = mongoose.model('Localidad', localidadSchema)

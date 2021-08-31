@@ -7,25 +7,25 @@
     font-weight: bold;
     cursor: pointer;
 }
-.button_cancel{
+.button_cancel {
     display: flex;
-    color: rgba(185,47,168,1);
+    color: rgba(185, 47, 168, 1);
     background-color: transparent;
     border-radius: 4px;
     padding: 10px;
     font-weight: bold;
-    border: 1px solid rgba(185,47,168,1); 
+    border: 1px solid rgba(185, 47, 168, 1);
     height: 100%;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    &:hover{
-        background-color: rgba(185,47,168,1);
+    &:hover {
+        background-color: rgba(185, 47, 168, 1);
         color: $white;
     }
 }
 
-.button_nav{
+.button_nav {
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -35,14 +35,14 @@
     cursor: pointer;
 }
 
-.button_Principal{
+.button_Principal {
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: $white;
-    background: rgba(185,47,168,1);
+    background: rgba(185, 47, 168, 1);
     width: 160px;
     border-radius: 25px;
     font-weight: bold;
@@ -50,14 +50,14 @@
     padding: 5px;
     cursor: pointer;
     transition: all 1s;
-    &:hover{
-        background:rgba(9,7,41,1);
+    &:hover {
+        background: rgba(9, 7, 41, 1);
         transition: all 1s;
-        border: 2px solid rgba(185,47,168,1);
+        border: 2px solid rgba(185, 47, 168, 1);
     }
 }
 
-.button_ItemView{
+.button_ItemView {
     background-color: DodgerBlue; /* Blue background */
     border: none; /* Remove borders */
     color: white; /* White text */
@@ -65,13 +65,13 @@
     font-size: 16px; /* Set a font size */
     cursor: pointer; /* Mouse pointer on hover */
     border-radius: 5px;
-    text-align:center;
-    &:hover{
+    text-align: center;
+    &:hover {
         background-color: RoyalBlue;
     }
 }
 
-.button_submit{
+.button_submit {
     background-color: DodgerBlue; /* Blue background */
     border: none; /* Remove borders */
     color: white; /* White text */
@@ -79,8 +79,8 @@
     font-size: 16px; /* Set a font size */
     cursor: pointer; /* Mouse pointer on hover */
     border-radius: 5px;
-    text-align:center;
-    &:hover{
+    text-align: center;
+    &:hover {
         background-color: RoyalBlue;
     }
 }

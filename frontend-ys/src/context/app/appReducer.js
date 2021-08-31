@@ -1,9 +1,8 @@
-
-import AppConstant from './appConstant';
+import AppConstant from './appConstant'
 
 export default (state, action) => {
-    switch(action.type) {
-        case AppConstant.HANDLE_MODAL: 
+    switch (action.type) {
+        case AppConstant.HANDLE_MODAL:
             return {
                 ...state,
                 modalView: action.modalView,
@@ -12,19 +11,19 @@ export default (state, action) => {
         case AppConstant.SET_MESSAGE:
             return {
                 ...state,
-                message: action.message
+                message: action.message,
             }
         case AppConstant.CERRAR_SESION:
             return {
                 ...state,
                 message: '',
-                configuration: null
+                configuration: null,
             }
         case AppConstant.CREATE_CONFIGURACION:
             return {
                 ...state,
                 configuration: action.payload.configuration,
-                message: action.payload.message
+                message: action.payload.message,
             }
         case AppConstant.GET_CONFIGURATION:
             return {
@@ -35,55 +34,56 @@ export default (state, action) => {
         case AppConstant.CREATE_TIPOARTICULO:
             return {
                 ...state,
-                message: action.payload.message, 
+                message: action.payload.message,
             }
         case AppConstant.TRAER_TIPOARTICULO:
             return {
                 ...state,
-                articleTypeList: action.payload
+                articleTypeList: action.payload,
             }
         case AppConstant.GET_ARTICLES:
             return {
                 ...state,
-                articles: action.payload
+                articles: action.payload,
             }
         case AppConstant.GET_OFFERS:
             return {
                 ...state,
-                offerList: action.payload
+                offerList: action.payload,
             }
         case AppConstant.CURRENT:
             return {
                 ...state,
-                currentState: action.payload
+                currentState: action.payload,
             }
         case AppConstant.SACAR_CARRITO:
             return {
                 ...state,
-                trolley: state.trolley.filter(article => article._id !== action.payload)
+                trolley: state.trolley.filter(
+                    (article) => article._id !== action.payload
+                ),
             }
         case AppConstant.AGREGAR_COMPROBANTES:
             return {
                 ...state,
-                comprobantes:  action.payload
+                comprobantes: action.payload,
             }
         case AppConstant.TRAER_MARCAS:
             return {
                 ...state,
-                branchList:  action.payload
+                branchList: action.payload,
             }
         case AppConstant.ADDARTICLEVIEW:
-            return {   
-                ...state,       
-                articleView: action.article 
-            }  
+            return {
+                ...state,
+                articleView: action.article,
+            }
         case AppConstant.GET_BOXES:
-            return {   
-                ...state,       
-                boxesList: action.payload 
-            }  
+            return {
+                ...state,
+                boxesList: action.payload,
+            }
         default:
             return state
-       
     }
 }

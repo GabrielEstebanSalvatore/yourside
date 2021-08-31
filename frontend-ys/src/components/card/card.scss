@@ -1,42 +1,41 @@
-.card_product{
+.card_product {
     width: 18rem;
     height: 28rem;
     margin: 6px;
-    background-color: rgba($color: #fbfbfb9f, $alpha: 1.0);
+    background-color: rgba($color: #fbfbfb9f, $alpha: 1);
     border-radius: 4px;
-    &:hover{
+    &:hover {
         transition: all 0.4s linear;
-        box-shadow: 1px 2px 5px 1px rgba($color: #c718aac2, $alpha: 1.0);
+        box-shadow: 1px 2px 5px 1px rgba($color: #c718aac2, $alpha: 1);
     }
-    &_overflow{
+    &_overflow {
         overflow: hidden;
         border-radius: 4px;
         object-fit: cover;
     }
 
-    &_img{
+    &_img {
         height: 20rem;
         width: 18rem;
         display: block;
-       
-        &:hover{
+
+        &:hover {
             transition: all 0.2s ease-in-out;
             transform: scale(1.1);
         }
     }
-    &_body{
+    &_body {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: 4px;
         height: 8rem;
-        &.button_Principal{
+        &.button_Principal {
             height: 10px;
         }
     }
 }
-.card_product_img{
+.card_product_img {
     object-fit: fill;
 }
-

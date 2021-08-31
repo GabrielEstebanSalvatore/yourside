@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
-import AppContext from '../../context/app/appContext';
-import { Table } from 'antd';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import React, { useContext, useEffect, useState } from 'react'
+import AppContext from '../../context/app/appContext'
+import { Table } from 'antd'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
 
 const OffertList = () => {
-
-    const appContext = useContext(AppContext);
-    const { handleModal, getOffers, offerList, current, deleteOffer } = appContext;
+    const appContext = useContext(AppContext)
+    const { handleModal, getOffers, offerList, current, deleteOffer } =
+        appContext
 
     const [localState, setLocalState] = useState({
         modalView: 'Offers',
-        showModal: true
+        showModal: true,
     })
 
     const setToEdit = (offer) => {
@@ -22,7 +22,7 @@ const OffertList = () => {
     useEffect(() => {
         getOffers()
         // eslint-disable-next-line
-    }, []);
+    }, [])
 
     const columns = [
         { title: 'Nombre', dataIndex: 'name' },
@@ -35,19 +35,25 @@ const OffertList = () => {
             render: (text, record) => (
                 <div className="actions_table">
                     <i>
-                        {
-                            record.name != null 
-                            ? <DeleteOutlined onClick={() => setToEliminar(record.key)} style={{ color: 'red' }} />
-                            : ""
-                        }
+                        {record.name != null ? (
+                            <DeleteOutlined
+                                onClick={() => setToEliminar(record.key)}
+                                style={{ color: 'red' }}
+                            />
+                        ) : (
+                            ''
+                        )}
                     </i>
                     <i>
-                        <EditOutlined onClick={(e) => setToEdit(record)} style={{ color: 'blue' }} />
+                        <EditOutlined
+                            onClick={(e) => setToEdit(record)}
+                            style={{ color: 'blue' }}
+                        />
                     </i>
                 </div>
-            )
-        }
-    ];
+            ),
+        },
+    ]
 
     const getRow = () => {
         return offerList.map((offerList) => {
@@ -63,13 +69,13 @@ const OffertList = () => {
     const setToEliminar = (id) => {
         Swal.fire({
             title: '¿Estas seguro?',
-            text: "!Si eliminas la oferta, sera dada de baja!",
+            text: '!Si eliminas la oferta, sera dada de baja!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             cancelButtonText: 'Cancelar',
-            confirmButtonText: 'Si, eliminar'
+            confirmButtonText: 'Si, eliminar',
         }).then((result) => {
             if (result.value) {
                 deleteOffer(id)
@@ -84,14 +90,10 @@ const OffertList = () => {
     }
 
     return (
-
         <div className="tabla">
-            <Table
-                columns={columns}
-                dataSource={getRow()}
-            />
+            <Table columns={columns} dataSource={getRow()} />
         </div>
     )
 }
 
-export default OffertList;
+export default OffertList
