@@ -166,16 +166,6 @@ const AppState = (props) =>{
         }
     } 
 
-    const editArticle = async (data)=>{
-        try {
-            await clienteAxios.put(`/articulos/${data.id}`,data);
-            dispatch(getArticles())
-            
-        } catch (error) {
-            console.log(error );
-        }
-    } 
-
     const editBranch = async (data)=>{
         try {
             const respuesta = await clienteAxios.put(`/branches/${data.id}`,data);
@@ -202,48 +192,64 @@ const AppState = (props) =>{
     const getArticles = async (data)=>{
         try {
             const response = await clienteAxios.get('/articulos');
-            console.log("GET",response)
             dispatch({
                 type: AppConstant.GET_ARTICLES,
                 payload: response.data.articles
             })
             
         } catch (error) {
-            console.log(error );
+            handleModal('MensajeRegistro',true)
+            setMessage('Error al traer los artículos')
         }
     } 
-    //TODO ARREGLAR ESTO
+
+    const editArticle = async (data)=>{
+        console.log(data)
+        try {
+            if(data.file)
+            {
+                var currentArticle = data.article;
+                //CREATING IMAGE 
+                const formDataImage = new FormData()
+                formDataImage.append('image', data.file)
+                const imageId = await clienteAxios.post('/articulosimagen',formDataImage)
+                currentArticle.imageId = imageId.data.img._id;
+            }
+            console.log(currentArticle)
+            await clienteAxios.put(`/articulos/${currentArticle.id}`,currentArticle);
+            dispatch(getArticles())
+            
+        } catch {
+            handleModal('MensajeRegistro',true)
+            setMessage('Error al editar el artículo')
+        }
+    } 
+
     const newArticule = async (data)=>{
-        console.log('data', data)
+
         var newArticle = data.article;
         //CREATING IMAGE 
         const formDataImage = new FormData()
         formDataImage.append('image', data.file)
-        //formDataImage.append('article', data.article)
         const imageId = await clienteAxios.post('/articulosimagen',formDataImage)
-
         newArticle.imageId = imageId.data.img._id;
 
         //CREATING ARTICLE 
         const response = await clienteAxios.post('/articulos',newArticle);
 
-        console.log('ver',response);
-
         if (response != null) {
             try{
-                
                 handleModal('MensajeRegistro',true)
                 setMessage(response.data.message)
             }
             catch (error) {
-           
                 handleModal('MensajeRegistro',true)
                 setMessage(response.data.message)
-                console.log(error );
             }
         }
         else{
-            console.log("error");
+            handleModal('MensajeRegistro',true)
+            setMessage('Error al crear el artículo')
         }
     } 
   
