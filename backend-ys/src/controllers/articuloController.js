@@ -160,23 +160,28 @@ class articuloController {
 
     static async updateArticulo(req, res) {
         let id = req.params.id
-        let body = _.pick(req.body, [
-            'description',
-            'code',
-            'name',
-            'location',
-            'articleType',
-            'minimum',
-            'negativeStock',
-            'sellPrice',
-            'costPrice',
-            'amount',
-            'image',
-            'branch',
-            'offer',
-        ])
+       
+        const{description,code,name,location,articleType,minimum,
+            negativeStock,sellPrice,costPrice,amount,imageId, branch,offer} = req.body;
 
-        await Article.findByIdAndUpdate(id, body, (err, articuloDB) => {
+        let articleBody = {
+            _id:id,
+            name: name,
+            code: code,
+            location: location,
+            articleType: articleType,
+            minimum: minimum,
+            negativeStock: negativeStock,
+            sellPrice:sellPrice,
+            costPrice:costPrice,
+            amount:amount,
+            description:description,
+            image:imageId,
+            branch: branch,
+            offer:offer
+        };
+
+        await Article.findByIdAndUpdate(id,articleBody,(err,articuloDB)=>{
             if (err) {
                 return res.status(400).json({
                     ok: false,
@@ -185,7 +190,7 @@ class articuloController {
             } else {
                 res.status(200).json({
                     ok: true,
-                    message: `El tipo de articulo ${articuloDB.name} fue actualizado`,
+                    message: `El articulo ${articuloDB.name} fue actualizado` 
                 })
             }
         })

@@ -7,15 +7,8 @@ const NewArticule = () => {
     //Extraer Turnos de state inicial
     const appContext = useContext(AppContext)
     const {
-        newArticule,
-        editArticle,
-        articleTypeList,
-        getArticleType,
-        currentState,
-        current,
-        traerMarcas,
-        branchList,
-        handleModal,
+        newArticule, editArticle, articleTypeList, getArticleType,
+            currentState, current, traerMarcas, branchList, handleModal 
     } = appContext
 
     useEffect(() => {
@@ -39,8 +32,8 @@ const NewArticule = () => {
             ? currentState.negativeStock
             : null,
         minimum: currentState.minimum ? currentState.minimum : null,
-        articleType: currentState.articleType ? currentState.articleType : null,
-        branch: currentState.branch ? currentState.branch : null,
+        articleType: currentState.articleTypeId ? currentState.articleTypeId : null,
+        branch: currentState.branchId ? currentState.branchId : null,
         description: currentState.description ? currentState.description : '',
         offer: null,
         imageId: null,
@@ -57,7 +50,6 @@ const NewArticule = () => {
     }
 
     const onChangeFile = (e) => {
-        console.log(e.target.files[0])
         saveImage(e.target.files[0])
     }
     const onSubmit = (e) => {
@@ -98,7 +90,7 @@ const NewArticule = () => {
     }
 
     const edit = () => {
-        editArticle(localState)
+        editArticle({ article: localState, file })
         handleModal(localModal.modalView, localModal.showModal)
     }
 
@@ -116,9 +108,7 @@ const NewArticule = () => {
                                 name={'name'}
                                 title={'Nombre'}
                                 required
-                                placeholder={
-                                    localState.name ? localState.name : 'Nombre'
-                                }
+                                value={localState.name ? localState.name : ''}
                                 onChange={onChange}
                             />
                         </div>
@@ -149,9 +139,7 @@ const NewArticule = () => {
                                 name={'code'}
                                 title={'Código'}
                                 required
-                                placeholder={
-                                    localState.code ? localState.code : 'Código'
-                                }
+                                value={localState.code ? localState.code : ''}
                                 onChange={onChange}
                             />
                         </div>
@@ -161,13 +149,9 @@ const NewArticule = () => {
                                 className={'form-control'}
                                 type={'number'}
                                 name={'amount'}
-                                title={'Nombre'}
+                                title={'Cantidad'}
                                 required
-                                placeholder={
-                                    localState.amount
-                                        ? localState.amount
-                                        : 'Cantidad'
-                                }
+                                value={localState.amount ? localState.amount : ''}
                                 onChange={onChange}
                             />
                         </div>
@@ -179,11 +163,7 @@ const NewArticule = () => {
                                 name={'costPrice'}
                                 title={'Precio Costo'}
                                 required
-                                placeholder={
-                                    localState.costPrice
-                                        ? localState.costPrice
-                                        : 'Precio Costo'
-                                }
+                                value={localState.costPrice ? localState.costPrice : 'Precio Costo'}
                                 onChange={onChange}
                             />
                         </div>
@@ -196,9 +176,13 @@ const NewArticule = () => {
                                 name="branch"
                                 required
                             >
-                                <option value="" disabled selected>
-                                    Seleccione la marca
-                                </option>
+                                 {
+                                    currentState.branchId
+                                        ?
+                                        <option value={currentState.branchId} key={currentState.branchId} selected >{currentState.branchName}</option>
+                                        :
+                                        <option value="" disabled selected>Seleccione la Marca</option>
+                                }
                                 {branchList.map((marca) => (
                                     <option key={marca.id} value={marca._id}>
                                         {marca.name}
@@ -216,11 +200,7 @@ const NewArticule = () => {
                                 name={'sellPrice'}
                                 title={'Precio Venta'}
                                 required
-                                placeholder={
-                                    localState.sellPrice
-                                        ? localState.sellPrice
-                                        : 'Precio Venta'
-                                }
+                                value={localState.sellPrice ? localState.sellPrice : 'Precio Venta'}
                                 onChange={onChange}
                             />
                         </div>
@@ -232,11 +212,7 @@ const NewArticule = () => {
                                 name={'negativeStock'}
                                 title={'Stock Negativo'}
                                 required
-                                placeholder={
-                                    localState.negativeStock
-                                        ? localState.negativeStock
-                                        : 'Stock Negativo'
-                                }
+                                value={localState.negativeStock ? localState.negativeStock : ''}
                                 onChange={onChange}
                             />
                         </div>
@@ -248,11 +224,7 @@ const NewArticule = () => {
                                 name={'minimum'}
                                 title={'Stock Mínimo'}
                                 required
-                                placeholder={
-                                    localState.minimum
-                                        ? localState.minimum
-                                        : 'Stock Mínimo'
-                                }
+                                value={localState.minimum ? localState.minimum : ''}
                                 onChange={onChange}
                             />
                         </div>
@@ -265,9 +237,13 @@ const NewArticule = () => {
                                 name="articleType"
                                 required
                             >
-                                <option value="" disabled selected>
-                                    Seleccione el Tipo de Artículo
-                                </option>
+                                 {
+                                    currentState.articleTypeId
+                                        ?
+                                        <option value={currentState.articleTypeId} key={currentState.articleTypeId} selected >{currentState.articleTypeName}</option>
+                                        :
+                                        <option value="" disabled selected>Seleccione el Tipo de Artículo</option>
+                                }
                                 {articleTypeList.map((tipoArticulo) => (
                                     <option
                                         key={tipoArticulo.id}
@@ -281,24 +257,25 @@ const NewArticule = () => {
 
                         <div className="form-group textarea">
                             <label>Descripcion:</label>
-                            <textarea
-                                name="description"
-                                id=""
-                                cols="30"
-                                rows="5"
-                                onChange={onChange}
-                            ></textarea>
+                            <textarea 
+                                name="description" 
+                                id="" 
+                                cols="30" 
+                                rows="5" 
+                                onChange={onChange} 
+                                value={localState.description ? localState.description : ''}>
+                            </textarea>
                         </div>
                     </div>
                 </div>
 
                 <div className="article_container_footer">
                     <Fragment>
-                        {currentState.name != null ? (
-                            <Button title={'Aceptar'} onClick={newArticule} />
-                        ) : (
-                            <Button title={'Aceptar'} onClick={edit} />
-                        )}
+                        {
+                            currentState.name != null
+                                ? <Button title={'Aceptar'} onClick={edit} />
+                                : <Button title={'Aceptar'} onClick={onSubmit} />
+                        }
                         <ButtonCancel
                             title={'Cancelar'}
                             onClick={(e) => cancelArticulo()}
