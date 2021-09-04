@@ -15,18 +15,17 @@ const ArticuleList = () => {
         showModal: true,
     })
 
-    const setShowModalTipoArticulo = (articulo) => {
-        console.log('setShowModalLocalidad', articulo)
+    const editArticle = (article) => {
 
-        current(articulo)
+        current(article)
         handleModal(localState.modalView, localState.showModal)
     }
 
     useEffect(() => {
         getArticles()
-
         // eslint-disable-next-line
     }, [articles])
+
     const [pagination] = useState({
         bottom: 'bottomCenter',
     })
@@ -36,7 +35,7 @@ const ArticuleList = () => {
         searchedColumn: '',
     })
 
-    const buscarDatoTabla = (dataIndex) => ({
+    const searchInTable = (dataIndex) => ({
         filterDropdown: ({
             setSelectedKeys,
             selectedKeys,
@@ -110,9 +109,9 @@ const ArticuleList = () => {
     }
     const columns = [
         { title: 'Articulo', dataIndex: 'name' },
-        { ...buscarDatoTabla('name') },
+        { ...searchInTable('name') },
         { title: 'Código', dataIndex: 'code' },
-        { ...buscarDatoTabla('code') },
+        { ...searchInTable('code') },
         { title: 'Cantidad', dataIndex: 'amount' },
         { title: 'Precio Costo', dataIndex: 'costPrice' },
         { title: 'Precio Venta', dataIndex: 'sellPrice' },
@@ -131,7 +130,7 @@ const ArticuleList = () => {
                     </i>
                     <i>
                         <EditOutlined
-                            onClick={(e) => setShowModalTipoArticulo(record)}
+                            onClick={(e) => editArticle(record)}
                             style={{ color: 'blue' }}
                         />
                     </i>
@@ -152,6 +151,11 @@ const ArticuleList = () => {
                 sellPrice: article.sellPrice,
                 negativeStock: article.negativeStock,
                 minimum: article.minimum,
+                articleTypeId:article.articleType._id,
+                articleTypeName:article.articleType.name,
+                description:article.description,
+                branchId:article.branch._id,
+                branchName:article.branch.name,
             }
         })
     }
