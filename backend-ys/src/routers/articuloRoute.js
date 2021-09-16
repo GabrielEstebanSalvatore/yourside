@@ -28,14 +28,14 @@ router.get('/articulos', async (req, res) => {
 })
 
 router.get('/articulos/:id', async (req, res) => {
-    await articuloController.getOne(req, res)
+    await articuloController.get(req, res)
 })
 router.put('/articulos/:id', async (req, res) => {
-    await articuloController.updateArticulo(req, res)
+    await articuloController.update(req, res)
 })
 
 router.delete('/articulos/:id', async (req, res) => {
-    await articuloController.deleted(req, res)
+    await articuloController.remove(req, res)
 })
 
 router.post('/articulosvendidos', async (req, res) => {
