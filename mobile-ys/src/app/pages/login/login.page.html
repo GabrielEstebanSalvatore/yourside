@@ -12,7 +12,14 @@
   </ion-header>
 
   <div class="container">
-    <strong>This is Login page</strong>
+    <ion-item>
+      <ion-input name="email" type="email" placeholder="your@email.com" [(ngModel)]='client.email' required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input name="password" type="password" placeholder="Enter your password" [(ngModel)]='client.password' required></ion-input>
+    </ion-item>
+    <ion-button (click)='validate()'>Log In</ion-button>
+    <p>Create an account <a [routerLink]="['/signin']">Sign in</a></p>
     <p>Go to <a [routerLink]="['/home']">Home</a></p>
   </div>
 </ion-content>

@@ -1,5 +1,12 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
+
+        <ion-buttons slot="end">
+            <ion-button (click)='togglemenu()'>
+                <ion-icon slot="icon-only" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
         <ion-title>Home</ion-title>
     </ion-toolbar>
 </ion-header>
@@ -7,12 +14,20 @@
 <ion-content [fullscreen]="true">
     <ion-header collapse="condense">
         <ion-toolbar>
-            <ion-title size="large">Blank</ion-title>
+            <ion-title size="large">Home Page</ion-title>
         </ion-toolbar>
     </ion-header>
 
     <div class="container">
-        <strong>This is Yourside App</strong>
+        <ion-card *ngFor="let article of articles">
+            <ion-img src={{article.image}} alt="{{article.name}}"></ion-img> 
+            <ion-card-content>
+                <p>{{article.description}}</p>
+                <p>${{article.sellPrice}}</p>
+                <ion-button>Add to Cart</ion-button>
+            </ion-card-content>
+        </ion-card>
+        <strong>Welcome to Yourside App</strong>
         <p>Go to <a [routerLink]="['/login']">Login</a></p>
     </div>
 </ion-content>

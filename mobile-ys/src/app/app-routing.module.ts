@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core'
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router'
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
 
 const routes: Routes = [
     {
@@ -17,6 +18,11 @@ const routes: Routes = [
         loadChildren: () =>
             import('./pages/login/login.module').then((m) => m.LoginPageModule),
     },
+    {
+        path: 'signin',
+        loadChildren: () =>
+            import('./pages/signin/signin.module').then((m) => m.SigninPageModule),
+    }
 ]
 
 @NgModule({

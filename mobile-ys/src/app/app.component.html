@@ -1,3 +1,31 @@
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <ion-app>
-    <ion-router-outlet></ion-router-outlet>
+    <ion-menu side="end" menuId="first" contentId="main">
+        <ion-header>
+          <ion-toolbar color="primary">
+              <ion-buttons slot="end">
+                  <ion-menu-button></ion-menu-button>
+              </ion-buttons>
+            <ion-title>Start Menu</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-list>
+            <ion-item>
+              <i class='bx bx-user' > </i>
+              <span>Profile</span>
+            </ion-item>
+            <ion-item>
+              <i class='bx bx-cart-alt' ></i>
+              <span class="links_name">Shop Cart</span>
+            </ion-item>
+            <ion-item>
+              <i class='bx bx-folder' > </i>
+              <span>Tickets</span>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+
+    <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
