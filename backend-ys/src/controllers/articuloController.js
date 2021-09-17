@@ -4,216 +4,63 @@ const Ticket = require('../models/ticket')
 const ComprobanteDetalle = require('../models/comprabanteDetalleModel')
 const Configuration = require('../models/configurationModel')
 const Box = require('../models/boxModel')
-const Image = require('../models/imageModel')
 const _ = require('underscore')
-const { validationResult } = require('express-validator')
+const articleService = require('../services/articleService')
 
 class articuloController {
-    static async createImage(req, res) {
-        console.log(req.file)
-        console.log(req.article)
-
+    static async getAll(req, res) {
         try {
-            const image = new Image()
-            image.title = req.body.title
-            image.description = req.body.description
-            image.filename = req.file.filename
-            image.path = '/img/uploads/' + req.file.filename
-            image.originalname = req.file.originalname
-            image.mimetype = req.file.mimetype
-            image.size = req.file.size
+            res.status(202).json(await articleService.getAll())
+        } catch (err) {
+            res.send(err)
+        }
+    }
 
-            await image.save().then(
-                res.json({
-                    ok: true,
-                    img: image,
-                })
-            )
-        } catch (error) {
-            console.log(error)
-            res.status(400).send('Hubo un error')
+    static async get(req, res) {
+        try {
+            const response = await articleService.get(req.params.id)
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
         }
     }
 
     static async create(req, res) {
-        const errores = validationResult(req)
-        if (!errores.isEmpty()) {
-            return res.status(400).json({ errores: errores.array() })
-        }
-
-        const {
-            description,
-            code,
-            name,
-            location,
-            articleType,
-            minimum,
-            negativeStock,
-            sellPrice,
-            costPrice,
-            amount,
-            image,
-            branch,
-            offer,
-        } = req.body
-
         try {
-            let articulo = await Article.findOne({ code })
-
-            if (articulo) {
-                return res.status(400).json({ msg: 'El articulo ya existe' })
-            }
-
-            let articuloNuevo = new Article({
-                name: name,
-                code: code,
-                location: location,
-                articleType: articleType,
-                minimum: minimum,
-                negativeStock: negativeStock,
-                sellPrice: sellPrice,
-                costPrice: costPrice,
-                amount: amount,
-                description: description,
-                image: image,
-                branch: branch,
-                offer: offer,
-            })
-
-            await articuloNuevo.save().then(
-                res.json({
-                    ok: true,
-                    article: articuloNuevo,
-                    message: 'Articulo creado con exito',
-                })
-            )
-        } catch (error) {
-            console.log(error)
-            res.status(400).send('Hubo un error')
+            const response = await articleService.create(req)
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
         }
     }
 
-    static async getAll(req, res) {
-        //await Article.find( name: /c/i }, 'name',{available : 1})
-        await Article.find({ available: 1 })
-            .populate('articleType')
-            .populate('image')
-            .populate('branch')
-            .populate('offer')
-            .exec((err, articles) => {
-                if (err) {
-                    return res.status(400).json({
-                        ok: false,
-                        err,
-                    })
-                }
-
-                articles.map((article) => {
-                    if (article.offer) {
-                        article.sellPriceOffer =
-                            (article.sellPrice *
-                                (100 - article.offer.percent)) /
-                            100
-                    }
-                })
-
-                Article.countDocuments((err, amount) => {
-                    if (err) {
-                        return res.status(400).json({
-                            ok: false,
-                            err,
-                        })
-                    }
-                    res.json({
-                        ok: true,
-                        articles,
-                        articlesAmount: amount,
-                    })
-                })
-            })
+    static async update(req, res) {
+        try {
+            const response = await articleService.update(
+                req.params.id,
+                req.body
+            )
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
+        }
     }
 
-    static async getOne(req, res) {
-        let id = req.params.id
-
-        Article.findById(id).exec((err, articuloDB) => {
-            if (err) {
-                return res.status(500).json({
-                    ok: false,
-                    err,
-                })
-            }
-            if (!articuloDB) {
-                return res.status(400).json({
-                    ok: false,
-                    err: {
-                        message: 'El ID no es correcto',
-                    },
-                })
-            }
-            res.json({
-                ok: true,
-                articulo: articuloDB,
-            })
-        })
+    static async remove(req, res) {
+        try {
+            const response = await articleService.remove(req.params.id)
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
+        }
     }
-
-    static async updateArticulo(req, res) {
-        let id = req.params.id
-       
-        const{description,code,name,location,articleType,minimum,
-            negativeStock,sellPrice,costPrice,amount,imageId, branch,offer} = req.body;
-
-        let articleBody = {
-            _id:id,
-            name: name,
-            code: code,
-            location: location,
-            articleType: articleType,
-            minimum: minimum,
-            negativeStock: negativeStock,
-            sellPrice:sellPrice,
-            costPrice:costPrice,
-            amount:amount,
-            description:description,
-            image:imageId,
-            branch: branch,
-            offer:offer
-        };
-
-        await Article.findByIdAndUpdate(id,articleBody,(err,articuloDB)=>{
-            if (err) {
-                return res.status(400).json({
-                    ok: false,
-                    err,
-                })
-            } else {
-                res.status(200).json({
-                    ok: true,
-                    message: `El articulo ${articuloDB.name} fue actualizado` 
-                })
-            }
-        })
-    }
-
-    static async deleted(req, res) {
-        const id = req.params.id
-        let article = await Article.findById(id)
-        let body = { available: !article.available }
-
-        await Article.findByIdAndUpdate(id, body, (err, articleDB) => {
-            if (err) {
-                return res.status(500).json({
-                    ok: false,
-                    err,
-                })
-            } else {
-                res.status(200).json({
-                    ok: true,
-                    message: `El articulo ${articleDB.name} fue modificado`,
-                })
-            }
-        })
+    static async createImage(req, res) {
+        try {
+            const response = await articleService.createImage(req)
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
+        }
     }
 
     static async articlesSold(req, res) {
