@@ -86,7 +86,7 @@
         "tags": [
           "articles"
         ],
-        "summary": "Get a branch",
+        "summary": "Get a article",
         "description": "",
         "consumes": [
           "application/json"
@@ -116,7 +116,7 @@
         "tags": [
           "articles"
         ],
-        "summary": "Update an existing branch",
+        "summary": "Update an existing article",
         "description": "",
         "consumes": [
           "application/json"
