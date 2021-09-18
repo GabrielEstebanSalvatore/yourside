@@ -9,11 +9,15 @@ const multer = require('multer')
 const { format } = require('timeago.js') //TODO
 const http = require('http')
 const socketIO = require('socket.io')
-
+// swagger
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./swagger.json')
 //Initializations
 const app = express()
 app.use(cors())
 require('dotenv').config({ path: 'variables.env' })
+// swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 //Server is listenning
 const server = http.createServer(app)
@@ -50,7 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 //Routes
 app.use(require('./routers/localidadRoute'))
 app.use(require('./routers/tipoArticuloRoute'))
-app.use(require('./routers/articuloRoute'))
+app.use(require('./routers/articleRoute'))
 app.use(require('./routers/configuracionRoute'))
 app.use(require('./routers/comprobanteDetalleRoute'))
 app.use(require('./routers/comprobanteRoute'))

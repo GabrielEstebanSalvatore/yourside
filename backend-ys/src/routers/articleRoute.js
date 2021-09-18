@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { check } = require('express-validator')
-const articuloController = require('../controllers/articuloController')
+const articuloController = require('../controllers/articleController')
 const { v4: uuidv4 } = require('uuid')
 const multer = require('multer')
 const path = require('path')
@@ -15,30 +15,30 @@ const storage = multer.diskStorage({
 
 const fileUpload = multer({ storage: storage }).single('image')
 
-router.post('/articulosimagen', fileUpload, async (req, res) => {
+router.post('/articlesimages', fileUpload, async (req, res) => {
     await articuloController.createImage(req, res)
 })
 
-router.post('/articulos', async (req, res) => {
+router.post('/articles', async (req, res) => {
     await articuloController.create(req, res)
 })
 
-router.get('/articulos', async (req, res) => {
+router.get('/articles', async (req, res) => {
     await articuloController.getAll(req, res)
 })
 
-router.get('/articulos/:id', async (req, res) => {
+router.get('/articles/:id', async (req, res) => {
     await articuloController.get(req, res)
 })
-router.put('/articulos/:id', async (req, res) => {
+router.put('/articles/:id', async (req, res) => {
     await articuloController.update(req, res)
 })
 
-router.delete('/articulos/:id', async (req, res) => {
+router.delete('/articles/:id', async (req, res) => {
     await articuloController.remove(req, res)
 })
 
-router.post('/articulosvendidos', async (req, res) => {
+router.post('/soldarticles', async (req, res) => {
     await articuloController.soldArticles(req, res)
 })
 
