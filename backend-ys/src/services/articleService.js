@@ -67,23 +67,23 @@ const create = async (req) => {
     }
     const input = articleDto(req.body)
 
-    const articulo = await Article.findOne({ code: input.code })
+    const article = await Article.findOne({ code: input.code })
 
-    if (articulo) {
+    if (article) {
         return {
             status: 400,
-            content: { msg: 'El articulo ya existe' },
+            content: { msg: 'The article already exists' },
         }
     }
-    const articuloNuevo = new Article(input)
+    const newArticle = new Article(input)
 
-    await articuloNuevo.save()
+    await newArticle.save()
     return {
         status: 201,
         content: {
             ok: true,
-            article: articuloNuevo,
-            message: 'Articulo creado con exito',
+            article: newArticle,
+            message: 'Article created successfully',
         },
     }
 }
@@ -94,7 +94,7 @@ const update = async (id, body) => {
             content: {
                 ok: false,
                 err: {
-                    message: 'El ID no es correcto',
+                    message: 'ID incorrect',
                 },
             },
         }
@@ -106,7 +106,7 @@ const update = async (id, body) => {
         content: {
             ok: true,
             article: article,
-            message: `El articulo ${input.name} fue actualizado`,
+            message: `The article ${input.name} was updated`,
         },
     }
 }
@@ -117,7 +117,7 @@ const remove = async (id) => {
             content: {
                 ok: false,
                 err: {
-                    message: 'El ID no es correcto',
+                    message: 'ID incorrect',
                 },
             },
         }
@@ -129,7 +129,7 @@ const remove = async (id) => {
             content: {
                 ok: false,
                 err: {
-                    message: 'Artículo no encontrado',
+                    message: 'Article not found',
                 },
             },
         }
@@ -142,7 +142,7 @@ const remove = async (id) => {
         status: 204,
         content: {
             ok: true,
-            message: `El articulo ${article.name} fue eliminado`,
+            message: `The article ${article.name} was removed`,
         },
     }
 }
@@ -161,7 +161,7 @@ const createImage = async (req) => {
         content: {
             ok: true,
             img: image,
-            message: 'Imagen creada éxito',
+            message: 'Image created successfully',
         },
     }
 }
