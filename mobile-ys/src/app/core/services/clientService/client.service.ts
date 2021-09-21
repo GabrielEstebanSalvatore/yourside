@@ -14,7 +14,7 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
   
-  insert = (cliente: Cliente) =>{
+  insert = (cliente: Cliente) => {
     return this.http.post(`${this.API_URI}`, cliente);
   }
 

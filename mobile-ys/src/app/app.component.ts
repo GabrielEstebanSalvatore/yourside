@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { AuthService } from './core/services/authService/auth.service';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core'
     styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-    constructor() {}
+    constructor(public authService: AuthService) {}
+
+    logOut = () =>{
+        localStorage.removeItem("token");
+    }
 }

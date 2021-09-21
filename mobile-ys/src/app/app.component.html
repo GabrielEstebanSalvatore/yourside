@@ -12,20 +12,43 @@
         <ion-content>
           <ion-list>
             <ion-item>
-              <i class='bx bx-user' > </i>
+              <ion-icon name="person-circle"></ion-icon>
               <span>Profile</span>
             </ion-item>
             <ion-item>
-              <i class='bx bx-cart-alt' ></i>
+              <ion-icon name="bag-handle"></ion-icon>
+              <!--<i class='bx bx-cart-alt' ></i> -->
               <span class="links_name">Shop Cart</span>
-            </ion-item>
+              </ion-item>
             <ion-item>
               <i class='bx bx-folder' > </i>
               <span>Tickets</span>
-            </ion-item>
+            </ion-item> 
           </ion-list>
         </ion-content>
+        <ion-footer >
+          <div *ngIf="!this.authService.loggedIn()">
+            <ion-item >
+              <ion-buttons>
+                <ion-button [routerLink]="['/login']">
+                  LogIn
+                </ion-button>
+                <ion-button [routerLink]="['/signin']"expand="block" fill="outline">
+                  SignUp
+                </ion-button>
+              </ion-buttons>
+            </ion-item>
+          </div>
+          <div *ngIf="this.authService.loggedIn()">
+            <ion-item>
+              <ion-buttons>
+                <ion-button (click)="logOut()">
+                  LogOut
+                </ion-button>
+              </ion-buttons>
+            </ion-item>
+          </div>
+        </ion-footer>
       </ion-menu>
-
     <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

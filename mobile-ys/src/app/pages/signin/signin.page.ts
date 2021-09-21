@@ -27,23 +27,16 @@ export class SigninPage implements OnInit {
   }
 
   ngOnInit() {
-    this.clientService.getAll().subscribe(
-      res =>{
-        console.log(res)
-      },
-      error => console.log(error)
-    )
   }
 
   createClient = () =>{
-
     this.clientService.insert(this.cliente).subscribe(
-      res =>{
+      res => {
         console.log(res);
         this.router.navigate(['/login']);
       },
       error => console.log(error)
-    )      
+    )    
   }
 
 }

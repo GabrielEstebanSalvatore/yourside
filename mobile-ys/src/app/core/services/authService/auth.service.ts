@@ -14,6 +14,10 @@ export class AuthService {
     return this.http.post(`${this.API_URI}`, client);
   }
 
+  authClient = () =>{
+    return this.http.get(`${this.API_URI}`);
+  }
+
   loggedIn = () : boolean =>{
     return !!localStorage.getItem("token");
   }

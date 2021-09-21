@@ -2,12 +2,12 @@ export interface Article{
     id? : number;
     name: string;
     code : string;
-    descripcion : string
+    description : string
     amount : number;
     costPrice : number;
     sellPrice : number;
     minimum : number;
-    imagen : string;
+    image : string;
     negativeStock: boolean;
     offer : boolean;
     branch : object;
