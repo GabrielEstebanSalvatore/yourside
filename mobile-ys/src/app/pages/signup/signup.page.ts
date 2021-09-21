@@ -6,11 +6,11 @@ import { Cliente } from 'src/app/core/models/clientModel';
 import { ClientService } from 'src/app/core/services/clientService/client.service';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.page.html',
-  styleUrls: ['./signin.page.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
 })
-export class SigninPage implements OnInit {
+export class SignupPage implements OnInit {
 
   cliente : Cliente;
 

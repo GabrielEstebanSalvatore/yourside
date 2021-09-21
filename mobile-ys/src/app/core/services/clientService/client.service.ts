@@ -14,12 +14,12 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
   
-  insert = (cliente: Cliente) => {
-    return this.http.post(`${this.API_URI}`, cliente);
+  insert = (client: Cliente) => {
+    return this.http.post(`${this.API_URI}`, client);
   }
 
-  edit = (id: string, modCliente : Cliente) =>{
-    return this.http.put(`${this.API_URI}/${id}`, modCliente);
+  edit = (id: string, editClient : Cliente) =>{
+    return this.http.put(`${this.API_URI}/${id}`, editClient);
   }
 
   delete = (id: string)=>{

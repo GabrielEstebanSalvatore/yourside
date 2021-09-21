@@ -27,12 +27,6 @@ export class LoginPage implements OnInit {
     this.authService.getValidation(this.client).subscribe(
       (res:any) => {
         localStorage.setItem("token", res.token);
-        this.authService.authClient().subscribe(
-          res=>{
-            console.log(res)
-          },
-          error => console.log(error)
-        )
         this.router.navigate(['/home']);
       },
       error => console.log(error)

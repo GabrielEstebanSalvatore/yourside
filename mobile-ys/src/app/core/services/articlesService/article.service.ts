@@ -8,16 +8,16 @@ import { Article } from '../../models/articleModel';
 })
 export class ArticleService {
 
-  API_URI = 'http://localhost:4000/articulos';
+  API_URI = 'http://localhost:4000/articles';
 
   constructor(private http: HttpClient) { }
   
-  insert = (cliente: Article) =>{
-    return this.http.post(`${this.API_URI}`, cliente);
+  insert = (article: Article) =>{
+    return this.http.post(`${this.API_URI}`, article);
   }
 
-  edit = (id: string, modCliente : Article) =>{
-    return this.http.put(`${this.API_URI}/${id}`, modCliente);
+  edit = (id: string, editArticle : Article) =>{
+    return this.http.put(`${this.API_URI}/${id}`, editArticle);
   }
 
   delete = (id: string)=>{
