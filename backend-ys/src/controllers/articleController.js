@@ -7,7 +7,7 @@ const Box = require('../models/boxModel')
 const _ = require('underscore')
 const articleService = require('../services/articleService')
 
-class articuloController {
+class articleController {
     static async getAll(req, res) {
         try {
             res.status(202).json(await articleService.getAll())
@@ -106,7 +106,7 @@ class articuloController {
                 } catch (error) {
                     return res.status(200).json({
                         ok: true,
-                        message: `Error en la venta`,
+                        message: `Error in the sale`,
                     })
                 }
             }
@@ -141,16 +141,16 @@ class articuloController {
 
             return res.status(200).json({
                 ok: true,
-                message: `Venta realizada con éxito`,
+                message: `Successfully sale`,
             })
         } catch (error) {
             return res.status(500).json({
                 ok: false,
                 error,
-                response: { message: `Error en la venta` },
+                response: { message: `Error in the sale` },
             })
         }
     }
 }
 
-module.exports = articuloController
+module.exports = articleController

@@ -1,0 +1,328 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Yourside - Esta es una herramienta que permite documentar los endpoints del backend. Nos permite conocer los diferentes endpoints, métodos HTTP, params y opciones útiles",
+    "version": "1.0.0",
+    "title": "Yourside App",
+    "license": {
+      "name": "Made in Tucumán"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "",
+  "tags": [
+    {
+      "name": "articles",
+      "description": "CRUD articles"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/articles": {
+      "get": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "Get all the articles",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/AllArticles"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "Create a new article",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "order placed for purchasing the pet",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ArticleInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articles/{articleId}": {
+      "get": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "Get a article",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "description": "Article ID to get",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "Update an existing article",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "description": "Article ID to edit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update article",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ArticleInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "Remove an existing article",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "description": "Article ID to edit",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://localhost:4000",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "components": {
+    "schemas": {
+      "Branch": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+        } 
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AllArticles": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Article"
+          }
+        },
+        "cuantos": {
+          "type": "integer"
+        }
+      }
+    },
+    "Article": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "available": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer"
+        },
+        "costPrice": {
+          "type": "integer"
+        },
+        "sellPrice": {
+          "type": "integer"
+        },
+        "sellPriceOffer": {
+          "type": "integer"
+        },
+        "negativeStock": {
+          "type": "integer"
+        },
+        "minimum": {
+          "type": "integer"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "articleType": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "offer": {
+          "type": "integer"
+        }
+      }
+    },
+    "ArticleInput": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer"
+        },
+        "costPrice": {
+          "type": "integer"
+        },
+        "sellPrice": {
+          "type": "integer"
+        },
+        "sellPriceOffer": {
+          "type": "integer"
+        },
+        "negativeStock": {
+          "type": "integer"
+        },
+        "minimum": {
+          "type": "integer"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "articleType": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "offer": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://google.com"
+  }
+}
