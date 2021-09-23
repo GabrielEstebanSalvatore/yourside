@@ -1,62 +1,25 @@
-const Branch = require('../models/branchModel')
+const Brand = require('../models/brandModel')
 const _ = require('underscore')
 const { validationResult } = require('express-validator')
+const brandService = require('../services/brandService')
 
-class branchController {
+class brandController {
     static async create(req, res) {
-        console.log(req.body)
-        const errores = validationResult(req)
-        if (!errores.isEmpty()) {
-            return res.status(400).json({ errores: errores.array() })
-        }
-
-        const { name } = req.body
-
         try {
-            // Revisar que el usuario registrado sea unico
-            let branch = await Branch.findOne({ name })
-
-            if (branch) {
-                return res.status(400).json({ msg: 'La Marca ya existe' })
-            }
-
-            branch = new Branch()
-            branch.name = name
-
-            await branch.save()
-
-            res.status(200).json({
-                ok: true,
-                message: `La marca ${branch.name} fue creada con exito`,
-            })
-        } catch (error) {
-            console.log(error)
-            res.status(400).send('Hubo un error')
+            const response = await brandService.create(req)
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
         }
     }
 
     static async getAll(req, res) {
-        await Branch.find({ available: 1 }).exec((err, branches) => {
-            if (err) {
-                return res.status(400).json({
-                    ok: false,
-                    err,
-                })
-            }
-            Branch.countDocuments((err, conteo) => {
-                if (err) {
-                    return res.status(400).json({
-                        ok: false,
-                        err,
-                    })
-                }
-                res.json({
-                    ok: true,
-                    branches,
-                    cuantos: conteo,
-                })
-            })
-        })
+        try {
+            const response = await brandService.getAll()
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
+        }
     }
 
     static async getOne(req, res) {
@@ -128,4 +91,4 @@ class branchController {
     }
 }
 
-module.exports = branchController
+module.exports = brandController
