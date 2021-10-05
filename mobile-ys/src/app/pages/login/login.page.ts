@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-
-import { AuthService } from 'src/app/core/services/authService/auth.service';
-import { AstMemoryEfficientTransformer } from '@angular/compiler';
+import { AuthService } from 'src/app/shared/services/authService/auth.service';
 
 @Component({
   selector: 'app-login',

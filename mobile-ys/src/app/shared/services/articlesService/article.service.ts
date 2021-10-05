@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { Article } from '../../models/articleModel';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
 
-  API_URI = 'http://localhost:4000/articles';
+  API_URI= environment.HOST_API + 'articles';
 
   constructor(private http: HttpClient) { }
   
@@ -29,6 +30,6 @@ export class ArticleService {
   }
 
   getAll = () => {
-    return this.http.get(`${this.API_URI}`);
+    return this.http.get(this.API_URI);
   }
 }

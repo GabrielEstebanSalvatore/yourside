@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
-
-import { Cliente } from 'src/app/core/models/clientModel';
+import { Cliente } from 'src/app/shared/models/clientModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,8 @@ import { Cliente } from 'src/app/core/models/clientModel';
 
 export class ClientService {
 
-  API_URI = 'http://localhost:4000/clientes';
-
+  API_URI = environment.HOST_API + 'clientes';
+  
   constructor(private http: HttpClient) { }
   
   insert = (client: Cliente) => {

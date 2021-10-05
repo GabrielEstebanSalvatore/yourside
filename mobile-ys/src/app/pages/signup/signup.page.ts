@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { Cliente } from 'src/app/core/models/clientModel';
-
-import { ClientService } from 'src/app/core/services/clientService/client.service';
+import { Cliente } from 'src/app/shared/models/clientModel';
+import { ClientService } from 'src/app/shared/services/clientService/client.service';
 
 @Component({
   selector: 'app-signup',
