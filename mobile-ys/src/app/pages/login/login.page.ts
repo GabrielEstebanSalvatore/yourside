@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { AuthService } from 'src/app/shared/services/authService/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  client : any;
+  constructor(private authService: AuthService, private router: Router, private http: HttpClient) { 
+    this.client = {
+      email: "",
+      password: ""
+    }
+  }
 
   ngOnInit() {
+  }
+
+  validate = () => {
+    this.authService.getValidation(this.client).subscribe(
+      (res:any) => {
+        localStorage.setItem("token", res.token);
+        this.router.navigate(['/home']);
+      },
+      error => console.log(error)
+    )
   }
 
 }
