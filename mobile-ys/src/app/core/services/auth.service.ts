@@ -17,4 +17,7 @@ export class AuthService {
     login(login: AuthRequest): Observable<any> {
         return this.authApi.login(login)
     }
+    loggedIn(): boolean {
+        return !!localStorage.getItem('token')
+    }
 }
