@@ -1,34 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { AuthService } from 'src/app/shared/services/authService/auth.service';
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { AuthService } from 'src/app/core/services/auth.service'
+import { Subscription } from 'rxjs'
+import { AuthRequest } from 'src/app/core/requests/auth.request'
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+    selector: 'app-login',
+    templateUrl: './login.page.html',
+    styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
-
-  client : any;
-  constructor(private authService: AuthService, private router: Router, private http: HttpClient) { 
-    this.client = {
-      email: "",
-      password: ""
+export class LoginPage implements OnInit, OnDestroy {
+    private subscriptions = new Subscription()
+    client: any
+    constructor(private authService: AuthService, private router: Router) {
+        this.client = {
+            email: '',
+            password: '',
+        }
     }
-  }
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe()
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {}
 
-  validate = () => {
-    this.authService.getValidation(this.client).subscribe(
-      (res:any) => {
-        localStorage.setItem("token", res.token);
-        this.router.navigate(['/home']);
-      },
-      error => console.log(error)
-    )
-  }
-
+    createRequest(): AuthRequest {
+        return {
+            email: this.client.email,
+            password: this.client.password,
+        }
+    }
+    validate = () => {
+        this.authService.login(this.createRequest()).subscribe({
+            error: (error: any) => {
+                console.error(error)
+            },
+            next: (response) => {
+                console.log(response)
+                localStorage.setItem('token', response.token)
+                this.router.navigate(['/home'])
+            },
+        })
+    }
 }
