@@ -11,7 +11,7 @@ const AppState = (props) => {
         articleTypeList: [],
         articles: [],
         comprobantes: [],
-        branchList: [],
+        brandList: [],
         articleView: [],
         offerList: [],
         boxesList: [],
@@ -117,10 +117,10 @@ const AppState = (props) => {
         }
     }
 
-    const deleteBrach = async (branchId) => {
+    const deleteBrand = async (brandId) => {
 
         try {
-            const respuesta = await clienteAxios.delete(`/branches/${branchId}`)
+            const respuesta = await clienteAxios.delete(`/brands/${brandId}`)
             traerMarcas()
         } catch {
             handleModal('MensajeRegistro', true)
@@ -164,11 +164,10 @@ const AppState = (props) => {
         }
     }
 
-    const editBranch = async (data) => {
+    const editBrand = async (data) => {
         try {
             const respuesta = await clienteAxios.put(
-                `/branches/${data.id}`,
-                data
+                `/brands/${data.id}`, data
             )
             dispatch(traerMarcas())
         } catch {
@@ -187,12 +186,12 @@ const AppState = (props) => {
         }
     }
 
-    const getArticles = async (data) => {
+    const getArticles = async () => {
         try {
-            const response = await clienteAxios.get('/articulos')
+            const response = await clienteAxios.get('/articles')
             dispatch({
                 type: AppConstant.GET_ARTICLES,
-                payload: response.data.articles,
+                payload: response.data.response,
             })
         } catch {
             handleModal('MensajeRegistro',true)
@@ -208,10 +207,10 @@ const AppState = (props) => {
                 //CREATING IMAGE 
                 const formDataImage = new FormData()
                 formDataImage.append('image', data.file)
-                const imageId = await clienteAxios.post('/articulosimagen',formDataImage)
+                const imageId = await clienteAxios.post('/articlesimages',formDataImage)
                 currentArticle.imageId = imageId.data.img._id;
             }
-            await clienteAxios.put(`/articulos/${currentArticle.id}`,currentArticle);
+            await clienteAxios.put(`/articles/${currentArticle.id}`,currentArticle);
             dispatch(getArticles())
 
         } catch {
@@ -221,21 +220,21 @@ const AppState = (props) => {
     } 
 
     const newArticule = async (data) => {
+        
         var newArticle = data.article
         //CREATING IMAGE
         const formDataImage = new FormData()
         formDataImage.append('image', data.file)
 
         const imageId = await clienteAxios.post(
-            '/articulosimagen',
+            '/articlesimages',
             formDataImage
         )
 
         newArticle.imageId = imageId.data.img._id
 
         //CREATING ARTICLE
-        const response = await clienteAxios.post('/articulos', newArticle)
-
+        const response = await clienteAxios.post('/articles', newArticle)
         if (response != null) {
             try {
 
@@ -255,7 +254,7 @@ const AppState = (props) => {
 
     const deleteArticle = async (articuloId) => {
         try {
-            await clienteAxios.delete(`/articulos/${articuloId}`)
+            await clienteAxios.delete(`/articles/${articuloId}`)
             getArticles()
         } catch (error) {
             handleModal('MensajeRegistro', true)
@@ -275,7 +274,7 @@ const AppState = (props) => {
     }
     const purchaseApp = async (data) => {
         try {
-            const response = await clienteAxios.post(`/articulosvendidos`, data)
+            const response = await clienteAxios.post(`/soldarticles`, data)
             dispatch({
                 type: AppConstant.SUCCESSFUL_PURCHASE,
                 payload: response.data,
@@ -316,10 +315,10 @@ const AppState = (props) => {
 
     const traerMarcas = async () => {
         try {
-            const respuesta = await clienteAxios.get(`/branches`)
+            const response = await clienteAxios.get(`/brands`)
             dispatch({
                 type: AppConstant.TRAER_MARCAS,
-                payload: respuesta.data.branches,
+                payload: response.data.response,
             })
         } catch {
             handleModal('MensajeRegistro', true)
@@ -351,9 +350,9 @@ const AppState = (props) => {
         }
     }
 
-    const newBranch = async (data) => {
+    const newBrand = async (data) => {
         try {
-            const response = await clienteAxios.post('/branches', data)
+            const response = await clienteAxios.post('/brands', data)
             setMessage(response.data.message)
             traerMarcas()
         } catch {
@@ -398,7 +397,7 @@ const AppState = (props) => {
                 articles: state.articles,
                 currentState: state.currentState,
                 comprobantes: state.comprobantes,
-                branchList: state.branchList,
+                brandList: state.brandList,
                 articleView: state.articleView,
                 offerList: state.offerList,
                 boxesList: state.boxesList,
@@ -408,15 +407,15 @@ const AppState = (props) => {
                 newConfiguration,
                 newArticleType,
                 newOffer,
-                newBranch,
+                newBrand,
                 newArticule,
                 deleteArticleType,
                 deleteArticle,
-                deleteBrach,
+                deleteBrand,
                 deleteOffer,
                 editConfiguration,
                 editArticle,
-                editBranch,
+                editBrand,
                 editarTipoArticulo,
                 editOffer,
                 current,

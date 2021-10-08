@@ -5,18 +5,18 @@ import { Table } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
 
-const BranchList = () => {
+const BrandList = () => {
     const appContext = useContext(AppContext)
-    const { handleModal, traerMarcas, branchList, current, deleteBrach } =
+    const { handleModal, traerMarcas, brandList, current, deleteBrand } =
         appContext
 
     const [localState, setLocalState] = useState({
-        modalView: 'Branch',
+        modalView: 'Brand',
         showModal: true,
     })
 
-    const setToEdit = (branch) => {
-        current(branch)
+    const setToEdit = (brand) => {
+        current(brand)
         handleModal(localState.modalView, localState.showModal)
     }
 
@@ -51,7 +51,7 @@ const BranchList = () => {
     ]
 
     const getRow = () => {
-        return branchList.map((marca) => {
+        return brandList.map((marca) => {
             return {
                 key: marca._id,
                 name: marca.name,
@@ -71,7 +71,7 @@ const BranchList = () => {
             confirmButtonText: 'Si, eliminar',
         }).then((result) => {
             if (result.value) {
-                deleteBrach(id)
+                deleteBrand(id)
                 Swal.fire(
                     'Eliminado!',
                     'La marca se eliminó correctamente.',
@@ -89,4 +89,4 @@ const BranchList = () => {
     )
 }
 
-export default BranchList
+export default BrandList

@@ -3,7 +3,7 @@ import LoginConteiner from '../login/LoginContainer'
 import NewArticleType from '../articleType/NewArticleType'
 import NewArticule from '../articule/NewArticule'
 import Pucharse from '../market/Pucharse'
-import Branch from '../branch/NewBranch'
+import Brand from '../brand/NewBrand'
 import ArticleView from '../market/ArticleView'
 import Offer from '../offer/NewOffer'
 
@@ -28,8 +28,8 @@ const ModalContainer = () => {
                 return <NewArticule />
             case 'Pucharse':
                 return <Pucharse />
-            case 'Branch':
-                return <Branch />
+            case 'Brand':
+                return <Brand/>
             case 'ArticuleView':
                 return <ArticleView />
             case 'Offers':

@@ -141,6 +141,7 @@ const ArticuleList = () => {
 
     //ARMAR LA TABLA
     const getRow = () => {
+
         return articles.map((article) => {
             return {
                 key: article._id,
@@ -154,8 +155,8 @@ const ArticuleList = () => {
                 articleTypeId:article.articleType._id,
                 articleTypeName:article.articleType.name,
                 description:article.description,
-                branchId:article.branch._id,
-                branchName:article.branch.name,
+                brandId:article.brand._id,
+                brandName:article.brand.name,
             }
         })
     }

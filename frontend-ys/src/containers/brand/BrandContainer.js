@@ -3,14 +3,14 @@ import { ButtonItemView } from '../../components/button'
 import ContainerGeneral from '../../components/containergeneral'
 import AppContext from '../../context/app/appContext'
 import ModalContainer from '../modal/ModalContainer'
-import BranchList from './BranchList'
+import BrandList from './BrandList'
 
-const BranchContainer = () => {
+const BrandContainer = () => {
     const appContext = useContext(AppContext)
     const { handleModal, showModal } = appContext
 
     const [localState, setLocalState] = useState({
-        modalView: 'Branch',
+        modalView: 'Brand',
         showModal: true,
     })
 
@@ -28,9 +28,9 @@ const BranchContainer = () => {
                 ></ButtonItemView>
             }
             modal={showModal != false ? <ModalContainer /> : null}
-            list={<BranchList />}
+            list={<BrandList />}
         />
     )
 }
 
-export default BranchContainer
+export default BrandContainer

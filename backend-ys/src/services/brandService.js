@@ -11,7 +11,7 @@ class BrandService {
         return {
             ok: true,
             response,
-            amount: response.length,
+            amount: response.length
         }
     }
     static get = async (id) => {

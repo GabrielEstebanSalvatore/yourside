@@ -12,7 +12,7 @@ import Configuration from './containers/configuration/ConfigurationContainer'
 
 import ArticleType from './containers/articleType/ArticleTypeContainer'
 import Articule from './containers/articule/ArticuleContainer'
-import Branch from './containers/branch/BranchContainer'
+import Brand from './containers/brand/BrandContainer'
 import NewArticule from './containers/articule/NewArticule'
 import Market from './containers/market/MarketContainer'
 import Pucharse from './containers/market/Pucharse'
@@ -59,7 +59,7 @@ const App = ({ showModal }) => {
                             <Route exact path="/mercado" component={Market} />
                             <Route exact path="/compra" component={Pucharse} />
                             <Route exact path="/orders" component={Orders} />
-                            <Route exact path="/branches" component={Branch} />
+                            <Route exact path="/brands" component={Brand} />
                             <PrivateRoute
                                 exact
                                 path="/comprobantes"

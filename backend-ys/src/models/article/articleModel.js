@@ -42,8 +42,7 @@ let articleSchema = new Schema({
         required: true,
         defaul: 1,
     },
-    BiquadFilterNode: {
-        //
+    brand: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Brand',
     },
@@ -54,14 +53,11 @@ let articleSchema = new Schema({
     image: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Image',
-        defaul: null,
     },
     offer: {
-        //
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Offer',
-        defaul: null,
-    },
+    }
 })
 
 module.exports = mongoose.model('Article', articleSchema)
