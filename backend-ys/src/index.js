@@ -61,7 +61,7 @@ app.use(require('./routers/comprobanteRoute'))
 app.use(require('./routers/clienteRoute'))
 app.use(require('./routers/authRoute'))
 app.use(require('./routers/boxRoute'))
-app.use(require('./routers/branchRoute'))
+app.use(require('./routers/brandRoute'))
 app.use(require('./routers/offerRoute'))
 
 mongoose

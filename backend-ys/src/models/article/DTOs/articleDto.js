@@ -12,7 +12,7 @@ const articleDto = (response) => {
         costPrice: response.costPrice,
         amount: response.amount,
         image: response.image?.path,
-        branch: response.branch?.name,
+        brand: response.brand?.name,
         offer: response.offer?.percent,
     }
 }

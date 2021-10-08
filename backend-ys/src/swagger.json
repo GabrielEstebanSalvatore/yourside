@@ -378,7 +378,7 @@
             "$ref": "#/definitions/Article"
           }
         },
-        "cuantos": {
+        "amount": {
           "type": "integer"
         }
       }
@@ -492,7 +492,7 @@
             "$ref": "#/definitions/Brand"
           }
         },
-        "brandsAmount": {
+        "amount": {
           "type": "integer"
         }
       }

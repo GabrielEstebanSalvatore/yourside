@@ -1,4 +1,4 @@
-const Article = require('../models/articleModel')
+const Article = require('../models/article/articleModel')
 const Comprabante = require('../models/comprabanteModel')
 const Ticket = require('../models/ticket')
 const ComprobanteDetalle = require('../models/comprabanteDetalleModel')

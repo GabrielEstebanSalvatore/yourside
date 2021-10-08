@@ -42,10 +42,10 @@ let articleSchema = new Schema({
         required: true,
         defaul: 1,
     },
-    branch: {
+    BiquadFilterNode: {
         //
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Branch',
+        ref: 'Brand',
     },
     articleType: {
         type: mongoose.Schema.Types.ObjectId,
