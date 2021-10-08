@@ -96,7 +96,7 @@ const HeaderContainer = (props) => {
                                                         </Link>
                                                         <Link
                                                             className="dropdown-item"
-                                                            to="/branches"
+                                                            to="/brands"
                                                         >
                                                             Marcas
                                                         </Link>

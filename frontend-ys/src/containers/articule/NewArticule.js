@@ -8,7 +8,7 @@ const NewArticule = () => {
     const appContext = useContext(AppContext)
     const {
         newArticule, editArticle, articleTypeList, getArticleType,
-            currentState, current, traerMarcas, branchList, handleModal 
+            currentState, current, traerMarcas, brandList, handleModal 
     } = appContext
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const NewArticule = () => {
             : null,
         minimum: currentState.minimum ? currentState.minimum : null,
         articleType: currentState.articleTypeId ? currentState.articleTypeId : null,
-        branch: currentState.branchId ? currentState.branchId : null,
+        brand: currentState.brandId ? currentState.brandId : null,
         description: currentState.description ? currentState.description : '',
         offer: null,
         imageId: null,
@@ -79,7 +79,8 @@ const NewArticule = () => {
             negativeStock: null,
             minimum: null,
             articleType: null,
-            id: null,
+            brand: null,
+            id: null
         })
     }
 
@@ -173,19 +174,21 @@ const NewArticule = () => {
                             <select
                                 className="form-control"
                                 onChange={onChange}
-                                name="branch"
+                                name="brand"
                                 required
                             >
                                  {
-                                    currentState.branchId
+                                    currentState.brandId
                                         ?
-                                        <option value={currentState.branchId} key={currentState.branchId} selected >{currentState.branchName}</option>
+                                        <option value={currentState.brandId} key={currentState.brandId} selected >{currentState.brandName}</option>
                                         :
                                         <option value="" disabled selected>Seleccione la Marca</option>
                                 }
-                                {branchList.map((marca) => (
-                                    <option key={marca.id} value={marca._id}>
-                                        {marca.name}
+                                {brandList.map((brand) => (
+                                    <option key={brand.id} 
+                                            value={brand.id}>
+                                                
+                                        {brand.name}
                                     </option>
                                 ))}
                             </select>

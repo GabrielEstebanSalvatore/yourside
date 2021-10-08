@@ -71,7 +71,7 @@ export default (state, action) => {
         case AppConstant.TRAER_MARCAS:
             return {
                 ...state,
-                branchList: action.payload,
+                brandList: action.payload,
             }
         case AppConstant.ADDARTICLEVIEW:
             return {

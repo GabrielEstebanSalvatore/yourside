@@ -76,8 +76,7 @@ const MainCarousel = () => {
                                         article.image && (
                                             <img
                                                 src={
-                                                    `http://localhost:4000/` +
-                                                    article.image.path
+                                                    `http://localhost:4000/` + article.image
                                                 }
                                                 alt=""
                                             />

@@ -4,16 +4,16 @@ const articleDto = (response) => {
         available: response.available,
         description: response.description,
         code: response.code,
-        name: response.name,
-        articleType: response.articleType?.name,
+        name: response.name == undefined ? '' : response.name,
+        articleType: response.create == 1 ? response.articleType : response.articleType.name,
         minimum: response.minimum,
         negativeStock: response.negativeStock,
         sellPrice: response.sellPrice,
         costPrice: response.costPrice,
         amount: response.amount,
-        image: response.image?.path,
-        brand: response.brand?.name,
-        offer: response.offer?.percent,
+        image: response.create == 1 ? response.imageId : response.image.path,
+        brand: response.create == 1 ? response.brand : response.brand.name == undefined ? null : response.brand.name,
+        offer: response.offer
     }
 }
 module.exports = { articleDto }

@@ -10,7 +10,8 @@ const articleService = require('../services/articleService')
 class articleController {
     static async getAll(req, res) {
         try {
-            res.status(202).json(await articleService.getAll())
+            var response = await articleService.getAll()
+            res.status(response.status).json(response)
         } catch (err) {
             res.send(err)
         }

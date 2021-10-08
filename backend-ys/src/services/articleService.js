@@ -12,15 +12,18 @@ class articleService {
             .populate('image')
             .populate('brand')
             .populate('offer')
-        const response = articles.map((article) => articleDto(article))
+
+        const response = await articles.map((article) => articleDto(article))
         response.map((article) => {
             if (article.offer) {
                 article.sellPriceOffer =
                     (article.sellPrice * (100 - article.offer)) / 100
             }
         })
+
         return {
             ok: true,
+            status: 200,
             response,
             amount: response.length,
         }
@@ -57,15 +60,19 @@ class articleService {
         }
     }
     static create = async (req) => {
+
         const errores = validationResult(req)
+
         if (!errores.isEmpty()) {
             return {
                 status: 400,
                 content: { errores: errores.array() },
             }
         }
-        const input = articleDto(req.body)
+        
+        req.body.create = 1;
 
+        const input = articleDto(req.body)
         const article = await Article.findOne({ code: input.code })
 
         if (article) {
@@ -155,13 +162,13 @@ class articleService {
     }
     static createImage = async (req) => {
         const image = new Image()
-        image.title = req.body?.title
-        image.description = req.body?.description
-        image.filename = req.file?.filename
-        image.path = '/img/uploads/' + req.file?.filename
-        image.originalname = req.file?.originalname
-        image.mimetype = req.file?.mimetype
-        image.size = req.file?.size
+        image.title = req.body.title
+        image.description = req.body.description
+        image.filename = req.file.filename
+        image.path = '/img/uploads/' + req.file.filename
+        image.originalname = req.file.originalname
+        image.mimetype = req.file.mimetype
+        image.size = req.file.size
         await image.save()
         return {
             status: 201,

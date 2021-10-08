@@ -9,8 +9,7 @@ import AppContext from '../../context/app/appContext'
 
 const ClientState = (props) => {
     const appContext = useContext(AppContext)
-    const { handleModal, cerrarSesion, setMessage, getConfiguration } =
-        appContext
+    const { handleModal, cerrarSesion, setMessage, getConfiguration, getArticles } = appContext
 
     const initialState = {
         login: {},
@@ -58,6 +57,7 @@ const ClientState = (props) => {
             authenticatedClient()
             handleModal('', false)
             getConfiguration()
+            getArticles()
         } catch (error) {
             handleModal('MensajeRegistro', true)
             setMessage('El cliente no esta registrado')

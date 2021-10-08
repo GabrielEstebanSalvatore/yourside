@@ -3,17 +3,17 @@ import Button, { ButtonCancel } from '../../components/button'
 import AppContext from '../../context/app/appContext'
 import Input from '../../components/input'
 
-const NewBranch = () => {
+const NewBrand = () => {
     //Extraer Turnos de state inicial
     const appContext = useContext(AppContext)
-    const { handleModal, current, currentState, newBranch, editBranch } =
+    const { handleModal, current, currentState, newBrand, editBrand } =
         appContext
 
     const [localState, setLocalState] = useState({
         modalView: '',
         showModal: false,
-        idBranch: currentState.name ? currentState.key : null,
-        BranchName: currentState.name ? currentState.name : '',
+        idBrand: currentState.name ? currentState.key : null,
+        BrandName: currentState.name ? currentState.name : '',
     })
 
     const onChange = (e) => {
@@ -28,23 +28,23 @@ const NewBranch = () => {
     }
 
     const editCurrent = () => {
-        editBranch({ id: localState.idBranch, name: localState.BranchName })
+        editBrand({ id: localState.idBrand, name: localState.BrandName })
         handleModal(localState.modalView, localState.showModal)
         current({})
         setLocalState({
             ...localState,
-            idBranch: null,
-            BranchName: '',
+            idBrand: null,
+            BrandName: '',
         })
     }
 
     const createCurrent = async () => {
-        newBranch({ name: localState.BranchName })
+        newBrand({ name: localState.BrandName })
         handleModal('MensajeRegistro', true)
         setLocalState({
             ...localState,
-            idBranch: null,
-            BranchName: '',
+            idBrand: null,
+            BrandName: '',
         })
     }
 
@@ -55,8 +55,8 @@ const NewBranch = () => {
             <div className="login-container__body">
                 <Input
                     type={'text'}
-                    value={localState.BranchName ? localState.BranchName : ''}
-                    name={'BranchName'}
+                    value={localState.BrandName ? localState.BrandName : ''}
+                    name={'BrandName'}
                     onChange={onChange}
                     title={'Nombre'}
                 />
@@ -81,4 +81,4 @@ const NewBranch = () => {
     )
 }
 
-export default NewBranch
+export default NewBrand
