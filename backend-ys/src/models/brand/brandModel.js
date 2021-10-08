@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-let branchSchema = new Schema({
+let brandSchema = new Schema({
     available: {
         type: Number,
         default: 1,
@@ -13,4 +13,4 @@ let branchSchema = new Schema({
     },
 })
 
-module.exports = mongoose.model('Branch', branchSchema)
+module.exports = mongoose.model('Brand', brandSchema)
