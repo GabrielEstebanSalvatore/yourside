@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const uniqueValidator = require('mongoose-unique-validator')
 
-let tipoArticuloSchema = new Schema({
+const articleTypeSchema = new Schema({
     available: {
         type: Number,
         default: 1,
@@ -14,6 +14,6 @@ let tipoArticuloSchema = new Schema({
     },
 })
 
-tipoArticuloSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único' })
+articleTypeSchema.plugin(uniqueValidator, { message: '{PATH} must be unique' })
 
-module.exports = mongoose.model('TipoArticulo', tipoArticuloSchema)
+module.exports = mongoose.model('ArticleType', articleTypeSchema)

@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //Routes
 app.use(require('./routers/localidadRoute'))
-app.use(require('./routers/tipoArticuloRoute'))
+app.use(require('./routers/articleTypeRoute'))
 app.use(require('./routers/articleRoute'))
 app.use(require('./routers/configuracionRoute'))
 app.use(require('./routers/comprobanteDetalleRoute'))
