@@ -3,7 +3,8 @@ const brandService = require('../services/brandService')
 class brandsController {
     static async getAll(req, res) {
         try {
-            res.status(202).json(await brandService.getAll())
+            const response = await brandService.getAll()
+            res.status(response.status).json(response.content)
         } catch (err) {
             res.send(err)
         }

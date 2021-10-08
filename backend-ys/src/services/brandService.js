@@ -9,9 +9,12 @@ class BrandService {
         const brands = await Brand.find({ available: 1 })
         const response = brands.map((brand) => brandDto(brand))
         return {
-            ok: true,
-            response,
-            amount: response.length
+            status: 200,
+            content: {
+                ok: true,
+                response,
+                amount: response.length,
+            },
         }
     }
     static get = async (id) => {
@@ -89,6 +92,15 @@ class BrandService {
         }
         const input = brandInputDto(body)
         const brand = await Brand.findByIdAndUpdate(id, input, { new: true })
+        if (!brand) {
+            return {
+                status: 404,
+                content: {
+                    ok: false,
+                    message: `Item not found`,
+                },
+            }
+        }
         return {
             status: 200,
             content: {
