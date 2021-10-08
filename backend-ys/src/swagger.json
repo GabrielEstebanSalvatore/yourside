@@ -14,6 +14,10 @@
     {
       "name": "articles",
       "description": "CRUD articles"
+    },
+    {
+      "name": "brands",
+      "description": "CRUD brands"
     }
   ],
   "schemes": [
@@ -25,7 +29,7 @@
         "tags": [
           "articles"
         ],
-        "summary": "Get all the articles",
+        "summary": "Get all the articles availables",
         "description": "",
         "produces": [
           "application/json"
@@ -52,10 +56,71 @@
           {
             "in": "body",
             "name": "body",
-            "description": "order placed for purchasing the pet",
+            "description": "create new article",
             "required": true,
             "schema": {
               "$ref": "#/definitions/ArticleInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+     "/brands": {
+      "get": {
+        "tags": [
+          "brands"
+        ],
+        "summary": "Get all the brands availables",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/AllBrands"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "brands"
+        ],
+        "summary": "Create a new brand",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "create a new brand",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BrandInput"
             }
           }
         ],
@@ -164,7 +229,102 @@
           {
             "name": "articleId",
             "in": "path",
-            "description": "Article ID to edit",
+            "description": "Article ID to remove",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/brands/{brandId}": {
+      "get": {
+        "tags": [
+          "brands"
+        ],
+        "summary": "Get a brand",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "description": "Brand ID to get",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/Brand"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "brands"
+        ],
+        "summary": "Update an existing brand",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "description": "Brand ID to edit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update brand",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BrandInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "brands"
+        ],
+        "summary": "Remove an existing brand",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "brandId",
+            "in": "path",
+            "description": "Brand ID to remove",
             "required": true,
             "type": "string"
           }
@@ -317,6 +477,45 @@
         },
         "offer": {
           "type": "integer"
+        }
+      }
+    },
+    "AllBrands": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Brand"
+          }
+        },
+        "brandsAmount": {
+          "type": "integer"
+        }
+      }
+    },
+    "Brand": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "available": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+     "BrandInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
         }
       }
     }
