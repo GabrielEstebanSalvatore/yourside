@@ -1,4 +1,3 @@
-const Comprabante = require('../models/comprabanteModel')
 const {
     cashRegisterInputDto,
 } = require('./../models/cashRegister/DTOs/cashRegisterInputDto')
@@ -24,7 +23,6 @@ class checkoutService {
         const cashRegister = await CashRegister.findOne({
             number: input.number,
         })
-        console.log('test')
         if (cashRegister) {
             return {
                 status: 400,
@@ -61,7 +59,6 @@ class checkoutService {
     }
 
     static get = async (id) => {
-        console.log('test')
         if (!ObjectId.isValid(id)) {
             return {
                 status: 400,
