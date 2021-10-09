@@ -6,7 +6,7 @@ const Image = require('../models/imageModel')
 const ObjectId = require('mongoose').Types.ObjectId
 
 class articleService {
-    static async getCurrentBox(box) {}
+    static async getCurrentCheckout(box) {}
     static getAll = async () => {
         const articles = await Article.find({ available: 1 })
             .populate('articleType')

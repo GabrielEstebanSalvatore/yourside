@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-let boxSchema = new Schema({
+let checkoutSchema = new Schema({
     available: {
         type: Number,
         default: 1,
@@ -10,28 +10,29 @@ let boxSchema = new Schema({
         type: Number,
         required: true,
     },
-    openBoxDate: {
+    openCheckoutDate: {
         type: Date,
         default: Date.now,
     },
-    closeBoxDate: {
+    closeCheckoutDate: {
         type: Date,
+        default: null,
     },
     totalSales: {
         type: Number,
         default: 0,
     },
-    comprobantes: [
+    receipts: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Comprabante',
             default: [],
         },
     ],
-    comprobantesAmount: {
+    receiptsAmount: {
         type: Number,
         default: 0,
     },
 })
 
-module.exports = mongoose.model('Box', boxSchema)
+module.exports = mongoose.model('CashRegister', checkoutSchema)

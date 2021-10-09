@@ -3,7 +3,7 @@ const Comprabante = require('../models/comprabanteModel')
 const Ticket = require('../models/ticket')
 const ComprobanteDetalle = require('../models/comprabanteDetalleModel')
 const Configuration = require('../models/configurationModel')
-const Box = require('../models/boxModel')
+const Box = require('../models/cashRegister/cashRegisterModel')
 const _ = require('underscore')
 const articleService = require('../services/articleService')
 

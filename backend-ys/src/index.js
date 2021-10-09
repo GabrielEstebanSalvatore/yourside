@@ -60,7 +60,7 @@ app.use(require('./routers/comprobanteDetalleRoute'))
 app.use(require('./routers/comprobanteRoute'))
 app.use(require('./routers/clientRoute'))
 app.use(require('./routers/authRoute'))
-app.use(require('./routers/boxRoute'))
+app.use(require('./routers/cashRegisterRoute'))
 app.use(require('./routers/brandRoute'))
 app.use(require('./routers/offerRoute'))
 
