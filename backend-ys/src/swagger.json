@@ -1,1461 +1,1585 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "description": "Yourside - Esta es una herramienta que permite documentar los endpoints del backend. Nos permite conocer los diferentes endpoints, métodos HTTP, params y opciones útiles",
-    "version": "1.0.0",
-    "title": "Yourside App",
-    "license": {
-      "name": "Made in Tucumán"
-    }
-  },
-  "host": "localhost:4000",
-  "basePath": "",
-  "tags": [
-    {
-      "name": "articles",
-      "description": "CRUD articles"
-    },
-    {
-      "name": "brands",
-      "description": "CRUD brands"
-    }
-  ],
-  "schemes": [
-    "http"
-  ],
-  "paths": {
-    "/articles": {
-      "get": {
-        "tags": [
-          "articles"
-        ],
-        "summary": "Get all the articles availables",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/components/schemas/AllArticles"
-            }
-          }
+    "swagger": "2.0",
+    "info": {
+        "description": "Yourside - Esta es una herramienta que permite documentar los endpoints del backend. Nos permite conocer los diferentes endpoints, métodos HTTP, params y opciones útiles",
+        "version": "1.0.0",
+        "title": "Yourside App",
+        "license": {
+            "name": "Made in Tucumán"
         }
-      },
-      "post": {
-        "tags": [
-          "articles"
-        ],
-        "summary": "Create a new article",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "create a new article",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ArticleInput"
+    },
+    "host": "localhost:4000",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "articles",
+            "description": "CRUD articles"
+        },
+        {
+            "name": "brands",
+            "description": "CRUD brands"
+        }
+    ],
+    "schemes": ["http"],
+    "paths": {
+        "/articles": {
+            "get": {
+                "tags": ["articles"],
+                "summary": "Get all the articles availables",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/AllArticles"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["articles"],
+                "summary": "Create a new article",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "create a new article",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ArticleInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "ok": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema":{
-                  "type": "object",
-                  "properties": {
+        },
+
+        "/articles/{articleId}": {
+            "get": {
+                "tags": ["articles"],
+                "summary": "Get a article",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "articleId",
+                        "in": "path",
+                        "description": "Article ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["articles"],
+                "summary": "Update an existing article",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "articleId",
+                        "in": "path",
+                        "description": "Article ID to edit",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Update article",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ArticleInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["articles"],
+                "summary": "Remove an existing article",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "articleId",
+                        "in": "path",
+                        "description": "Article ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/brands": {
+            "get": {
+                "tags": ["brands"],
+                "summary": "Get all the brands availables",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/AllBrands"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["brands"],
+                "summary": "Create a new brand",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "create a new brand",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/BrandInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "ok": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/brands/{brandId}": {
+            "get": {
+                "tags": ["brands"],
+                "summary": "Get a brand",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "brandId",
+                        "in": "path",
+                        "description": "Brand ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Brand"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["brands"],
+                "summary": "Update an existing brand",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "brandId",
+                        "in": "path",
+                        "description": "Brand ID to edit",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Update brand",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/BrandInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["brands"],
+                "summary": "Remove an existing brand",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "brandId",
+                        "in": "path",
+                        "description": "Brand ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/articlesType": {
+            "get": {
+                "tags": ["articlesType"],
+                "summary": "Get all the articles types availables",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/AllArticleType"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["articlesType"],
+                "summary": "Create a new article type",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "create a new article type",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ArticleTypeInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "ok": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offers/{offerId}": {
+            "get": {
+                "tags": ["offers"],
+                "summary": "Get a offer",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "offerId",
+                        "in": "path",
+                        "description": "Offer ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Offer"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["offers"],
+                "summary": "Update an existing offer",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "offerId",
+                        "in": "path",
+                        "description": "Offer ID to edit",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Update offer",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/OfferInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["offers"],
+                "summary": "Remove an existing offer",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "offerId",
+                        "in": "path",
+                        "description": "Offer ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/offers": {
+            "get": {
+                "tags": ["offers"],
+                "summary": "Get all the offers availables",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/AllOffers"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["offers"],
+                "summary": "Create a new offer",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "create a new offer",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/OfferInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "ok": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/articlestype/{articleTypeId}": {
+            "get": {
+                "tags": ["articlesType"],
+                "summary": "Get a article type",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "articleTypeId",
+                        "in": "path",
+                        "description": "Article Type ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/ArticleType"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["articlesType"],
+                "summary": "Update an existing article type",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "articleTypeId",
+                        "in": "path",
+                        "description": "Article type ID to edit",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Update article type",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ArticleTypeInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["articlesType"],
+                "summary": "Remove an existing article type",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "articleTypeId",
+                        "in": "path",
+                        "description": "Article type ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/clients": {
+            "get": {
+                "tags": ["clients"],
+                "summary": "Get all the clients availables",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/AllClients"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["clients"],
+                "summary": "Create a new client",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "create a new client",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ClientInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "ok": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clients/{clientId}": {
+            "get": {
+                "tags": ["clients"],
+                "summary": "Get a client",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "description": "client ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Client"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["clients"],
+                "summary": "Update an existing client",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "description": "Client ID to edit",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Update client",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ClientInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["clients"],
+                "summary": "Remove an existing client",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "description": "Client ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/clientstrolley/": {
+            "post": {
+                "tags": ["clients"],
+                "summary": "Update client trolley",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Update client trolley",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ClientTrolleyInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "ok": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth": {
+            "get": {
+                "tags": ["auth"],
+                "summary": "Get the client authenticated",
+                "parameters": [
+                    {
+                        "name": "x-auth-token",
+                        "in": "header",
+                        "description": "x-auth-token",
+                        "required": "true",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/AuthClient"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["auth"],
+                "summary": "Authenticate client",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Auth",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/AuthInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/AuthResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/cashregisters": {
+            "get": {
+                "tags": ["cashRegister"],
+                "summary": "Get all the cash registers",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/CashRegister"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["cashRegister"],
+                "summary": "Create a new cash register",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create a new cash register",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/CashRegisterInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/CashRegisterNewResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/cashregisters/{cashRegisterId}": {
+            "get": {
+                "tags": ["cashRegister"],
+                "summary": "Get a cash register",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "cashRegisterId",
+                        "in": "path",
+                        "description": "cash register ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/CashRegister"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["cashRegister"],
+                "summary": "Remove an existing cash register",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "cashRegisterId",
+                        "in": "path",
+                        "description": "CashRegister ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/receipts": {
+            "get": {
+                "tags": ["receipt"],
+                "summary": "Get all the receipts",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Receipt"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["receipt"],
+                "summary": "Create a new receipt",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create a new receipt",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ReceiptInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/ReceiptNewResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/receipts/{receiptId}": {
+            "get": {
+                "tags": ["receipt"],
+                "summary": "Get a receipt",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "receiptId",
+                        "in": "path",
+                        "description": "receipt ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Receipt"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["receipt"],
+                "summary": "Remove an existing receipt",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "receiptId",
+                        "in": "path",
+                        "description": "Receipt ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/receiptsdetail": {
+            "get": {
+                "tags": ["receiptDetail"],
+                "summary": "Get all the receipts detail",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/ReceiptDetail"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["receiptDetail"],
+                "summary": "Create a new receipt detail",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create a new receipt detail",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ReceiptDetailInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/ReceiptDetailNewResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/receiptsdetail/{receiptDetailId}": {
+            "get": {
+                "tags": ["receiptDetail"],
+                "summary": "Get a receipt detail",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "receiptDetailId",
+                        "in": "path",
+                        "description": "receipt detail ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/ReceiptDetail"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["receiptDetail"],
+                "summary": "Remove an existing receipt detail",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "receiptDetailId",
+                        "in": "path",
+                        "description": "Receipt detail ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "petstore_auth": {
+            "type": "oauth2",
+            "authorizationUrl": "http://localhost:4000",
+            "flow": "implicit",
+            "scopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+            }
+        },
+        "api_key": {
+            "type": "apiKey",
+            "name": "api_key",
+            "in": "header"
+        }
+    },
+    "components": {
+        "schemas": {
+            "AllArticles": {
+                "type": "object",
+                "properties": {
                     "ok": {
-                      "type": "boolean"
+                        "type": "boolean"
+                    },
+                    "response": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    },
+                    "amount": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "ArticleInput": {
+                "type": "object",
+                "properties": {
+                    "available": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "integer"
+                    },
+                    "costPrice": {
+                        "type": "integer"
+                    },
+                    "sellPrice": {
+                        "type": "integer"
+                    },
+                    "sellPriceOffer": {
+                        "type": "integer"
+                    },
+                    "negativeStock": {
+                        "type": "integer"
+                    },
+                    "minimum": {
+                        "type": "integer"
+                    },
+                    "branch": {
+                        "type": "string"
+                    },
+                    "articleType": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "offer": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "AllBrands": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "response": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/Brand"
+                        }
+                    },
+                    "amount": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "BrandInput": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AllOffers": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "response": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/Offer"
+                        }
+                    },
+                    "amount": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "OfferInput": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AllArticleType": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "response": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/ArticleType"
+                        }
+                    },
+                    "amount": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "ArticleTypeInput": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AllClients": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "response": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/Client"
+                        }
+                    },
+                    "amount": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "ClientInput": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "cell": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "integer"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ClientTrolleyInput": {
+                "type": "object",
+                "properties": {
+                    "client": {
+                        "type": "string"
+                    },
+                    "trolley": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AuthInput": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AuthResponse": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CashRegisterInput": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "ReceiptInput": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "type": "integer"
+                    },
+                    "price": {
+                        "type": "integer"
+                    },
+                    "client": {
+                        "type": "string"
+                    },
+                    "receiptDetail": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ReceiptDetailInput": {
+                "type": "object",
+                "properties": {
+                    "articles": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "integer"
+                    },
+                    "price": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "CashRegisterNewResponse": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "cashRegister": {
+                        "$ref": "#/definitions/CashRegister"
                     },
                     "message": {
-                      "type": "string"
+                        "type": "string"
                     }
-                  }
                 }
-              }
-            }
-          }
-        }
-      }
-    },
-    
-    "/articles/{articleId}": {
-      "get": {
-        "tags": [
-          "articles"
-        ],
-        "summary": "Get a article",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "articleId",
-            "in": "path",
-            "description": "Article ID to get",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/definitions/Article"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "articles"
-        ],
-        "summary": "Update an existing article",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "articleId",
-            "in": "path",
-            "description": "Article ID to edit",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Update article",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ArticleInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "articles"
-        ],
-        "summary": "Remove an existing article",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "articleId",
-            "in": "path",
-            "description": "Article ID to remove",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-     "/brands": {
-      "get": {
-        "tags": [
-          "brands"
-        ],
-        "summary": "Get all the brands availables",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/components/schemas/AllBrands"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "brands"
-        ],
-        "summary": "Create a new brand",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "create a new brand",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/BrandInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema":{
-                  "type": "object",
-                  "properties": {
+            },
+            "ReceiptNewResponse": {
+                "type": "object",
+                "properties": {
                     "ok": {
-                      "type": "boolean"
+                        "type": "boolean"
+                    },
+                    "cashRegister": {
+                        "$ref": "#/definitions/Receipt"
                     },
                     "message": {
-                      "type": "string"
+                        "type": "string"
                     }
-                  }
                 }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/brands/{brandId}": {
-      "get": {
-        "tags": [
-          "brands"
-        ],
-        "summary": "Get a brand",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "brandId",
-            "in": "path",
-            "description": "Brand ID to get",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/definitions/Brand"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "brands"
-        ],
-        "summary": "Update an existing brand",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "brandId",
-            "in": "path",
-            "description": "Brand ID to edit",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Update brand",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/BrandInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "brands"
-        ],
-        "summary": "Remove an existing brand",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "brandId",
-            "in": "path",
-            "description": "Brand ID to remove",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-     "/articlesType": {
-      "get": {
-        "tags": [
-          "articlesType"
-        ],
-        "summary": "Get all the articles types availables",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/components/schemas/AllArticleType"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "articlesType"
-        ],
-        "summary": "Create a new article type",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "create a new article type",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ArticleTypeInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema":{
-                  "type": "object",
-                  "properties": {
+            },
+            "ReceiptDetailNewResponse": {
+                "type": "object",
+                "properties": {
                     "ok": {
-                      "type": "boolean"
+                        "type": "boolean"
+                    },
+                    "cashRegister": {
+                        "$ref": "#/definitions/ReceiptDetail"
                     },
                     "message": {
-                      "type": "string"
+                        "type": "string"
                     }
-                  }
                 }
-              }
             }
-          }
         }
-      }
     },
-    "/offers/{offerId}": {
-      "get": {
-        "tags": [
-          "offers"
-        ],
-        "summary": "Get a offer",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "offerId",
-            "in": "path",
-            "description": "Offer ID to get",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/definitions/Offer"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "offers"
-        ],
-        "summary": "Update an existing offer",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "offerId",
-            "in": "path",
-            "description": "Offer ID to edit",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Update offer",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/OfferInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "offers"
-        ],
-        "summary": "Remove an existing offer",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "offerId",
-            "in": "path",
-            "description": "Offer ID to remove",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/offers": {
-      "get": {
-        "tags": [
-          "offers"
-        ],
-        "summary": "Get all the offers availables",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/components/schemas/AllOffers"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "offers"
-        ],
-        "summary": "Create a new offer",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "create a new offer",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/OfferInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema":{
-                  "type": "object",
-                  "properties": {
-                    "ok": {
-                      "type": "boolean"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/articlestype/{articleTypeId}": {
-      "get": {
-        "tags": [
-          "articlesType"
-        ],
-        "summary": "Get a article type",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "articleTypeId",
-            "in": "path",
-            "description": "Article Type ID to get",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/definitions/ArticleType"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "articlesType"
-        ],
-        "summary": "Update an existing article type",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "articleTypeId",
-            "in": "path",
-            "description": "Article type ID to edit",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Update article type",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ArticleTypeInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "articlesType"
-        ],
-        "summary": "Remove an existing article type",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "articleTypeId",
-            "in": "path",
-            "description": "Article type ID to remove",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/clients": {
-      "get": {
-        "tags": [
-          "clients"
-        ],
-        "summary": "Get all the clients availables",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/components/schemas/AllClients"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "clients"
-        ],
-        "summary": "Create a new client",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "create a new client",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ClientInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema":{
-                  "type": "object",
-                  "properties": {
-                    "ok": {
-                      "type": "boolean"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/clients/{clientId}": {
-      "get": {
-        "tags": [
-          "clients"
-        ],
-        "summary": "Get a client",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "clientId",
-            "in": "path",
-            "description": "client ID to get",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/definitions/Client"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "clients"
-        ],
-        "summary": "Update an existing client",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "clientId",
-            "in": "path",
-            "description": "Client ID to edit",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Update client",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ClientInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "clients"
-        ],
-        "summary": "Remove an existing client",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "clientId",
-            "in": "path",
-            "description": "Client ID to remove",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-     "/clientstrolley/": {
-       "post": {
-        "tags": [
-          "clients"
-        ],
-        "summary": "Update client trolley",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Update client trolley",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ClientTrolleyInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema":{
-                  "type": "object",
-                  "properties": {
-                    "ok": {
-                      "type": "boolean"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/auth": {
-      "get": {
-        "tags": [
-          "auth"
-        ],
-        "summary": "Get the client authenticated", 
-        "parameters": [
-          {
-            "name": "x-auth-token",
-            "in": "header",
-            "description": "x-auth-token",
-            "required": "true",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/definitions/AuthClient"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "auth"
-        ],
-        "summary": "Authenticate client",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Auth",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/AuthInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/components/schemas/AuthResponse"
-            }
-          }
-        }
-       
-      }
-    },
-     "/cashregisters": {
-      "get": {
-        "tags": [
-          "cashRegister"
-        ],
-        "summary": "Get all the cash registers", 
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/definitions/CashRegister"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "cashRegister"
-        ],
-        "summary": "Create a new cash register",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Create a new cash register",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/CashRegisterInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/components/schemas/CashRegisterNewResponse"
-            }
-          }
-        }
-       
-      }
-    },
-       "/cashregisters/{cashRegisterId}": {
-      "get": {
-        "tags": [
-          "cashRegister"
-        ],
-        "summary": "Get a cash register",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "cashRegisterId",
-            "in": "path",
-            "description": "cash register ID to get",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/definitions/CashRegister"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "cashRegister"
-        ],
-        "summary": "Remove an existing cash register",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "cashRegisterId",
-            "in": "path",
-            "description": "CashRegister ID to remove",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    }
-  },
-  "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://localhost:4000",
-      "flow": "implicit",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
-    },
-    "api_key": {
-      "type": "apiKey",
-      "name": "api_key",
-      "in": "header"
-    }
-  },
-  "components": {
-    "schemas": {
-      "AllArticles": {
-        "type": "object",
-        "properties": {
-          "ok": {
-            "type": "boolean"
-          },
-          "response": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/Article"
-            }
-          },
-          "amount": {
-            "type": "integer"
-          }
-        }
-      },
-      "ArticleInput": {
-        "type": "object",
-        "properties": {
-          "available": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "code": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "integer"
-          },
-          "costPrice": {
-            "type": "integer"
-          },
-          "sellPrice": {
-            "type": "integer"
-          },
-          "sellPriceOffer": {
-            "type": "integer"
-          },
-          "negativeStock": {
-            "type": "integer"
-          },
-          "minimum": {
-            "type": "integer"
-          },
-          "branch": {
-            "type": "string"
-          },
-          "articleType": {
-            "type": "string"
-          },
-          "image": {
-            "type": "string"
-          },
-          "offer": {
-            "type": "integer"
-          }
-        }
-      },
-      "AllBrands": {
-        "type": "object",
-        "properties": {
-          "ok": {
-            "type": "boolean"
-          },
-          "response": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/Brand"
-            }
-          },
-          "amount": {
-            "type": "integer"
-          }
-        }
-      },
-     "BrandInput": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "AllOffers": {
-      "type": "object",
-      "properties": {
-        "ok": {
-          "type": "boolean"
-        },
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Offer"
-          }
-        },
-        "amount": {
-          "type": "integer"
-        }
-      }
-    },
-    "OfferInput": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-     "AllArticleType": {
-      "type": "object",
-      "properties": {
-        "ok": {
-          "type": "boolean"
-        },
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ArticleType"
-          }
-        },
-        "amount": {
-          "type": "integer"
-        }
-      }
-    },
-    "ArticleTypeInput": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "AllClients": {
-      "type": "object",
-      "properties": {
-        "ok": {
-          "type": "boolean"
-        },
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Client"
-          }
-        },
-        "amount": {
-          "type": "integer"
-        }
-      }
-    },
-    "ClientInput": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "cell": {
-          "type": "string"
-        },
-        "state": {
-          "type": "integer"
-        },
-        "password": {
-          "type": "string"
-        },
-        "role": {
-          "type": "string"
-        }
-      }
-    },
-    "ClientTrolleyInput": {
-      "type": "object",
-      "properties": {
-        "client": {
-          "type": "string"
-        },
-        "trolley": {
-          "type": "string"
-        }
-      }
-    },
-    "AuthInput": {
-      "type": "object",
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-      "AuthResponse": {
-          "type": "object",
+    "definitions": {
+        "Article": {
+            "type": "object",
             "properties": {
-              "ok": {
-                "type": "boolean"
-              },
-              "token": {
-                "type": "string"
-              }
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "costPrice": {
+                    "type": "integer"
+                },
+                "sellPrice": {
+                    "type": "integer"
+                },
+                "sellPriceOffer": {
+                    "type": "integer"
+                },
+                "negativeStock": {
+                    "type": "integer"
+                },
+                "minimum": {
+                    "type": "integer"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "articleType": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "offer": {
+                    "type": "integer"
+                }
             }
-      },
-      "CashRegisterInput": {
-        "type": "object",
-        "properties": {
-          "number": {
-            "type": "integer"
-          }
-        }
-      },
-      "CashRegisterNewResponse": {
-        "type": "object",
-          "properties": {
-            "ok": {
-              "type": "boolean"
-            },
-            "cashRegister": {
-              "$ref": "#/definitions/CashRegister"
-            },
-            "message": {
-              "type": "string"
+        },
+        "Brand": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "Offer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "percent": {
+                    "type": "integer"
+                },
+                "disableDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "ArticleType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "Client": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "cell": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "trolley": {
+                    "type": "string"
+                }
+            }
+        },
+        "AuthClient": {
+            "type": "object",
+            "properties": {
+                "ok": {
+                    "type": "boolean"
+                },
+                "response": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Client"
+                    }
+                }
+            }
+        },
+        "CashRegister": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "openCheckoutDate": {
+                    "type": "string"
+                },
+                "closeCheckoutDate": {
+                    "type": "string"
+                },
+                "totalSales": {
+                    "type": "integer"
+                },
+                "receipts": {
+                    "type": "string"
+                },
+                "receiptsAmount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Receipt": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "client": {
+                    "$ref": "#/definitions/Client"
+                },
+                "receiptDetail": {
+                    "$ref": "#/definitions/ReceiptDetail"
+                }
+            }
+          },
+          "ReceiptDetail": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "articles": {
+                  "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Article"
+                    }
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "state": {
+                    "type": "integer"
+                }
             }
           }
-        }
-      }
-  },
-  "definitions": {
-    "Article": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "available": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "code": {
-          "type": "string"
-        },
-        "amount": {
-          "type": "integer"
-        },
-        "costPrice": {
-          "type": "integer"
-        },
-        "sellPrice": {
-          "type": "integer"
-        },
-        "sellPriceOffer": {
-          "type": "integer"
-        },
-        "negativeStock": {
-          "type": "integer"
-        },
-        "minimum": {
-          "type": "integer"
-        },
-        "branch": {
-          "type": "string"
-        },
-        "articleType": {
-          "type": "string"
-        },
-        "image": {
-          "type": "string"
-        },
-        "offer": {
-          "type": "integer"
-        }
-      }
     },
-    "Brand": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "available": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "Offer": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "available": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "percent": {
-          "type": "integer"
-        },
-        "disableDate": {
-          "type": "string"
-        }
-      }
-    },
-    "ArticleType": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "available": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "Client": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "available": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "cell": {
-          "type": "string"
-        },
-        "state": {
-          "type": "integer"
-        },
-        "password": {
-          "type": "string"
-        },
-        "role": {
-          "type": "string"
-        },
-        "trolley": {
-          "type": "string"
-        }
-      }
-    },
-    "AuthClient": {
-      "type": "object",
-      "properties": {
-        "ok": {
-          "type": "boolean"
-        },
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Client"
-          }
-        }
-      }
-    },
-    "CashRegister": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "available": {
-          "type": "integer"
-        },
-        "number": {
-          "type": "integer"
-        },
-        "openCheckoutDate": {
-          "type": "string"
-        },
-        "closeCheckoutDate": {
-          "type": "string"
-        },
-        "totalSales": {
-          "type": "integer"
-        },
-        "receipts": {
-          "type": "string"
-        },
-        "receiptsAmount": {
-          "type": "integer"
-        }
-      }
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://google.com"
     }
-  },
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://google.com"
-  }
 }

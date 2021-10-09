@@ -100,8 +100,7 @@ class ClientService {
                 },
             }
         }
-        const input = body
-        const client = await Client.findByIdAndUpdate(id, input, { new: true })
+        const client = await Client.findByIdAndUpdate(id, body, { new: true })
         if (!client) {
             return {
                 status: 404,
@@ -116,7 +115,7 @@ class ClientService {
             content: {
                 ok: true,
                 article: client,
-                message: `The client ${input.name} was updated`,
+                message: `The client ${client.name} was updated`,
             },
         }
     }

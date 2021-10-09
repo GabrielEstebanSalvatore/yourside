@@ -1,7 +1,7 @@
 const Article = require('../models/article/articleModel')
-const Comprabante = require('../models/comprabanteModel')
+const Receipt = require('../models/receipt/receiptModel')
 const Ticket = require('../models/ticket')
-const ComprobanteDetalle = require('../models/comprabanteDetalleModel')
+const ReceiptDetail = require('../models/receipt/receiptDetailModel')
 const Configuration = require('../models/configurationModel')
 const Box = require('../models/cashRegister/cashRegisterModel')
 const _ = require('underscore')
@@ -78,7 +78,7 @@ class articleController {
                 totalPrice += element.sellPrice
             }
 
-            let comprobanteDetalle = new ComprobanteDetalle({
+            let comprobanteDetalle = new ReceiptDetail({
                 article: idArray,
                 price: totalPrice,
             })
@@ -87,7 +87,7 @@ class articleController {
             //MODIFICO LA CONFIGURACION
             //ARMADO DEL COMPROBANTE
             let configuration = await Configuration.findOne()
-            let comprobante = new Comprabante({
+            let comprobante = new Receipt({
                 number: configuration.lastSellName,
                 client: cliente._id,
                 comprobantDetail: respuestaComprobanteDetalle._id,

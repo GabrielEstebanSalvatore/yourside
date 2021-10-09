@@ -1,17 +1,20 @@
-const ArticleType = require('../models/articleType/articleTypeModel')
+const ReceiptDetail = require('../models/receipt/receiptDetailModel')
 const {
-    articleTypeDto,
-} = require('./../models/articleType/DTOs/articleTypeDto')
+    receiptDetailDto,
+} = require('./../models/receipt/DTOs/receiptDetailDto')
 const {
-    articleTypeInputDto,
-} = require('./../models/articleType/DTOs/articleTypeInputDto')
+    receiptDetailInputDto,
+} = require('./../models/receipt/DTOs/receiptDetailInputDto')
 const ObjectId = require('mongoose').Types.ObjectId
 const { validationResult } = require('express-validator')
 
-class ArticleTypeService {
+class ReceiptDetailService {
     static getAll = async () => {
-        const articlesType = await ArticleType.find({ available: 1 })
-        const response = articlesType.map((brand) => articleTypeDto(brand))
+        const receiptsDetail = await ReceiptDetail.find({ available: 1 })
+
+        const response = receiptsDetail.map((receiptDetail) =>
+            receiptDetailDto(receiptDetail)
+        )
         return {
             status: 200,
             content: {
@@ -28,57 +31,48 @@ class ArticleTypeService {
                 content: {
                     ok: false,
                     err: {
-                        message: 'El ID no es correcto',
+                        message: 'ID incorrect',
                     },
                 },
             }
         }
-        const articleType = await ArticleType.findById(id)
+        const receiptDetail = await ReceiptDetail.findById(id)
 
-        if (!articleType) {
+        if (!receiptDetail) {
             return {
                 status: 404,
                 content: {
                     ok: false,
                     err: {
-                        message: 'Article Type not found',
+                        message: 'Receipt detail not found',
                     },
                 },
             }
         }
-        const input = articleTypeDto(articleType)
+        const input = receiptDetailDto(receiptDetail)
         return {
             status: 200,
-            content: { articleType: input },
+            content: { receiptDetail: input },
         }
     }
     static create = async (req) => {
-        const errores = validationResult(req)
-        if (!errores.isEmpty()) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
             return {
                 status: 400,
-                content: { errores: errores.array() },
+                content: { errors: errors.array() },
             }
         }
-        const input = articleTypeInputDto(req.body)
+        const input = receiptDetailInputDto(req.body)
+        const newReceiptDetail = new ReceiptDetail(input)
 
-        const articleType = await ArticleType.findOne({ name: input.name })
-
-        if (articleType) {
-            return {
-                status: 400,
-                content: { msg: 'The article type already exists' },
-            }
-        }
-        const newArticleType = new ArticleType(input)
-
-        await newArticleType.save()
+        await newReceiptDetail.save()
         return {
             status: 201,
             content: {
                 ok: true,
-                article: newArticleType,
-                message: 'Article type created successfully',
+                article: newReceiptDetail,
+                message: 'Receipt detail created successfully',
             },
         }
     }
@@ -94,10 +88,10 @@ class ArticleTypeService {
                 },
             }
         }
-        const articleType = await ArticleType.findByIdAndUpdate(id, body, {
+        const receiptDetail = await ReceiptDetail.findByIdAndUpdate(id, body, {
             new: true,
         })
-        if (!articleType) {
+        if (!receiptDetail) {
             return {
                 status: 404,
                 content: {
@@ -110,8 +104,8 @@ class ArticleTypeService {
             status: 200,
             content: {
                 ok: true,
-                article: articleType,
-                message: `The article type ${articleType.name} was updated`,
+                article: receiptDetail,
+                message: `The receipt detail was updated`,
             },
         }
     }
@@ -127,22 +121,22 @@ class ArticleTypeService {
                 },
             }
         }
-        const articleTypeToDelete = await ArticleType.findById(id)
-        if (!articleTypeToDelete) {
+        const receiptDetailToDelete = await ReceiptDetail.findById(id)
+        if (!receiptDetailToDelete) {
             return {
                 status: 404,
                 content: {
                     ok: false,
                     err: {
-                        message: 'Article type not found',
+                        message: 'Receipt detail not found',
                     },
                 },
             }
         }
-        const articleType = await ArticleType.findByIdAndUpdate(
+        const receiptDetail = await ReceiptDetail.findByIdAndUpdate(
             id,
             {
-                available: !articleTypeToDelete.available,
+                available: !receiptDetailToDelete.available,
             },
             { new: true }
         )
@@ -151,11 +145,11 @@ class ArticleTypeService {
             status: 200,
             content: {
                 ok: true,
-                message: `The brand ${articleType.name} was ${
-                    articleType.available === 0 ? 'removed' : 'put'
+                message: `The receipt detail was ${
+                    receiptDetail.available === 0 ? 'removed' : 'put'
                 }`,
             },
         }
     }
 }
-module.exports = ArticleTypeService
+module.exports = ReceiptDetailService
