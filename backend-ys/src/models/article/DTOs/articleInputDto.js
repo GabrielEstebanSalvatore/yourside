@@ -4,7 +4,7 @@ const articleInputDto = (response) => {
         code: response.code,
         name: response.name,
         articleType: response.articleType,
-        minimum: response.minimum,
+        minimum: response.minimum ? response.minimum : 1,
         negativeStock: response.negativeStock,
         sellPrice: response.sellPrice,
         costPrice: response.costPrice,

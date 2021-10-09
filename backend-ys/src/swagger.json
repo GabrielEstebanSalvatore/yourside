@@ -340,7 +340,7 @@
      "/articlesType": {
       "get": {
         "tags": [
-          "articleType"
+          "articlesType"
         ],
         "summary": "Get all the articles types availables",
         "description": "",
@@ -358,7 +358,7 @@
       },
       "post": {
         "tags": [
-          "articleType"
+          "articlesType"
         ],
         "summary": "Create a new article type",
         "description": "",
@@ -398,10 +398,166 @@
         }
       }
     },
+    "/offers/{offerId}": {
+      "get": {
+        "tags": [
+          "offers"
+        ],
+        "summary": "Get a offer",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "offerId",
+            "in": "path",
+            "description": "Offer ID to get",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/Offer"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "offers"
+        ],
+        "summary": "Update an existing offer",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "offerId",
+            "in": "path",
+            "description": "Offer ID to edit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update offer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OfferInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "offers"
+        ],
+        "summary": "Remove an existing offer",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "offerId",
+            "in": "path",
+            "description": "Offer ID to remove",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/offers": {
+      "get": {
+        "tags": [
+          "offers"
+        ],
+        "summary": "Get all the offers availables",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/AllOffers"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "offers"
+        ],
+        "summary": "Create a new offer",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "create a new offer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OfferInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/articlestype/{articleTypeId}": {
       "get": {
         "tags": [
-          "articleType"
+          "articlesType"
         ],
         "summary": "Get a article type",
         "description": "",
@@ -431,7 +587,7 @@
       },
       "put": {
         "tags": [
-          "articleType"
+          "articlesType"
         ],
         "summary": "Update an existing article type",
         "description": "",
@@ -467,7 +623,7 @@
       },
       "delete": {
         "tags": [
-          "articleType"
+          "articlesType"
         ],
         "summary": "Remove an existing article type",
         "description": "",
@@ -669,6 +825,51 @@
       }
     },
      "BrandInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+      "AllOffers": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Offer"
+          }
+        },
+        "amount": {
+          "type": "integer"
+        }
+      }
+    },
+    "Offer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "available": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "percent": {
+          "type": "integer"
+        },
+        "disableDate": {
+          "type": "string"
+        }
+      }
+    },
+     "OfferInput": {
       "type": "object",
       "properties": {
         "name": {
