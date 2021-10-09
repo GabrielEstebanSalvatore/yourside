@@ -90,8 +90,7 @@ class OfferService {
                 },
             }
         }
-        const input = offerInputDto(body)
-        const offer = await Offer.findByIdAndUpdate(id, input, { new: true })
+        const offer = await Offer.findByIdAndUpdate(id, body, { new: true })
         if (!offer) {
             return {
                 status: 404,
@@ -106,7 +105,7 @@ class OfferService {
             content: {
                 ok: true,
                 article: offer,
-                message: `The offer ${input.name} was updated`,
+                message: `The offer ${offer.name} was updated`,
             },
         }
     }

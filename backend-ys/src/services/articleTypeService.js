@@ -94,8 +94,7 @@ class ArticleTypeService {
                 },
             }
         }
-        const input = articleTypeInputDto(body)
-        const articleType = await ArticleType.findByIdAndUpdate(id, input, {
+        const articleType = await ArticleType.findByIdAndUpdate(id, body, {
             new: true,
         })
         if (!articleType) {
@@ -112,7 +111,7 @@ class ArticleTypeService {
             content: {
                 ok: true,
                 article: articleType,
-                message: `The article type ${input.name} was updated`,
+                message: `The article type ${articleType.name} was updated`,
             },
         }
     }

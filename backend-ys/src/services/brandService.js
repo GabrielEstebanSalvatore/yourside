@@ -90,8 +90,7 @@ class BrandService {
                 },
             }
         }
-        const input = brandInputDto(body)
-        const brand = await Brand.findByIdAndUpdate(id, input, { new: true })
+        const brand = await Brand.findByIdAndUpdate(id, body, { new: true })
         if (!brand) {
             return {
                 status: 404,
@@ -106,7 +105,7 @@ class BrandService {
             content: {
                 ok: true,
                 article: brand,
-                message: `The brand ${input.name} was updated`,
+                message: `The brand ${brand.name} was updated`,
             },
         }
     }
