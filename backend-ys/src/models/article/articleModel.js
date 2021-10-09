@@ -48,7 +48,7 @@ let articleSchema = new Schema({
     },
     articleType: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'TipoArticulo',
+        ref: 'ArticleType',
     },
     image: {
         type: mongoose.Schema.Types.ObjectId,
@@ -57,7 +57,7 @@ let articleSchema = new Schema({
     offer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Offer',
-    }
+    },
 })
 
 module.exports = mongoose.model('Article', articleSchema)

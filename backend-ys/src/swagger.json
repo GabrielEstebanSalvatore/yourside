@@ -85,67 +85,7 @@
         }
       }
     },
-     "/brands": {
-      "get": {
-        "tags": [
-          "brands"
-        ],
-        "summary": "Get all the brands availables",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-             "schema": {
-              "$ref": "#/definitions/AllBrands"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "brands"
-        ],
-        "summary": "Create a new brand",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "create a new brand",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/BrandInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema":{
-                  "type": "object",
-                  "properties": {
-                    "ok": {
-                      "type": "boolean"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+    
     "/articles/{articleId}": {
       "get": {
         "tags": [
@@ -241,6 +181,67 @@
         }
       }
     },
+     "/brands": {
+      "get": {
+        "tags": [
+          "brands"
+        ],
+        "summary": "Get all the brands availables",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/AllBrands"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "brands"
+        ],
+        "summary": "Create a new brand",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "create a new brand",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BrandInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/brands/{brandId}": {
       "get": {
         "tags": [
@@ -325,6 +326,162 @@
             "name": "brandId",
             "in": "path",
             "description": "Brand ID to remove",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+     "/articlesType": {
+      "get": {
+        "tags": [
+          "articleType"
+        ],
+        "summary": "Get all the articles types availables",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/AllArticleType"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "articleType"
+        ],
+        "summary": "Create a new article type",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "create a new article type",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ArticleTypeInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articlestype/{articleTypeId}": {
+      "get": {
+        "tags": [
+          "articleType"
+        ],
+        "summary": "Get a article type",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "articleTypeId",
+            "in": "path",
+            "description": "Article Type ID to get",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/ArticleType"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "articleType"
+        ],
+        "summary": "Update an existing article type",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "articleTypeId",
+            "in": "path",
+            "description": "Article type ID to edit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update article type",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ArticleTypeInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "articleType"
+        ],
+        "summary": "Remove an existing article type",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "articleTypeId",
+            "in": "path",
+            "description": "Article type ID to remove",
             "required": true,
             "type": "string"
           }
@@ -512,6 +669,45 @@
       }
     },
      "BrandInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "AllArticleType": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArticleType"
+          }
+        },
+        "amount": {
+          "type": "integer"
+        }
+      }
+    },
+    "ArticleType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "available": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+     "ArticleTypeInput": {
       "type": "object",
       "properties": {
         "name": {

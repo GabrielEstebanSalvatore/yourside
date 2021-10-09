@@ -11,7 +11,7 @@ class articleController {
     static async getAll(req, res) {
         try {
             var response = await articleService.getAll()
-            res.status(response.status).json(response)
+            res.status(response.status).json(response.content)
         } catch (err) {
             res.send(err)
         }

@@ -1,10 +1,10 @@
-const brandService = require('../services/brandService')
+const articleTypeService = require('../services/articleTypeService')
 
-class brandsController {
+class articleTypeController {
     static async getAll(req, res) {
         try {
-            const response = await brandService.getAll()
-            res.status(response.status).json(response.content)
+            const response = await articleTypeService.getAll()
+            res.status(response.status).json(response)
         } catch (err) {
             res.send(err)
         }
@@ -12,7 +12,7 @@ class brandsController {
 
     static async get(req, res) {
         try {
-            const response = await brandService.get(req.params.id)
+            const response = await articleTypeService.get(req.params.id)
             res.status(response.status).json(response.content)
         } catch (err) {
             res.send(err)
@@ -21,7 +21,7 @@ class brandsController {
 
     static async create(req, res) {
         try {
-            const response = await brandService.create(req)
+            const response = await articleTypeService.create(req)
             res.status(response.status).json(response.content)
         } catch (err) {
             res.send(err)
@@ -30,7 +30,10 @@ class brandsController {
 
     static async update(req, res) {
         try {
-            const response = await brandService.update(req.params.id, req.body)
+            const response = await articleTypeService.update(
+                req.params.id,
+                req.body
+            )
             res.status(response.status).json(response.content)
         } catch (err) {
             res.send(err)
@@ -39,7 +42,7 @@ class brandsController {
 
     static async remove(req, res) {
         try {
-            const response = await brandService.remove(req.params.id)
+            const response = await articleTypeService.remove(req.params.id)
             res.status(response.status).json(response.content)
         } catch (err) {
             res.send(err)
@@ -47,4 +50,4 @@ class brandsController {
     }
 }
 
-module.exports = brandsController
+module.exports = articleTypeController

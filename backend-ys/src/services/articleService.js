@@ -1,5 +1,6 @@
 const Article = require('../models/article/articleModel')
-const { articleDto } = require('./../models/article/DTOs/articleDto')
+const { articleInputDto } = require('../models/article/DTOs/articleInputDto')
+const { articleDto } = require('../models/article/DTOs/articleDto')
 const { validationResult } = require('express-validator')
 const Image = require('../models/imageModel')
 const ObjectId = require('mongoose').Types.ObjectId
@@ -12,7 +13,6 @@ class articleService {
             .populate('image')
             .populate('brand')
             .populate('offer')
-
         const response = await articles.map((article) => articleDto(article))
         response.map((article) => {
             if (article.offer) {
@@ -20,7 +20,6 @@ class articleService {
                     (article.sellPrice * (100 - article.offer)) / 100
             }
         })
-
         return {
             ok: true,
             status: 200,
@@ -60,7 +59,6 @@ class articleService {
         }
     }
     static create = async (req) => {
-
         const errores = validationResult(req)
 
         if (!errores.isEmpty()) {
@@ -69,10 +67,10 @@ class articleService {
                 content: { errores: errores.array() },
             }
         }
-        
-        req.body.create = 1;
 
-        const input = articleDto(req.body)
+        req.body.create = 1
+
+        const input = articleInputDto(req.body)
         const article = await Article.findOne({ code: input.code })
 
         if (article) {
@@ -105,16 +103,25 @@ class articleService {
                 },
             }
         }
-        const input = articleDto(body)
-        const article = await Article.findByIdAndUpdate(id, input, {
+
+        const article = await Article.findByIdAndUpdate(id, body, {
             new: true,
         })
+        if (!article) {
+            return {
+                status: 404,
+                content: {
+                    ok: false,
+                    message: `Item not found`,
+                },
+            }
+        }
         return {
             status: 200,
             content: {
                 ok: true,
                 article: article,
-                message: `The article ${input.name} was updated`,
+                message: `The article ${article.name} was updated`,
             },
         }
     }

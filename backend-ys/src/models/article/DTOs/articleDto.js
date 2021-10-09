@@ -1,19 +1,18 @@
 const articleDto = (response) => {
     return {
-        id: response._id,
-        available: response.available,
+        id: response.id,
         description: response.description,
         code: response.code,
-        name: response.name == undefined ? '' : response.name,
-        articleType: response.create == 1 ? response.articleType : response.articleType.name,
+        name: response.name ? response.name : null,
+        articleType: response.articleType ? response.articleType.name : null,
         minimum: response.minimum,
         negativeStock: response.negativeStock,
         sellPrice: response.sellPrice,
         costPrice: response.costPrice,
         amount: response.amount,
-        image: response.create == 1 ? response.imageId : response.image.path,
-        brand: response.create == 1 ? response.brand : response.brand.name == undefined ? null : response.brand.name,
-        offer: response.offer
+        image: response.image ? response.image.path : null,
+        brand: response.brand ? response.brand.name : null,
+        offer: response.offer ? response.offer.percent : null,
     }
 }
 module.exports = { articleDto }

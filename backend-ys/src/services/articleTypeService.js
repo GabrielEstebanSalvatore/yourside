@@ -1,13 +1,17 @@
-const Brand = require('../models/brand/brandModel')
-const { brandDto } = require('./../models/brand/DTOs/brandDto')
-const { brandInputDto } = require('./../models/brand/DTOs/brandInputDto')
+const ArticleType = require('../models/articleType/articleTypeModel')
+const {
+    articleTypeDto,
+} = require('./../models/articleType/DTOs/articleTypeDto')
+const {
+    articleTypeInputDto,
+} = require('./../models/articleType/DTOs/articleTypeInputDto')
 const ObjectId = require('mongoose').Types.ObjectId
 const { validationResult } = require('express-validator')
 
-class BrandService {
+class ArticleTypeService {
     static getAll = async () => {
-        const brands = await Brand.find({ available: 1 })
-        const response = brands.map((brand) => brandDto(brand))
+        const articlesType = await ArticleType.find({ available: 1 })
+        const response = articlesType.map((brand) => articleTypeDto(brand))
         return {
             status: 200,
             content: {
@@ -29,23 +33,23 @@ class BrandService {
                 },
             }
         }
-        const brand = await Brand.findById(id)
+        const articleType = await ArticleType.findById(id)
 
-        if (!brand) {
+        if (!articleType) {
             return {
                 status: 404,
                 content: {
                     ok: false,
                     err: {
-                        message: 'Brand not found',
+                        message: 'Article Type not found',
                     },
                 },
             }
         }
-        const input = brandDto(brand)
+        const input = articleTypeDto(articleType)
         return {
             status: 200,
-            content: { brand: input },
+            content: { articleType: input },
         }
     }
     static create = async (req) => {
@@ -56,25 +60,25 @@ class BrandService {
                 content: { errores: errores.array() },
             }
         }
-        const input = brandInputDto(req.body)
+        const input = articleTypeInputDto(req.body)
 
-        const brand = await Brand.findOne({ name: input.name })
+        const articleType = await ArticleType.findOne({ name: input.name })
 
-        if (brand) {
+        if (articleType) {
             return {
                 status: 400,
-                content: { msg: 'The brand already exists' },
+                content: { msg: 'The article type already exists' },
             }
         }
-        const newBrand = new Brand(input)
+        const newArticleType = new ArticleType(input)
 
-        await newBrand.save()
+        await newArticleType.save()
         return {
             status: 201,
             content: {
                 ok: true,
-                article: newBrand,
-                message: 'Brand created successfully',
+                article: newArticleType,
+                message: 'Article type created successfully',
             },
         }
     }
@@ -90,9 +94,11 @@ class BrandService {
                 },
             }
         }
-        const input = brandInputDto(body)
-        const brand = await Brand.findByIdAndUpdate(id, input, { new: true })
-        if (!brand) {
+        const input = articleTypeInputDto(body)
+        const articleType = await ArticleType.findByIdAndUpdate(id, input, {
+            new: true,
+        })
+        if (!articleType) {
             return {
                 status: 404,
                 content: {
@@ -105,8 +111,8 @@ class BrandService {
             status: 200,
             content: {
                 ok: true,
-                article: brand,
-                message: `The brand ${input.name} was updated`,
+                article: articleType,
+                message: `The article type ${input.name} was updated`,
             },
         }
     }
@@ -122,22 +128,22 @@ class BrandService {
                 },
             }
         }
-        const brandToDelete = await Brand.findById(id)
-        if (!brandToDelete) {
+        const articleTypeToDelete = await ArticleType.findById(id)
+        if (!articleTypeToDelete) {
             return {
                 status: 404,
                 content: {
                     ok: false,
                     err: {
-                        message: 'Brand not found',
+                        message: 'Article type not found',
                     },
                 },
             }
         }
-        const brand = await Brand.findByIdAndUpdate(
+        const articleType = await ArticleType.findByIdAndUpdate(
             id,
             {
-                available: !brandToDelete.available,
+                available: !articleTypeToDelete.available,
             },
             { new: true }
         )
@@ -146,11 +152,11 @@ class BrandService {
             status: 200,
             content: {
                 ok: true,
-                message: `The brand ${brand.name} was ${
-                    brand.available === 0 ? 'removed' : 'put'
+                message: `The brand ${articleType.name} was ${
+                    articleType.available === 0 ? 'removed' : 'put'
                 }`,
             },
         }
     }
 }
-module.exports = BrandService
+module.exports = ArticleTypeService
