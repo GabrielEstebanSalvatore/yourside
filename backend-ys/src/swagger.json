@@ -847,6 +847,67 @@
           }
         }
       }
+    },
+    "/auth": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Get the client authenticated", 
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "description": "x-auth-token",
+            "required": "true",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/AuthClient"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Authenticate client",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Auth",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/components/schemas/AuthResponse"
+            }
+          }
+        }
+       
+      }
     }
   },
   "securityDefinitions": {
@@ -872,10 +933,21 @@
         "properties": {
           "name": {
             "type": "string"
-        } 
+          } 
+        }
+      },
+      "AuthResponse": {
+        "type": "object",
+          "properties": {
+            "ok": {
+              "type": "boolean"
+            },
+            "token": {
+              "type": "string"
+            }
+          }
         }
       }
-    }
   },
   "definitions": {
     "AllArticles": {
@@ -1200,6 +1272,31 @@
           "type": "string"
         },
         "trolley": {
+          "type": "string"
+        }
+      }
+    },
+    "AuthClient": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Client"
+          }
+        }
+      }
+    },
+    "AuthInput": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
           "type": "string"
         }
       }
