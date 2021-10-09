@@ -39,7 +39,7 @@ class checkoutService {
             status: 201,
             content: {
                 ok: true,
-                article: newCashRegister,
+                cashRegister: newCashRegister,
                 message: 'Cash register created successfully',
             },
         }
