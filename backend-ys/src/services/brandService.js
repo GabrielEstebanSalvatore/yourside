@@ -24,7 +24,7 @@ class BrandService {
                 content: {
                     ok: false,
                     err: {
-                        message: 'El ID no es correcto',
+                        message: 'ID incorrect',
                     },
                 },
             }
