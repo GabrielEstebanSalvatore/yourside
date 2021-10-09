@@ -648,6 +648,205 @@
           }
         }
       }
+    },
+    "/clients": {
+      "get": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Get all the clients availables",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/AllClients"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Create a new client",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "create a new client",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClientInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clients/{clientId}": {
+      "get": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Get a client",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "description": "client ID to get",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/Client"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Update an existing client",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "description": "Client ID to edit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update client",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClientInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Remove an existing client",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "description": "Client ID to remove",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+     "/clientstrolley/": {
+       "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "Update client trolley",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update client trolley",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClientTrolleyInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -912,6 +1111,95 @@
       "type": "object",
       "properties": {
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "AllClients": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Client"
+          }
+        },
+        "amount": {
+          "type": "integer"
+        }
+      }
+    },
+    "Client": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "available": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "cell": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer"
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "trolley": {
+          "type": "string"
+        }
+      }
+    },
+    "ClientInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "cell": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer"
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "ClientTrolleyInput": {
+      "type": "object",
+      "properties": {
+        "client": {
+          "type": "string"
+        },
+        "trolley": {
           "type": "string"
         }
       }
