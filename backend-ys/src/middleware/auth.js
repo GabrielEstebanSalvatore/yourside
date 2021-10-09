@@ -5,7 +5,7 @@ module.exports = function (req, res, next) {
     var token = req.header('x-auth-token')
     // Revisar si no hay token
     if (!token) {
-        return res.status(401).json({ msg: 'No hay Token, permiso no válido' })
+        return res.status(401).json({ msg: 'There is no valid Token' })
     }
     // validar el token
     try {
@@ -13,6 +13,6 @@ module.exports = function (req, res, next) {
         req.client = cifrado.client
         next()
     } catch (error) {
-        res.status(401).json({ msg: 'Token no válido' })
+        res.status(401).json({ msg: 'There is no valid Token' })
     }
 }
