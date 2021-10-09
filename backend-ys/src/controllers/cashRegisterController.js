@@ -1,9 +1,5 @@
 const cashRegisterService = require('../services/cashRegisterService')
 
-const Checkout = require('../models/cashRegister/cashRegisterModel')
-const Comprabante = require('../models/comprabanteModel')
-const { validationResult } = require('express-validator')
-
 class cashRegisterController {
     static async getAll(req, res) {
         try {
