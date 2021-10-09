@@ -49,11 +49,11 @@ class BrandService {
         }
     }
     static create = async (req) => {
-        const errores = validationResult(req)
-        if (!errores.isEmpty()) {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
             return {
                 status: 400,
-                content: { errores: errores.array() },
+                content: { errors: errors.array() },
             }
         }
         const input = brandInputDto(req.body)
