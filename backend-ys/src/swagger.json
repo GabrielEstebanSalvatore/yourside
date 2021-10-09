@@ -851,6 +851,94 @@
                     }
                 }
             }
+        },
+        "/receipts": {
+            "get": {
+                "tags": ["receipt"],
+                "summary": "Get all the receipts",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Receipt"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["receipt"],
+                "summary": "Create a new receipt",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create a new receipt",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ReceiptInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/ReceiptNewResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/receipts/{receiptId}": {
+            "get": {
+                "tags": ["receipt"],
+                "summary": "Get a receipt",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "receiptId",
+                        "in": "path",
+                        "description": "receipt ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Receipt"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["receipt"],
+                "summary": "Remove an existing receipt",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "receiptId",
+                        "in": "path",
+                        "description": "Receipt ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
         }
     },
     "securityDefinitions": {
@@ -1094,6 +1182,23 @@
                     }
                 }
             },
+            "ReceiptInput": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "type": "integer"
+                    },
+                    "price": {
+                        "type": "integer"
+                    },
+                    "client": {
+                        "type": "string"
+                    },
+                    "receiptDetail": {
+                        "type": "string"
+                    }
+                }
+            },
             "CashRegisterNewResponse": {
                 "type": "object",
                 "properties": {
@@ -1102,6 +1207,20 @@
                     },
                     "cashRegister": {
                         "$ref": "#/definitions/CashRegister"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ReceiptNewResponse": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "cashRegister": {
+                        "$ref": "#/definitions/Receipt"
                     },
                     "message": {
                         "type": "string"
@@ -1284,6 +1403,35 @@
                 },
                 "receiptsAmount": {
                     "type": "integer"
+                }
+            }
+        },
+        "Receipt": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "price"
+                },
+                "client": {
+                    "$ref": "#/definitions/Client"
+                },
+                "receiptDetail": {
+                    "$ref": "#/definitions/ReceiptDetail"
                 }
             }
         }
