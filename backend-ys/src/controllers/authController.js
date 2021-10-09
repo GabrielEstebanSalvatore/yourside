@@ -18,10 +18,3 @@ class AuthController {
     }
 }
 module.exports = AuthController
-// exports.AuthenticateClient = async (req, res) => {
-
-// }
-
-// exports.AuthenticatedClient = async (req, res) => {
-
-// }
