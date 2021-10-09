@@ -2,24 +2,24 @@ const express = require('express')
 const router = express.Router()
 const offerController = require('../controllers/offerController')
 
-router.post('/offer', async (req, res) => {
+router.post('/offers', async (req, res) => {
     await offerController.create(req, res)
 })
 
-router.get('/offer', async (req, res) => {
+router.get('/offers', async (req, res) => {
     await offerController.getAll(req, res)
 })
 
-router.get('/offer/:id', async (req, res) => {
-    await offerController.getOne(req, res)
+router.get('/offers/:id', async (req, res) => {
+    await offerController.get(req, res)
 })
 
-router.post('/offer/:id', async (req, res) => {
-    await offerController.updateOffer(req, res)
+router.put('/offers/:id', async (req, res) => {
+    await offerController.update(req, res)
 })
 
-router.put('/offer/:id', async (req, res) => {
-    await offerController.deleted(req, res)
+router.delete('/offers/:id', async (req, res) => {
+    await offerController.remove(req, res)
 })
 
 module.exports = router
