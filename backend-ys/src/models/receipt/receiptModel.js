@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-let comprobanteDetalleSchema = new Schema({
+let receiptSchema = new Schema({
     available: {
         type: Number,
         default: 1,
@@ -24,12 +24,12 @@ let comprobanteDetalleSchema = new Schema({
     },
     client: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Cliente',
+        ref: 'Client',
     },
-    comprobantDetail: {
+    receiptDetail: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'ComprabanteDetalle',
+        ref: 'ReceiptDetail',
     },
 })
 
-module.exports = mongoose.model('Comprabante', comprobanteDetalleSchema)
+module.exports = mongoose.model('Receipt', receiptSchema)

@@ -1,8 +1,12 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-let comprobanteDetalleSchema = new Schema({
-    article: [
+const receiptDetailSchema = new Schema({
+    available: {
+        type: Number,
+        default: 1,
+    },
+    articles: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Article',
@@ -23,4 +27,4 @@ let comprobanteDetalleSchema = new Schema({
     },
 })
 
-module.exports = mongoose.model('ComprabanteDetalle', comprobanteDetalleSchema)
+module.exports = mongoose.model('ReceiptDetail', receiptDetailSchema)
