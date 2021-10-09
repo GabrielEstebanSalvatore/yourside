@@ -1,13 +1,15 @@
-const Brand = require('../models/brand/brandModel')
-const { brandDto } = require('./../models/brand/DTOs/brandDto')
-const { brandInputDto } = require('./../models/brand/DTOs/brandInputDto')
+const Client = require('../models/client/clientModel')
+const { clientDto } = require('./../models/client/DTOs/clientDto')
+const { clientInputDto } = require('./../models/client/DTOs/clientInputDto')
 const ObjectId = require('mongoose').Types.ObjectId
 const { validationResult } = require('express-validator')
+const Trolley = require('../models/trolleyModel')
+const bcryptjs = require('bcryptjs')
 
-class BrandService {
+class ClientService {
     static getAll = async () => {
-        const brands = await Brand.find({ available: 1 })
-        const response = brands.map((brand) => brandDto(brand))
+        const clients = await Client.find({ available: 1 })
+        const response = clients.map((brand) => clientDto(brand))
         return {
             status: 200,
             content: {
@@ -29,23 +31,23 @@ class BrandService {
                 },
             }
         }
-        const brand = await Brand.findById(id)
+        const client = await Client.findById(id)
 
-        if (!brand) {
+        if (!client) {
             return {
                 status: 404,
                 content: {
                     ok: false,
                     err: {
-                        message: 'Brand not found',
+                        message: 'Client not found',
                     },
                 },
             }
         }
-        const input = brandDto(brand)
+        const input = clientDto(client)
         return {
             status: 200,
-            content: { brand: input },
+            content: { client: input },
         }
     }
     static create = async (req) => {
@@ -56,25 +58,33 @@ class BrandService {
                 content: { errores: errores.array() },
             }
         }
-        const input = brandInputDto(req.body)
+        const input = clientInputDto(req.body)
 
-        const brand = await Brand.findOne({ name: input.name })
+        const client = await Client.findOne({ name: input.name })
 
-        if (brand) {
+        if (client) {
             return {
                 status: 400,
-                content: { msg: 'The brand already exists' },
+                content: { msg: 'The client already exists' },
             }
         }
-        const newBrand = new Brand(input)
+        const newClient = new Client(input)
 
-        await newBrand.save()
+        // crea el nuevo carrito
+        const clienteTrolley = new Trolley()
+        await clienteTrolley.save()
+
+        newClient.trolley = clienteTrolley._id
+        // Hashear el password
+        const salt = await bcryptjs.genSalt(10)
+        newClient.password = await bcryptjs.hash(input.password, salt)
+        await newClient.save()
         return {
             status: 201,
             content: {
                 ok: true,
-                article: newBrand,
-                message: 'Brand created successfully',
+                article: newClient,
+                message: 'Client created successfully',
             },
         }
     }
@@ -90,9 +100,9 @@ class BrandService {
                 },
             }
         }
-        const input = brandInputDto(body)
-        const brand = await Brand.findByIdAndUpdate(id, input, { new: true })
-        if (!brand) {
+        const input = body
+        const client = await Client.findByIdAndUpdate(id, input, { new: true })
+        if (!client) {
             return {
                 status: 404,
                 content: {
@@ -105,8 +115,8 @@ class BrandService {
             status: 200,
             content: {
                 ok: true,
-                article: brand,
-                message: `The brand ${input.name} was updated`,
+                article: client,
+                message: `The client ${input.name} was updated`,
             },
         }
     }
@@ -122,22 +132,22 @@ class BrandService {
                 },
             }
         }
-        const brandToDelete = await Brand.findById(id)
-        if (!brandToDelete) {
+        const clientToDelete = await Client.findById(id)
+        if (!clientToDelete) {
             return {
                 status: 404,
                 content: {
                     ok: false,
                     err: {
-                        message: 'Brand not found',
+                        message: 'Client not found',
                     },
                 },
             }
         }
-        const brand = await Brand.findByIdAndUpdate(
+        const client = await Client.findByIdAndUpdate(
             id,
             {
-                available: !brandToDelete.available,
+                available: !clientToDelete.available,
             },
             { new: true }
         )
@@ -146,11 +156,37 @@ class BrandService {
             status: 200,
             content: {
                 ok: true,
-                message: `The brand ${brand.name} was ${
-                    brand.available === 0 ? 'removed' : 'put'
+                message: `The client ${client.name} was ${
+                    client.available === 0 ? 'removed' : 'put'
                 }`,
             },
         }
     }
+    static updateTrolley = async (req) => {
+        let client = req.body.client
+        let trolleyC = { articles: req.body.trolleyClient }
+        const trolleyUpdate = await Trolley.findByIdAndUpdate(
+            client._id,
+            trolleyC,
+            { new: true }
+        )
+        if (!trolleyUpdate) {
+            return {
+                status: 404,
+                content: {
+                    ok: false,
+                    message: `Item not found`,
+                },
+            }
+        }
+        return {
+            status: 200,
+            content: {
+                ok: true,
+                article: trolleyUpdate,
+                message: `The trolley was updated`,
+            },
+        }
+    }
 }
-module.exports = BrandService
+module.exports = ClientService

@@ -1,4 +1,4 @@
-const Client = require('../models/clienteModel')
+const Client = require('../models/client/clientModel')
 const bcryptjs = require('bcryptjs')
 const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')

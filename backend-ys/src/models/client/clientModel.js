@@ -6,7 +6,7 @@ let rolesValidos = {
     values: ['ADMIN_ROLE', 'USER_ROLE'],
     message: '{VALUE} no es un rol válido',
 }
-let clienteSchema = new Schema({
+const clientSchema = new Schema({
     available: {
         type: Number,
         default: 1,
@@ -48,13 +48,13 @@ let clienteSchema = new Schema({
 })
 
 /*ELIMINA LA CONTRASEÑA*/
-clienteSchema.methods.toJSON = function () {
+clientSchema.methods.toJSON = function () {
     let user = this
     let userObject = user.toObject()
     delete userObject.password
 
     return userObject
 }
-clienteSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único' })
+clientSchema.plugin(uniqueValidator, { message: '{PATH} must be unique' })
 
-module.exports = mongoose.model('Cliente', clienteSchema)
+module.exports = mongoose.model('Client', clientSchema)
