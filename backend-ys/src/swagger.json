@@ -38,7 +38,7 @@
           "200": {
             "description": "Success",
              "schema": {
-              "$ref": "#/definitions/AllArticles"
+              "$ref": "#/components/schemas/AllArticles"
             }
           }
         }
@@ -56,10 +56,10 @@
           {
             "in": "body",
             "name": "body",
-            "description": "create new article",
+            "description": "create a new article",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ArticleInput"
+              "$ref": "#/components/schemas/ArticleInput"
             }
           }
         ],
@@ -143,7 +143,7 @@
             "description": "Update article",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ArticleInput"
+              "$ref": "#/components/schemas/ArticleInput"
             }
           }
         ],
@@ -195,7 +195,7 @@
           "200": {
             "description": "Success",
              "schema": {
-              "$ref": "#/definitions/AllBrands"
+              "$ref": "#/components/schemas/AllBrands"
             }
           }
         }
@@ -216,7 +216,7 @@
             "description": "create a new brand",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/BrandInput"
+              "$ref": "#/components/schemas/BrandInput"
             }
           }
         ],
@@ -299,7 +299,7 @@
             "description": "Update brand",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/BrandInput"
+              "$ref": "#/components/schemas/BrandInput"
             }
           }
         ],
@@ -351,7 +351,7 @@
           "200": {
             "description": "Success",
              "schema": {
-              "$ref": "#/definitions/AllArticleType"
+              "$ref": "#/components/schemas/AllArticleType"
             }
           }
         }
@@ -372,7 +372,7 @@
             "description": "create a new article type",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ArticleTypeInput"
+              "$ref": "#/components/schemas/ArticleTypeInput"
             }
           }
         ],
@@ -455,7 +455,7 @@
             "description": "Update offer",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/OfferInput"
+              "$ref": "#/components/schemas/OfferInput"
             }
           }
         ],
@@ -507,7 +507,7 @@
           "200": {
             "description": "Success",
              "schema": {
-              "$ref": "#/definitions/AllOffers"
+              "$ref": "#/components/schemas/AllOffers"
             }
           }
         }
@@ -528,7 +528,7 @@
             "description": "create a new offer",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/OfferInput"
+              "$ref": "#/components/schemas/OfferInput"
             }
           }
         ],
@@ -611,7 +611,7 @@
             "description": "Update article type",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ArticleTypeInput"
+              "$ref": "#/components/schemas/ArticleTypeInput"
             }
           }
         ],
@@ -663,7 +663,7 @@
           "200": {
             "description": "Success",
              "schema": {
-              "$ref": "#/definitions/AllClients"
+              "$ref": "#/components/schemas/AllClients"
             }
           }
         }
@@ -684,7 +684,7 @@
             "description": "create a new client",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ClientInput"
+              "$ref": "#/components/schemas/ClientInput"
             }
           }
         ],
@@ -767,7 +767,7 @@
             "description": "Update client",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ClientInput"
+              "$ref": "#/components/schemas/ClientInput"
             }
           }
         ],
@@ -822,7 +822,7 @@
             "description": "Update client trolley",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ClientTrolleyInput"
+              "$ref": "#/components/schemas/ClientTrolleyInput"
             }
           }
         ],
@@ -894,7 +894,7 @@
             "description": "Auth",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AuthInput"
+              "$ref": "#/components/schemas/AuthInput"
             }
           }
         ],
@@ -907,6 +907,115 @@
           }
         }
        
+      }
+    },
+     "/cashregisters": {
+      "get": {
+        "tags": [
+          "cashRegister"
+        ],
+        "summary": "Get all the cash registers", 
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/CashRegister"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "cashRegister"
+        ],
+        "summary": "Create a new cash register",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create a new cash register",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CashRegisterInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/components/schemas/CashRegisterNewResponse"
+            }
+          }
+        }
+       
+      }
+    },
+       "/cashregisters/{cashRegisterId}": {
+      "get": {
+        "tags": [
+          "cashRegister"
+        ],
+        "summary": "Get a cash register",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cashRegisterId",
+            "in": "path",
+            "description": "cash register ID to get",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+             "schema": {
+              "$ref": "#/definitions/CashRegister"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cashRegister"
+        ],
+        "summary": "Remove an existing cash register",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cashRegisterId",
+            "in": "path",
+            "description": "CashRegister ID to remove",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     }
   },
@@ -928,29 +1037,96 @@
   },
   "components": {
     "schemas": {
-      "Branch": {
+      "AllArticles": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string"
-          } 
-        }
-      },
-      "AuthResponse": {
-        "type": "object",
-          "properties": {
-            "ok": {
-              "type": "boolean"
-            },
-            "token": {
-              "type": "string"
+          "ok": {
+            "type": "boolean"
+          },
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Article"
             }
+          },
+          "amount": {
+            "type": "integer"
           }
         }
+      },
+      "ArticleInput": {
+        "type": "object",
+        "properties": {
+          "available": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer"
+          },
+          "costPrice": {
+            "type": "integer"
+          },
+          "sellPrice": {
+            "type": "integer"
+          },
+          "sellPriceOffer": {
+            "type": "integer"
+          },
+          "negativeStock": {
+            "type": "integer"
+          },
+          "minimum": {
+            "type": "integer"
+          },
+          "branch": {
+            "type": "string"
+          },
+          "articleType": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "offer": {
+            "type": "integer"
+          }
+        }
+      },
+      "AllBrands": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Brand"
+            }
+          },
+          "amount": {
+            "type": "integer"
+          }
+        }
+      },
+     "BrandInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
       }
-  },
-  "definitions": {
-    "AllArticles": {
+    },
+    "AllOffers": {
       "type": "object",
       "properties": {
         "ok": {
@@ -959,7 +1135,7 @@
         "response": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Article"
+            "$ref": "#/definitions/Offer"
           }
         },
         "amount": {
@@ -967,6 +1143,140 @@
         }
       }
     },
+    "OfferInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+     "AllArticleType": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArticleType"
+          }
+        },
+        "amount": {
+          "type": "integer"
+        }
+      }
+    },
+    "ArticleTypeInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "AllClients": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Client"
+          }
+        },
+        "amount": {
+          "type": "integer"
+        }
+      }
+    },
+    "ClientInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "cell": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer"
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "ClientTrolleyInput": {
+      "type": "object",
+      "properties": {
+        "client": {
+          "type": "string"
+        },
+        "trolley": {
+          "type": "string"
+        }
+      }
+    },
+    "AuthInput": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+      "AuthResponse": {
+          "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              },
+              "token": {
+                "type": "string"
+              }
+            }
+      },
+      "CashRegisterInput": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer"
+          }
+        }
+      },
+      "CashRegisterNewResponse": {
+        "type": "object",
+          "properties": {
+            "ok": {
+              "type": "boolean"
+            },
+            "cashRegister": {
+              "$ref": "#/definitions/CashRegister"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+  },
+  "definitions": {
     "Article": {
       "type": "object",
       "properties": {
@@ -1017,70 +1327,6 @@
         }
       }
     },
-    "ArticleInput": {
-      "type": "object",
-      "properties": {
-        "available": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "code": {
-          "type": "string"
-        },
-        "amount": {
-          "type": "integer"
-        },
-        "costPrice": {
-          "type": "integer"
-        },
-        "sellPrice": {
-          "type": "integer"
-        },
-        "sellPriceOffer": {
-          "type": "integer"
-        },
-        "negativeStock": {
-          "type": "integer"
-        },
-        "minimum": {
-          "type": "integer"
-        },
-        "branch": {
-          "type": "string"
-        },
-        "articleType": {
-          "type": "string"
-        },
-        "image": {
-          "type": "string"
-        },
-        "offer": {
-          "type": "integer"
-        }
-      }
-    },
-    "AllBrands": {
-      "type": "object",
-      "properties": {
-        "ok": {
-          "type": "boolean"
-        },
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Brand"
-          }
-        },
-        "amount": {
-          "type": "integer"
-        }
-      }
-    },
     "Brand": {
       "type": "object",
       "properties": {
@@ -1092,31 +1338,6 @@
         },
         "name": {
           "type": "string"
-        }
-      }
-    },
-     "BrandInput": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-      "AllOffers": {
-      "type": "object",
-      "properties": {
-        "ok": {
-          "type": "boolean"
-        },
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Offer"
-          }
-        },
-        "amount": {
-          "type": "integer"
         }
       }
     },
@@ -1140,31 +1361,6 @@
         }
       }
     },
-     "OfferInput": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "AllArticleType": {
-      "type": "object",
-      "properties": {
-        "ok": {
-          "type": "boolean"
-        },
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ArticleType"
-          }
-        },
-        "amount": {
-          "type": "integer"
-        }
-      }
-    },
     "ArticleType": {
       "type": "object",
       "properties": {
@@ -1176,31 +1372,6 @@
         },
         "name": {
           "type": "string"
-        }
-      }
-    },
-     "ArticleTypeInput": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "AllClients": {
-      "type": "object",
-      "properties": {
-        "ok": {
-          "type": "boolean"
-        },
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Client"
-          }
-        },
-        "amount": {
-          "type": "integer"
         }
       }
     },
@@ -1239,43 +1410,6 @@
         }
       }
     },
-    "ClientInput": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "cell": {
-          "type": "string"
-        },
-        "state": {
-          "type": "integer"
-        },
-        "password": {
-          "type": "string"
-        },
-        "role": {
-          "type": "string"
-        }
-      }
-    },
-    "ClientTrolleyInput": {
-      "type": "object",
-      "properties": {
-        "client": {
-          "type": "string"
-        },
-        "trolley": {
-          "type": "string"
-        }
-      }
-    },
     "AuthClient": {
       "type": "object",
       "properties": {
@@ -1290,14 +1424,32 @@
         }
       }
     },
-    "AuthInput": {
+    "CashRegister": {
       "type": "object",
       "properties": {
-        "email": {
+        "id": {
           "type": "string"
         },
-        "password": {
+        "available": {
+          "type": "integer"
+        },
+        "number": {
+          "type": "integer"
+        },
+        "openCheckoutDate": {
           "type": "string"
+        },
+        "closeCheckoutDate": {
+          "type": "string"
+        },
+        "totalSales": {
+          "type": "integer"
+        },
+        "receipts": {
+          "type": "string"
+        },
+        "receiptsAmount": {
+          "type": "integer"
         }
       }
     }
