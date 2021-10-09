@@ -939,6 +939,94 @@
                     }
                 }
             }
+        },
+        "/receiptsdetail": {
+            "get": {
+                "tags": ["receiptDetail"],
+                "summary": "Get all the receipts detail",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/ReceiptDetail"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["receiptDetail"],
+                "summary": "Create a new receipt detail",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create a new receipt detail",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ReceiptDetailInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/ReceiptDetailNewResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/receiptsdetail/{receiptDetailId}": {
+            "get": {
+                "tags": ["receiptDetail"],
+                "summary": "Get a receipt detail",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "receiptDetailId",
+                        "in": "path",
+                        "description": "receipt detail ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/ReceiptDetail"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["receiptDetail"],
+                "summary": "Remove an existing receipt detail",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "receiptDetailId",
+                        "in": "path",
+                        "description": "Receipt detail ID to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
         }
     },
     "securityDefinitions": {
@@ -1199,6 +1287,20 @@
                     }
                 }
             },
+            "ReceiptDetailInput": {
+                "type": "object",
+                "properties": {
+                    "articles": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "integer"
+                    },
+                    "price": {
+                        "type": "integer"
+                    }
+                }
+            },
             "CashRegisterNewResponse": {
                 "type": "object",
                 "properties": {
@@ -1221,6 +1323,20 @@
                     },
                     "cashRegister": {
                         "$ref": "#/definitions/Receipt"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ReceiptDetailNewResponse": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "cashRegister": {
+                        "$ref": "#/definitions/ReceiptDetail"
                     },
                     "message": {
                         "type": "string"
@@ -1425,7 +1541,7 @@
                     "type": "integer"
                 },
                 "price": {
-                    "type": "price"
+                    "type": "integer"
                 },
                 "client": {
                     "$ref": "#/definitions/Client"
@@ -1434,7 +1550,33 @@
                     "$ref": "#/definitions/ReceiptDetail"
                 }
             }
-        }
+          },
+          "ReceiptDetail": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "articles": {
+                  "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Article"
+                    }
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "state": {
+                    "type": "integer"
+                }
+            }
+          }
     },
     "externalDocs": {
         "description": "Find out more about Swagger",
