@@ -14,6 +14,7 @@ seeder.connect(db, () => {
         './src/models/receipt/receiptDetailModel',
         './src/models/cashRegister/cashRegisterModel',
         './src/models/configuration/configurationModel',
+        './src/models/image/imageModel',
     ])
     seeder.clearModels(
         [
@@ -27,6 +28,7 @@ seeder.connect(db, () => {
             'Receipt',
             'CashRegister',
             'Configuration',
+            'Image',
         ],
         () => {
             seeder.populateModels(data, function () {
@@ -121,6 +123,7 @@ const data = [
                 brand: '61623b9df7da294370d73fd9',
                 articleType: '61623b9df7da294370d73ee3',
                 offer: '61623b9df7da294370d22ee3',
+                image: '616300408b082150e4c69cad',
             },
             {
                 _id: '61623b9df7da294370d22aa3',
@@ -137,6 +140,7 @@ const data = [
                 brand: '61623b9df7da123370d73fd9',
                 articleType: '61623b9df7da123370d73ff2',
                 offer: '61623b9df7da212370d73ee3',
+                image: '61631482452110323033c9da',
             },
             {
                 _id: '61623b9df7da294370d22ff4',
@@ -153,6 +157,7 @@ const data = [
                 brand: '33323b9df7da123370d73fd9',
                 articleType: '61623b9df7da123370d73ff2',
                 offer: '42623b9df7da294370d73ee3',
+                image: '61631528452110323033eb0b',
             },
         ],
     },
@@ -189,6 +194,13 @@ const data = [
                     '61623b9df7da294370d22ff3',
                 ],
             },
+            {
+                _id: '616301f5611f6726147fa515',
+                available: '1',
+                date: '2021-10-10T15:07:53.322+00:00',
+                total: '0',
+                articles: [],
+            },
         ],
     },
     {
@@ -203,7 +215,8 @@ const data = [
                 cell: '3814000000',
                 state: '1',
                 trolley: '61623b9df7da294370a22ff4',
-                password: '130',
+                password:
+                    '$2a$10$x156AquPuFuFV2v/E2/WaeP/bPIXBI5Br9bvyIGtfn4lzmrzsNIsC',
                 role: 'USER_ROLE',
             },
             {
@@ -215,7 +228,8 @@ const data = [
                 cell: '3814000000',
                 state: '1',
                 trolley: '61623b9df7da294370d22ba3',
-                password: '130',
+                password:
+                    '$2a$10$x156AquPuFuFV2v/E2/WaeP/bPIXBI5Br9bvyIGtfn4lzmrzsNIsC',
                 role: 'USER_ROLE',
             },
             {
@@ -227,8 +241,22 @@ const data = [
                 cell: '3814000000',
                 state: '1',
                 trolley: '61623b9df7da294370d22af3',
-                password: '130',
+                password:
+                    '$2a$10$x156AquPuFuFV2v/E2/WaeP/bPIXBI5Br9bvyIGtfn4lzmrzsNIsC',
                 role: 'USER_ROLE',
+            },
+            {
+                _id: '616301f5611f6726147fa514',
+                available: '1',
+                name: 'admin',
+                address: 'Salta 123',
+                email: 'admin@admin.com',
+                cell: '123456',
+                state: '1',
+                trolley: '616301f5611f6726147fa515',
+                password:
+                    '$2a$10$x156AquPuFuFV2v/E2/WaeP/bPIXBI5Br9bvyIGtfn4lzmrzsNIsC',
+                role: 'ADMIN_ROLE',
             },
         ],
     },
@@ -346,6 +374,44 @@ const data = [
                 useDecimal: '1',
                 address: 'Salta 321',
                 cellPhone: '381955555',
+            },
+        ],
+    },
+    {
+        model: 'Image',
+        documents: [
+            {
+                _id: '616300408b082150e4c69cad',
+                available: '1',
+                created: '2021-10-10T16:11:30.122+00:00',
+                filename:
+                    'image-1eef59ae-3e70-495b-80a9-caf1181be5a3coca-cola-2l.jpg',
+                path: '/img/uploads/image-1eef59ae-3e70-495b-80a9-caf1181be5a3coca-cola-2l.jpg',
+                originalname: 'coca-cola-2l.jpg',
+                mimetype: 'image/jpeg',
+                size: '11968',
+            },
+            {
+                _id: '61631482452110323033c9da',
+                available: '1',
+                created: '2021-10-10T16:18:10.706+00:00',
+                filename:
+                    'image-566622b5-6cad-4f19-a5a8-b83378db33b3fernet-branca-750.jpg',
+                path: '/img/uploads/image-566622b5-6cad-4f19-a5a8-b83378db33b3fernet-branca-750.jpg',
+                originalname: 'fernet-branca-750.jpg',
+                mimetype: 'image/jpeg',
+                size: '16887',
+            },
+            {
+                _id: '61631528452110323033eb0b',
+                available: '1',
+                created: '2021-10-10T16:18:10.706+00:00',
+                filename:
+                    'image-4e8e604a-00dd-4cba-a017-25ad25cf911dcerveza-quilmes-latas.jpg',
+                path: '/img/uploads/image-4e8e604a-00dd-4cba-a017-25ad25cf911dcerveza-quilmes-latas.jpg',
+                originalname: 'cerveza-quilmes-latas.jpg',
+                mimetype: 'image/jpeg',
+                size: '45844',
             },
         ],
     },
