@@ -1027,6 +1027,103 @@
                     }
                 }
             }
+        },
+        "/configuration": {
+            "get": {
+                "tags": ["configuration"],
+                "summary": "Get all the configurations",
+                "description": "",
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/AllConfigurations"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["configuration"],
+                "summary": "Create a new configuration",
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create a new configuration",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ConfigurationInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/components/schemas/ConfigurationNewResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/configuration/{configurationId}": {
+            "get": {
+                "tags": ["configuration"],
+                "summary": "Get a configuration",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "configurationId",
+                        "in": "path",
+                        "description": "configuration ID to get",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Configuration"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["configuration"],
+                "summary": "Update an existing configuration",
+                "description": "",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "configurationId",
+                        "in": "path",
+                        "description": "Configuration ID to edit",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Update configuration",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ConfigurationInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
         }
     },
     "securityDefinitions": {
@@ -1203,6 +1300,23 @@
                     }
                 }
             },
+            "AllConfigurations": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "response": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/Configuration"
+                        }
+                    },
+                    "amount": {
+                        "type": "integer"
+                    }
+                }
+            },
             "ClientInput": {
                 "type": "object",
                 "properties": {
@@ -1247,6 +1361,32 @@
                         "type": "string"
                     },
                     "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ConfigurationInput": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "adminCode": {
+                        "type": "string"
+                    },
+                    "demo": {
+                        "type": "integer"
+                    },
+                    "lastSellName": {
+                        "type": "string"
+                    },
+                    "useDecimal": {
+                        "type": "integer"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "cellPhone": {
                         "type": "string"
                     }
                 }
@@ -1337,6 +1477,20 @@
                     },
                     "cashRegister": {
                         "$ref": "#/definitions/ReceiptDetail"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ConfigurationNewResponse": {
+                "type": "object",
+                "properties": {
+                    "ok": {
+                        "type": "boolean"
+                    },
+                    "cashRegister": {
+                        "$ref": "#/definitions/Configuration"
                     },
                     "message": {
                         "type": "string"
@@ -1550,8 +1704,8 @@
                     "$ref": "#/definitions/ReceiptDetail"
                 }
             }
-          },
-          "ReceiptDetail": {
+        },
+        "ReceiptDetail": {
             "type": "object",
             "properties": {
                 "id": {
@@ -1561,7 +1715,7 @@
                     "type": "integer"
                 },
                 "articles": {
-                  "type": "array",
+                    "type": "array",
                     "items": {
                         "$ref": "#/definitions/Article"
                     }
@@ -1576,7 +1730,39 @@
                     "type": "integer"
                 }
             }
-          }
+        },
+        "Configuration": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "adminCode": {
+                    "type": "string"
+                },
+                "demo": {
+                    "type": "integer"
+                },
+                "lastSellName": {
+                    "type": "integer"
+                },
+                "useDecimal": {
+                    "type": "integer"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "cellPhone": {
+                    "type": "string"
+                }
+            }
+        }
     },
     "externalDocs": {
         "description": "Find out more about Swagger",
