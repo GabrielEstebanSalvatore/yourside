@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-let checkoutSchema = new Schema({
+let cashRegisterSchema = new Schema({
     available: {
         type: Number,
         default: 1,
@@ -25,7 +25,7 @@ let checkoutSchema = new Schema({
     receipts: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Comprabante',
+            ref: 'Receipt',
             default: [],
         },
     ],
@@ -35,4 +35,4 @@ let checkoutSchema = new Schema({
     },
 })
 
-module.exports = mongoose.model('CashRegister', checkoutSchema)
+module.exports = mongoose.model('CashRegister', cashRegisterSchema)
