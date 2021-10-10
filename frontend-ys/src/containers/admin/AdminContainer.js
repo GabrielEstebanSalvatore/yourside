@@ -14,9 +14,9 @@ const AdminContainer = () => {
 
     const [localState, setLocalState] = useState({ view: 'Box' })
 
-    useEffect(() => {
-        Socket.emit('conectado', 'hola desde el cliente')
-    }, [])
+    // useEffect(() => {
+    //     Socket.emit('conectado', 'hola desde el cliente')
+    // }, [])
 
     let history = useHistory()
     const redirect = () => {
