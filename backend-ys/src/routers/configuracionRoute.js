@@ -5,22 +5,22 @@ const { check } = require('express-validator')
 const configurationController = require('../controllers/configurationController')
 
 router.post(
-    '/configuracion',
+    '/configuration',
     [check('name', 'El nombre es obligatorio').not().isEmpty()],
     async (req, res) => {
         await configurationController.create(req, res)
     }
 )
 
-router.get('/configuracion', async (req, res) => {
+router.get('/configuration', async (req, res) => {
     await configurationController.getAll(req, res)
 })
 
-router.get('/configuracion/:id', async (req, res) => {
-    await configurationController.getOne(req, res)
+router.get('/configuration/:id', async (req, res) => {
+    await configurationController.get(req, res)
 })
-router.put('/configuracion/:id', async (req, res) => {
-    await configurationController.updateConfiguration(req, res)
+router.put('/configuration/:id', async (req, res) => {
+    await configurationController.update(req, res)
 })
 
 module.exports = router

@@ -3,6 +3,10 @@ const Schema = mongoose.Schema
 const uniqueValidator = require('mongoose-unique-validator')
 
 let configurationModel = new Schema({
+    available: {
+        type: Number,
+        default: 1,
+    },
     name: {
         type: String,
         unique: true,
@@ -22,6 +26,7 @@ let configurationModel = new Schema({
     },
     useDecimal: {
         type: Number,
+        default: 1,
     },
     address: {
         type: String,
