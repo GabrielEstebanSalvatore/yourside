@@ -9,25 +9,21 @@ Yourside es una tienda online que permite a los usuarios adquirir productos desd
 
 ## Project Manager 👔
 
-Gabriel Salvatore - Full Stack Developer
+- Gabriel Salvatore - Full Stack Developer
 
 ## Scrum Master 💻
 
-Camilo Sanchez - Full Stack Developer
+- Camilo Sanchez - Full Stack Developer
 
 ## Developers 💻
 
-Lucas Palacios - Frontend
-Facundo Bazan - Mobile
-Matias Martinez - Mobile
+- Lucas Palacios - Frontend
+- Facundo Bazan - Mobile
+- Matias Martinez - Mobile
 
 ## Setup 🚀
 
 Instruccions for deploy locally the project.
-
-## Install 🔧
-
-Instructions for install the project
 
 ### First, clone the repository
 
