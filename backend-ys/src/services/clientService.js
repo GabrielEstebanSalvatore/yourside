@@ -3,7 +3,7 @@ const { clientDto } = require('./../models/client/DTOs/clientDto')
 const { clientInputDto } = require('./../models/client/DTOs/clientInputDto')
 const ObjectId = require('mongoose').Types.ObjectId
 const { validationResult } = require('express-validator')
-const Trolley = require('../models/trolleyModel')
+const Trolley = require('../models/trolley/trolleyModel')
 const bcryptjs = require('bcryptjs')
 
 class ClientService {
