@@ -62,88 +62,91 @@ const MainCarousel = () => {
                 className="parallax-bg"
                 data-swiper-parallax="-23%"
             ></div>
-            {articles.map(
-                (article) =>
-                    article.offer && (
-                        <SwiperSlide>
-                            <div className="article_carrousel ">
-                                <div
-                                    className="article_carrousel_image"
-                                    data-swiper-parallax="-500"
-                                    data-swiper-parallax-opacity="0"
-                                >
-                                    {
-                                        article.image && (
-                                            <img
-                                                src={
-                                                    `http://localhost:4000/` + article.image
-                                                }
-                                                alt=""
-                                            />
-                                        ) //style={{ height: "300px", width: "400px" }}
-                                    }
-                                </div>
+            {articles &&
+                articles.map(
+                    (article) =>
+                        article.offer && (
+                            <SwiperSlide>
+                                <div className="article_carrousel ">
+                                    <div
+                                        className="article_carrousel_image"
+                                        data-swiper-parallax="-500"
+                                        data-swiper-parallax-opacity="0"
+                                    >
+                                        {
+                                            article.image && (
+                                                <img
+                                                    src={
+                                                        `http://localhost:4000/` +
+                                                        article.image
+                                                    }
+                                                    alt=""
+                                                />
+                                            ) //style={{ height: "300px", width: "400px" }}
+                                        }
+                                    </div>
 
-                                <div className="article_carrousel_detail">
-                                    <div
-                                        className="article_carrousel_header"
-                                        data-swiper-parallax="-250"
-                                        data-swiper-parallax-opacity="0"
-                                    >
-                                        <h2 className="article_carrousel_header_titulo">
-                                            {article.name}{' '}
-                                        </h2>
+                                    <div className="article_carrousel_detail">
                                         <div
-                                            data-swiper-parallax="-350"
+                                            className="article_carrousel_header"
+                                            data-swiper-parallax="-250"
                                             data-swiper-parallax-opacity="0"
                                         >
-                                            antes:
-                                            <p className="precion_antes">
-                                                $<h2>{article.sellPrice}</h2>
-                                            </p>
-                                        </div>
-                                        {/* <p>Tipo: <strong>{articulo.articleType.name}</strong></p> */}
-                                    </div>
-                                    <div
-                                        data-swiper-parallax="-400"
-                                        data-swiper-parallax-opacity="0"
-                                    >
-                                        <div
-                                            data-swiper-parallax="-550"
-                                            data-swiper-parallax-opacity="0"
-                                        >
-                                            ahora:
-                                            <p className="precion_ahora">
-                                                $
-                                                <h2>
-                                                    {article.sellPriceOffer}
-                                                </h2>
-                                            </p>
-                                            <p className="descuento">
-                                                % {article.offer.percent} de
-                                                Descuento
-                                            </p>
-                                        </div>
-                                        <div
-                                            className="d-flex justify-content-center"
-                                            data-swiper-parallax="-750"
-                                            data-swiper-parallax-opacity="0"
-                                        >
-                                            <ButtonPrincipal
-                                                onClick={() =>
-                                                    addTrolley(article)
-                                                }
-                                                title={'Comprar'}
+                                            <h2 className="article_carrousel_header_titulo">
+                                                {article.name}{' '}
+                                            </h2>
+                                            <div
+                                                data-swiper-parallax="-350"
+                                                data-swiper-parallax-opacity="0"
                                             >
-                                                {' '}
-                                            </ButtonPrincipal>
+                                                antes:
+                                                <p className="precion_antes">
+                                                    $
+                                                    <h2>{article.sellPrice}</h2>
+                                                </p>
+                                            </div>
+                                            {/* <p>Tipo: <strong>{articulo.articleType.name}</strong></p> */}
+                                        </div>
+                                        <div
+                                            data-swiper-parallax="-400"
+                                            data-swiper-parallax-opacity="0"
+                                        >
+                                            <div
+                                                data-swiper-parallax="-550"
+                                                data-swiper-parallax-opacity="0"
+                                            >
+                                                ahora:
+                                                <p className="precion_ahora">
+                                                    $
+                                                    <h2>
+                                                        {article.sellPriceOffer}
+                                                    </h2>
+                                                </p>
+                                                <p className="descuento">
+                                                    % {article.offer.percent} de
+                                                    Descuento
+                                                </p>
+                                            </div>
+                                            <div
+                                                className="d-flex justify-content-center"
+                                                data-swiper-parallax="-750"
+                                                data-swiper-parallax-opacity="0"
+                                            >
+                                                <ButtonPrincipal
+                                                    onClick={() =>
+                                                        addTrolley(article)
+                                                    }
+                                                    title={'Comprar'}
+                                                >
+                                                    {' '}
+                                                </ButtonPrincipal>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                    )
-            )}
+                            </SwiperSlide>
+                        )
+                )}
         </Swiper>
     )
 }

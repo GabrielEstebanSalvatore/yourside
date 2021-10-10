@@ -68,45 +68,52 @@ const SecondaryCarousel = () => {
             }}
             className="mySwiper"
         >
-            {articles.map(
-                (article) =>
-                    !article.offer && (
-                        <SwiperSlide>
-                            <div className="article_carrouselsecundary">
-                                <div className="article_carrouselsecundary_image">
-                                    {article.image && (
-                                        <img
-                                            src={
-                                                `http://localhost:4000/` + article.image
-                                            }
-                                            alt=""
-                                        />
-                                    )}
-                                </div>
-
-                                <div className="article_carrouselsecundary_detail">
-                                    <div className="article_carrouselsecundary_header">
-                                        <h4 class="">{article.name} </h4>
+            {articles &&
+                articles.map(
+                    (article) =>
+                        !article.offer && (
+                            <SwiperSlide>
+                                <div className="article_carrouselsecundary">
+                                    <div className="article_carrouselsecundary_image">
+                                        {article.image && (
+                                            <img
+                                                src={
+                                                    `http://localhost:4000/` +
+                                                    article.image
+                                                }
+                                                alt=""
+                                            />
+                                        )}
                                     </div>
-                                    <p>
-                                        Precio venta:
-                                        <strong> ${article.sellPrice}</strong>
-                                    </p>
-                                    <p>
-                                        Tipo:{' '}
-                                        <strong>
-                                            {article.articleType.name}
-                                        </strong>
-                                    </p>
-                                    <ButtonPrincipal
-                                        onClick={() => agregarCarrito(article)}
-                                        title={'Comprar'}
-                                    ></ButtonPrincipal>
+
+                                    <div className="article_carrouselsecundary_detail">
+                                        <div className="article_carrouselsecundary_header">
+                                            <h4 class="">{article.name} </h4>
+                                        </div>
+                                        <p>
+                                            Precio venta:
+                                            <strong>
+                                                {' '}
+                                                ${article.sellPrice}
+                                            </strong>
+                                        </p>
+                                        <p>
+                                            Tipo:{' '}
+                                            <strong>
+                                                {article.articleType.name}
+                                            </strong>
+                                        </p>
+                                        <ButtonPrincipal
+                                            onClick={() =>
+                                                agregarCarrito(article)
+                                            }
+                                            title={'Comprar'}
+                                        ></ButtonPrincipal>
+                                    </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                    )
-            )}
+                            </SwiperSlide>
+                        )
+                )}
         </Swiper>
     )
 }
