@@ -1,6 +1,6 @@
 const brandService = require('../services/brandService')
 
-class brandsController {
+class brandController {
     static async getAll(req, res) {
         try {
             const response = await brandService.getAll()
@@ -47,4 +47,4 @@ class brandsController {
     }
 }
 
-module.exports = brandsController
+module.exports = brandController
