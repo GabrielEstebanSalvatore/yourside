@@ -11,7 +11,7 @@ Yourside es una tienda online que permite a los usuarios adquirir productos desd
 
 - Gabriel Salvatore - Full Stack Developer
 
-## Scrum Master 💻
+## Scrum Master ⌨️
 
 - Camilo Sanchez - Full Stack Developer
 
