@@ -386,7 +386,7 @@ const data = [
                 created: '2021-10-10T16:11:30.122+00:00',
                 filename:
                     'image-1eef59ae-3e70-495b-80a9-caf1181be5a3coca-cola-2l.jpg',
-                path: '/img/uploads/image-1eef59ae-3e70-495b-80a9-caf1181be5a3coca-cola-2l.jpg',
+                path: '/img/dummy/image-1eef59ae-3e70-495b-80a9-caf1181be5a3coca-cola-2l.jpg',
                 originalname: 'coca-cola-2l.jpg',
                 mimetype: 'image/jpeg',
                 size: '11968',
@@ -397,7 +397,7 @@ const data = [
                 created: '2021-10-10T16:18:10.706+00:00',
                 filename:
                     'image-566622b5-6cad-4f19-a5a8-b83378db33b3fernet-branca-750.jpg',
-                path: '/img/uploads/image-566622b5-6cad-4f19-a5a8-b83378db33b3fernet-branca-750.jpg',
+                path: '/img/dummy/image-566622b5-6cad-4f19-a5a8-b83378db33b3fernet-branca-750.jpg',
                 originalname: 'fernet-branca-750.jpg',
                 mimetype: 'image/jpeg',
                 size: '16887',
@@ -408,7 +408,7 @@ const data = [
                 created: '2021-10-10T16:18:10.706+00:00',
                 filename:
                     'image-4e8e604a-00dd-4cba-a017-25ad25cf911dcerveza-quilmes-latas.jpg',
-                path: '/img/uploads/image-4e8e604a-00dd-4cba-a017-25ad25cf911dcerveza-quilmes-latas.jpg',
+                path: '/img/dummy/image-4e8e604a-00dd-4cba-a017-25ad25cf911dcerveza-quilmes-latas.jpg',
                 originalname: 'cerveza-quilmes-latas.jpg',
                 mimetype: 'image/jpeg',
                 size: '45844',
