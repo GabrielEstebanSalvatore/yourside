@@ -5,15 +5,15 @@ const DeliveryContainer = ({ history }) => {
     var searchParams
     var desck
 
-    useEffect(() => {
-        Socket.emit('conectado', 'hola desde el cliente')
-        searchParams = new URLSearchParams(window.location.search)
-        desck = searchParams.get('escritorio')
-        setLocalState({
-            ...localState,
-            params: desck,
-        })
-    }, [])
+    // useEffect(() => {
+    //     Socket.emit('conectado', 'hola desde el cliente')
+    //     searchParams = new URLSearchParams(window.location.search)
+    //     desck = searchParams.get('escritorio')
+    //     setLocalState({
+    //         ...localState,
+    //         params: desck,
+    //     })
+    // }, [])
 
     const [localState, setLocalState] = useState({
         params: '',
@@ -24,22 +24,22 @@ const DeliveryContainer = ({ history }) => {
     }
 
     const getTickets = () => {
-        console.log(localState.params)
-        Socket.emit(
-            'atenderTicket',
-            { escritorio: localState.params },
-            function (resp) {
-                if (resp === 'No hay tickets') {
-                    console.log(resp)
-                    //label.text(resp);
-                    return
-                }
-                setLocalState({
-                    ...localState,
-                    number: resp.numero,
-                })
-            }
-        )
+        // console.log(localState.params)
+        // Socket.emit(
+        //     'atenderTicket',
+        //     { escritorio: localState.params },
+        //     function (resp) {
+        //         if (resp === 'No hay tickets') {
+        //             console.log(resp)
+        //             //label.text(resp);
+        //             return
+        //         }
+        //         setLocalState({
+        //             ...localState,
+        //             number: resp.numero,
+        //         })
+        //     }
+        // )
     }
 
     return (

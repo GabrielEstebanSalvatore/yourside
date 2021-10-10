@@ -29,23 +29,23 @@ const PublicContainer = () => {
         lblEscritorio4,
     ]
 
-    useEffect(() => {
-        Socket.on('estadoActual', function (data) {
-            console.log(data)
-            actualizaHTML(data.ultimos4)
-        })
+    // useEffect(() => {
+    //     Socket.on('estadoActual', function (data) {
+    //         console.log(data)
+    //         actualizaHTML(data.ultimos4)
+    //     })
 
-        Socket.on('ultimos4', function (data) {
-            actualizaHTML(data.ultimos4)
-        })
+    //     Socket.on('ultimos4', function (data) {
+    //         actualizaHTML(data.ultimos4)
+    //     })
 
-        const actualizaHTML = (ultimos4) => {
-            for (var i = 0; i <= ultimos4.length - 1; i++) {
-                lblTickets[i].text('Ticket ' + ultimos4[i].numero)
-                lblEscritorios[i].text('Escritorio ' + ultimos4[i].escritorio)
-            }
-        }
-    })
+    //     const actualizaHTML = (ultimos4) => {
+    //         for (var i = 0; i <= ultimos4.length - 1; i++) {
+    //             lblTickets[i].text('Ticket ' + ultimos4[i].numero)
+    //             lblEscritorios[i].text('Escritorio ' + ultimos4[i].escritorio)
+    //         }
+    //     }
+    // })
     // setLocalState({
     //     ...localState,
     //     params:  desck

@@ -4,7 +4,7 @@ class articleTypeController {
     static async getAll(req, res) {
         try {
             const response = await articleTypeService.getAll()
-            res.status(response.status).json(response)
+            res.status(response.status).json(response.content)
         } catch (err) {
             res.send(err)
         }

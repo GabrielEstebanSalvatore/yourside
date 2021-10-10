@@ -9,7 +9,13 @@ import AppContext from '../../context/app/appContext'
 
 const ClientState = (props) => {
     const appContext = useContext(AppContext)
-    const { handleModal, cerrarSesion, setMessage, getConfiguration, getArticles } = appContext
+    const {
+        handleModal,
+        cerrarSesion,
+        setMessage,
+        getConfiguration,
+        getArticles,
+    } = appContext
 
     const initialState = {
         login: {},
@@ -26,7 +32,7 @@ const ClientState = (props) => {
 
     const registerUser = async (data) => {
         try {
-            const response = await clienteAxios.post('/clientes', data)
+            const response = await clienteAxios.post('/clients', data)
 
             if (response != null) {
                 dispatch({

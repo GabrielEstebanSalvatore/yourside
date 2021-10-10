@@ -2,7 +2,7 @@ const Article = require('../models/article/articleModel')
 const { articleInputDto } = require('../models/article/DTOs/articleInputDto')
 const { articleDto } = require('../models/article/DTOs/articleDto')
 const { validationResult } = require('express-validator')
-const Image = require('../models/imageModel')
+const Image = require('../models/image/imageModel')
 const ObjectId = require('mongoose').Types.ObjectId
 
 class articleService {
@@ -14,6 +14,7 @@ class articleService {
             .populate('brand')
             .populate('offer')
         const response = await articles.map((article) => articleDto(article))
+
         response.map((article) => {
             if (article.offer) {
                 article.sellPriceOffer =
@@ -21,10 +22,12 @@ class articleService {
             }
         })
         return {
-            ok: true,
             status: 200,
-            response,
-            amount: response.length,
+            content: {
+                ok: true,
+                response,
+                amount: response.length,
+            },
         }
     }
     static get = async (id) => {

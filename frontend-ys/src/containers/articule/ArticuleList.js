@@ -16,7 +16,6 @@ const ArticuleList = () => {
     })
 
     const editArticle = (article) => {
-
         current(article)
         handleModal(localState.modalView, localState.showModal)
     }
@@ -141,10 +140,9 @@ const ArticuleList = () => {
 
     //ARMAR LA TABLA
     const getRow = () => {
-
         return articles.map((article) => {
             return {
-                key: article._id,
+                key: article.id,
                 name: article.name,
                 code: article.code,
                 amount: article.amount,
@@ -152,11 +150,11 @@ const ArticuleList = () => {
                 sellPrice: article.sellPrice,
                 negativeStock: article.negativeStock,
                 minimum: article.minimum,
-                articleTypeId:article.articleType._id,
-                articleTypeName:article.articleType.name,
-                description:article.description,
-                brandId:article.brand._id,
-                brandName:article.brand.name,
+                articleTypeId: article.articleType.id,
+                articleTypeName: article.articleType.name,
+                description: article.description,
+                brandId: article.brand.id,
+                brandName: article.brand.name,
             }
         })
     }

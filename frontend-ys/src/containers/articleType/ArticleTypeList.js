@@ -57,12 +57,14 @@ const ArticleTypeList = () => {
     ]
 
     const getRow = () => {
-        return articleTypeList.map((tipoArt) => {
-            return {
-                key: tipoArt._id,
-                name: tipoArt.name,
-            }
-        })
+        if (articleTypeList) {
+            return articleTypeList.map((tipoArt) => {
+                return {
+                    key: tipoArt.id,
+                    name: tipoArt.name,
+                }
+            })
+        }
     }
 
     const setToEliminar = (id) => {

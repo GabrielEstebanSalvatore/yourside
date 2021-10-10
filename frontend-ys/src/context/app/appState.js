@@ -25,7 +25,6 @@ const AppState = (props) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
 
     const handleModal = (modalView, showModal) => {
-        
         dispatch({
             type: AppConstant.HANDLE_MODAL,
             showModal,
@@ -53,11 +52,11 @@ const AppState = (props) => {
 
     const newConfiguration = async (data) => {
         try {
-            const response = await clienteAxios.post('/configuracion', data)
-           
+            const response = await clienteAxios.post('/configuration', data)
+
             dispatch({
                 type: AppConstant.CREATE_CONFIGURACION,
-                payload: response.data,
+                payload: response.data.response,
             })
             handleModal('MensajeRegistro', true)
         } catch (error) {
@@ -67,11 +66,11 @@ const AppState = (props) => {
     }
     const getConfiguration = async (data) => {
         try {
-            const response = await clienteAxios.get('/configuracion', data)
+            const response = await clienteAxios.get('/configuration', data)
             if (response.data.configuration == null) return
             dispatch({
                 type: AppConstant.GET_CONFIGURATION,
-                payload: response.data,
+                payload: response.data.response,
             })
         } catch {
             handleModal('MensajeRegistro', true)
@@ -93,12 +92,12 @@ const AppState = (props) => {
         }
     }
 
-    const getArticleType = async (data) => {
+    const getArticleType = async () => {
         try {
-            const response = await clienteAxios.get('/tipoarticulos')
+            const response = await clienteAxios.get('/articlesType')
             dispatch({
                 type: AppConstant.TRAER_TIPOARTICULO,
-                payload: response.data.tipoarticulos,
+                payload: response.data.response,
             })
         } catch (error) {
             handleModal('MensajeRegistro', true)
@@ -108,7 +107,7 @@ const AppState = (props) => {
     const deleteArticleType = async (tipoArticuloId) => {
         try {
             const respuesta = await clienteAxios.delete(
-                `/tipoarticulos/${tipoArticuloId}`
+                `/articlestype/${tipoArticuloId}`
             )
             getArticleType()
         } catch {
@@ -118,7 +117,6 @@ const AppState = (props) => {
     }
 
     const deleteBrand = async (brandId) => {
-
         try {
             const respuesta = await clienteAxios.delete(`/brands/${brandId}`)
             traerMarcas()
@@ -151,12 +149,8 @@ const AppState = (props) => {
     }
 
     const editarTipoArticulo = async (data) => {
-        
         try {
-            await clienteAxios.put(
-                `/tipoarticulos/${data.id}`,
-                data
-            )
+            await clienteAxios.put(`/articlestype/${data.id}`, data)
             dispatch(getArticleType())
         } catch {
             handleModal('MensajeRegistro', true)
@@ -166,9 +160,7 @@ const AppState = (props) => {
 
     const editBrand = async (data) => {
         try {
-            const respuesta = await clienteAxios.put(
-                `/brands/${data.id}`, data
-            )
+            const respuesta = await clienteAxios.put(`/brands/${data.id}`, data)
             dispatch(traerMarcas())
         } catch {
             handleModal('MensajeRegistro', true)
@@ -194,33 +186,36 @@ const AppState = (props) => {
                 payload: response.data.response,
             })
         } catch {
-            handleModal('MensajeRegistro',true)
+            handleModal('MensajeRegistro', true)
             setMessage('Error al traer los artículos')
         }
-    } 
-    
-    const editArticle = async (data)=>{
+    }
+
+    const editArticle = async (data) => {
         try {
-            if(data.file)
-            {
-                var currentArticle = data.article;
-                //CREATING IMAGE 
+            var currentArticle = data.article
+            if (data.file) {
+                //CREATING IMAGE
                 const formDataImage = new FormData()
                 formDataImage.append('image', data.file)
-                const imageId = await clienteAxios.post('/articlesimages',formDataImage)
-                currentArticle.imageId = imageId.data.img._id;
+                const imageId = await clienteAxios.post(
+                    '/articlesimages',
+                    formDataImage
+                )
+                currentArticle.imageId = imageId.data.img._id
             }
-            await clienteAxios.put(`/articles/${currentArticle.id}`,currentArticle);
+            await clienteAxios.put(
+                `/articles/${currentArticle.id}`,
+                currentArticle
+            )
             dispatch(getArticles())
-
         } catch {
-            handleModal('MensajeRegistro',true)
+            handleModal('MensajeRegistro', true)
             setMessage('Error al editar el artículo')
         }
-    } 
+    }
 
     const newArticule = async (data) => {
-        
         var newArticle = data.article
         //CREATING IMAGE
         const formDataImage = new FormData()
@@ -237,23 +232,21 @@ const AppState = (props) => {
         const response = await clienteAxios.post('/articles', newArticle)
         if (response != null) {
             try {
-
                 handleModal('MensajeRegistro', true)
                 setMessage(response.data.message)
-            
             } catch (error) {
-
                 handleModal('MensajeRegistro', true)
                 setMessage(response.data.message)
             }
         } else {
-            handleModal('MensajeRegistro',true)
+            handleModal('MensajeRegistro', true)
             setMessage('Error al crear el artículo')
         }
     }
 
     const deleteArticle = async (articuloId) => {
         try {
+            console.log(articuloId)
             await clienteAxios.delete(`/articles/${articuloId}`)
             getArticles()
         } catch (error) {
@@ -333,7 +326,7 @@ const AppState = (props) => {
                 type: AppConstant.GET_OFFERS,
                 payload: respuesta.data.offers,
             })
-        } catch{
+        } catch {
             handleModal('MensajeRegistro', true)
             setMessage('Error al traer las ofertas')
         }
@@ -341,12 +334,12 @@ const AppState = (props) => {
 
     const newArticleType = async (data) => {
         try {
-            const response = await clienteAxios.post('/tipoarticulos', data)
+            const response = await clienteAxios.post('/articlestype', data)
             setMessage(response.data.message)
             getArticleType()
         } catch {
             handleModal('MensajeRegistro', true)
-            setMessage('Error al traer Tipo de Artículo')
+            setMessage('Some error occurred')
         }
     }
 
