@@ -79,7 +79,7 @@ class ConfigurationService {
             status: 201,
             content: {
                 ok: true,
-                article: newConfiguration,
+                configuration: newConfiguration,
                 message: 'Configuration created successfully',
             },
         }

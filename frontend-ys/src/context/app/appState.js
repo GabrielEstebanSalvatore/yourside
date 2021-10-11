@@ -53,10 +53,9 @@ const AppState = (props) => {
     const newConfiguration = async (data) => {
         try {
             const response = await clienteAxios.post('/configuration', data)
-
             dispatch({
                 type: AppConstant.CREATE_CONFIGURACION,
-                payload: response.data.response,
+                payload: response.data.configuration,
             })
             handleModal('MensajeRegistro', true)
         } catch (error) {
@@ -67,7 +66,7 @@ const AppState = (props) => {
     const getConfiguration = async (data) => {
         try {
             const response = await clienteAxios.get('/configuration', data)
-            if (response.data.configuration == null) return
+            if (response.data.response == null) return
             dispatch({
                 type: AppConstant.GET_CONFIGURATION,
                 payload: response.data.response,
@@ -80,10 +79,9 @@ const AppState = (props) => {
     const editConfiguration = async (data) => {
         try {
             const response = await clienteAxios.put(
-                `/configuracion/${data.id}`,
+                `/configuration/${data.id}`,
                 data
             )
-
             setMessage(response.data.message)
             getConfiguration()
         } catch {

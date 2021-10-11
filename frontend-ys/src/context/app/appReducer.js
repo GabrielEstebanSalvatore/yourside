@@ -28,7 +28,7 @@ export default (state, action) => {
         case AppConstant.GET_CONFIGURATION:
             return {
                 ...state,
-                configuration: action.payload.configuration,
+                configuration: action.payload[0],
             }
         case AppConstant.SUCCESSFUL_PURCHASE:
         case AppConstant.CREATE_TIPOARTICULO:
