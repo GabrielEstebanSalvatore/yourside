@@ -53,10 +53,9 @@ const AppState = (props) => {
     const newConfiguration = async (data) => {
         try {
             const response = await clienteAxios.post('/configuration', data)
-
             dispatch({
                 type: AppConstant.CREATE_CONFIGURACION,
-                payload: response.data.response,
+                payload: response.data.configuration,
             })
             handleModal('MensajeRegistro', true)
         } catch (error) {
@@ -67,7 +66,7 @@ const AppState = (props) => {
     const getConfiguration = async (data) => {
         try {
             const response = await clienteAxios.get('/configuration', data)
-            if (response.data.configuration == null) return
+            if (response.data.response == null) return
             dispatch({
                 type: AppConstant.GET_CONFIGURATION,
                 payload: response.data.response,
@@ -80,10 +79,9 @@ const AppState = (props) => {
     const editConfiguration = async (data) => {
         try {
             const response = await clienteAxios.put(
-                `/configuracion/${data.id}`,
+                `/configuration/${data.id}`,
                 data
             )
-
             setMessage(response.data.message)
             getConfiguration()
         } catch {
@@ -119,7 +117,7 @@ const AppState = (props) => {
     const deleteBrand = async (brandId) => {
         try {
             const respuesta = await clienteAxios.delete(`/brands/${brandId}`)
-            traerMarcas()
+            getBrands()
         } catch {
             handleModal('MensajeRegistro', true)
             setMessage('Error al eliminar la marca')
@@ -161,7 +159,7 @@ const AppState = (props) => {
     const editBrand = async (data) => {
         try {
             const respuesta = await clienteAxios.put(`/brands/${data.id}`, data)
-            dispatch(traerMarcas())
+            dispatch(getBrands())
         } catch {
             handleModal('MensajeRegistro', true)
             setMessage('Error al editar la marca')
@@ -246,7 +244,6 @@ const AppState = (props) => {
 
     const deleteArticle = async (articuloId) => {
         try {
-            console.log(articuloId)
             await clienteAxios.delete(`/articles/${articuloId}`)
             getArticles()
         } catch (error) {
@@ -306,7 +303,7 @@ const AppState = (props) => {
         }
     }
 
-    const traerMarcas = async () => {
+    const getBrands = async () => {
         try {
             const response = await clienteAxios.get(`/brands`)
             dispatch({
@@ -347,7 +344,7 @@ const AppState = (props) => {
         try {
             const response = await clienteAxios.post('/brands', data)
             setMessage(response.data.message)
-            traerMarcas()
+            getBrands()
         } catch {
             handleModal('MensajeRegistro', true)
             setMessage('Error al traer las marcas')
@@ -419,7 +416,7 @@ const AppState = (props) => {
                 getArticles,
                 traerComprobantes,
                 traerComprobantesAdmin,
-                traerMarcas,
+                getBrands,
                 getOffers,
                 getBox,
                 addArticleView,

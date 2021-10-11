@@ -3,7 +3,6 @@ import AppContext from '../../context/app/appContext'
 import { useHistory } from 'react-router-dom'
 import {
     ButtonCancel,
-    ButtonSubmit,
     ButtonItemView,
 } from '../../components/button'
 import { ContainerAdmin } from '../../components/containergeneral'
@@ -29,7 +28,7 @@ const ConfigurationContainer = () => {
         useDecimal: configuration.name ? configuration.useDecimal : null,
         cellPhone: configuration.name ? configuration.cellPhone : null,
         address: configuration.name ? configuration.address : null,
-        id: configuration.name ? configuration._id : null,
+        id: configuration.name ? configuration.id : null,
     })
 
     const onChange = (e) => {

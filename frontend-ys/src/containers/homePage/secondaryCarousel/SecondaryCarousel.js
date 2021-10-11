@@ -18,14 +18,13 @@ SwiperCore.use([Autoplay, Pagination])
 
 const SecondaryCarousel = () => {
     const appContext = useContext(AppContext)
-    const { handleModal, showModal, articles, getArticles } = appContext
+    const { articles, getArticles } = appContext
 
     useEffect(() => {
         getArticles()
         // eslint-disable-next-line
     }, [])
 
-    // State para iniciar sesión
     const [state, setState] = useState({
         trolley: [],
     })
@@ -94,13 +93,13 @@ const SecondaryCarousel = () => {
                                             Precio venta:
                                             <strong>
                                                 {' '}
-                                                ${article.sellPrice}
+                                                ${article.sellPrice != null && article.sellPrice }
                                             </strong>
                                         </p>
                                         <p>
                                             Tipo:{' '}
                                             <strong>
-                                                {article.articleType.name}
+                                                {article.articleType != null && article.articleType.name }
                                             </strong>
                                         </p>
                                         <ButtonPrincipal

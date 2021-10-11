@@ -20,7 +20,6 @@ class AuthService {
 
         // extraer el email y password
         const { email, password } = req.body
-
         try {
             // Revisar que sea un usuario registrado
             const client = await Client.findOne({ email })

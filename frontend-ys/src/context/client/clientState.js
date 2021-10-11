@@ -63,7 +63,6 @@ const ClientState = (props) => {
             authenticatedClient()
             handleModal('', false)
             getConfiguration()
-            getArticles()
         } catch (error) {
             handleModal('MensajeRegistro', true)
             setMessage('El cliente no esta registrado')

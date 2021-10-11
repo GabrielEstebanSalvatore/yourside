@@ -13,14 +13,14 @@ const NewArticule = () => {
         getArticleType,
         currentState,
         current,
-        traerMarcas,
+        getBrands,
         brandList,
         handleModal,
     } = appContext
 
     useEffect(() => {
         getArticleType()
-        traerMarcas()
+        getBrands()
         // eslint-disable-next-line
     }, [])
 

@@ -70,7 +70,7 @@ const ArticleTypeList = () => {
     const setToEliminar = (id) => {
         Swal.fire({
             title: '¿Estas seguro?',
-            text: '!Si eliminas la localidad, sera dada de baja!',
+            text: '!Si eliminas el tipo de articulo, sera dada de baja!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

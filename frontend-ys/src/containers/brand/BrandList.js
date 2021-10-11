@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 
 const BrandList = () => {
     const appContext = useContext(AppContext)
-    const { handleModal, traerMarcas, brandList, current, deleteBrand } =
+    const { handleModal, getBrands, brandList, current, deleteBrand } =
         appContext
 
     const [localState, setLocalState] = useState({
@@ -21,7 +21,7 @@ const BrandList = () => {
     }
 
     useEffect(() => {
-        traerMarcas()
+        getBrands()
         // eslint-disable-next-line
     }, [])
 
@@ -51,10 +51,10 @@ const BrandList = () => {
     ]
 
     const getRow = () => {
-        return brandList.map((marca) => {
+        return brandList.map((brand) => {
             return {
-                key: marca._id,
-                name: marca.name,
+                key: brand.id,
+                name: brand.name,
             }
         })
     }
@@ -78,7 +78,7 @@ const BrandList = () => {
                     'success'
                 )
             }
-            traerMarcas()
+            getBrands()
         })
     }
 
