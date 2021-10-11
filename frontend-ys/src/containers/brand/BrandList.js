@@ -52,8 +52,9 @@ const BrandList = () => {
 
     const getRow = () => {
         return brandList.map((marca) => {
+            console.log(marca)
             return {
-                key: marca._id,
+                key: marca.id,
                 name: marca.name,
             }
         })

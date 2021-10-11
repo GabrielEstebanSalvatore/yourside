@@ -246,7 +246,6 @@ const AppState = (props) => {
 
     const deleteArticle = async (articuloId) => {
         try {
-            console.log(articuloId)
             await clienteAxios.delete(`/articles/${articuloId}`)
             getArticles()
         } catch (error) {
