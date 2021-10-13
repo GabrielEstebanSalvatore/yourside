@@ -1,5 +1,4 @@
 import React from 'react'
-import { ButtonPrincipal } from '../button'
 import { Animated } from 'react-animated-css'
 
 const Card = ({ title, path, onClick, onClickImg }) => {
@@ -15,13 +14,12 @@ const Card = ({ title, path, onClick, onClickImg }) => {
                                 alt=""
                                 onClick={onClickImg}
                             />
-                        ) //style={{ height: "300px", width: "400px" }}
+                        )
                     }
                 </div>
                 <div className="card_product_body">
                     <h5>Card title {title}</h5>
                     <p>Some quick example .</p>
-                    {/* <ButtonPrincipal title={'Comprar'} onClick={onClick}/> */}
                 </div>
             </div>
         </Animated>

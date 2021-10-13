@@ -27,7 +27,6 @@ const ArticleView = () => {
     }
 
     const addArticleTrolley = () => {
-        console.log('1')
 
         // if(trolley)
         // {
@@ -61,7 +60,7 @@ const ArticleView = () => {
                         <img
                             src={
                                 `http://localhost:4000/` +
-                                articleView.image.path
+                                articleView.image
                             }
                             alt=""
                         />

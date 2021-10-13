@@ -1,26 +1,21 @@
 import React, { useContext, useEffect } from 'react'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
-import { ButtonItemView } from '../../components/button'
 import { Table } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
 
 const ArticleList = () => {
-    //TODO
     const appContext = useContext(AppContext)
     const { sacarArticuloCarrito } = appContext
 
     const clientContext = useContext(ClientContext)
     const { trolley } = clientContext
 
-    useEffect(() => {
-        // eslint-disable-next-line
-    }, [])
-
     const deleteArticle = (id) => {
         sacarArticuloCarrito(id)
     }
+
     const columns = [
         { title: 'Nombre', dataIndex: 'name' },
         { title: 'Tipo', dataIndex: 'articleType' },
@@ -42,17 +37,17 @@ const ArticleList = () => {
         },
     ]
 
-    //ARMAR LA TABLA
     const getRow = () => {
-        return trolley.map((articulo) => {
+        return trolley.map((article) => {
             return {
-                key: articulo._id,
-                name: articulo.name,
-                articleType: articulo.articleType.name,
-                sellPrice: articulo.sellPrice,
+                key: article.id,
+                name: article.name,
+                articleType: article.articleType.name,
+                sellPrice: article.sellPrice,
             }
         })
     }
+    
     const onClickDelete = (id) => {
         Swal.fire({
             title: '¿Estas seguro?',
