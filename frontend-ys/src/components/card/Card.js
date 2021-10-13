@@ -18,7 +18,7 @@ const Card = ({ title, path, onClick, onClickImg }) => {
                     }
                 </div>
                 <div className="card_product_body">
-                    <h5>Card title {title}</h5>
+                    <h5>{title}</h5>
                     <p>Some quick example .</p>
                 </div>
             </div>
