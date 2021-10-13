@@ -40,12 +40,12 @@ const AppState = (props) => {
     const addArticleView = async (article) => {
         dispatch({
             type: AppConstant.ADDARTICLEVIEW,
-            article: article,
+            payload: article
         })
     }
-    const cerrarSesion = async () => {
+    const logOut = async () => {
         dispatch({
-            type: AppConstant.CERRAR_SESION,
+            type: AppConstant.LOGOUT,
         })
         handleModal('', false)
     }
@@ -396,7 +396,7 @@ const AppState = (props) => {
                 boxesList: state.boxesList,
                 handleModal,
                 setMessage,
-                cerrarSesion,
+                logOut,
                 newConfiguration,
                 newArticleType,
                 newOffer,

@@ -3,6 +3,8 @@ import AppConstant from './appConstant'
 export default (state, action) => {
     switch (action.type) {
         case AppConstant.HANDLE_MODAL:
+           
+
             return {
                 ...state,
                 modalView: action.modalView,
@@ -13,7 +15,7 @@ export default (state, action) => {
                 ...state,
                 message: action.message,
             }
-        case AppConstant.CERRAR_SESION:
+        case AppConstant.LOGOUT:
             return {
                 ...state,
                 message: '',
@@ -76,7 +78,7 @@ export default (state, action) => {
         case AppConstant.ADDARTICLEVIEW:
             return {
                 ...state,
-                articleView: action.article,
+                articleView: action.payload,
             }
         case AppConstant.GET_BOXES:
             return {

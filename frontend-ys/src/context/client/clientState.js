@@ -11,7 +11,7 @@ const ClientState = (props) => {
     const appContext = useContext(AppContext)
     const {
         handleModal,
-        cerrarSesion,
+        logOut,
         setMessage,
         getConfiguration,
         getArticles,
@@ -39,7 +39,6 @@ const ClientState = (props) => {
                     type: ClientConstant.SIGNUP_SUCCEEDED,
                     payload: response.data,
                 })
-                //loginUser({ email:data.email, password:data.password})
                 authenticatedClient()
             } else {
                 handleModal('MensajeRegistro', true)
@@ -98,7 +97,7 @@ const ClientState = (props) => {
     }
 
     const closeSesion = async () => {
-        await clienteAxios.post('/clientestrolley', {
+        await clienteAxios.post('/clientstrolley', {
             client: state.client,
             trolleyClient: state.trolley,
         })
@@ -106,6 +105,7 @@ const ClientState = (props) => {
             type: ClientConstant.CLOSE_SESION,
         })
         handleModal('', false)
+        logOut()
     }
 
     const addArticleToSesionTrolley = async (article) => {

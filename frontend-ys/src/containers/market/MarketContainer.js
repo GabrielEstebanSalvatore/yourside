@@ -44,9 +44,9 @@ const MarketContainer = () => {
         history.push('/compra')
     }
 
-    const showItem = (art) => {
+    const showItem = (article) => {
         handleModal(localState.modalViewArticle, localState.showModal)
-        addArticleView(art)
+        addArticleView(article)
     }
 
     //noValidate
@@ -54,7 +54,7 @@ const MarketContainer = () => {
         <div className="mercado">
             <div className="mercado_header">
                 <div className="mercado_header_top input-group">
-                    <p>Buscar artiuclo: </p>
+                    <p>Buscar artículo: </p>
                     <input
                         type="text"
                         className="form-control"
@@ -86,7 +86,7 @@ const MarketContainer = () => {
                             {article.image ? (
                                 <Card
                                     title={article.name}
-                                    path={article.image.path}
+                                    path={article.image}
                                     onClickImg={() => showItem(article)}
                                 />
                             ) : (
