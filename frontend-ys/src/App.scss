@@ -101,6 +101,7 @@ body {
     background-color: #fff;
     top: 15%;
     right: 25%;
+    padding: auto;
 }
 .main_bottom {
     display: flex;
@@ -120,6 +121,7 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .swiper-container {
+    padding: auto;
     width: 100%;
     height: 100%;
 }
@@ -129,21 +131,22 @@ body {
     background: #ffffff;
     position: absolute;
     /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
+    //display: -webkit-box;
+    //display: -ms-flexbox;
+    //display: -webkit-flex;
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
+    //-webkit-box-pack: center;
+    //-ms-flex-pack: center;
+    //-webkit-justify-content: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
+    //-webkit-box-align: center;
+    //-ms-flex-align: center;
+    //-webkit-align-items: center;
     align-items: center;
 }
 .swiper-slide img {
     display: block;
+    //display: inline;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -151,8 +154,8 @@ body {
 /*--------------------ARTICULE CARROUSEL--------*/
 .parallax-bg {
     position: absolute;
-    left: 0;
-    top: 0;
+    //left: 0;
+    //top: 0;
     width: 130%;
     height: 100%;
     -webkit-background-size: cover;
@@ -161,6 +164,7 @@ body {
 }
 .article_carrousel {
     display: flex;
+    padding: auto;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -172,16 +176,16 @@ body {
 
     &_header {
         text-align: center;
-        margin-top: 20px;
         text-transform: uppercase;
 
         &_titulo {
-            font-size: 50px;
+            margin-top: 2vh;
+            font-size: 5vh;
         }
     }
     &_image {
-        height: 440px;
-        width: 360px;
+        height: 100%;
+        width: 100%;
         margin: 0;
         img {
             //border-radius: 8px;
@@ -192,38 +196,45 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: auto;
+        height: 100%;
+        width: 100%;
         .precion_ahora {
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 7vh;
+            color: rgba(185, 47, 168, 1);
             h2 {
                 color: rgba(185, 47, 168, 1);
                 font-weight: 1000;
-                font-size: 90px;
-                margin: 0;
-                padding: 0;
+                font-size: 9vh;
+                margin: auto;
             }
         }
         .precion_antes {
-            margin-bottom: 10px;
-            h2 {
-                padding: 0;
-                margin: 0;
-                text-decoration: line-through;
-            }
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 4vh;
+            h2 {
+                font-size: 5vh;
+                margin: auto;
+                text-decoration: line-through;
+            }
         }
-        margin: 60px;
+        
         p {
-            margin: 0px;
-            padding: 0px;
+            margin: auto;
+            padding: auto;
             font-weight: 450;
-            font-size: 20px;
+            font-size: 3vh;
         }
         .button_Principal {
-            margin-top: 40px;
+            width: 100%;
+            height: 50%;
+            display: flex;
+            margin: auto;
         }
     }
 }
