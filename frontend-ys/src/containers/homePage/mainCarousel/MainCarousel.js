@@ -77,8 +77,7 @@ const MainCarousel = () => {
                                             article.image && (
                                                 <img
                                                     src={
-                                                        `http://localhost:4000/` +
-                                                        article.image
+                                                        `http://localhost:4000/` + article.image
                                                     }
                                                     alt=""
                                                 />
@@ -99,10 +98,10 @@ const MainCarousel = () => {
                                                 data-swiper-parallax="-350"
                                                 data-swiper-parallax-opacity="0"
                                             >
-                                                antes:
+                                                
                                                 <p className="precion_antes">
-                                                    $
-                                                    <h2>{article.sellPrice}</h2>
+                                                <span>antes:</span>
+                                                    <h2>$ {article.sellPrice}</h2>
                                                 </p>
                                             </div>
                                             {/* <p>Tipo: <strong>{articulo.articleType.name}</strong></p> */}
@@ -115,11 +114,11 @@ const MainCarousel = () => {
                                                 data-swiper-parallax="-550"
                                                 data-swiper-parallax-opacity="0"
                                             >
-                                                ahora:
+                                                
                                                 <p className="precion_ahora">
-                                                    $
+                                                <span>ahora:</span>
                                                     <h2>
-                                                        {article.sellPriceOffer}
+                                                    ${article.sellPriceOffer}
                                                     </h2>
                                                 </p>
                                                 <p className="descuento">
