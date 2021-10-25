@@ -1,4 +1,7 @@
 import { Component } from '@angular/core'
+import { Store } from '@ngrx/store';
+import { AuthService } from './core/services/auth.service';
+import { Logout } from './core/state/app.action';
 
 @Component({
     selector: 'app-root',
@@ -6,10 +9,12 @@ import { Component } from '@angular/core'
     styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-    isLogged: boolean = true
-    constructor() {}
+    isLogged: boolean 
+    constructor(private authService: AuthService, private store: Store<any>) {
+        this.isLogged = this.authService.loggedIn();
+    }
 
     logOut = () => {
-        localStorage.removeItem('token')
+        this.store.dispatch(new Logout())
     }
 }

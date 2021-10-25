@@ -21,7 +21,7 @@ export class AuthApi extends BaseApi<AuthModel> {
         return this.networkService.callApi(
             new NetworkRequest(
                 HttpMethodEnum.httpPost,
-                `${environment.HOST_API}clientes`,
+                `${environment.HOST_API}clients`,
                 body
             )
         )
@@ -32,6 +32,14 @@ export class AuthApi extends BaseApi<AuthModel> {
                 HttpMethodEnum.httpPost,
                 `${environment.HOST_API}${this.apiEndpoint}`,
                 user
+            )
+        )
+    }
+    public authenticatedClient(): Observable<any> {
+        return this.networkService.callApi(
+            new NetworkRequest(
+                HttpMethodEnum.httpGet,
+                `${environment.HOST_API}${this.apiEndpoint}`
             )
         )
     }

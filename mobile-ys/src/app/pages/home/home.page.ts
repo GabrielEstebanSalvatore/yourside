@@ -1,9 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { MenuController } from '@ionic/angular'
+import { Store } from '@ngrx/store'
 import { Subscription } from 'rxjs'
 import { ArticleApi } from 'src/app/shared/api/article.api'
 import { ArticleModel } from 'src/app/shared/models/article.model'
 import { environment } from 'src/environments/environment'
+import * as Auth from 'src/app/core/state/app.action'
+import { AuthService } from 'src/app/core/services/auth.service'
+import { AppState } from '@capacitor/app'
 
 @Component({
     selector: 'app-home',
@@ -15,11 +19,11 @@ export class HomePage implements OnInit, OnDestroy {
     articles: ArticleModel[]
     image_Path: string
 
-    constructor(private menu: MenuController, private articleApi: ArticleApi) {
+    constructor(private menu: MenuController, private articleApi: ArticleApi, private store: Store<AppState>, private authService: AuthService) {
         this.image_Path = environment.HOST_API
     }
     ngOnDestroy(): void {
-        this.subscriptions.unsubscribe()
+       // this.subscriptions.unsubscribe()
     }
 
     togglemenu = () => {
@@ -27,6 +31,7 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.getClient()
         this.getArticles()
     }
     getArticles(): void {
@@ -40,5 +45,8 @@ export class HomePage implements OnInit, OnDestroy {
                 },
             })
         )
+    }
+    getClient():void{
+        this.store.dispatch(new Auth.GetAuthenticatedClient())
     }
 }
