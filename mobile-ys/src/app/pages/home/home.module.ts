@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms'
 import { HomePage } from './home.page'
 import { HomePageRoutingModule } from './home-routing.module'
 import { ArticleApi } from 'src/app/shared/api/article.api'
+import { OfferApi } from 'src/app/shared/api/offer.api'
 
 @NgModule({
     imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
     declarations: [HomePage],
-    providers: [ArticleApi],
+    providers: [ArticleApi, OfferApi],
 })
 export class HomePageModule {}

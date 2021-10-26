@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { MenuController } from '@ionic/angular'
 import { Subscription } from 'rxjs'
 import { ArticleApi } from 'src/app/shared/api/article.api'
+import { OfferApi } from 'src/app/shared/api/offer.api'
 import { ArticleModel } from 'src/app/shared/models/article.model'
+import { OfferModel } from 'src/app/shared/models/offer.model'
 import { environment } from 'src/environments/environment'
 
 @Component({
@@ -13,9 +15,10 @@ import { environment } from 'src/environments/environment'
 export class HomePage implements OnInit, OnDestroy {
     private subscriptions = new Subscription()
     articles: ArticleModel[]
+    offers: OfferModel[]
     image_Path: string
 
-    constructor(private menu: MenuController, private articleApi: ArticleApi) {
+    constructor(private menu: MenuController, private articleApi: ArticleApi, private offerApi: OfferApi) {
         this.image_Path = environment.HOST_API
     }
     ngOnDestroy(): void {
@@ -28,7 +31,9 @@ export class HomePage implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.getArticles()
+        this.getOffers()
     }
+
     getArticles(): void {
         this.subscriptions.add(
             this.articleApi.all().subscribe({
@@ -37,6 +42,19 @@ export class HomePage implements OnInit, OnDestroy {
                 },
                 next: (articles) => {
                     this.articles = articles
+                },
+            })
+        )
+    }
+
+    getOffers(): void {
+        this.subscriptions.add(
+            this.offerApi.all().subscribe({
+                error: (error: any) => {
+                    console.error(error)
+                },
+                next: (offer) => {
+                    this.offers = offer
                 },
             })
         )
