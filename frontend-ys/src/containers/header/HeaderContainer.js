@@ -12,7 +12,7 @@ const HeaderContainer = (props) => {
     const appContext = useContext(AppContext)
     const { handleModal } = appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'Login',
         showModal: true,
     })
@@ -26,14 +26,15 @@ const HeaderContainer = (props) => {
         closeSesion()
         history.push('/')
     }
-    const setShowModalLocalidad = () => {
-        setLocalState({ ...localState, modalView: 'Localidad' })
-        handleModal(localState.modalView, localState.showModal)
-    }
+    // const setShowModalLocalidad = () => {
+    //     setLocalState({ ...localState, modalView: 'Localidad' })
+    //     handleModal(localState.modalView, localState.showModal)
+    // }
 
-    const setShowModalpais = () => {
-        handleModal(localState.modalView, localState.showModal)
-    }
+    // const setShowModalpais = () => {
+    //     handleModal(localState.modalView, localState.showModal)
+    // }
+    const animationDuration = 1000
 
     return (
         <div className="header-container">
@@ -45,7 +46,7 @@ const HeaderContainer = (props) => {
             <div className="header-container_left">
                 <Animated
                     animationIn="bounceInLeft"
-                    animationInDuration="1000"
+                    animationInDuration={animationDuration}
                     isVisible={true}
                 >
                     {client ? (

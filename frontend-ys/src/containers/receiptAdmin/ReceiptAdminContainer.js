@@ -24,7 +24,7 @@ const ReceiptAdminContainer = () => {
                 ),
                 (<p>{`$ ${contador}`}</p>))
             }
-            modal={showModal != false ? <ModalContainer /> : null}
+            modal={showModal !== false ? <ModalContainer /> : null}
             list={<ListReceiptAdmin />}
         />
     )

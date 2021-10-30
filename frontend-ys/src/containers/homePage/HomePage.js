@@ -1,13 +1,12 @@
 import React, { Fragment, useContext } from 'react'
 import MainCarousel from './mainCarousel/MainCarousel'
 import SecondaryCarousel from './secondaryCarousel/SecondaryCarousel'
-import Header from '../header/HeaderContainer'
 import ModalContainer from '../../containers/modal/ModalContainer'
 import AppContext from '../../context/app/appContext'
 
 const Homepage = () => {
     const appContext = useContext(AppContext)
-    const { showModal, client } = appContext
+    const { showModal } = appContext
 
     return (
         <Fragment>

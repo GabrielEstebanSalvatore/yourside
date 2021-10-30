@@ -9,13 +9,7 @@ import AppContext from '../../context/app/appContext'
 
 const ClientState = (props) => {
     const appContext = useContext(AppContext)
-    const {
-        handleModal,
-        logOut,
-        setMessage,
-        getConfiguration,
-        getArticles,
-    } = appContext
+    const { handleModal, logOut, setMessage, getConfiguration } = appContext
 
     const initialState = {
         login: {},
@@ -34,7 +28,7 @@ const ClientState = (props) => {
         try {
             const response = await clienteAxios.post('/clients', data)
 
-            if (response != null) {
+            if (response !== null) {
                 dispatch({
                     type: ClientConstant.SIGNUP_SUCCEEDED,
                     payload: response.data,
@@ -81,7 +75,7 @@ const ClientState = (props) => {
                 'x-auth-token': token,
             }
             const response = await clienteAxios.get('/auth', { headers })
-            if (response.data.client[0].trolley.articles == []) {
+            if (response.data.client[0].trolley.articles === []) {
                 response.data.client.trolley.articles = []
             }
             dispatch({

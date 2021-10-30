@@ -9,7 +9,7 @@ const OffertList = () => {
     const { handleModal, getOffers, offerList, current, deleteOffer } =
         appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'Offers',
         showModal: true,
     })

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import Button, { ButtonCancel, ButtonItemView } from '../../components/button'
+import { ButtonCancel, ButtonItemView } from '../../components/button'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
 
@@ -14,7 +14,7 @@ const LoginContainer = () => {
     const [localState, setLocalState] = useState({
         userLoged: false,
     })
-    const [localModal, setLocalModal] = useState({
+    const [localModal] = useState({
         modalView: '',
         showModal: false,
     })
@@ -30,7 +30,7 @@ const LoginContainer = () => {
     })
 
     const login = () => {
-        if (cliente.email == '' || cliente.password == '') {
+        if (cliente.email === '' || cliente.password === '') {
             handleModal('MensajeRegistro', true)
             setMessage('Tododos Los Campos son Necesarios')
         } else {
@@ -40,12 +40,12 @@ const LoginContainer = () => {
 
     const registrarme = async () => {
         if (
-            cliente.email == '' ||
-            cliente.password == '' ||
-            cliente.name == '' ||
-            cliente.address == '' ||
-            cliente.role == '' ||
-            cliente.cell == ''
+            cliente.email === '' ||
+            cliente.password === '' ||
+            cliente.name === '' ||
+            cliente.address === '' ||
+            cliente.role === '' ||
+            cliente.cell === ''
         ) {
             handleModal('MensajeRegistro', true)
             setMessage('Tododos Los Campos son Necesarios')

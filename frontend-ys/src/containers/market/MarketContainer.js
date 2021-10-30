@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
 import AppContext from '../../context/app/appContext'
-import ClientContext from '../../context/client/clientContext'
 import { useHistory } from 'react-router-dom'
 import ModalContainer from '../modal/ModalContainer'
 import Card from '../../components/card/Card'
@@ -10,15 +9,15 @@ const MarketContainer = () => {
     const appContext = useContext(AppContext)
     const { addArticleView, handleModal, showModal, articles, getArticles } =
         appContext
-    const clientContext = useContext(ClientContext)
-    const { trolley } = clientContext
+    // const clientContext = useContext(ClientContext)
+    // const { trolley } = clientContext
 
     useEffect(() => {
         getArticles()
         // eslint-disable-next-line
     }, [])
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'Pucharse',
         modalViewArticle: 'ArticuleView',
         showModal: true,
@@ -27,9 +26,9 @@ const MarketContainer = () => {
     let history = useHistory()
 
     // State para iniciar sesión
-    const [state, setState] = useState({
-        carrito: [],
-    })
+    // const [state, setState] = useState({
+    //     carrito: [],
+    // })
 
     // const agregarCarrito=(articulo)=>{
     //     console.log(articulo)
@@ -74,12 +73,12 @@ const MarketContainer = () => {
                     <p>Ir a ventas: </p>
                     <ButtonItemView
                         onClick={() => buyTrolley()}
-                        icon={<i class="fas fa-check-double"></i>}
+                        icon={<i className="fas fa-check-double"></i>}
                     ></ButtonItemView>
                 </div>
             </div>
             <div className="mercado_body">
-                {showModal != false ? <ModalContainer /> : null}
+                {showModal !== false ? <ModalContainer /> : null}
                 <div className="row m-0">
                     {articles.map((article) => (
                         <div>

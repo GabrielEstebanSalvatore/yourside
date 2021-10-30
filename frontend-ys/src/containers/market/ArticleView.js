@@ -7,13 +7,13 @@ const ArticleView = () => {
     const appContext = useContext(AppContext)
     const { handleModal, currentEdit, current, articleView } = appContext
     const clientContext = useContext(ClientContext)
-    const { addArticleToSesionTrolley, trolley } = clientContext
+    const { addArticleToSesionTrolley } = clientContext
 
     useEffect(() => {
         // eslint-disable-next-line
     }, [])
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'Pucharse',
         showModal: true,
         modalViewCancel: '',
@@ -27,7 +27,7 @@ const ArticleView = () => {
     }
 
     const addArticleTrolley = () => {
-
+        console.log('test1')
         // if(trolley)
         // {
         //     var counter = 0;
@@ -58,10 +58,7 @@ const ArticleView = () => {
                 <div className="articleView_card">
                     <div className="articleView_card_img">
                         <img
-                            src={
-                                `http://localhost:4000/` +
-                                articleView.image
-                            }
+                            src={`http://localhost:4000/` + articleView.image}
                             alt=""
                         />
                     </div>
@@ -86,13 +83,13 @@ const ArticleView = () => {
                         <div>
                             <ButtonItemView
                                 onClick={cancelModal}
-                                icon={<i class="fas fa-undo-alt"></i>}
+                                icon={<i className="fas fa-undo-alt"></i>}
                             ></ButtonItemView>
                         </div>
                         <div>
                             <ButtonItemView
                                 onClick={addArticleTrolley}
-                                icon={<i class="fas fa-check"></i>}
+                                icon={<i className="fas fa-check"></i>}
                             ></ButtonItemView>
                         </div>
                     </div>

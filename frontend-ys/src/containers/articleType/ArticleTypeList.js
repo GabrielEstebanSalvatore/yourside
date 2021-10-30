@@ -3,7 +3,6 @@ import AppContext from '../../context/app/appContext'
 import { Table } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
-import ModalContainer from '../../containers/modal/ModalContainer'
 
 const ArticleTypeList = () => {
     const appContext = useContext(AppContext)
@@ -13,10 +12,9 @@ const ArticleTypeList = () => {
         deleteArticleType,
         current,
         handleModal,
-        showModal,
     } = appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'TipoArticulo',
         showModal: true,
     })

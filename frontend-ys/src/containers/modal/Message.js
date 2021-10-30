@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import Button, { ButtonItemView } from '../../components/button/index'
+import { ButtonItemView } from '../../components/button/index'
 import AppContext from '../../context/app/appContext'
 
 const Message = () => {
@@ -7,7 +7,7 @@ const Message = () => {
     const proyectosContext = useContext(AppContext)
     const { handleModal, message, setMessage } = proyectosContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         message: '',
         modalView: '',
         showModal: false,

@@ -4,13 +4,12 @@ import ContainerGeneral from '../../components/containergeneral'
 import AppContext from '../../context/app/appContext'
 import ModalContainer from '../modal/ModalContainer'
 import ArticuleList from './ArticuleList'
-import { Link, useHistory } from 'react-router-dom'
 
 const ArticuleContainer = () => {
     const appContext = useContext(AppContext)
     const { handleModal, showModal } = appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'Article',
         showModal: true,
     })
@@ -28,7 +27,7 @@ const ArticuleContainer = () => {
                     title={' Nuevo Artículo'}
                 ></ButtonItemView>
             }
-            modal={showModal != false ? <ModalContainer /> : null}
+            modal={showModal !== false ? <ModalContainer /> : null}
             list={<ArticuleList />}
         />
     )
