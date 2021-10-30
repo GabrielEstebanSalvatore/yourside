@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import AppContext from '../../../context/app/appContext'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'

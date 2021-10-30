@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
 import { Input, Button, Space, Table } from 'antd'
-import { DeleteOutlined, SearchOutlined, EditOutlined } from '@ant-design/icons'
+import { DeleteOutlined, SearchOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
 
 const ListReceipt = () => {
@@ -12,10 +12,10 @@ const ListReceipt = () => {
     const clientContext = useContext(ClientContext)
     const { client } = clientContext
 
-    const [localState, setLocalState] = useState({
-        modalView: 'Recibo',
-        showModal: true,
-    })
+    // const [localState, setLocalState] = useState({
+    //     modalView: 'Recibo',
+    //     showModal: true,
+    // })
 
     useEffect(() => {
         traerComprobantes(client)
@@ -23,11 +23,11 @@ const ListReceipt = () => {
         // eslint-disable-next-line
     }, [])
 
-    const [pagination] = useState({
-        bottom: 'bottomCenter',
-    })
+    // const [pagination] = useState({
+    //     bottom: 'bottomCenter',
+    // })
 
-    const [buscar, setBuscar] = useState({
+    const [buscar] = useState({
         searchText: '',
         searchedColumn: '',
     })

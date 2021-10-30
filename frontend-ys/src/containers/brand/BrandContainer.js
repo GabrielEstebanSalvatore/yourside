@@ -9,7 +9,7 @@ const BrandContainer = () => {
     const appContext = useContext(AppContext)
     const { handleModal, showModal } = appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'Brand',
         showModal: true,
     })
@@ -27,7 +27,7 @@ const BrandContainer = () => {
                     title={'Nueva Marca'}
                 ></ButtonItemView>
             }
-            modal={showModal != false ? <ModalContainer /> : null}
+            modal={showModal !== false ? <ModalContainer /> : null}
             list={<BrandList />}
         />
     )

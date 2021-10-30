@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../../../context/app/appContext'
 import { Table } from 'antd'
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
-import Swal from 'sweetalert2'
+import { EditOutlined } from '@ant-design/icons'
+// import Swal from 'sweetalert2'
 
 const BoxList = () => {
     const appContext = useContext(AppContext)
-    const { current, handleModal, showModal, getBox, boxesList } = appContext
+    const { current, handleModal, getBox, boxesList } = appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'box',
         showModal: true,
     })
