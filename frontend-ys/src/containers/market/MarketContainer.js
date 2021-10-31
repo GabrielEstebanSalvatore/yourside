@@ -80,8 +80,8 @@ const MarketContainer = () => {
             <div className="mercado_body">
                 {showModal !== false ? <ModalContainer /> : null}
                 <div className="row m-0">
-                    {articles.map((article) => (
-                        <div>
+                    {articles.map((article, i) => (
+                        <div key={i}>
                             {article.image ? (
                                 <Card
                                     title={article.name}
