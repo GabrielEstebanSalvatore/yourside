@@ -8,7 +8,6 @@
 @import './components/containergeneral/containergeneral.scss';
 @import '~antd/dist/antd.css';
 
-//@import './containers/admin/file/public.sass';
 
 html,
 body {
@@ -25,7 +24,6 @@ body {
 .app-container {
     display: flex;
     flex-direction: column;
-    // height: 100vh;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -78,7 +76,6 @@ body {
     }
     &_poligon {
         background: rgb(9, 7, 41);
-        //background: rgb(67,30,83);
         background: linear-gradient(
             90deg,
             rgba(9, 7, 41, 1) 0%,
@@ -94,7 +91,6 @@ body {
 }
 .main_carousel {
     clip-path: polygon(4% 0, 100% 0%, 96% 100%, 0% 100%);
-    // border-radius: 5px;
     width: 50%;
     height: 50%;
     position: absolute;
@@ -117,7 +113,6 @@ body {
 }
 /*--------------------CARROUSEL-----------------*/
 .mySwiper {
-    // border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .swiper-container {
@@ -130,23 +125,12 @@ body {
     font-size: 18px;
     background: #ffffff;
     position: absolute;
-    /* Center slide text vertically */
-    //display: -webkit-box;
-    //display: -ms-flexbox;
-    //display: -webkit-flex;
     display: flex;
-    //-webkit-box-pack: center;
-    //-ms-flex-pack: center;
-    //-webkit-justify-content: center;
     justify-content: center;
-    //-webkit-box-align: center;
-    //-ms-flex-align: center;
-    //-webkit-align-items: center;
     align-items: center;
 }
 .swiper-slide img {
     display: block;
-    //display: inline;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -154,8 +138,6 @@ body {
 /*--------------------ARTICULE CARROUSEL--------*/
 .parallax-bg {
     position: absolute;
-    //left: 0;
-    //top: 0;
     width: 130%;
     height: 100%;
     -webkit-background-size: cover;
@@ -171,7 +153,6 @@ body {
     height: 100%;
     width: 100%;
     font-family: 'Russo One', sans-serif;
-    //font-family: 'Source Code Pro', monospace;
     color: rgba(20, 20, 20, 0.945);
 
     &_header {
@@ -187,10 +168,6 @@ body {
         height: 100%;
         width: 100%;
         margin: 0;
-        /*img {
-            border-radius: 8px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        }*/
     }
     &_detail {
         display: flex;
@@ -221,8 +198,6 @@ body {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            //font-size: 4vh;
-            
             h2 {
                 font-size: 5vh;
                 margin: auto;
@@ -247,7 +222,6 @@ body {
 /*--------------------ARTICULE CARROUSELSECUNDARY--------*/
 .article_carrouselsecundary {
     display: flex;
-    //flex-direction: row;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
@@ -281,7 +255,6 @@ body {
     &_detail {
         width: 50%;
         height: 100%;
-        //margin-left: 30px;
         .button_Principal {
             margin: auto;
             height: 20%;
@@ -308,7 +281,6 @@ body {
     margin-top: 50px;
     background-color: white;
 
-    //background-color: rgba($color: #f5ebf55e, $alpha: 1.0);
     &_header {
         width: 100%;
         display: flex;
@@ -530,9 +502,7 @@ body {
     align-items: center;
 
     &__body {
-        width: 30%; //ANCHO DEL MODAL
-        //margin-top: 50px; //SEPARA FORMULARIO DE ARRIBA
-        //padding: 20px;
+        width: 30%;
         background-color: $white;
         border-radius: 2px;
     }
@@ -856,8 +826,6 @@ table {
     padding: 15px;
     background-color: $white;
     border-radius: 10px;
-    /*&_header {
-    }*/
     &_body {
         textarea {
             resize: none;
