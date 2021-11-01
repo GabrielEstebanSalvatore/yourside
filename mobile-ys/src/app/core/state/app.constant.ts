@@ -1,0 +1,8 @@
+export enum AppConstant {
+    LOGIN = '[User] LOGIN',
+    LOGGED_USER = '[User] LOGGED_USER',
+    ERROR = '[User] ERROR',
+    LOGOUT = '[User] LOGOUT',
+    GET_AUTHENTICATED_CLIENT = '[User] GET_AUTHENTICATED_CLIENT',
+    AUTHENTICATED_CLIENT = '[User] AUTHENTICATED_CLIENT'
+}

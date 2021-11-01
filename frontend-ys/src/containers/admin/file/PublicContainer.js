@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import Socket from '../../../services/socket'
+import React from 'react'
+// import Socket from '../../../services/socket'
 
 const PublicContainer = () => {
     // var lblTicket1 = $('#lblTicket1');
@@ -11,23 +11,23 @@ const PublicContainer = () => {
     // var lblEscritorio2 = $('#lblEscritorio2');
     // var lblEscritorio3 = $('#lblEscritorio3');
     // var lblEscritorio4 = $('#lblEscritorio4');
-    var lblTicket1
-    var lblTicket2
-    var lblTicket3
-    var lblTicket4
+    // var lblTicket1
+    // var lblTicket2
+    // var lblTicket3
+    // var lblTicket4
 
-    var lblEscritorio1
-    var lblEscritorio2
-    var lblEscritorio3
-    var lblEscritorio4
+    // var lblEscritorio1
+    // var lblEscritorio2
+    // var lblEscritorio3
+    // var lblEscritorio4
 
-    var lblTickets = [lblTicket1, lblTicket2, lblTicket3, lblTicket4]
-    var lblEscritorios = [
-        lblEscritorio1,
-        lblEscritorio2,
-        lblEscritorio3,
-        lblEscritorio4,
-    ]
+    // var lblTickets = [lblTicket1, lblTicket2, lblTicket3, lblTicket4]
+    // var lblEscritorios = [
+    //     lblEscritorio1,
+    //     lblEscritorio2,
+    //     lblEscritorio3,
+    //     lblEscritorio4,
+    // ]
 
     // useEffect(() => {
     //     Socket.on('estadoActual', function (data) {

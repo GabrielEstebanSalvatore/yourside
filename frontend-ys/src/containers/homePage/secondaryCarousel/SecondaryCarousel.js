@@ -1,8 +1,7 @@
-import React, { useRef, useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import AppContext from '../../../context/app/appContext'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Animated } from 'react-animated-css'
 import { ButtonPrincipal } from '../../../components/button'
 // Import Swiper styles
 import 'swiper/swiper.min.css'
@@ -90,19 +89,18 @@ const SecondaryCarousel = () => {
                                             <h4 class="">{article.name} </h4>
                                         </div>
                                         <div>
-                                            <p>
+                                        <p>
                                                 Precio venta:
                                                 <strong>
                                                     {' '}
                                                     ${article.sellPrice != null && article.sellPrice }
                                                 </strong>
                                             </p>
-                                        </div>
-                                        <div>
                                         <p>
                                             Tipo:{' '}
                                             <strong>
-                                                {article.articleType != null && article.articleType.name }
+                                                {article.articleType != null &&
+                                                    article.articleType.name}
                                             </strong>
                                         </p>
                                         </div>

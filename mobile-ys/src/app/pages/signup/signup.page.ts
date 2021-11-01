@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs'
 import { RegisterRequest } from 'src/app/core/requests/register.request'
 import { AuthService } from 'src/app/core/services/auth.service'
 import { UserRoleEnum } from 'src/app/shared/enums/user-role.enum'
-import { Cliente } from 'src/app/shared/models/clientModel'
+import { Cliente } from 'src/app/shared/models/client.model'
 
 @Component({
     selector: 'app-signup',
@@ -36,7 +36,7 @@ export class SignupPage implements OnInit, OnDestroy {
         return {
             name: this.cliente.name,
             address: this.cliente.address,
-            email: this.cliente.address,
+            email: this.cliente.email,
             password: this.cliente.password,
             cell: this.cliente.cell,
             role: UserRoleEnum.USER_ROLE,

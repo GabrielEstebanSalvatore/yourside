@@ -10,7 +10,7 @@ const ArticuleList = () => {
     const { handleModal, getArticles, articles, deleteArticle, current } =
         appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'Article',
         showModal: true,
     })
@@ -25,11 +25,11 @@ const ArticuleList = () => {
         // eslint-disable-next-line
     }, [articles])
 
-    const [pagination] = useState({
-        bottom: 'bottomCenter',
-    })
+    // const [pagination] = useState({
+    //     bottom: 'bottomCenter',
+    // })
 
-    const [buscar, setBuscar] = useState({
+    const [buscar] = useState({
         searchText: '',
         searchedColumn: '',
     })

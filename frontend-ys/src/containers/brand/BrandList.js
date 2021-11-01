@@ -10,7 +10,7 @@ const BrandList = () => {
     const { handleModal, getBrands, brandList, current, deleteBrand } =
         appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'Brand',
         showModal: true,
     })

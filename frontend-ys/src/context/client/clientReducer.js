@@ -34,7 +34,7 @@ export default (state, action) => {
                 client: action.payload.client[0],
                 loading: false,
                 admin:
-                    action.payload.client.role == 'ADMIN_ROLE' ? true : false,
+                    action.payload.client.role === 'ADMIN_ROLE' ? true : false,
                 email: action.payload.client[0].email,
                 trolley: action.payload.client[0].trolley.articles,
             }

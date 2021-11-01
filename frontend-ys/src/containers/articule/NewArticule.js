@@ -24,7 +24,7 @@ const NewArticule = () => {
         // eslint-disable-next-line
     }, [])
 
-    const [localModal, setLocalModal] = useState({
+    const [localModal] = useState({
         modalView: '',
         showModal: false,
     })
