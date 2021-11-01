@@ -49,9 +49,7 @@ export class InterceptorService implements HttpInterceptor{
       if (error.status === 401) {
         if (error.error.success === false) {
           this.presentToast('Login failed');
-        } else {
-          this.router.navigate(['/login']);
-        }
+        } 
       }
       return throwError(error);
     }));

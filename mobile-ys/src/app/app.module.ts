@@ -8,7 +8,15 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 import { InterceptorService } from './core/interceptor/interceptor.service'
-import { AuthService } from './core/services/auth.service'
+import { AuthService } from './core/services/auth.service';
+import { StoreModule } from '@ngrx/store'
+import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store'
+import {  StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { appReducer } from './core/state/app.reducer';
+import { AppEffects } from './core/state/app.effects'
+
 
 @NgModule({
     declarations: [AppComponent],
@@ -20,6 +28,10 @@ import { AuthService } from './core/services/auth.service'
         FormsModule,
         CommonModule,
         HttpClientModule,
+        StoreModule.forRoot({ app: appReducer}),
+        EffectsModule.forRoot([AppEffects]),
+        StoreRouterConnectingModule.forRoot(),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ],
     providers: [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
