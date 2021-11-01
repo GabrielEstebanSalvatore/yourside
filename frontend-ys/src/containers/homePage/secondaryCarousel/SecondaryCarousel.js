@@ -88,15 +88,14 @@ const SecondaryCarousel = () => {
                                         <div className="article_carrouselsecundary_header">
                                             <h4 class="">{article.name} </h4>
                                         </div>
+                                        <div>
                                         <p>
-                                            Precio venta:
-                                            <strong>
-                                                {' '}
-                                                $
-                                                {article.sellPrice != null &&
-                                                    article.sellPrice}
-                                            </strong>
-                                        </p>
+                                                Precio venta:
+                                                <strong>
+                                                    {' '}
+                                                    ${article.sellPrice != null && article.sellPrice }
+                                                </strong>
+                                            </p>
                                         <p>
                                             Tipo:{' '}
                                             <strong>
@@ -104,6 +103,7 @@ const SecondaryCarousel = () => {
                                                     article.articleType.name}
                                             </strong>
                                         </p>
+                                        </div>
                                         <ButtonPrincipal
                                             onClick={() =>
                                                 agregarCarrito(article)
