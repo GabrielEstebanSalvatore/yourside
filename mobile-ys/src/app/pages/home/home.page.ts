@@ -31,7 +31,7 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.getClient()
+        if(localStorage.getItem("token")) this.getClient()
         this.getArticles()
     }
     getArticles(): void {

@@ -9,10 +9,8 @@ import { Logout } from './core/state/app.action';
     styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-    isLogged: boolean 
-    constructor(private authService: AuthService, private store: Store<any>) {
-        this.isLogged = this.authService.loggedIn();
-    }
+
+    constructor(public authService: AuthService, private store: Store<any>) { }
 
     logOut = () => {
         this.store.dispatch(new Logout())
