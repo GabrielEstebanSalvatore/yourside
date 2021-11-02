@@ -68,9 +68,9 @@ const SecondaryCarousel = () => {
         >
             {articles &&
                 articles.map(
-                    (article) =>
+                    (article, i) =>
                         !article.offer && (
-                            <SwiperSlide>
+                            <SwiperSlide key={i}>
                                 <div className="article_carrouselsecundary">
                                     <div className="article_carrouselsecundary_image">
                                         {article.image && (
@@ -86,23 +86,28 @@ const SecondaryCarousel = () => {
 
                                     <div className="article_carrouselsecundary_detail">
                                         <div className="article_carrouselsecundary_header">
-                                            <h4 class="">{article.name} </h4>
+                                            <h4>{article.name} </h4>
                                         </div>
                                         <div>
-                                        <p>
+                                            <p>
                                                 Precio venta:
                                                 <strong>
                                                     {' '}
-                                                    ${article.sellPrice != null && article.sellPrice }
+                                                    $
+                                                    {article.sellPrice !=
+                                                        null &&
+                                                        article.sellPrice}
                                                 </strong>
                                             </p>
-                                        <p>
-                                            Tipo:{' '}
-                                            <strong>
-                                                {article.articleType != null &&
-                                                    article.articleType.name}
-                                            </strong>
-                                        </p>
+                                            <p>
+                                                Tipo:{' '}
+                                                <strong>
+                                                    {article.articleType !=
+                                                        null &&
+                                                        article.articleType
+                                                            .name}
+                                                </strong>
+                                            </p>
                                         </div>
                                         <ButtonPrincipal
                                             onClick={() =>
