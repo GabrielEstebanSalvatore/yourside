@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from 'react'
+import React, { useReducer, useContext, useEffect } from 'react'
 import ClientConstant from './clientConstant'
 import ClientContext from './clientContext'
 import ClientReducer from './clientReducer'
@@ -13,7 +13,7 @@ const ClientState = (props) => {
 
     const initialState = {
         login: {},
-        authenticated: null,
+        authenticated: localStorage.getItem('token') ? true : false,
         token: props.token ? props.token : localStorage.getItem('token'),
         client: null,
         email: null,
@@ -88,7 +88,9 @@ const ClientState = (props) => {
             })
         }
     }
-
+    useEffect(() => {
+        authenticatedClient()
+    }, [])
     const closeSesion = async () => {
         await clienteAxios.post('/clientstrolley', {
             client: state.client,
