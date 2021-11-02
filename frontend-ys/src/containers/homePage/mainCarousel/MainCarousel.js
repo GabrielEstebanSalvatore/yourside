@@ -64,9 +64,9 @@ const MainCarousel = () => {
             ></div>
             {articles &&
                 articles.map(
-                    (article) =>
+                    (article, key) =>
                         article.offer && (
-                            <SwiperSlide>
+                            <SwiperSlide key={key}>
                                 <div className="article_carrousel ">
                                     <div
                                         className="article_carrousel_image"
@@ -77,7 +77,8 @@ const MainCarousel = () => {
                                             article.image && (
                                                 <img
                                                     src={
-                                                        `http://localhost:4000/` + article.image
+                                                        `http://localhost:4000/` +
+                                                        article.image
                                                     }
                                                     alt=""
                                                 />
@@ -98,11 +99,12 @@ const MainCarousel = () => {
                                                 data-swiper-parallax="-350"
                                                 data-swiper-parallax-opacity="0"
                                             >
-                                                
-                                                <p className="precion_antes">
-                                                <span>antes:</span>
-                                                    <h2>$ {article.sellPrice}</h2>
-                                                </p>
+                                                <div className="precion_antes">
+                                                    <span>antes:</span>
+                                                    <h2>
+                                                        $ {article.sellPrice}
+                                                    </h2>
+                                                </div>
                                             </div>
                                             {/* <p>Tipo: <strong>{articulo.articleType.name}</strong></p> */}
                                         </div>
@@ -114,13 +116,13 @@ const MainCarousel = () => {
                                                 data-swiper-parallax="-550"
                                                 data-swiper-parallax-opacity="0"
                                             >
-                                                
-                                                <p className="precion_ahora">
-                                                <span>ahora:</span>
+                                                <div className="precion_ahora">
+                                                    <span>ahora:</span>
                                                     <h2>
-                                                    ${article.sellPriceOffer}
+                                                        $
+                                                        {article.sellPriceOffer}
                                                     </h2>
-                                                </p>
+                                                </div>
                                                 <p className="descuento">
                                                     % {article.offer.percent} de
                                                     Descuento

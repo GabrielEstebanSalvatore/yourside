@@ -7,7 +7,6 @@ const LoginContainer = () => {
     //Extraer Turnos de state inicial
     const clientContext = useContext(ClientContext)
     const { registerUser, loginUser } = clientContext
-
     const registerContext = useContext(AppContext)
     const { handleModal, setMessage } = registerContext
 
@@ -75,10 +74,10 @@ const LoginContainer = () => {
             </div>
             {localState.userLoged === false ? (
                 <div className="login-container__body">
-                    <label for="email">Correo</label>
+                    <label htmlFor="email">Correo</label>
                     <input name="email" title={'Correo'} onChange={onChange} />
 
-                    <label for="password">password</label>
+                    <label htmlFor="password">password</label>
                     <input
                         name="password"
                         type="password"
@@ -90,7 +89,7 @@ const LoginContainer = () => {
                     <div className="row">
                         <div className="col-6">
                             <div className="form-group">
-                                <label for="roleId">Correo</label>
+                                <label htmlFor="roleId">Correo</label>
                                 <input
                                     name="email"
                                     className="form-control"
@@ -98,7 +97,7 @@ const LoginContainer = () => {
                                     onChange={onChange}
                                 />
 
-                                <label for="roleId">password</label>
+                                <label htmlFor="roleId">password</label>
                                 <input
                                     name="password"
                                     type="password"
@@ -106,7 +105,7 @@ const LoginContainer = () => {
                                     onChange={onChange}
                                 />
 
-                                <label for="roleId">Nombre</label>
+                                <label htmlFor="roleId">Nombre</label>
                                 <input
                                     name="name"
                                     className="form-control"
@@ -118,7 +117,7 @@ const LoginContainer = () => {
                         </div>
 
                         <div className="col-6">
-                            <label for="roleId">Celular</label>
+                            <label htmlFor="roleId">Celular</label>
                             <input
                                 name="cell"
                                 required
@@ -127,7 +126,7 @@ const LoginContainer = () => {
                                 onChange={onChange}
                             />
 
-                            <label for="roleId">Dirección</label>
+                            <label htmlFor="roleId">Dirección</label>
                             <input
                                 name="address"
                                 required
@@ -135,9 +134,9 @@ const LoginContainer = () => {
                                 onChange={onChange}
                             />
 
-                            <label for="roleId">Categoría</label>
+                            <label htmlFor="roleId">Categoría</label>
                             <select id="roleId" name="role" onChange={onChange}>
-                                <option value="" disabled selected hidden>
+                                <option defaultValue="" disabled hidden>
                                     Seleccione...
                                 </option>
                                 <option value="USER_ROLE">USUARIO</option>
@@ -153,7 +152,7 @@ const LoginContainer = () => {
                         <ButtonItemView
                             title={'Ingresar'}
                             onClick={login}
-                            icon={<i class="fas fa-location-arrow"></i>}
+                            icon={<i className="fas fa-location-arrow"></i>}
                         />
                         <ButtonCancel
                             title={'Cancelar'}
@@ -185,7 +184,7 @@ const LoginContainer = () => {
                     <div className="login-container__footerDown">
                         {localState.userLoged === true && (
                             <ButtonItemView
-                                icon={<i class="fas fa-arrow-left"></i>}
+                                icon={<i className="fas fa-arrow-left"></i>}
                                 onClick={(e) =>
                                     setLocalState({ userLoged: false })
                                 }
