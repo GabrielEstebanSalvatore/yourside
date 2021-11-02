@@ -3,6 +3,9 @@ import { Router } from '@angular/router'
 import { AuthService } from 'src/app/core/services/auth.service'
 import { Subscription } from 'rxjs'
 import { AuthRequest } from 'src/app/core/requests/auth.request'
+import { Store } from '@ngrx/store'
+import * as Auth from 'src/app/core/state/app.action'
+import { AppState } from '@capacitor/app'
 
 @Component({
     selector: 'app-login',
@@ -11,8 +14,9 @@ import { AuthRequest } from 'src/app/core/requests/auth.request'
 })
 export class LoginPage implements OnInit, OnDestroy {
     private subscriptions = new Subscription()
-    client: any
-    constructor(private authService: AuthService, private router: Router) {
+    client: any;
+    
+    constructor(private authService: AuthService, private router: Router, private store : Store<AppState>) {
         this.client = {
             email: '',
             password: '',
@@ -31,15 +35,6 @@ export class LoginPage implements OnInit, OnDestroy {
         }
     }
     validate = () => {
-        this.authService.login(this.createRequest()).subscribe({
-            error: (error: any) => {
-                console.error(error)
-            },
-            next: (response) => {
-                console.log(response)
-                localStorage.setItem('token', response.token)
-                this.router.navigate(['/home'])
-            },
-        })
+       this.store.dispatch(new Auth.Login(this.createRequest()))
     }
 }
