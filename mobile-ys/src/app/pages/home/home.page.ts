@@ -18,6 +18,11 @@ export class HomePage implements OnInit, OnDestroy {
     offers: OfferModel[]
     image_Path: string
 
+    slideOpts = {
+        initialSlide: 0,
+        speed: 400
+    }
+
     constructor(private menu: MenuController, private articleApi: ArticleApi, private offerApi: OfferApi) {
         this.image_Path = environment.HOST_API
     }
@@ -41,6 +46,7 @@ export class HomePage implements OnInit, OnDestroy {
                     console.error(error)
                 },
                 next: (articles) => {
+                    
                     this.articles = articles
                 },
             })
@@ -53,8 +59,8 @@ export class HomePage implements OnInit, OnDestroy {
                 error: (error: any) => {
                     console.error(error)
                 },
-                next: (offer) => {
-                    this.offers = offer
+                next: (offers) => {
+                    this.offers = offers
                 },
             })
         )
