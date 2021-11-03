@@ -16,6 +16,7 @@ export class HomePage implements OnInit, OnDestroy {
     private subscriptions = new Subscription()
     articles: ArticleModel[]
     offers: OfferModel[]
+
     image_Path: string
 
     slideOpts = {
@@ -46,7 +47,6 @@ export class HomePage implements OnInit, OnDestroy {
                     console.error(error)
                 },
                 next: (articles) => {
-                    
                     this.articles = articles
                 },
             })

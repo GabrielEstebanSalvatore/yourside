@@ -5,11 +5,12 @@
                 <ion-icon slot="icon-only" name="menu"></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-title>Products</ion-title>
+        <ion-title>Home</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" color='dark'>
+
     <ion-header collapse="condense">
         <ion-toolbar>
             <ion-title size="large">Products</ion-title>
@@ -17,15 +18,21 @@
     </ion-header>
     
     <div class="container">
-        <ion-slides pager='true' [options]="slideOpts">
-            <ion-slide style="display: block;" *ngFor="let offer of offers">
-                <div>
-                    <ion-text>
-                        {{ offer.name }}
-                    </ion-text>
-                </div>
-            </ion-slide>
+
+        <ion-slides style="display: ; padding: 10px 0;" pager='true' [options]="slideOpts">
+            <div style="display: contents;" *ngFor="let article of articles">
+                <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px;" *ngIf='article.offer != null'>
+                    <ion-tittle style="color: black;">OFFERS</ion-tittle>
+                    <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
+                    <ion-text style="color: black;">{{article.description}}</ion-text>
+                    <ion-title color='primary' size='medium'>$ {{article.sellPriceOffer}}</ion-title>
+                    <ion-button style="display: block; padding: 0 25px; " color='warning'>Add to Cart</ion-button>
+                </ion-slide>
+            </div>            
         </ion-slides>
+
+        <ion-title size="large">Products</ion-title>
+
         <ion-card *ngFor="let article of articles">
             <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
             <ion-card-title>{{article.description}}</ion-card-title>
@@ -34,6 +41,7 @@
                 <ion-button color='warning'>Add to Cart</ion-button>
             </ion-card-content>
         </ion-card>
-    </div>   
+
+    </div>
 
 </ion-content>
