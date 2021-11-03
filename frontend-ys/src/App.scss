@@ -51,7 +51,7 @@ body {
         display: flex;
         justify-content: center;
         flex-direction: row;
-        margin-right: 60px;
+        margin-right: 1vw;
         align-items: center;
     }
     &_right {
@@ -61,6 +61,12 @@ body {
     &_left {
         margin-right: 20px;
         display: flex;
+    }
+    .nav-item{
+        margin: 0px 1vw;
+    }
+    .nav-item:hover{
+        color: #eee;
     }
 }
 .main {
