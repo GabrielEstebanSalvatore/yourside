@@ -448,7 +448,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 5px;
-    padding: 30px;
+    padding: 1vh 1vw;
     z-index: 100;
     &__header {
         margin-top: 10px;
@@ -496,17 +496,36 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 2px;
+        padding: 1vw 1vh;
         flex-direction: row;
         margin-top: 10px;
         width: 100%;
-        .button_ItemView {
+        .button {
+            text-align: center;
             flex: 1;
             margin: 2px;
             width: 20%;
+            &:hover{
+                background-color: white;
+                color: #1dc8ae;
+                border: 1px solid #1dc8ae;
+            }
+        }
+        .button_ItemView{
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+            align-items: center;
+            div{
+                margin: 0 auto;
+                &.icon{
+                    @media (max-width: 500px){display: none;}
+                }
+            }
+
         }
         .button_cancel {
-            width: 20%;
+            width: 50%;
             flex: 1;
             margin: 2px;
         }
@@ -534,8 +553,10 @@ body {
 
     &__body {
         width: 30%;
+        height: fit-content;
         background-color: $white;
         border-radius: 2px;
+        @media (max-width: 800px) { width: 50%; }
     }
 }
 .nuevo_registro {

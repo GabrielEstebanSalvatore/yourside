@@ -58,6 +58,9 @@
 }
 
 .button_ItemView {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     background-color: DodgerBlue; /* Blue background */
     border: none; /* Remove borders */
     color: white; /* White text */
@@ -66,6 +69,17 @@
     cursor: pointer; /* Mouse pointer on hover */
     border-radius: 5px;
     text-align: center;
+    div{
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        &.icon{
+            margin-right: 1px;
+        }
+        &.title{
+            margin-left: 2px;
+        }
+    }
     &:hover {
         background-color: RoyalBlue;
     }
