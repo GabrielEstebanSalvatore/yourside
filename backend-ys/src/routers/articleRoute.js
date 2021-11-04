@@ -39,7 +39,7 @@ router.delete('/articles/:id', async (req, res) => {
 })
 
 router.post('/soldarticles', async (req, res) => {
-    await articleController.soldArticles(req, res)
+    await articleController.articlesSold(req, res)
 })
 
 module.exports = router
