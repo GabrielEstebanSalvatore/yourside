@@ -3,7 +3,7 @@ import MainCarousel from './mainCarousel/MainCarousel'
 import SecondaryCarousel from './secondaryCarousel/SecondaryCarousel'
 import ModalContainer from '../../containers/modal/ModalContainer'
 import AppContext from '../../context/app/appContext'
-
+import Market from '../market/MarketContainer'
 const Homepage = () => {
     const appContext = useContext(AppContext)
     const { showModal } = appContext
@@ -21,10 +21,13 @@ const Homepage = () => {
                 <div className="main_carousel">
                     <MainCarousel />
                 </div>
-                <div className="main_bottom">
+                {/* <div className="main_bottom">
                     <div className="main_bottom_carousel">
                         <SecondaryCarousel />
                     </div>
+                </div> */}
+                <div className="mercado">
+                    <Market />
                 </div>
             </div>
         </Fragment>
