@@ -8,7 +8,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 import { InterceptorService } from './core/interceptor/interceptor.service'
-import { AuthService } from './core/services/auth.service';
 import { StoreModule } from '@ngrx/store'
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';

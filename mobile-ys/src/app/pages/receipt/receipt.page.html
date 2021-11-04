@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Receipts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="col-md-14 mt-5">
+    <table class='table table-white'>
+        <thead class='thead-dark'>
+            <tr>
+                <th>N°</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Importe</th>
+                <th>Fecha</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody *ngFor='let item of receipts; let i = index'>
+            <tr>
+                <td>{{i+1}}</td>
+                <td>{{item.client.name}}</td>  
+                <td>{{item.client.email}}</td>          
+                <td>${{item.price}}</td>  
+                <td>{{item.date}}</td> 
+                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getReceiptDetail(item.id)">
+                    + Mas Info
+                  </button>
+                </td>            
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</ion-content>
