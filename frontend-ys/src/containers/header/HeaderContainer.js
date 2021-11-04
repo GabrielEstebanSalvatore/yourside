@@ -1,16 +1,33 @@
+import { Button } from 'antd'
 import React, { useState, useContext, Fragment } from 'react'
 import { Animated } from 'react-animated-css'
 import { Link, useHistory } from 'react-router-dom'
 import { ButtonNav } from '../../components/button'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
-
+import { ButtonItemView } from '../../components/button'
+import LoginModal from './LoginModal'
+import Modal from 'react-modal'
+//Modal Style
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: 500,
+    },
+}
+Modal.setAppElement('#root')
 const HeaderContainer = (props) => {
+    const [modalIsOpen, setIsOpen] = React.useState(false)
     const clientContext = useContext(ClientContext)
     const { client, closeSesion } = clientContext
 
     const appContext = useContext(AppContext)
-    const { handleModal } = appContext
+    const { handleModal, showModal } = appContext
 
     const [localState] = useState({
         modalView: 'Login',
@@ -20,7 +37,8 @@ const HeaderContainer = (props) => {
     let history = useHistory()
 
     const setShowModalLogin = () => {
-        handleModal(localState.modalView, localState.showModal)
+        // handleModal(localState.modalView, localState.showModal)
+        openModal()
     }
     const setShowModalCerrarSesion = () => {
         closeSesion()
@@ -35,12 +53,57 @@ const HeaderContainer = (props) => {
     //     handleModal(localState.modalView, localState.showModal)
     // }
     const animationDuration = 1000
+    const showItem = (article) => {
+        openModal()
+        // handleModal(localState.modalViewArticle, localState.showModal)
+        // addArticleView(article)
+    }
 
+    function openModal() {
+        setIsOpen(true)
+        //    const [localState] = useState({
+        //        modalView: 'TipoArticulo',
+        //        showModal: true,
+        //    })
+    }
+
+    function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        // subtitle.style.color = '#f00'
+    }
+
+    function closeModal() {
+        setIsOpen(false)
+    }
     return (
         <div className="header-container">
+            <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <div className="">
+                    {/* <ToastContainer
+                        position="bottom-right"
+                        autoClose={2000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    /> */}
+                    <div className="">
+                        <LoginModal isOpen={closeModal} />
+                    </div>
+                </div>
+            </Modal>
             <div className="header-container_right">
                 <Link className="nav-item text-white" to="/">
-                    Home
+                    Yourside
                 </Link>
             </div>
             <div className="header-container_left">
@@ -139,22 +202,39 @@ const HeaderContainer = (props) => {
                                 </Fragment>
                             ) : (
                                 <div className="">
-                                    <Link className="nav-item" to="/mercado">
-                                        Mercado
+                                    <Link
+                                        className="nav-item"
+                                        to="/compra"
+                                        title="Carrito"
+                                    >
+                                        <i
+                                            class="fas fa-shopping-cart"
+                                            style={{ fontSize: 20 }}
+                                        ></i>
                                     </Link>
                                     <Link
                                         className="nav-item"
                                         to="/comprobantes"
+                                        title="Perfil"
                                     >
-                                        comprobantes
+                                        <i
+                                            class="fas fa-user-alt"
+                                            style={{ fontSize: 20 }}
+                                        ></i>
                                     </Link>
                                 </div>
                             )}
                             <div>
-                                <ButtonNav
-                                    title={'  Salir'}
+                                <Link
+                                    className="nav-item"
+                                    title="Salir"
                                     onClick={(e) => setShowModalCerrarSesion()}
-                                ></ButtonNav>
+                                >
+                                    <i
+                                        class="fas fa-sign-out-alt"
+                                        style={{ fontSize: 20 }}
+                                    ></i>
+                                </Link>
                             </div>
                         </div>
                     ) : (
