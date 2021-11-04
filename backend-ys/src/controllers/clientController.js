@@ -47,7 +47,7 @@ class clientController {
     }
     static async updateTrolley(req, res) {
         try {
-            const response = await clientService.updateTrolley(req.params)
+            const response = await clientService.updateTrolley(req)
             res.status(response.status).json(response.content)
         } catch (err) {
             res.send(err)

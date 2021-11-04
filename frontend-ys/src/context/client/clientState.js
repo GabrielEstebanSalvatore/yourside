@@ -114,7 +114,7 @@ const ClientState = (props) => {
             type: ClientConstant.SUCCESSFULL_PURCHASE_CLIENT,
         })
 
-        await clienteAxios.post('/clientestrolley', {
+        await clienteAxios.post('/clientstrolley', {
             client: state.client,
             trolleyClient: state.trolley,
         })

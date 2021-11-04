@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import AppContext from '../../context/app/appContext'
-import { useHistory } from 'react-router-dom'
 import ModalContainer from '../modal/ModalContainer'
 import Card from '../../components/card/Card'
 import { ButtonItemView } from '../../components/button'
@@ -26,14 +25,8 @@ const MarketContainer = () => {
     const clientContext = useContext(ClientContext)
     const { addArticleToSesionTrolley } = clientContext
     const appContext = useContext(AppContext)
-    const {
-        addArticleView,
-        handleModal,
-        showModal,
-        articles,
-        getArticles,
-        articleView,
-    } = appContext
+    const { addArticleView, showModal, articles, getArticles, articleView } =
+        appContext
     // const clientContext = useContext(ClientContext)
     // const { trolley } = clientContext
     const [modalIsOpen, setIsOpen] = React.useState(false)
@@ -41,14 +34,6 @@ const MarketContainer = () => {
         getArticles()
         // eslint-disable-next-line
     }, [])
-
-    const [localState] = useState({
-        modalView: 'Pucharse',
-        modalViewArticle: 'ArticuleView',
-        showModal: true,
-    })
-
-    let history = useHistory()
 
     // State para iniciar sesión
     // const [state, setState] = useState({
@@ -62,11 +47,6 @@ const MarketContainer = () => {
     //         carrito: [...state.carrito, articulo]
     //     })
     // }
-    //TODO
-    const buyTrolley = () => {
-        //agregarArticuloCarrito(trolley)
-        history.push('/compra')
-    }
 
     const showItem = (article) => {
         openModal()

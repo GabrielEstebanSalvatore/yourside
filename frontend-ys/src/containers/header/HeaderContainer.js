@@ -1,11 +1,8 @@
-import { Button } from 'antd'
-import React, { useState, useContext, Fragment } from 'react'
+import React, { useContext, Fragment } from 'react'
 import { Animated } from 'react-animated-css'
 import { Link, useHistory } from 'react-router-dom'
 import { ButtonNav } from '../../components/button'
-import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
-import { ButtonItemView } from '../../components/button'
 import LoginModal from './LoginModal'
 import Modal from 'react-modal'
 //Modal Style
@@ -26,14 +23,6 @@ const HeaderContainer = (props) => {
     const clientContext = useContext(ClientContext)
     const { client, closeSesion } = clientContext
 
-    const appContext = useContext(AppContext)
-    const { handleModal, showModal } = appContext
-
-    const [localState] = useState({
-        modalView: 'Login',
-        showModal: true,
-    })
-
     let history = useHistory()
 
     const setShowModalLogin = () => {
@@ -53,11 +42,6 @@ const HeaderContainer = (props) => {
     //     handleModal(localState.modalView, localState.showModal)
     // }
     const animationDuration = 1000
-    const showItem = (article) => {
-        openModal()
-        // handleModal(localState.modalViewArticle, localState.showModal)
-        // addArticleView(article)
-    }
 
     function openModal() {
         setIsOpen(true)
@@ -125,13 +109,13 @@ const HeaderContainer = (props) => {
                                                 className="nav-item text-white"
                                                 to="/configuracion"
                                             >
-                                                <i class="fas fa-wrench"></i>{' '}
+                                                <i className="fas fa-wrench"></i>{' '}
                                             </Link>
                                             <Link
                                                 className="nav-item text-white"
                                                 to="/admin"
                                             >
-                                                <i class="fas fa-user-shield"></i>{' '}
+                                                <i className="fas fa-user-shield"></i>{' '}
                                             </Link>
                                         </div>
                                         <div className="mr-3">
@@ -208,7 +192,7 @@ const HeaderContainer = (props) => {
                                         title="Carrito"
                                     >
                                         <i
-                                            class="fas fa-shopping-cart"
+                                            className="fas fa-shopping-cart"
                                             style={{ fontSize: 20 }}
                                         ></i>
                                     </Link>
@@ -218,7 +202,7 @@ const HeaderContainer = (props) => {
                                         title="Perfil"
                                     >
                                         <i
-                                            class="fas fa-user-alt"
+                                            className="fas fa-user-alt"
                                             style={{ fontSize: 20 }}
                                         ></i>
                                     </Link>
@@ -226,12 +210,13 @@ const HeaderContainer = (props) => {
                             )}
                             <div>
                                 <Link
+                                    to=""
                                     className="nav-item"
                                     title="Salir"
                                     onClick={(e) => setShowModalCerrarSesion()}
                                 >
                                     <i
-                                        class="fas fa-sign-out-alt"
+                                        className="fas fa-sign-out-alt"
                                         style={{ fontSize: 20 }}
                                     ></i>
                                 </Link>

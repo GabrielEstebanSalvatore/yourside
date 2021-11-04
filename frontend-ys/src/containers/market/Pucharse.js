@@ -3,7 +3,6 @@ import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
 import ArticuleList from './ArticuleList'
 import { Link, useHistory } from 'react-router-dom'
-
 const Pucharse = () => {
     const appContext = useContext(AppContext)
     const { purchaseApp } = appContext
@@ -22,11 +21,11 @@ const Pucharse = () => {
     // })
 
     const redirect = () => {
-        history.push('/')
+        history.push('/comprobantes')
     }
 
-    const ToBuy = () => {
-        purchaseApp({ trolley, client })
+    const ToBuy = async () => {
+        await purchaseApp({ trolley, client })
         purchaseClient()
         redirect()
     }

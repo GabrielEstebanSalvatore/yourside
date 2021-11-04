@@ -267,7 +267,6 @@ const AppState = (props) => {
                 type: AppConstant.SUCCESSFUL_PURCHASE,
                 payload: response.data,
             })
-            handleModal('MensajeRegistro', true)
         } catch (error) {
             handleModal('MensajeRegistro', true)
             setMessage('Error al realizar la compra')
@@ -276,12 +275,12 @@ const AppState = (props) => {
 
     const traerComprobantes = async (cliente) => {
         try {
-            const respuesta = await clienteAxios.post(`/comprobantes`, {
+            const respuesta = await clienteAxios.get(`/receipts`, {
                 id: cliente._id,
             })
             dispatch({
                 type: AppConstant.AGREGAR_COMPROBANTES,
-                payload: respuesta.data.comprobantes,
+                payload: respuesta.data.response,
             })
         } catch (error) {
             setMessage('Error al traer los comprobantes')
@@ -290,7 +289,7 @@ const AppState = (props) => {
 
     const traerComprobantesAdmin = async () => {
         try {
-            const respuesta = await clienteAxios.get(`/comprobantes`)
+            const respuesta = await clienteAxios.get(`/receipts`)
             dispatch({
                 type: AppConstant.AGREGAR_COMPROBANTES,
                 payload: respuesta.data.comprobantes,
