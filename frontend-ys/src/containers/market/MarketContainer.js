@@ -178,25 +178,6 @@ const MarketContainer = () => {
                     </div>
                 </div>
             </Modal>
-            <div className="mercado_header">
-                {/* <div className="mercado_header_top input-group">
-                    <p>Buscar artículo: </p>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder=""
-                        aria-label="Recipient's username"
-                        aria-describedby="button-addon2"
-                    />
-                    <button
-                        className="btn btn-outline-secondary"
-                        type="button"
-                        id="button-addon2"
-                    >
-                        Buscar
-                    </button>
-                </div> */}
-            </div>
             <div className="mercado_body">
                 {showModal !== false ? <ModalContainer /> : null}
                 <div className="row m-0">
