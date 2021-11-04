@@ -34,7 +34,7 @@ export const ButtonPrincipal = ({ title, onClick }) => {
 export const ButtonItemView = ({ icon, onClick, title }) => {
     return (
         <div className="button_ItemView" onClick={onClick}>
-            {icon} <strong>{title}</strong>
+            <div className="icon">{icon}</div> <div className="title">{title}</div>
         </div>
     )
 }
