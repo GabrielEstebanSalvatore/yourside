@@ -3,7 +3,7 @@ import { ButtonCancel, ButtonItemView } from '../../components/button'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
 
-const LoginContainer = () => {
+const LoginModal = (props) => {
     //Extraer Turnos de state inicial
     const clientContext = useContext(ClientContext)
     const { registerUser, loginUser } = clientContext
@@ -17,7 +17,7 @@ const LoginContainer = () => {
         modalView: '',
         showModal: false,
     })
-
+    const [modalIsOpen, setIsOpen] = React.useState(false)
     // State para iniciar sesión
     const [cliente, guardarCliente] = useState({
         name: '',
@@ -35,6 +35,7 @@ const LoginContainer = () => {
         } else {
             loginUser({ email: cliente.email, password: cliente.password })
         }
+        props.isOpen()
     }
 
     const registrarme = async () => {
@@ -63,13 +64,15 @@ const LoginContainer = () => {
     }
 
     const setShowModalLogin = () => {
-        return handleModal(localModal.modalView, localModal.showModal)
+        // return handleModal(localModal.modalView, localModal.showModal)
+        console.log('test')
+        // setIsOpen(false)
     }
 
     return (
         <div className="login-container">
             <div className="login-container__header">
-                {localState.userLoged === false && <h3>Ingreso</h3>}
+                {localState.userLoged === false && <h3>Iniciar sesión</h3>}
                 {localState.userLoged === true && <h3>Registro</h3>}
             </div>
             {localState.userLoged === false ? (
@@ -156,7 +159,7 @@ const LoginContainer = () => {
                         />
                         <ButtonCancel
                             title={'Cancelar'}
-                            onClick={(e) => setShowModalLogin()}
+                            onClick={props.isOpen}
                         />
                     </div>
                 )}
@@ -168,7 +171,7 @@ const LoginContainer = () => {
                         />
                         <ButtonCancel
                             title={'Cancelar'}
-                            onClick={(e) => setShowModalLogin()}
+                            onClick={props.isOpen}
                         />
                     </div>
                 )}
@@ -197,4 +200,4 @@ const LoginContainer = () => {
     )
 }
 
-export default LoginContainer
+export default LoginModal

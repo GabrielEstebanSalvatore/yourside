@@ -19,16 +19,14 @@
     
     <div class="container">
 
-        <ion-slides style="display: block; padding: 20px 0;" pager='true' [options]="slideOpts">
-            <div style="display: contents;" *ngFor="let article of articles">
-                <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px;" *ngIf='article.offer != null'>
-                    <ion-tittle style="color: black;">OFFERS</ion-tittle>
+        <ion-slides style="padding: 10px 0;" pager='true' [options]="slideOpts">
+                <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px;" *ngFor='let article of articlesWithOffer'>
+                    <ion-title style="color: black;">OFFERS</ion-title>
                     <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
                     <ion-text style="color: black;">{{article.description}}</ion-text>
                     <ion-title color='primary' size='medium'>$ {{article.sellPriceOffer}}</ion-title>
-                    <ion-button style="display: block; padding: 0 25px; " color='warning'>Add to Cart</ion-button>
-                </ion-slide>
-            </div>            
+                    <ion-button style="padding: 0 25px; " color='warning'>Add to Cart</ion-button>
+                </ion-slide>        
         </ion-slides>
 
         <ion-title size="large">Products</ion-title>

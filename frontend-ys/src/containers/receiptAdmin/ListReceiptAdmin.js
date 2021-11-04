@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../../context/app/appContext'
 import { Input, Button, Space, Table } from 'antd'
-import { DeleteOutlined, SearchOutlined, EditOutlined } from '@ant-design/icons'
+import { DeleteOutlined, SearchOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
 
 const ListReceiptAdmin = () => {
     const appContext = useContext(AppContext)
-    const { handleModal, traerComprobantesAdmin, comprobantes } = appContext
+    const { traerComprobantesAdmin, comprobantes } = appContext
 
-    const [localState, setLocalState] = useState({
-        modalView: 'ReciboAdmin',
-        showModal: true,
-    })
+    // const [localState, setLocalState] = useState({
+    //     modalView: 'ReciboAdmin',
+    //     showModal: true,
+    // })
 
     // const setShowModalReciboAdmin = (reciboAdmin) => {
 
@@ -23,11 +23,11 @@ const ListReceiptAdmin = () => {
 
         // eslint-disable-next-line
     }, [])
-    const [pagination] = useState({
-        bottom: 'bottomCenter',
-    })
+    // const [pagination] = useState({
+    //     bottom: 'bottomCenter',
+    // })
 
-    const [buscar, setBuscar] = useState({
+    const [buscar] = useState({
         searchText: '',
         searchedColumn: '',
     })

@@ -27,7 +27,7 @@
           </ion-list>
         </ion-content>
         <ion-footer >
-          <div *ngIf="!isLogged">
+          <div *ngIf="!this.authService.loggedIn()">
             <ion-item >
               <ion-buttons>
                 <ion-button [routerLink]="['/login']">
@@ -39,7 +39,7 @@
               </ion-buttons>
             </ion-item>
           </div>
-          <div *ngIf="isLogged">
+          <div *ngIf="this.authService.loggedIn()">
             <ion-item>
               <ion-buttons>
                 <ion-button (click)="logOut()">

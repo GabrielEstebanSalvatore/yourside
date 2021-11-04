@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
 import { Table } from 'antd'
@@ -47,7 +47,7 @@ const ArticleList = () => {
             }
         })
     }
-    
+
     const onClickDelete = (id) => {
         Swal.fire({
             title: '¿Estas seguro?',

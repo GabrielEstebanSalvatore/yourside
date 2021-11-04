@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import Socket from '../../../services/socket'
+import React, { useState } from 'react'
+// import Socket from '../../../services/socket'
 
 const DeliveryContainer = ({ history }) => {
-    var searchParams
+    // var searchParams
     var desck
 
     // useEffect(() => {
@@ -15,7 +15,7 @@ const DeliveryContainer = ({ history }) => {
     //     })
     // }, [])
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         params: '',
         number: '',
     })
