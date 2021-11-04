@@ -109,13 +109,13 @@ const HeaderContainer = (props) => {
                                                 className="nav-item text-white"
                                                 to="/configuracion"
                                             >
-                                                <i class="fas fa-wrench"></i>{' '}
+                                                <i className="fas fa-wrench"></i>{' '}
                                             </Link>
                                             <Link
                                                 className="nav-item text-white"
                                                 to="/admin"
                                             >
-                                                <i class="fas fa-user-shield"></i>{' '}
+                                                <i className="fas fa-user-shield"></i>{' '}
                                             </Link>
                                         </div>
                                         <div className="mr-3">
@@ -192,7 +192,7 @@ const HeaderContainer = (props) => {
                                         title="Carrito"
                                     >
                                         <i
-                                            class="fas fa-shopping-cart"
+                                            className="fas fa-shopping-cart"
                                             style={{ fontSize: 20 }}
                                         ></i>
                                     </Link>
@@ -202,7 +202,7 @@ const HeaderContainer = (props) => {
                                         title="Perfil"
                                     >
                                         <i
-                                            class="fas fa-user-alt"
+                                            className="fas fa-user-alt"
                                             style={{ fontSize: 20 }}
                                         ></i>
                                     </Link>
@@ -210,12 +210,13 @@ const HeaderContainer = (props) => {
                             )}
                             <div>
                                 <Link
+                                    to=""
                                     className="nav-item"
                                     title="Salir"
                                     onClick={(e) => setShowModalCerrarSesion()}
                                 >
                                     <i
-                                        class="fas fa-sign-out-alt"
+                                        className="fas fa-sign-out-alt"
                                         style={{ fontSize: 20 }}
                                     ></i>
                                 </Link>
