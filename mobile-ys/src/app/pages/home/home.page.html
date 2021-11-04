@@ -5,26 +5,41 @@
                 <ion-icon slot="icon-only" name="menu"></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-title>Products</ion-title>
+        <ion-title>Home</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" color='dark'>
+
     <ion-header collapse="condense">
         <ion-toolbar>
             <ion-title size="large">Products</ion-title>
         </ion-toolbar>
     </ion-header>
-
+    
     <div class="container">
+
+        <ion-slides style="padding: 10px 0;" pager='true' [options]="slideOpts">
+                <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px;" *ngFor='let article of articlesWithOffer'>
+                    <ion-title style="color: black;">OFFERS</ion-title>
+                    <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
+                    <ion-text style="color: black;">{{article.description}}</ion-text>
+                    <ion-title color='primary' size='medium'>$ {{article.sellPriceOffer}}</ion-title>
+                    <ion-button style="padding: 0 25px; " color='warning'>Add to Cart</ion-button>
+                </ion-slide>        
+        </ion-slides>
+
+        <ion-title size="large">Products</ion-title>
+
         <ion-card *ngFor="let article of articles">
-            <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}" ></ion-img> 
+            <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
+            <ion-card-title>{{article.description}}</ion-card-title>
             <ion-card-content>
-                <p>{{article.description}}</p>
-                <p>${{article.sellPrice}}</p>
-                <ion-button>Add to Cart</ion-button>
+            <ion-label color='primary'><h1>$ {{article.sellPrice}}</h1></ion-label>
+                <ion-button color='warning'>Add to Cart</ion-button>
             </ion-card-content>
         </ion-card>
-    </div>   
+
+    </div>
 
 </ion-content>
