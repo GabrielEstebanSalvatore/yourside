@@ -13,11 +13,6 @@ const LoginModal = (props) => {
     const [localState, setLocalState] = useState({
         userLoged: false,
     })
-    const [localModal] = useState({
-        modalView: '',
-        showModal: false,
-    })
-    const [modalIsOpen, setIsOpen] = React.useState(false)
     // State para iniciar sesión
     const [cliente, guardarCliente] = useState({
         name: '',
@@ -61,12 +56,6 @@ const LoginModal = (props) => {
             ...cliente,
             [e.target.name]: e.target.value,
         })
-    }
-
-    const setShowModalLogin = () => {
-        // return handleModal(localModal.modalView, localModal.showModal)
-        console.log('test')
-        // setIsOpen(false)
     }
 
     return (
