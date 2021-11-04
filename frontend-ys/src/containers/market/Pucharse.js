@@ -66,7 +66,7 @@ const Pucharse = () => {
             </div>
             <div className="pucharse_client_footer">
                 <div className="backtomarket">
-                    <Link className="btn btn-info" to="/mercado">
+                    <Link className="btn btn-info" to="/">
                         Seguir comprando
                     </Link>
                 </div>
