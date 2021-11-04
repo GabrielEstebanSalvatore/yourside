@@ -3,8 +3,6 @@ import AppConstant from './appConstant'
 export default (state, action) => {
     switch (action.type) {
         case AppConstant.HANDLE_MODAL:
-           
-
             return {
                 ...state,
                 modalView: action.modalView,
@@ -33,6 +31,10 @@ export default (state, action) => {
                 configuration: action.payload[0],
             }
         case AppConstant.SUCCESSFUL_PURCHASE:
+            return {
+                ...state,
+                message: action.payload,
+            }
         case AppConstant.CREATE_TIPOARTICULO:
             return {
                 ...state,

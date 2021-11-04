@@ -1,26 +1,30 @@
 import React, { useContext, useEffect } from 'react'
 import AppContext from '../../context/app/appContext'
+import ClientContext from '../../context/client/clientContext'
 import ModalContainer from '../modal/ModalContainer'
 import ListReceipt from './ListReceipt'
 import ContainerGeneral from '../../components/containergeneral'
 
 const ReceiptContainer = () => {
     const appContext = useContext(AppContext)
-    const { showModal, traerComprobantes, client, comprobantes } = appContext
+    const { showModal, traerComprobantes, comprobantes } = appContext
 
+    const clientContext = useContext(ClientContext)
+    const { client } = clientContext
     let contador = 0
 
     useEffect(() => {
-        traerComprobantes(client)
-        // eslint-disable-next-line
-    }, [])
+        if (client) {
+            traerComprobantes(client)
+        }
+    }, [client])
 
     return (
         <ContainerGeneral
             title={'Listado de Comprobantes'}
             total={
                 (comprobantes.map(
-                    (comprobante) => (contador += comprobante.price)
+                    (comprobante, i) => (contador += comprobante.price)
                 ),
                 (<p>{`$ ${contador}`}</p>))
             }
