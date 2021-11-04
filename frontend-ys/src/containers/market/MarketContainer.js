@@ -184,7 +184,7 @@ const MarketContainer = () => {
                     <input
                         type="text"
                         className="form-control"
-                        placeholder="Recipient's username"
+                        placeholder=""
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
                     />
@@ -193,7 +193,7 @@ const MarketContainer = () => {
                         type="button"
                         id="button-addon2"
                     >
-                        Button
+                        Buscar
                     </button>
                 </div> */}
             </div>

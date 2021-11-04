@@ -70,6 +70,9 @@ body {
         margin-right: 20px;
         display: flex;
     }
+    &_market {
+        background-color: rgb(24, 10, 10);
+    }
     .nav-item {
         margin: 0px 1vw;
         color: #eee;
@@ -295,23 +298,39 @@ body {
     width: 100%;
     margin-top: 50px;
     background-color: #eeeeee;
+    padding-top: 80px;
+    // background: linear-gradient(
+    //     90deg,
+    //     rgba(9, 7, 41, 1) 0%,
+    //     rgba(163, 39, 148, 1) 27%,
+    //     rgba(165, 52, 193, 1) 78%,
+    //     rgba(14, 11, 45, 1) 100%
+    // );
 
     &_header {
-        width: 100%;
+        width: 80%;
         display: flex;
+        margin: 20px auto;
         flex-direction: column;
         flex-direction: space-between;
         padding: 20px;
         background-color: #eeeeee;
         height: 200px;
+        // background-color: rgba(255, 255, 255, 0.152);
+        // height: 300px;
+        font-size: 2vh;
         &_top {
+            color: white;
             padding: 20px;
             input {
+                height: 100%;
+                margin: 0 1vw;
                 padding: 0px;
                 margin-left: 20px;
             }
         }
         &_bottom {
+            color: white;
             p {
                 margin-right: 10px;
             }
@@ -321,6 +340,12 @@ body {
             display: flex;
             flex-direction: row;
         }
+        button {
+            background-color: white;
+        }
+        button:hover {
+            background-color: rgba(163, 39, 148, 1);
+        }
     }
     &_body {
         width: 100%;
@@ -328,6 +353,13 @@ body {
         justify-content: center;
         align-items: center;
         background-color: #eeeeee;
+        //     background: linear-gradient(
+        //     90deg,
+        //     rgba(9, 7, 41, 1) 0%,
+        //     rgba(163, 39, 148, 1) 27%,
+        //     rgba(165, 52, 193, 1) 78%,
+        //     rgba(14, 11, 45, 1) 100%
+        // );
         .row {
             display: flex;
             justify-content: center;
@@ -397,7 +429,7 @@ body {
             left: 0;
             width: 100%;
             height: 120px;
-            background: #fff;
+            background: rgb(255, 255, 255);
             z-index: 1;
             padding: 10px;
             transition: 0.6s;
@@ -429,7 +461,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 5px;
-    padding: 30px;
+    padding: 1vh 1vw;
     z-index: 100;
     &__header {
         margin-top: 10px;
@@ -477,17 +509,37 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 2px;
+        padding: 1vw 1vh;
         flex-direction: row;
         margin-top: 10px;
         width: 100%;
-        .button_ItemView {
+        .button {
+            text-align: center;
             flex: 1;
             margin: 2px;
             width: 20%;
+            &:hover {
+                background-color: white;
+                color: #1dc8ae;
+                border: 1px solid #1dc8ae;
+            }
+        }
+        .button_ItemView {
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+            align-items: center;
+            div {
+                margin: 0 auto;
+                &.icon {
+                    @media (max-width: 500px) {
+                        display: none;
+                    }
+                }
+            }
         }
         .button_cancel {
-            width: 20%;
+            width: 50%;
             flex: 1;
             margin: 2px;
         }
@@ -502,11 +554,8 @@ body {
     }
 }
 .modal-container {
-    position: absolute;
-    top: 0px;
-    left: 0px;
+    position: fixed;
     bottom: 0px;
-    width: 0;
     z-index: 100;
     width: 100%;
     height: 100%;
@@ -518,8 +567,12 @@ body {
 
     &__body {
         width: 30%;
+        height: fit-content;
         background-color: $white;
         border-radius: 2px;
+        @media (max-width: 800px) {
+            width: 50%;
+        }
     }
 }
 .nuevo_registro {
