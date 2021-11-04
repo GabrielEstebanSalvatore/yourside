@@ -8,7 +8,6 @@
 @import './components/containergeneral/containergeneral.scss';
 @import '~antd/dist/antd.css';
 
-
 html,
 body {
     height: 100%;
@@ -46,7 +45,16 @@ body {
     position: absolute;
     top: 0px;
     z-index: 1000;
-    background-color: rgba(24, 10, 10, 0.082);
+    // background-color: #4f1b66;
+    background: rgb(9, 7, 41);
+    background: linear-gradient(
+        90deg,
+        rgba(9, 7, 41, 1) 0%,
+        rgba(185, 47, 168, 1) 27%,
+        rgba(184, 52, 193, 1) 78%,
+        rgba(14, 11, 45, 1) 100%
+    );
+    position: fixed;
     &_body {
         display: flex;
         justify-content: center;
@@ -62,14 +70,15 @@ body {
         margin-right: 20px;
         display: flex;
     }
-    &_market{
+    &_market {
         background-color: rgb(24, 10, 10);
-    } 
-    .nav-item{
-        margin: 0px 1vw;
     }
-    .nav-item:hover{
+    .nav-item {
+        margin: 0px 1vw;
         color: #eee;
+    }
+    .nav-item:hover {
+        color: #a650ce;
     }
 }
 .main {
@@ -213,7 +222,7 @@ body {
                 text-decoration: line-through;
             }
         }
-        
+
         p {
             margin: auto;
             padding: auto;
@@ -269,7 +278,7 @@ body {
             height: 20%;
             width: 100%;
         }
-        div{
+        div {
             font-size: 2vh;
             margin: auto;
         }
@@ -287,15 +296,16 @@ body {
     flex-direction: column;
     height: 100%;
     width: 100%;
+    margin-top: 50px;
+    background-color: #eeeeee;
     padding-top: 80px;
-    background: linear-gradient(
-        90deg,
-        rgba(9, 7, 41, 1) 0%,
-        rgba(163, 39, 148, 1) 27%,
-        rgba(165, 52, 193, 1) 78%,
-        rgba(14, 11, 45, 1) 100%
-    );
-    
+    // background: linear-gradient(
+    //     90deg,
+    //     rgba(9, 7, 41, 1) 0%,
+    //     rgba(163, 39, 148, 1) 27%,
+    //     rgba(165, 52, 193, 1) 78%,
+    //     rgba(14, 11, 45, 1) 100%
+    // );
 
     &_header {
         width: 80%;
@@ -304,8 +314,10 @@ body {
         flex-direction: column;
         flex-direction: space-between;
         padding: 20px;
-        background-color: rgba(255, 255, 255, 0.152);
-        height: 300px;
+        background-color: #eeeeee;
+        height: 200px;
+        // background-color: rgba(255, 255, 255, 0.152);
+        // height: 300px;
         font-size: 2vh;
         &_top {
             color: white;
@@ -328,10 +340,10 @@ body {
             display: flex;
             flex-direction: row;
         }
-        button{
+        button {
             background-color: white;
         }
-        button:hover{
+        button:hover {
             background-color: rgba(163, 39, 148, 1);
         }
     }
@@ -340,13 +352,14 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(
-        90deg,
-        rgba(9, 7, 41, 1) 0%,
-        rgba(163, 39, 148, 1) 27%,
-        rgba(165, 52, 193, 1) 78%,
-        rgba(14, 11, 45, 1) 100%
-    );
+        background-color: #eeeeee;
+        //     background: linear-gradient(
+        //     90deg,
+        //     rgba(9, 7, 41, 1) 0%,
+        //     rgba(163, 39, 148, 1) 27%,
+        //     rgba(165, 52, 193, 1) 78%,
+        //     rgba(14, 11, 45, 1) 100%
+        // );
         .row {
             display: flex;
             justify-content: center;
@@ -505,24 +518,25 @@ body {
             flex: 1;
             margin: 2px;
             width: 20%;
-            &:hover{
+            &:hover {
                 background-color: white;
                 color: #1dc8ae;
                 border: 1px solid #1dc8ae;
             }
         }
-        .button_ItemView{
+        .button_ItemView {
             display: flex;
             flex-direction: row;
             width: 50%;
             align-items: center;
-            div{
+            div {
                 margin: 0 auto;
-                &.icon{
-                    @media (max-width: 500px){display: none;}
+                &.icon {
+                    @media (max-width: 500px) {
+                        display: none;
+                    }
                 }
             }
-
         }
         .button_cancel {
             width: 50%;
@@ -556,7 +570,9 @@ body {
         height: fit-content;
         background-color: $white;
         border-radius: 2px;
-        @media (max-width: 800px) { width: 50%; }
+        @media (max-width: 800px) {
+            width: 50%;
+        }
     }
 }
 .nuevo_registro {

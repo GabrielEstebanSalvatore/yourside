@@ -33,7 +33,7 @@ const Pucharse = () => {
 
     return (
         <div className="pucharse">
-            <h2 className="justify-">Detalle de Venta</h2>
+            <h2 className="justify-">Detalle de Compra</h2>
             <div className="row pucharse_client">
                 <table className="pucharse_client table">
                     <tbody>

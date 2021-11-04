@@ -105,7 +105,7 @@ const ClientState = (props) => {
 
     const addArticleToSesionTrolley = async (article) => {
         dispatch({
-            type: ClientConstant.ADDARTICLETOSESIONTROLLEY,
+            type: ClientConstant.ADD_ARTICLE_TO_TROLLEY,
             payload: article,
         })
     }

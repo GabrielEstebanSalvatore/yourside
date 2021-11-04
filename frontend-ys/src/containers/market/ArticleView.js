@@ -2,7 +2,9 @@ import React, { useState, useContext, useEffect } from 'react'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
 import { ButtonItemView } from '../../components/button'
+import { ToastContainer, toast } from 'react-toastify'
 
+import 'react-toastify/dist/ReactToastify.css'
 const ArticleView = () => {
     const appContext = useContext(AppContext)
     const { handleModal, currentEdit, current, articleView } = appContext
@@ -25,9 +27,14 @@ const ArticleView = () => {
         handleModal(localState.modalViewCancel, localState.showModalCancel)
         current({})
     }
+    const notify = () => toast('Artículo agregado al carrito')
+    const delay = (ms) => new Promise((res) => setTimeout(res, ms))
+    const addArticleTrolley = async () => {
+        notify()
 
-    const addArticleTrolley = () => {
-        console.log('test1')
+        await delay(2000)
+        handleModal(localState.modalViewCancel, localState.showModalCancel)
+        // current({})
         // if(trolley)
         // {
         //     var counter = 0;
@@ -54,6 +61,17 @@ const ArticleView = () => {
     //noValidate
     return (
         <div className="articleView">
+            <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <div className="articleView_wrapper">
                 <div className="articleView_card">
                     <div className="articleView_card_img">
