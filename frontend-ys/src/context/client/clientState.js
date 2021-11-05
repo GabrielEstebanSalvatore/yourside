@@ -104,6 +104,10 @@ const ClientState = (props) => {
     }
 
     const addArticleToSesionTrolley = async (article) => {
+        await clienteAxios.post('/addtotrolley', {
+            client: state.client,
+            article: article,
+        })
         dispatch({
             type: ClientConstant.ADD_ARTICLE_TO_TROLLEY,
             payload: article,
