@@ -31,6 +31,11 @@ export class Login implements Action {
     readonly type = AppConstant.AUTHENTICATED_CLIENT;
     constructor(public payload: any){}
    }
+
+   export class ChangeProfile implements Action {
+    readonly type = AppConstant.CHANGE_PROFILE;
+    constructor(public payload: any){}
+   }
    
    export type AppActions 
    = Login
@@ -38,4 +43,5 @@ export class Login implements Action {
    | Logout
    | GetError
    | GetAuthenticatedClient
-   | AuthenticatedClient;
+   | AuthenticatedClient
+   | ChangeProfile;

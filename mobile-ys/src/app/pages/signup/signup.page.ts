@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs'
 import { RegisterRequest } from 'src/app/core/requests/register.request'
 import { AuthService } from 'src/app/core/services/auth.service'
 import { UserRoleEnum } from 'src/app/shared/enums/user-role.enum'
-import { Cliente } from 'src/app/shared/models/client.model'
+import { ClientModel } from 'src/app/shared/models/client.model'
 
 @Component({
     selector: 'app-signup',
@@ -13,7 +13,7 @@ import { Cliente } from 'src/app/shared/models/client.model'
 })
 export class SignupPage implements OnInit, OnDestroy {
     private subscriptions = new Subscription()
-    cliente: Cliente
+    cliente: ClientModel
 
     constructor(private authService: AuthService, private router: Router) {
         this.cliente = {
