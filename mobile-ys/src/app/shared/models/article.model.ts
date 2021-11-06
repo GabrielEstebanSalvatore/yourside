@@ -6,6 +6,7 @@ export interface ArticleModel {
     amount: number
     costPrice: number
     sellPrice: number
+    sellPriceOffer: number
     minimum: number
     image: string
     negativeStock: boolean

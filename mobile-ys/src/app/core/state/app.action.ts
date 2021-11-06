@@ -32,6 +32,21 @@ export class Login implements Action {
     constructor(public payload: any){}
    }
 
+   export class AddToCart implements Action {
+    readonly type = AppConstant.ADD_ITEM_CART;
+    constructor(public payload: any){}
+   }
+
+   export class RemoveOneFromCart implements Action {
+    readonly type = AppConstant.REMOVE_ONE_ITEM_CART;
+    constructor(public payload: any){}
+   }
+
+export class RemoveAllFromCart implements Action {
+    readonly type = AppConstant.REMOVE_ALL_ITEMS_CART;
+    constructor(public payload: any){}
+}
+
    export class ChangeProfile implements Action {
     readonly type = AppConstant.CHANGE_PROFILE;
     constructor(public payload: any){}
@@ -44,4 +59,7 @@ export class Login implements Action {
    | GetError
    | GetAuthenticatedClient
    | AuthenticatedClient
+   | AddToCart
+   | RemoveOneFromCart
+   | RemoveAllFromCart;
    | ChangeProfile;

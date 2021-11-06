@@ -1,5 +1,5 @@
 export interface ClientModel{
-    _id? : number;
+    id? : string;
     name : string;
     address : string;
     cell : string;

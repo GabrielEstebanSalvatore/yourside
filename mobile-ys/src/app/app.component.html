@@ -2,7 +2,7 @@
 <ion-app>
     <ion-menu side="end" menuId="first" contentId="main">
         <ion-header>
-          <ion-toolbar color="medium">
+          <ion-toolbar color="light dark">
               <ion-buttons slot="end">
                   <ion-menu-button></ion-menu-button>
               </ion-buttons>
@@ -15,7 +15,7 @@
               <ion-icon name="person-circle"></ion-icon>
               <span>Profile</span>
             </ion-item>
-            <ion-item>
+            <ion-item [routerLink]="['/cart']">
               <ion-icon name="bag-handle"></ion-icon>
               <!--<i class='bx bx-cart-alt' ></i> -->
               <span class="links_name">Shop Cart</span>
