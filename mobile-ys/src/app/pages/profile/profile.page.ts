@@ -18,7 +18,7 @@ export class ProfilePage implements OnInit {
     
   constructor(private store: Store<AppState>, private clientApi: ClientApi) {
     this.cliente = {
-      _id: 0,
+      id: '',
       name: '',
       address: '',
       email: '',

@@ -61,5 +61,5 @@ export class RemoveAllFromCart implements Action {
    | AuthenticatedClient
    | AddToCart
    | RemoveOneFromCart
-   | RemoveAllFromCart;
+   | RemoveAllFromCart
    | ChangeProfile;

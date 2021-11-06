@@ -13,7 +13,6 @@ export interface ArticleModel {
     offer: boolean
     branch: object
     articleType: object
-    sellPriceOffer?: number
     createdat?: Date
     updatedat?: Date
 }
