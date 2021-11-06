@@ -6,7 +6,26 @@ const { validationResult } = require('express-validator')
 
 class ReceiptService {
     static getAll = async () => {
-        const receipts = await Receipt.find({ available: 1 })
+        const receipts = await Receipt.find({
+            available: 1,
+        })
+            .populate('client')
+            .populate('receiptDetail')
+        const response = receipts.map((receipt) => receiptDto(receipt))
+        return {
+            status: 200,
+            content: {
+                ok: true,
+                response,
+                amount: response.length,
+            },
+        }
+    }
+    static getByUser = async (clientId) => {
+        const receipts = await Receipt.find({
+            available: 1,
+            client: ObjectId(clientId),
+        })
             .populate('client')
             .populate('receiptDetail')
         const response = receipts.map((receipt) => receiptDto(receipt))
