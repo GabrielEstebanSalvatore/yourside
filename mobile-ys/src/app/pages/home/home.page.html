@@ -25,7 +25,8 @@
                     <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
                     <ion-text style="color: black;">{{article.description}}</ion-text>
                     <ion-title color='primary' size='medium'>$ {{article.sellPriceOffer}}</ion-title>
-                    <ion-button style="padding: 0 25px; " color='warning'>Add to Cart</ion-button>
+                    <ion-button style="padding: 0 25px; " color='warning' (click)="openToast(this.article.name)">Open</ion-button>
+                    <ion-button style="padding: 0 25px; " color='warning' (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Add to Cart</ion-button>
                 </ion-slide>        
         </ion-slides>
 
@@ -36,7 +37,7 @@
             <ion-card-title>{{article.description}}</ion-card-title>
             <ion-card-content>
             <ion-label color='primary'><h1>$ {{article.sellPrice}}</h1></ion-label>
-                <ion-button color='warning'>Add to Cart</ion-button>
+                <ion-button color='warning' (click)="trolleyAddItem(this.article, this.article.sellPrice)">Add to Cart</ion-button>
             </ion-card-content>
         </ion-card>
 
