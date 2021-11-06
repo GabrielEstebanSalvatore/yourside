@@ -12,7 +12,7 @@ import { ClientModel } from "./client.model";
 }*/
 export interface TrolleyModel {
     id?: string
-    client: ClientModel
+    client?: ClientModel
     available: boolean
     date: string
     total: number

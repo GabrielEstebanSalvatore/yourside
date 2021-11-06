@@ -11,5 +11,5 @@ export interface State {
     hasError: boolean;
     clientAuth: boolean;
     client: ClientModel;
-    trolley: TrolleyModel;
+    trolley?: TrolleyModel;
 }

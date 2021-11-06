@@ -70,9 +70,9 @@ export class HomePage implements OnInit, OnDestroy {
         )
     }
 
-    /*getOffers(): void {
-        console.table(this.articlesWithOffer)
-    }*/
+    getOffers(): void {
+        console.log(this.articlesWithOffer)
+    }
 
     getClient(): void {
         this.store.dispatch(new Auth.GetAuthenticatedClient())
@@ -91,15 +91,16 @@ export class HomePage implements OnInit, OnDestroy {
         this.trolley.articles.push(article);
         this.trolley.total += price;
 
-        console.table(this.trolley)
+        console.log(this.trolley)
     }
 
     trolleyRemoveItem(article: ArticleModel, price: number): void {
         this.trolley.articles = this.trolley.articles.filter((item) => item.id !== article.id)
         this.trolley.total -= price
 
-        console.table(this.trolley)
+        console.log(this.trolley)
     }
+    
     openTrolley() {
         console.log("send")
     }
