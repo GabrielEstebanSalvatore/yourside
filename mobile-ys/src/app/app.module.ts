@@ -16,6 +16,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store'
 import {  StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { appReducer } from './core/state/app.reducer';
 import { AppEffects } from './core/state/app.effects'
+import { ClientApi } from './shared/api/client.api'
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AppEffects } from './core/state/app.effects'
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ],
     providers: [
+        ClientApi,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         {
             provide: HTTP_INTERCEPTORS,

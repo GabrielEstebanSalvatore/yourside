@@ -2,7 +2,7 @@
 <ion-app>
     <ion-menu side="end" menuId="first" contentId="main">
         <ion-header>
-          <ion-toolbar color="primary">
+          <ion-toolbar color="medium">
               <ion-buttons slot="end">
                   <ion-menu-button></ion-menu-button>
               </ion-buttons>
@@ -11,7 +11,7 @@
         </ion-header>
         <ion-content>
           <ion-list>
-            <ion-item>
+            <ion-item [routerLink]="['/profile']">
               <ion-icon name="person-circle"></ion-icon>
               <span>Profile</span>
             </ion-item>
