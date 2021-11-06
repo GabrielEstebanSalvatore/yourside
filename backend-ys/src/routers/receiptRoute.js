@@ -8,8 +8,8 @@ router.post('/receipts', async (req, res) => {
     await receiptController.create(req, res)
 })
 
-router.post('/receipts', async (req, res) => {
-    await receiptController.getAll(req, res)
+router.get('/receiptsclient', async (req, res) => {
+    await receiptController.getByUser(req, res)
 })
 
 router.get('/receipts', async (req, res) => {

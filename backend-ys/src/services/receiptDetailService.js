@@ -10,8 +10,9 @@ const { validationResult } = require('express-validator')
 
 class ReceiptDetailService {
     static getAll = async () => {
-        const receiptsDetail = await ReceiptDetail.find({ available: 1 })
-
+        const receiptsDetail = await ReceiptDetail.find({
+            available: 1,
+        })
         const response = receiptsDetail.map((receiptDetail) =>
             receiptDetailDto(receiptDetail)
         )
@@ -36,7 +37,9 @@ class ReceiptDetailService {
                 },
             }
         }
-        const receiptDetail = await ReceiptDetail.findById(id)
+        const receiptDetail = await ReceiptDetail.findById(id).populate(
+            'articles'
+        )
 
         if (!receiptDetail) {
             return {
