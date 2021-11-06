@@ -8,4 +8,5 @@ export enum AppConstant {
     ADD_ITEM_CART = '[Cart] ADD_ITEM',
     REMOVE_ONE_ITEM_CART = '[Cart] REMOVE_ONE_ITEM',
     REMOVE_ALL_ITEMS_CART = '[Cart] REMOVE_ALL_ITEMS'
+    CHANGE_PROFILE = '[Client] CHANGE_PROFILE'
 }

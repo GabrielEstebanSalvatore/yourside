@@ -175,5 +175,20 @@ class ClientService {
             },
         }
     }
+    static addToTrolley = async (req) => {
+        const trolley = await Trolley.findOneAndUpdate(
+            {
+                _id: req.body.client.trolley._id,
+            },
+            { $push: { articles: req.body.article.id } }
+        )
+        return {
+            status: 200,
+            content: {
+                ok: true,
+                message: `The trolley was updated`,
+            },
+        }
+    }
 }
 module.exports = ClientService

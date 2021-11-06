@@ -76,6 +76,7 @@ export const appReducer = (state: [], action: AppActions) => {
                   client: action.payload,
                   hasError: false
                 }
+        
               case AppConstant.ADD_ITEM_CART:
                 return state;
 
@@ -85,6 +86,13 @@ export const appReducer = (state: [], action: AppActions) => {
               case AppConstant.REMOVE_ALL_ITEMS_CART:
                 return state;
 
+              case AppConstant.CHANGE_PROFILE:
+                return{
+                  ...state,
+                  client: action.payload,
+                  hasError: false
+                }
+        
         default: 
         return state;
     }
@@ -96,3 +104,4 @@ export const errorMessage = (state: State) => state.errorMessage;
 export const hasError = (state: State) => state.hasError;
 export const isLoading = (state: State) => state.isLoading;
 export const clientAuth = (state: State) => state.clientAuth;
+export const client = (state: State) => state.client;

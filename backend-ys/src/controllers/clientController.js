@@ -53,6 +53,14 @@ class clientController {
             res.send(err)
         }
     }
+    static async addToTrolley(req, res) {
+        try {
+            const response = await clientService.addToTrolley(req)
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
+        }
+    }
 }
 
 module.exports = clientController
