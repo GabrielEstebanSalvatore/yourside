@@ -250,11 +250,11 @@ const AppState = (props) => {
             setMessage('Error al eliminar el artículo')
         }
     }
-    const sacarArticuloCarrito = async (articlesId) => {
+    const sacarArticuloCarrito = async (trolleyId, articleId) => {
         try {
-            dispatch({
-                type: AppConstant.SACAR_CARRITO,
-                payload: articlesId,
+            await clienteAxios.put(`/trolley/removeitem`, {
+                trolley: trolleyId,
+                article: articleId,
             })
         } catch {
             handleModal('MensajeRegistro', true)
