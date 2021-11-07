@@ -6,6 +6,7 @@ import { UserRoleEnum } from 'src/app/shared/enums/user-role.enum';
 import { ClientModel } from 'src/app/shared/models/client.model';
 import { ClientApi } from 'src/app/shared/api/client.api'
 import { ChangeProfile } from 'src/app/core/state/app.action';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ export class ProfilePage implements OnInit {
   private subscriptions = new Subscription()
   cliente: ClientModel
     
-  constructor(private store: Store<AppState>, private clientApi: ClientApi) {
+  constructor(private menu: MenuController, private store: Store<AppState>, private clientApi: ClientApi) {
     this.cliente = {
       id: '',
       name: '',
@@ -36,4 +37,8 @@ export class ProfilePage implements OnInit {
   editClient = () =>{
     this.store.dispatch(new ChangeProfile(this.cliente))
   }
+
+  togglemenu = () => {
+    this.menu.toggle()
+}
 }

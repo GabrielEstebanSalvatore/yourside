@@ -56,4 +56,18 @@
 
 ion-slides {
     height: 100%;
-  }
+}
+
+ion-back-button{
+    position: absolute;
+}
+
+ion-title {
+    text-align: center;
+}
+
+.menu {
+    position: absolute;
+    top: 2;
+    right: 0;
+}

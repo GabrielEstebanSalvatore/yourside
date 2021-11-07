@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/core/services/auth.service'
 import { AppState } from '@capacitor/app'
 import { ToastController } from '@ionic/angular'
 import { TrolleyModel } from 'src/app/shared/models/trolley.model'
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'app-home',
@@ -39,9 +40,10 @@ export class HomePage implements OnInit, OnDestroy {
         speed: 400
     }
 
-    constructor(private menu: MenuController, private articleApi: ArticleApi, private offerApi: OfferApi, private authService: AuthService, private store: Store<AppState>, private toastController: ToastController) {
+    constructor(private menu: MenuController, private articleApi: ArticleApi, private offerApi: OfferApi, private authService: AuthService, private store: Store<AppState>, private toastController: ToastController, private router: Router) {
         this.image_Path = environment.HOST_API
     }
+
     ngOnDestroy(): void {
         // this.subscriptions.unsubscribe()
     }
@@ -63,8 +65,8 @@ export class HomePage implements OnInit, OnDestroy {
                     console.error(error)
                 },
                 next: (articles) => {
-                    this.articles = articles
-                    this.articlesWithOffer = this.articles.filter((article) => article.offer !== null);
+                    this.articles = articles.filter((article) => article.offer === null);
+                    this.articlesWithOffer = articles.filter((article) => article.offer !== null);
                 },
             })
         )
@@ -78,20 +80,28 @@ export class HomePage implements OnInit, OnDestroy {
         this.store.dispatch(new Auth.GetAuthenticatedClient())
     }
 
-    async openToast(articleName: string = 'Article') {
+    async showToast(message: string, duration: number = 1000) {
         const toast = await this.toastController.create({
-            message: `${articleName} added to cart`,
-            duration: 1000,
+            message: message,
+            duration: duration,
             position: 'bottom'
         });
         toast.present();
     }
 
-    trolleyAddItem(article: ArticleModel, price: number): void {
-        this.trolley.articles.push(article);
-        this.trolley.total += price;
+    async trolleyAddItem(article: ArticleModel): Promise<void> {
+        
+        if (this.authService.loggedIn()) {
+            this.showToast(`${article.name} added to cart`);
+            this.trolley.articles.push(article);
+            this.trolley.total = 0
+            this.trolley.articles.forEach(e => {(e.offer === null) ? this.trolley.total += e.sellPrice : this.trolley.total += e.sellPriceOffer})
 
-        console.log(this.trolley)
+            console.log(this.trolley)
+        } else {
+            this.showToast('You must be logged in', 1500);
+            this.router.navigate(['/login']);
+        }
     }
 
     trolleyRemoveItem(article: ArticleModel, price: number): void {

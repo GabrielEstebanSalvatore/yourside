@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
     {
@@ -13,11 +14,6 @@ const routes: Routes = [
             import('./pages/home/home.module').then((m) => m.HomePageModule)
     },
     {
-        path: 'cart',
-        loadChildren: () =>
-            import('./pages/cart/cart.module').then((m) => m.CartPageModule),
-    },
-    {
         path: 'login',
         loadChildren: () =>
             import('./pages/login/login.module').then((m) => m.LoginPageModule),
@@ -27,14 +23,16 @@ const routes: Routes = [
         loadChildren: () =>
             import('./pages/signup/signup.module').then((m) => m.SigninPageModule),
     },
-  {
-    path: 'cart',
-    loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
-  },
-  {
+    {
+        path: 'cart',
+        loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule),
+        canActivate: [AuthGuard]
+    },
+    {
         path: 'profile',
         loadChildren: () => 
-            import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+            import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
+            canActivate: [AuthGuard]
     }
 ]
 
