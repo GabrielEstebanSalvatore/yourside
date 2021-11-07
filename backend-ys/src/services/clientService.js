@@ -163,26 +163,29 @@ class ClientService {
     }
     static updateTrolley = async (req) => {
         let client = req.body.client
-        let trolleyC = { articles: req.body.trolleyClient }
-        const trolleyUpdate = await Trolley.findByIdAndUpdate(
-            client._id,
-            trolleyC,
-            { new: true }
+        const trolley = await Trolley.findByIdAndUpdate(
+            { _id: client.trolley._id },
+            { articles: [] }
         )
-        if (!trolleyUpdate) {
-            return {
-                status: 404,
-                content: {
-                    ok: false,
-                    message: `Item not found`,
-                },
-            }
-        }
         return {
             status: 200,
             content: {
                 ok: true,
-                article: trolleyUpdate,
+                message: `The trolley was updated`,
+            },
+        }
+    }
+    static addToTrolley = async (req) => {
+        const trolley = await Trolley.findOneAndUpdate(
+            {
+                _id: req.body.client.trolley._id,
+            },
+            { $push: { articles: req.body.article.id } }
+        )
+        return {
+            status: 200,
+            content: {
+                ok: true,
                 message: `The trolley was updated`,
             },
         }

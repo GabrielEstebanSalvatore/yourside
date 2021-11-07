@@ -9,7 +9,7 @@ const ArticleTypeContainer = () => {
     const appContext = useContext(AppContext)
     const { handleModal, showModal } = appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'TipoArticulo',
         showModal: true,
     })
@@ -27,7 +27,7 @@ const ArticleTypeContainer = () => {
                     title={' Nuevo Tipo Artículo'}
                 ></ButtonItemView>
             }
-            modal={showModal != false ? <ModalContainer /> : null}
+            modal={showModal !== false ? <ModalContainer /> : null}
             list={<ArticleTypeList />}
         />
     )

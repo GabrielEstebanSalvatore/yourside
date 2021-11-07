@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from 'react'
+import React, { useReducer, useContext, useEffect } from 'react'
 import ClientConstant from './clientConstant'
 import ClientContext from './clientContext'
 import ClientReducer from './clientReducer'
@@ -9,17 +9,11 @@ import AppContext from '../../context/app/appContext'
 
 const ClientState = (props) => {
     const appContext = useContext(AppContext)
-    const {
-        handleModal,
-        logOut,
-        setMessage,
-        getConfiguration,
-        getArticles,
-    } = appContext
+    const { handleModal, logOut, setMessage, getConfiguration } = appContext
 
     const initialState = {
         login: {},
-        authenticated: null,
+        authenticated: localStorage.getItem('token') ? true : false,
         token: props.token ? props.token : localStorage.getItem('token'),
         client: null,
         email: null,
@@ -34,7 +28,7 @@ const ClientState = (props) => {
         try {
             const response = await clienteAxios.post('/clients', data)
 
-            if (response != null) {
+            if (response !== null) {
                 dispatch({
                     type: ClientConstant.SIGNUP_SUCCEEDED,
                     payload: response.data,
@@ -81,7 +75,7 @@ const ClientState = (props) => {
                 'x-auth-token': token,
             }
             const response = await clienteAxios.get('/auth', { headers })
-            if (response.data.client[0].trolley.articles == []) {
+            if (response.data.client[0].trolley.articles === []) {
                 response.data.client.trolley.articles = []
             }
             dispatch({
@@ -94,7 +88,9 @@ const ClientState = (props) => {
             })
         }
     }
-
+    useEffect(() => {
+        authenticatedClient()
+    }, [])
     const closeSesion = async () => {
         await clienteAxios.post('/clientstrolley', {
             client: state.client,
@@ -108,8 +104,12 @@ const ClientState = (props) => {
     }
 
     const addArticleToSesionTrolley = async (article) => {
+        await clienteAxios.post('/addtotrolley', {
+            client: state.client,
+            article: article,
+        })
         dispatch({
-            type: ClientConstant.ADDARTICLETOSESIONTROLLEY,
+            type: ClientConstant.ADD_ARTICLE_TO_TROLLEY,
             payload: article,
         })
     }
@@ -118,7 +118,7 @@ const ClientState = (props) => {
             type: ClientConstant.SUCCESSFULL_PURCHASE_CLIENT,
         })
 
-        await clienteAxios.post('/clientestrolley', {
+        await clienteAxios.post('/clientstrolley', {
             client: state.client,
             trolleyClient: state.trolley,
         })

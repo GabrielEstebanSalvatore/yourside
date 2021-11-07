@@ -5,12 +5,13 @@ import { FormsModule } from '@angular/forms'
 import { HomePage } from './home.page'
 import { HomePageRoutingModule } from './home-routing.module'
 import { ArticleApi } from 'src/app/shared/api/article.api'
+import { OfferApi } from 'src/app/shared/api/offer.api'
 import { EffectsModule } from '@ngrx/effects'
 import { AppEffects } from 'src/app/core/state/app.effects'
 
 @NgModule({
     imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule, EffectsModule.forFeature([AppEffects])],
     declarations: [HomePage],
-    providers: [ArticleApi],
+    providers: [ArticleApi, OfferApi],
 })
 export class HomePageModule {}

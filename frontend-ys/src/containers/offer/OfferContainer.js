@@ -9,7 +9,7 @@ const OfferContainer = () => {
     const appContext = useContext(AppContext)
     const { handleModal, showModal } = appContext
 
-    const [localState, setLocalState] = useState({
+    const [localState] = useState({
         modalView: 'Offers',
         showModal: true,
     })
@@ -27,7 +27,7 @@ const OfferContainer = () => {
                     title={'Nueva Oferta'}
                 ></ButtonItemView>
             }
-            modal={showModal != false ? <ModalContainer /> : null}
+            modal={showModal !== false ? <ModalContainer /> : null}
             list={<OffertList />}
         />
     )

@@ -9,6 +9,14 @@ class receiptController {
             res.send(err)
         }
     }
+    static async getByUser(req, res) {
+        try {
+            const response = await receiptService.getByUser(req.body.client)
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
+        }
+    }
 
     static async get(req, res) {
         try {

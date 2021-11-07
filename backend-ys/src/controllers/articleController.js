@@ -3,7 +3,7 @@ const Receipt = require('../models/receipt/receiptModel')
 const Ticket = require('../models/ticket')
 const ReceiptDetail = require('../models/receipt/receiptDetailModel')
 const Configuration = require('../models/configuration/configurationModel')
-const Box = require('../models/cashRegister/cashRegisterModel')
+const CashRegister = require('../models/cashRegister/cashRegisterModel')
 const _ = require('underscore')
 const articleService = require('../services/articleService')
 
@@ -94,16 +94,13 @@ class articleController {
                 price: totalPrice,
             })
             await comprobante.save()
-
             for (const element of body) {
                 try {
                     var articule = await Article.findOne({ _id: element._id })
-                    var id = articule._id
-                    await Article.replaceOne(
-                        { id },
+                    await Article.findOneAndUpdate(
+                        { _id: element._id },
                         { amount: articule.amount-- }
                     )
-                    await articule.save()
                 } catch (error) {
                     return res.status(200).json({
                         ok: true,
@@ -125,16 +122,15 @@ class articleController {
                 { condiguracionId },
                 { lastSellName: configuration.lastSellName++ }
             )
-            await Configuration.save()
 
             //MODIFICO LA CAJA
-            const currentBox = await Box.findOne({
+            const currentBox = await CashRegister.findOne({
                 closeBoxDate: {
                     $eq: null,
                 },
             })
 
-            currentBox.comprobantes.push(comprobante._id)
+            currentBox.receipts.push(comprobante._id)
             currentBox.comprobantesAmount++
             currentBox.totalSales += totalPrice
 
@@ -148,7 +144,7 @@ class articleController {
             return res.status(500).json({
                 ok: false,
                 error,
-                response: { message: `Error in the sale` },
+                response: { message: `Error in the sale - ${error}` },
             })
         }
     }

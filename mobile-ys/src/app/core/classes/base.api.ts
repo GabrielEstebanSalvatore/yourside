@@ -30,7 +30,7 @@ export abstract class BaseApi<T> {
             .callApi(
                 new NetworkRequest(
                     HttpMethodEnum.httpGet,
-                    `${environment.HOST_API}/${this.apiEndpoint}/${id}`
+                    `${environment.HOST_API}${this.apiEndpoint}/${id}`
                 )
             )
             .pipe(map((record: any) => record.data ?? record))
@@ -39,7 +39,7 @@ export abstract class BaseApi<T> {
         return this.networkService.callApi(
             new NetworkRequest(
                 HttpMethodEnum.httpPost,
-                `${environment.HOST_API}/${this.apiEndpoint}/`,
+                `${environment.HOST_API}${this.apiEndpoint}/`,
                 payload
             )
         )
@@ -48,7 +48,7 @@ export abstract class BaseApi<T> {
         return this.networkService.callApi(
             new NetworkRequest(
                 HttpMethodEnum.httpPut,
-                `${environment.HOST_API}/${this.apiEndpoint}/${id}`,
+                `${environment.HOST_API}${this.apiEndpoint}/${id}`,
                 payload
             )
         )
@@ -57,7 +57,7 @@ export abstract class BaseApi<T> {
         return this.networkService.callApi(
             new NetworkRequest(
                 HttpMethodEnum.httpDelete,
-                `${environment.HOST_API}/${this.apiEndpoint}/${id}`
+                `${environment.HOST_API}${this.apiEndpoint}/${id}`
             )
         )
     }

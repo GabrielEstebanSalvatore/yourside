@@ -1,5 +1,5 @@
-export interface Cliente{
-    id? : number;
+export interface ClientModel{
+    id? : string;
     name : string;
     address : string;
     cell : string;

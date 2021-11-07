@@ -1,16 +1,16 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react'
-import { ButtonItemView, ButtonCancel } from '../../components/button'
+import React, { Fragment, useContext, useState } from 'react'
+import { ButtonItemView } from '../../components/button'
 import AppContext from '../../context/app/appContext'
 import ModalContainer from '../modal/ModalContainer'
 import { ContainerAdmin } from '../../components/containergeneral'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import BoxContainer from './box/BoxContainer'
 import DeskContainer from './file/DeskContainer'
-import Socket from '../../services/socket'
+// import Socket from '../../services/socket'
 
 const AdminContainer = () => {
     const appContext = useContext(AppContext)
-    const { handleModal, showModal, configuration } = appContext
+    const { showModal, configuration } = appContext
 
     const [localState, setLocalState] = useState({ view: 'Box' })
 
@@ -18,10 +18,10 @@ const AdminContainer = () => {
     //     Socket.emit('conectado', 'hola desde el cliente')
     // }, [])
 
-    let history = useHistory()
-    const redirect = () => {
-        history.push('/')
-    }
+    // let history = useHistory()
+    // const redirect = () => {
+    //     history.push('/')
+    // }
 
     const renderView = () => {
         switch (localState.view) {
@@ -44,7 +44,7 @@ const AdminContainer = () => {
         <ContainerAdmin
             className={'adminContainer'}
             modal={showModal !== false ? <ModalContainer /> : null}
-            headerName={configuration == {} ? '' : configuration.name}
+            headerName={configuration === {} ? '' : configuration.name}
             headerSection={'ADMIN'}
             body={
                 <div className="adminContainer_body_administration">

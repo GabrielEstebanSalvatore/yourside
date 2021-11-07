@@ -1,3 +1,4 @@
+import { INITIAL_STATE } from "@ngrx/store";
 import { AuthRequest } from "../requests/auth.request";
 import { AppActions } from "./app.action";
 import { AppConstant } from "./app.constant";
@@ -10,7 +11,26 @@ const initialState: State = {
   isLoading: false,
   errorMessage: '',
   hasError: false,
-  client: {},
+  client: {
+    id: null,
+    address: null,
+    cell: null,
+    email: null,
+    name: null,
+    password: null,
+    role: null,
+    state: null,
+    createdat: null,
+    updatedat: null
+  },
+  trolley: {
+    id: null,
+    available: null,
+    client: null,
+    articles: [],
+    total: null,
+    date: null
+  },
   clientAuth: false
 }
 
@@ -56,6 +76,23 @@ export const appReducer = (state: [], action: AppActions) => {
                   client: action.payload,
                   hasError: false
                 }
+        
+              case AppConstant.ADD_ITEM_CART:
+                return state;
+
+              case AppConstant.REMOVE_ONE_ITEM_CART:
+                return state;
+
+              case AppConstant.REMOVE_ALL_ITEMS_CART:
+                return state;
+
+              case AppConstant.CHANGE_PROFILE:
+                return{
+                  ...state,
+                  client: action.payload,
+                  hasError: false
+                }
+        
         default: 
         return state;
     }
@@ -67,3 +104,4 @@ export const errorMessage = (state: State) => state.errorMessage;
 export const hasError = (state: State) => state.hasError;
 export const isLoading = (state: State) => state.isLoading;
 export const clientAuth = (state: State) => state.clientAuth;
+export const client = (state: State) => state.client;

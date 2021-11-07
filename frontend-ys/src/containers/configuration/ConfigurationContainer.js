@@ -1,10 +1,7 @@
 import React, { useState, useContext, Fragment } from 'react'
 import AppContext from '../../context/app/appContext'
 import { useHistory } from 'react-router-dom'
-import {
-    ButtonCancel,
-    ButtonItemView,
-} from '../../components/button'
+import { ButtonCancel, ButtonItemView } from '../../components/button'
 import { ContainerAdmin } from '../../components/containergeneral'
 import ModalContainer from '../../containers/modal/ModalContainer'
 
@@ -67,7 +64,7 @@ const ConfigurationContainer = () => {
     return (
         <ContainerAdmin
             modal={showModal !== false ? <ModalContainer /> : null}
-            headerName={configuration == {} ? '' : configuration.name}
+            headerName={configuration === {} ? '' : configuration.name}
             headerSection={'CONFIGURACIONES'}
             body={
                 <div className="admin_body_configuration">

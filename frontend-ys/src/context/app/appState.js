@@ -40,7 +40,7 @@ const AppState = (props) => {
     const addArticleView = async (article) => {
         dispatch({
             type: AppConstant.ADDARTICLEVIEW,
-            payload: article
+            payload: article,
         })
     }
     const logOut = async () => {
@@ -104,9 +104,7 @@ const AppState = (props) => {
     }
     const deleteArticleType = async (tipoArticuloId) => {
         try {
-            const respuesta = await clienteAxios.delete(
-                `/articlestype/${tipoArticuloId}`
-            )
+            await clienteAxios.delete(`/articlestype/${tipoArticuloId}`)
             getArticleType()
         } catch {
             handleModal('MensajeRegistro', true)
@@ -116,7 +114,7 @@ const AppState = (props) => {
 
     const deleteBrand = async (brandId) => {
         try {
-            const respuesta = await clienteAxios.delete(`/brands/${brandId}`)
+            await clienteAxios.delete(`/brands/${brandId}`)
             getBrands()
         } catch {
             handleModal('MensajeRegistro', true)
@@ -158,7 +156,7 @@ const AppState = (props) => {
 
     const editBrand = async (data) => {
         try {
-            const respuesta = await clienteAxios.put(`/brands/${data.id}`, data)
+            await clienteAxios.put(`/brands/${data.id}`, data)
             dispatch(getBrands())
         } catch {
             handleModal('MensajeRegistro', true)
@@ -168,7 +166,7 @@ const AppState = (props) => {
 
     const editOffer = async (data) => {
         try {
-            const respuesta = await clienteAxios.post(`/offer/${data.id}`, data)
+            await clienteAxios.post(`/offer/${data.id}`, data)
             dispatch(getOffers())
         } catch (error) {
             handleModal('MensajeRegistro', true)
@@ -269,7 +267,6 @@ const AppState = (props) => {
                 type: AppConstant.SUCCESSFUL_PURCHASE,
                 payload: response.data,
             })
-            handleModal('MensajeRegistro', true)
         } catch (error) {
             handleModal('MensajeRegistro', true)
             setMessage('Error al realizar la compra')
@@ -278,12 +275,12 @@ const AppState = (props) => {
 
     const traerComprobantes = async (cliente) => {
         try {
-            const respuesta = await clienteAxios.post(`/comprobantes`, {
+            const respuesta = await clienteAxios.get(`/receipts`, {
                 id: cliente._id,
             })
             dispatch({
                 type: AppConstant.AGREGAR_COMPROBANTES,
-                payload: respuesta.data.comprobantes,
+                payload: respuesta.data.response,
             })
         } catch (error) {
             setMessage('Error al traer los comprobantes')
@@ -292,7 +289,7 @@ const AppState = (props) => {
 
     const traerComprobantesAdmin = async () => {
         try {
-            const respuesta = await clienteAxios.get(`/comprobantes`)
+            const respuesta = await clienteAxios.get(`/receipts`)
             dispatch({
                 type: AppConstant.AGREGAR_COMPROBANTES,
                 payload: respuesta.data.comprobantes,
