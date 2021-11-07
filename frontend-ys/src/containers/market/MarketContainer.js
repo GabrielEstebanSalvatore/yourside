@@ -125,9 +125,8 @@ const MarketContainer = () => {
                                     <div>
                                         {' '}
                                         <h4 className="precion_ahora">
-                                            ${articleView.sellPriceOffer} (%{' '}
-                                            {articleView.offer.percent} de
-                                            Descuento)
+                                            ${articleView.sellPriceOffer} (
+                                            {articleView.offer} %{' '} de Descuento)
                                         </h4>{' '}
                                     </div>
                                 ) : (
@@ -167,6 +166,7 @@ const MarketContainer = () => {
                                 <Card
                                     title={article.name}
                                     path={article.image}
+                                    type={article.articleType.name}
                                     onClickImg={() => showItem(article)}
                                 />
                             ) : (

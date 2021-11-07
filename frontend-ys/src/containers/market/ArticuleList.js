@@ -41,7 +41,7 @@ const ArticleList = () => {
     const getRow = () => {
         return trolley.map((article) => {
             return {
-                key: article.id ? article.id : article._id,
+                key: article.id,
                 name: article.name,
                 articleType: article.articleType.name,
                 sellPrice: article.sellPrice,
