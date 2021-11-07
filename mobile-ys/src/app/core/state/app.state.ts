@@ -1,3 +1,5 @@
+import { ClientModel } from "src/app/shared/models/client.model";
+import { TrolleyModel } from "src/app/shared/models/trolley.model";
 import { AuthRequest } from "../requests/auth.request";
 
 export interface State {
@@ -8,5 +10,6 @@ export interface State {
     errorMessage: string;
     hasError: boolean;
     clientAuth: boolean;
-    client: any;
+    client: ClientModel;
+    trolley?: TrolleyModel;
 }

@@ -1,0 +1,45 @@
+<ion-header translucent no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light">
+        <ion-icon slot="start" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>&nbsp;</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" src=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" slot="fixed" color="dark">
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png" alt="Perfil">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="user-meta">
+      <div class="container">
+
+        <ion-item>
+          <ion-input name="name" type="text" [(ngModel)]='cliente.name' required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input name="address" type="text" [(ngModel)]='cliente.address' required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input name="email" type="email" [(ngModel)]='cliente.email' required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input name="cel" type="text" [(ngModel)]='cliente.cell' required></ion-input>
+        </ion-item>
+        <ion-button color='warning' (click)="editClient()">Edit Profile</ion-button>
+      </div>
+    </div>
+   </div>   
+  </ion-content>

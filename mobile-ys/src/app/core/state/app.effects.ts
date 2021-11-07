@@ -4,8 +4,9 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Action } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { catchError, exhaustMap, map, mergeMap, switchMap, tap } from "rxjs/operators";
+import { ClientApi } from "src/app/shared/api/client.api";
 import { AuthService } from "../services/auth.service";
-import { Login, LoggedUser, GetError, GetAuthenticatedClient, AuthenticatedClient, Logout } from "./app.action";
+import { Login, LoggedUser, GetError, GetAuthenticatedClient, AuthenticatedClient, Logout, ChangeProfile } from "./app.action";
 import { AppConstant } from "./app.constant";
 
 @Injectable()
@@ -28,6 +29,20 @@ export class AppEffects{
     switchMap(() => {
            return this.authService.authenticatedClient().pipe(
             map(response => new AuthenticatedClient(response.client[0]),
+            catchError(error => of(new GetError(error))))
+        )
+    }) 
+    );
+
+    @Effect({dispatch: false})
+    changeProfile$: Observable<Action> = this.actions$.pipe(
+    ofType<ChangeProfile>(AppConstant.CHANGE_PROFILE), 
+    map(action => action.payload),
+    exhaustMap(client => {
+           return this.clientService.edit(client._id, client).pipe(
+            tap((response:any) => {
+                this.router.navigate(['/home'])
+            },
             catchError(error => of(new GetError(error))))
         )
     }) 
@@ -64,6 +79,6 @@ export class AppEffects{
         tap(r => { console.log(r)})
     )
 
-   constructor(private actions$: Actions, private authService: AuthService, private router: Router){}
+   constructor(private actions$: Actions, private authService: AuthService, private clientService: ClientApi, private router: Router){}
 }
 
