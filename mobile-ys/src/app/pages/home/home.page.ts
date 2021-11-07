@@ -65,7 +65,7 @@ export class HomePage implements OnInit, OnDestroy {
                     console.error(error)
                 },
                 next: (articles) => {
-                    this.articles = articles.filter((article) => article.offer === null);
+                    this.articles = articles;
                     this.articlesWithOffer = articles.filter((article) => article.offer !== null);
                 },
             })

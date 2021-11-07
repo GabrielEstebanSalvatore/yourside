@@ -16,7 +16,7 @@ import { MenuController } from '@ionic/angular';
 export class ProfilePage implements OnInit {
   private subscriptions = new Subscription()
   cliente: ClientModel
-    
+
   constructor(private menu: MenuController, private store: Store<AppState>, private clientApi: ClientApi) {
     this.cliente = {
       id: '',
@@ -34,11 +34,11 @@ export class ProfilePage implements OnInit {
     this.store.subscribe((res: any) => this.cliente = JSON.parse(JSON.stringify(res.app.client)))
   }
 
-  editClient = () =>{
+  editClient = () => {
     this.store.dispatch(new ChangeProfile(this.cliente))
   }
 
   togglemenu = () => {
     this.menu.toggle()
-}
+  }
 }

@@ -18,15 +18,17 @@
     </ion-header>
     
     <div class="container">
-
+    
         <ion-slides style="padding: 10px 0;" pager='true' [options]="slideOpts">
-                <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px;" *ngFor='let article of articlesWithOffer'>
-                    <ion-title style="color: black;">OFFERS</ion-title>
-                    <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
-                    <ion-text style="color: black;">{{article.description}}</ion-text>
-                    <ion-title color='primary' size='medium'>$ {{article.sellPriceOffer}}</ion-title>
-                    <ion-button style="padding: 0 25px; " color='warning' (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Add to Cart</ion-button>
-                </ion-slide>        
+            <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px;"
+                *ngFor='let article of articlesWithOffer'>
+                <ion-title style="color: black;">OFFERS</ion-title>
+                <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
+                <ion-text style="color: black;">{{article.description}}</ion-text>
+                <ion-title color='primary' size='medium'>$ {{article.sellPriceOffer}}</ion-title>
+                <ion-button style="padding: 0 25px; " color='warning'
+                    (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Add to Cart</ion-button>
+            </ion-slide>
         </ion-slides>
 
         <ion-title size="large">Products</ion-title>
