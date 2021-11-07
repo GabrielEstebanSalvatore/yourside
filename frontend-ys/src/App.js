@@ -17,6 +17,7 @@ import NewArticule from './containers/articule/NewArticule'
 import Market from './containers/market/MarketContainer'
 import Pucharse from './containers/market/Pucharse'
 import Receipts from './containers/receipt/ReceiptContainer'
+import Receipt from './containers/receipt/ReceiptIndividualContainer'
 import ReceiptsAdmin from './containers/receiptAdmin/ReceiptAdminContainer'
 import Orders from './containers/orders/Orders'
 import Offers from './containers/offer/OfferContainer'
@@ -64,6 +65,11 @@ const App = ({ showModal }) => {
                                 exact
                                 path="/comprobantes"
                                 component={Receipts}
+                            />
+                            <PrivateRoute
+                                exact
+                                path="/comprobantes/:id"
+                                component={Receipt}
                             />
                             <PrivateRoute
                                 exact

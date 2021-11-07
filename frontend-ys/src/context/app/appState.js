@@ -20,6 +20,7 @@ const AppState = (props) => {
         loadingApp: false,
         message: '',
         configuration: {},
+        comprobante: null,
     }
 
     const [state, dispatch] = useReducer(AppReducer, initialState)
@@ -273,14 +274,28 @@ const AppState = (props) => {
         }
     }
 
-    const traerComprobantes = async (cliente) => {
+    const traerComprobantes = async (client) => {
         try {
-            const respuesta = await clienteAxios.get(`/receipts`, {
-                id: cliente._id,
+            const respuesta = await clienteAxios.get(`/receiptsclient`, {
+                params: { client: client._id },
             })
             dispatch({
                 type: AppConstant.AGREGAR_COMPROBANTES,
                 payload: respuesta.data.response,
+            })
+        } catch (error) {
+            setMessage('Error al traer los comprobantes')
+        }
+    }
+    const traerComprobante = async (receiptId) => {
+        try {
+            const respuesta = await clienteAxios.get(
+                `/receiptsdetail/${receiptId}`
+            )
+            console.log(respuesta.data.receiptDetail)
+            dispatch({
+                type: AppConstant.AGREGAR_DETALLE_COMPROBANTE,
+                payload: respuesta.data.receiptDetail,
             })
         } catch (error) {
             setMessage('Error al traer los comprobantes')
@@ -384,6 +399,7 @@ const AppState = (props) => {
                 articles: state.articles,
                 currentState: state.currentState,
                 comprobantes: state.comprobantes,
+                comprobante: state.comprobante,
                 brandList: state.brandList,
                 articleView: state.articleView,
                 offerList: state.offerList,
@@ -417,6 +433,7 @@ const AppState = (props) => {
                 getOffers,
                 getBox,
                 addArticleView,
+                traerComprobante,
             }}
         >
             {props.children}

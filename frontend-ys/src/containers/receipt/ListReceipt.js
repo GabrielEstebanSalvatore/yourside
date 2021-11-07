@@ -2,10 +2,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
 import { Input, Button, Space, Table } from 'antd'
-import { DeleteOutlined, SearchOutlined } from '@ant-design/icons'
+import {
+    DeleteOutlined,
+    SearchOutlined,
+    ProfileOutlined,
+} from '@ant-design/icons'
 import Swal from 'sweetalert2'
-
+import { useHistory } from 'react-router-dom'
+import { formatter, formatDate } from './../../utils/utils'
 const ListReceipt = () => {
+    let history = useHistory()
     const appContext = useContext(AppContext)
     const { traerComprobantes, comprobantes } = appContext
 
@@ -109,6 +115,10 @@ const ListReceipt = () => {
         //this.setState({ ...turno,searchText: '' });
     }
 
+    const showRecipt = (reciptId) => {
+        history.push('/comprobantes/' + reciptId)
+    }
+
     const columns = [
         { title: 'Numero de C.', dataIndex: 'name' },
         { ...buscarDatoTabla('name') },
@@ -127,25 +137,30 @@ const ListReceipt = () => {
                         <DeleteOutlined
                             onClick={() => onClickEliminar(record.key)}
                             style={{ color: 'red' }}
+                            title="Eliminar comprobante"
                         />
                     </i>
-                    {/* <i>
-                        <EditOutlined onClick={(e) => setShowModalLocalidad(record)} style={{color: 'blue'}}/>
-                    </i> */}
+                    <i>
+                        <ProfileOutlined
+                            onClick={() => showRecipt(record.key)}
+                            style={{ color: 'blue' }}
+                            title="Ver comprobante"
+                        />
+                    </i>
                 </div>
             ),
         },
     ]
 
     const getRow = () => {
-        return comprobantes.map((comprobante) => {
+        return comprobantes.map((comprobante, i) => {
             return {
-                key: comprobante._id,
+                key: comprobante.receiptDetail._id,
                 name: comprobante.number,
                 client: comprobante.client.name,
                 email: comprobante.client.email,
-                date: comprobante.date,
-                price: comprobante.price,
+                date: formatDate(comprobante.date),
+                price: formatter.format(comprobante.price),
             }
         })
     }
@@ -173,7 +188,7 @@ const ListReceipt = () => {
     }
 
     return (
-        <div className="tabla">
+        <div className="tabla" style={{ marginTop: 50 }}>
             <Table columns={columns} dataSource={getRow()} />
         </div>
     )
