@@ -45,6 +45,17 @@ class clientController {
             res.send(err)
         }
     }
+    static async removeItemTrolley(req, res) {
+        try {
+            const response = await clientService.removeItemTrolley(
+                req.body.trolley,
+                req.body.article
+            )
+            res.status(response.status).json(response.content)
+        } catch (err) {
+            res.send(err)
+        }
+    }
     static async updateTrolley(req, res) {
         try {
             const response = await clientService.updateTrolley(req)

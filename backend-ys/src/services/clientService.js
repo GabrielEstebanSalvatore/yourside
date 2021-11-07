@@ -4,6 +4,7 @@ const { clientInputDto } = require('./../models/client/DTOs/clientInputDto')
 const ObjectId = require('mongoose').Types.ObjectId
 const { validationResult } = require('express-validator')
 const Trolley = require('../models/trolley/trolleyModel')
+const Article = require('../models/article/articleModel')
 const bcryptjs = require('bcryptjs')
 
 class ClientService {
@@ -158,6 +159,44 @@ class ClientService {
                 message: `The client ${client.name} was ${
                     client.available === 0 ? 'removed' : 'put'
                 }`,
+            },
+        }
+    }
+    static removeItemTrolley = async (trolleyId, itemId) => {
+        if (!ObjectId.isValid(trolleyId) && !ObjectId.isValid(itemId)) {
+            return {
+                status: 400,
+                content: {
+                    ok: false,
+                    err: {
+                        message: 'ID incorrect',
+                    },
+                },
+            }
+        }
+        const trolley = await Trolley.findOneAndUpdate(
+            {
+                _id: trolleyId,
+            },
+            { $pull: { articles: itemId } }
+        )
+        if (!trolley) {
+            return {
+                status: 404,
+                content: {
+                    ok: false,
+                    err: {
+                        message: 'Trolley not found',
+                    },
+                },
+            }
+        }
+
+        return {
+            status: 200,
+            content: {
+                ok: true,
+                message: `The trolley was updated`,
             },
         }
     }
