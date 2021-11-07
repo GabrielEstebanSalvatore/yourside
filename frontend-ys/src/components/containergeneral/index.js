@@ -2,7 +2,7 @@ import React from 'react'
 
 const ContainerGeneral = ({ title, button, list, modal, total }) => {
     return (
-        <div className="container_general">
+        <div className="container_general" style={{ marginTop: 40 }}>
             <h2>{title} </h2>
             {button}
             {total && (
