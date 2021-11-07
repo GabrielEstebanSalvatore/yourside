@@ -1,4 +1,4 @@
-import { Cliente } from "./client.model";
+import { ClientModel } from "./client.model";
 
 export interface ReceiptModel {
     id? : number
@@ -7,7 +7,7 @@ export interface ReceiptModel {
     state : number
     price : number
     receiptDetail : object
-    client : Cliente
+    client : ClientModel
     createdat?: Date
     updatedat?: Date
 }
