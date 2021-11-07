@@ -2,30 +2,28 @@ import React, { useContext, useEffect } from 'react'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
 import ModalContainer from '../modal/ModalContainer'
-import ListReceipt from './ListReceipt'
+import ListReceiptIndividual from './ListReceiptIndividual'
 import ContainerGeneral from '../../components/containergeneral'
+import { useParams } from 'react-router-dom'
 
-const ReceiptContainer = () => {
+const ReceiptIndividualContainer = () => {
     const appContext = useContext(AppContext)
-    const { showModal, traerComprobantes, comprobantes } = appContext
+    const { traerComprobante } = appContext
 
     const clientContext = useContext(ClientContext)
     const { client } = clientContext
     let contador = 0
-
+    let { id } = useParams()
     useEffect(() => {
-        if (client) {
-            traerComprobantes(client)
-        }
-    }, [client])
+        traerComprobante(id)
+    }, [])
 
     return (
         <ContainerGeneral
-            title={'Listado de Comprobantes'}
-            modal={showModal !== false ? <ModalContainer /> : null}
-            list={<ListReceipt />}
+            title={'Detalle de Comprobante'}
+            list={<ListReceiptIndividual />}
         />
     )
 }
 
-export default ReceiptContainer
+export default ReceiptIndividualContainer
