@@ -30,13 +30,10 @@ export default (state, action) => {
             return {
                 ...state,
                 authenticated: true,
-                //message: null,
                 client: action.payload.client[0],
                 loading: false,
-                admin:
-                    action.payload.client.role === 'ADMIN_ROLE' ? true : false,
-                email: action.payload.client[0].email,
-                trolley: action.payload.client[0].trolley.articles,
+                admin: action.payload.client.role === 'ADMIN_ROLE' ? true : false,
+                email: action.payload.client[0].email
             }
         case ClientConstant.ADD_ARTICLE_TO_TROLLEY:
             return {

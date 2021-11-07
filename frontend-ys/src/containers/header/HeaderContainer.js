@@ -17,8 +17,10 @@ const customStyles = {
         width: 500,
     },
 }
+
 Modal.setAppElement('#root')
-const HeaderContainer = (props) => {
+
+const HeaderContainer = () => {
     const [modalIsOpen, setIsOpen] = React.useState(false)
     const clientContext = useContext(ClientContext)
     const { client, closeSesion } = clientContext
@@ -26,60 +28,32 @@ const HeaderContainer = (props) => {
     let history = useHistory()
 
     const setShowModalLogin = () => {
-        // handleModal(localState.modalView, localState.showModal)
         openModal()
     }
     const setShowModalCerrarSesion = () => {
         closeSesion()
         history.push('/')
     }
-    // const setShowModalLocalidad = () => {
-    //     setLocalState({ ...localState, modalView: 'Localidad' })
-    //     handleModal(localState.modalView, localState.showModal)
-    // }
 
-    // const setShowModalpais = () => {
-    //     handleModal(localState.modalView, localState.showModal)
-    // }
     const animationDuration = 1000
 
     function openModal() {
         setIsOpen(true)
-        //    const [localState] = useState({
-        //        modalView: 'TipoArticulo',
-        //        showModal: true,
-        //    })
-    }
-
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = '#f00'
     }
 
     function closeModal() {
         setIsOpen(false)
     }
+
     return (
         <div className="header-container">
             <Modal
                 isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"
             >
                 <div className="">
-                    {/* <ToastContainer
-                        position="bottom-right"
-                        autoClose={2000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    /> */}
                     <div className="">
                         <LoginModal isOpen={closeModal} />
                     </div>

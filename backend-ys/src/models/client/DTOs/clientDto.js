@@ -7,9 +7,9 @@ clientDto = (request) => {
         email: request.email,
         cell: request.cell,
         state: request.state,
-        trolley: request.trolley,
         password: request.password,
         role: request.role,
+        //trolley: request.trolley,
     }
 }
 module.exports = { clientDto }
