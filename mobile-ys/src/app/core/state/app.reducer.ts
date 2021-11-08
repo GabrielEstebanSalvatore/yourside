@@ -12,7 +12,7 @@ const initialState: State = {
   errorMessage: '',
   hasError: false,
   client: {
-    id: null,
+    _id: null,
     address: null,
     cell: null,
     email: null,

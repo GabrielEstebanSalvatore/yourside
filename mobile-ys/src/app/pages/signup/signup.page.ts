@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { MenuController } from '@ionic/angular'
 import { Subscription } from 'rxjs'
 import { RegisterRequest } from 'src/app/core/requests/register.request'
 import { AuthService } from 'src/app/core/services/auth.service'
@@ -15,7 +16,7 @@ export class SignupPage implements OnInit, OnDestroy {
     private subscriptions = new Subscription()
     cliente: ClientModel
 
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(private authService: AuthService, private router: Router, private menu: MenuController) {
         this.cliente = {
             name: '',
             address: '',
@@ -31,6 +32,10 @@ export class SignupPage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {}
+    
+    togglemenu = () => {
+        this.menu.toggle()
+    }
 
     createRequest(): RegisterRequest {
         return {

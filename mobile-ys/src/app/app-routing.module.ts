@@ -27,15 +27,28 @@ const routes: Routes = [
         loadChildren: () =>
             import('./pages/signup/signup.module').then((m) => m.SigninPageModule),
     },
-  {
-    path: 'cart',
-    loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
-  },
-  {
+    {
+        path: 'receipt',
+        loadChildren: () => 
+            import('./pages/receipt/receipt.module').then( m => m.ReceiptPageModule)
+    },
+    {
+        path: 'cart',
+        loadChildren: () => 
+            import('./pages/cart/cart.module').then( m => m.CartPageModule)
+    },
+    {
         path: 'profile',
         loadChildren: () => 
             import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+    },
+    {
+        path: 'receipt-details',
+        loadChildren: () =>
+            import('./pages/receipt-details/receipt-details.module').then( m => m.ReceiptDetailsPageModule)
     }
+
+
 ]
 
 @NgModule({

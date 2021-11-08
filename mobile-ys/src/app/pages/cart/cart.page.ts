@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartPage implements OnInit {
 
-  constructor() { }
+  constructor( private menu: MenuController) { }
 
   ngOnInit() {
+  }
+
+  togglemenu = () => {
+    this.menu.toggle()
   }
 
 }

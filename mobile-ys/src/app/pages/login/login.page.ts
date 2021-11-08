@@ -6,6 +6,7 @@ import { AuthRequest } from 'src/app/core/requests/auth.request'
 import { Store } from '@ngrx/store'
 import * as Auth from 'src/app/core/state/app.action'
 import { AppState } from '@capacitor/app'
+import { MenuController } from '@ionic/angular'
 
 @Component({
     selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginPage implements OnInit, OnDestroy {
     private subscriptions = new Subscription()
     client: any;
     
-    constructor(private authService: AuthService, private router: Router, private store : Store<AppState>) {
+    constructor(private authService: AuthService, private router: Router, private store : Store<AppState>, private menu: MenuController) {
         this.client = {
             email: '',
             password: '',
@@ -27,6 +28,10 @@ export class LoginPage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {}
+    
+    togglemenu = () => {
+        this.menu.toggle()
+      }
 
     createRequest(): AuthRequest {
         return {
