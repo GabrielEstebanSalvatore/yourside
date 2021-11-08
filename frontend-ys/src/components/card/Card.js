@@ -1,7 +1,7 @@
 import React from 'react'
 import { Animated } from 'react-animated-css'
 
-const Card = ({ title, path, onClick, onClickImg }) => {
+const Card = ({ title, path, onClick, onClickImg, type }) => {
     return (
         <Animated isVisible={true}>
             <div className="card_product">
@@ -19,7 +19,7 @@ const Card = ({ title, path, onClick, onClickImg }) => {
                 </div>
                 <div className="card_product_body">
                     <h5>{title}</h5>
-                    <p>Some quick example .</p>
+                    <p>Rubro: {type}</p>
                 </div>
             </div>
         </Animated>

@@ -6,13 +6,13 @@ import ContainerGeneral from '../../components/containergeneral'
 
 const ReceiptAdminContainer = () => {
     const appContext = useContext(AppContext)
-    const { showModal, traerComprobantes, client, comprobantes } = appContext
+    const { showModal, traerComprobantesAdmin, client, comprobantes } = appContext
 
     let contador = 0
 
     useEffect(() => {
-        traerComprobantes(client)
-        // eslint-disable-next-line
+        traerComprobantesAdmin(client)
+        console.log(comprobantes)
     }, [])
 
     return (

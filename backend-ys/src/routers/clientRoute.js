@@ -28,4 +28,8 @@ router.delete('/clients/:id', async (req, res) => {
     await clientController.remove(req, res)
 })
 
+router.put('/trolley/removeitem', async (req, res) => {
+    await clientController.removeItemTrolley(req, res)
+})
+
 module.exports = router

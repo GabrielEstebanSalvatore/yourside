@@ -32,10 +32,10 @@ const clientSchema = new Schema({
         default: 1,
         required: true,
     },
-    trolley: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Trolley',
-    },
+    // trolley: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Trolley',
+    // },
     password: {
         type: String,
         required: true,
