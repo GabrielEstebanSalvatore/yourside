@@ -15,7 +15,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store'
 import {  StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { appReducer } from './core/state/app.reducer';
 import { AppEffects } from './core/state/app.effects'
-import { ClientApi } from './shared/api/client.api'
+import { ClientApi } from './shared/api/client.api';
 
 
 @NgModule({

@@ -41,7 +41,13 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => 
             import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+    },
+    {
+        path: 'receipt-details',
+        loadChildren: () =>
+            import('./pages/receipt-details/receipt-details.module').then( m => m.ReceiptDetailsPageModule)
     }
+
 
 ]
 

@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { ReceiptPageRoutingModule } from './receipt-routing.module';
 import { ReceiptPage } from './receipt.page';
 import { ReceiptApi } from 'src/app/shared/api/receipt.api';
+import { ReceiptDetailsPage } from '../receipt-details/receipt-details.page';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { ReceiptApi } from 'src/app/shared/api/receipt.api';
     ReceiptPageRoutingModule
   ],
   declarations: [ReceiptPage],
-  providers : [ReceiptApi]
+  providers : [ReceiptApi],
+  entryComponents:[ReceiptDetailsPage]
 })
 export class ReceiptPageModule {}

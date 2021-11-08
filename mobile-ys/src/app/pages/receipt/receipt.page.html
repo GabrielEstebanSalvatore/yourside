@@ -11,7 +11,7 @@
             <tr>
                 <th>N°</th>
                 <th>Nombre</th>
-                <th>Email</th>
+                <th class="hidden-md">Email</th>
                 <th>Importe</th>
                 <th>Fecha</th>
                 <th></th>
@@ -21,15 +21,16 @@
           <tr>
               <td>{{i+1}}</td>
               <td>{{client.name}}</td>  
-              <td>{{client.email}}</td>          
+              <td class="hidden-md">{{client.email}}</td>          
               <td>${{item.price}}</td>  
-              <td>{{item.date}}</td> 
-              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getReceiptDetail(item.id)">
+              <td >{{item.date.toString().split("T")[0]}}</td> 
+              <td><ion-button (click)="getReceiptDetail(item._id)">
                   + Mas Info
-                </button>
+                </ion-button>
               </td>            
           </tr>
       </tbody>
     </table>
-    </div>
+  </div>
 </ion-content>
+

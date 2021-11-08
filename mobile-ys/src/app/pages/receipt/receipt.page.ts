@@ -6,6 +6,8 @@ import { ReceiptApi } from 'src/app/shared/api/receipt.api';
 import { UserRoleEnum } from 'src/app/shared/enums/user-role.enum';
 import { ClientModel } from 'src/app/shared/models/client.model';
 import { ReceiptModel } from 'src/app/shared/models/receipt.model';
+import { ReceiptDetailsPage } from '../receipt-details/receipt-details.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-receipt',
@@ -16,8 +18,9 @@ export class ReceiptPage implements OnInit {
   private subscriptions = new Subscription();
   receipts: ReceiptModel [];
   client: ClientModel;
+  receiptSelected: ReceiptModel;
 
-  constructor(private receiptApi: ReceiptApi, private store: Store<AppState>) { 
+  constructor(private receiptApi: ReceiptApi, private store: Store<AppState>, private modalController: ModalController) { 
     this.client = {
       _id: 0,
       name: '',
@@ -37,7 +40,6 @@ export class ReceiptPage implements OnInit {
   ngOnInit() {
     this.getClient()
     this.getReceipts()
-    console.log(this.client._id)
   }
 
   getReceipts = () =>{
@@ -47,7 +49,7 @@ export class ReceiptPage implements OnInit {
               console.error(error)
           },
           next: (receipts) => {
-              this.receipts = receipts
+            this.receipts = receipts.response
           },
       })
     )
@@ -58,8 +60,19 @@ export class ReceiptPage implements OnInit {
   }
   
 
-  getReceiptDetail = (id: number) => {
+  getReceiptDetail = async (id:number) => {
+    this.receiptSelected = this.receipts.filter(item=> item._id== id)[0];
+    console.log(this.receiptSelected)
 
+    const modal = await this.modalController.create({
+      component: ReceiptDetailsPage,
+      cssClass: 'my-custom-class',
+      componentProps:{
+        'receipt': this.receiptSelected
+      }
+    });
+    return await modal.present();
+     
+    
   }
-
 }

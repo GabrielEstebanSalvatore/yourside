@@ -1,7 +1,7 @@
 import { ClientModel } from "./client.model";
 
 export interface ReceiptModel {
-    id? : number
+    _id? : number
     number : number
     date : Date
     state : number
