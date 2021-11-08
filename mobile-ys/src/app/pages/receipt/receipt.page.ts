@@ -7,7 +7,8 @@ import { UserRoleEnum } from 'src/app/shared/enums/user-role.enum';
 import { ClientModel } from 'src/app/shared/models/client.model';
 import { ReceiptModel } from 'src/app/shared/models/receipt.model';
 import { ReceiptDetailsPage } from '../receipt-details/receipt-details.page';
-import { ModalController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { ReceiptDetailtApi } from 'src/app/shared/api/receiptDetail.api';
 
 @Component({
   selector: 'app-receipt',
@@ -18,9 +19,9 @@ export class ReceiptPage implements OnInit {
   private subscriptions = new Subscription();
   receipts: ReceiptModel [];
   client: ClientModel;
-  receiptSelected: ReceiptModel;
+  receiptDetail: ReceiptModel;
 
-  constructor(private receiptApi: ReceiptApi, private store: Store<AppState>, private modalController: ModalController) { 
+  constructor(private receiptApi: ReceiptApi, private store: Store<AppState>, private modalController: ModalController, private menu: MenuController, private receiptDetailApi : ReceiptDetailtApi) { 
     this.client = {
       _id: 0,
       name: '',
@@ -42,6 +43,10 @@ export class ReceiptPage implements OnInit {
     this.getReceipts()
   }
 
+  togglemenu = () => {
+    this.menu.toggle()
+  }
+  
   getReceipts = () =>{
     this.subscriptions.add(
       this.receiptApi.getReceiptsByClient(this.client._id).subscribe({
@@ -61,18 +66,27 @@ export class ReceiptPage implements OnInit {
   
 
   getReceiptDetail = async (id:number) => {
-    this.receiptSelected = this.receipts.filter(item=> item._id== id)[0];
-    console.log(this.receiptSelected)
+
+    console.log(id)
+    this.subscriptions.add(
+      this.receiptDetailApi.get(id).subscribe({
+          error: (error: any) => {
+              console.error(error)
+          },
+          next: (response: any) => {
+            this.receiptDetail = response
+          },
+      })
+    )
 
     const modal = await this.modalController.create({
       component: ReceiptDetailsPage,
       cssClass: 'my-custom-class',
       componentProps:{
-        'receipt': this.receiptSelected
+        'receipt': this.receiptDetail
       }
     });
     return await modal.present();
      
-    
   }
 }

@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ReceiptModel } from 'src/app/shared/models/receipt.model';
-//import { ReceiptDetailModel } from 'src/app/shared/models/receiptDetails.model';
+import { ReceiptDetailModel } from 'src/app/shared/models/receiptDetails.model';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,7 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./receipt-details.page.scss'],
 })
 export class ReceiptDetailsPage implements OnInit {
-  @Input() receipt: ReceiptModel
+  @Input() receiptDetail: ReceiptDetailModel
   receiptDetails: any
   articlesDetail : any
   image_Path : string
@@ -27,8 +26,7 @@ export class ReceiptDetailsPage implements OnInit {
    }
 
   ngOnInit() {
-    this.receiptDetails = this.receipt.receiptDetail
-    this.articlesDetail = this.receiptDetails.articles
+    this.articlesDetail = this.receiptDetail.articles
   }
 
   closeModal = () =>{

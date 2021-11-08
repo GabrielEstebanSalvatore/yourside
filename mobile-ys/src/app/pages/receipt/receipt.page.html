@@ -1,6 +1,14 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Receipts</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/'></ion-back-button>
+    </ion-buttons>
+      <ion-buttons slot="end" color="light">
+          <ion-button (click)='togglemenu()'>
+              <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title>Receipts</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +32,7 @@
               <td class="hidden-md">{{client.email}}</td>          
               <td>${{item.price}}</td>  
               <td >{{item.date.toString().split("T")[0]}}</td> 
-              <td><ion-button (click)="getReceiptDetail(item._id)">
+              <td><ion-button (click)="getReceiptDetail(item.id)">
                   + Mas Info
                 </ion-button>
               </td>            

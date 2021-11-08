@@ -5,7 +5,7 @@ import { ReceiptModel } from '../models/receipt.model'
 @Injectable({
     providedIn: 'root',
 })
-export class ReceipDetailtApi extends BaseApi<ReceiptModel> {
+export class ReceiptDetailtApi extends BaseApi<ReceiptModel> {
     constructor(networkService: NetworkService) {
         super(networkService)
         this.apiEndpoint = 'receiptsdetail'
