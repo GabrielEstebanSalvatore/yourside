@@ -18,20 +18,11 @@ const ListReceipt = () => {
     const clientContext = useContext(ClientContext)
     const { client } = clientContext
 
-    // const [localState, setLocalState] = useState({
-    //     modalView: 'Recibo',
-    //     showModal: true,
-    // })
-
     useEffect(() => {
         traerComprobantes(client)
 
         // eslint-disable-next-line
     }, [])
-
-    // const [pagination] = useState({
-    //     bottom: 'bottomCenter',
-    // })
 
     const [buscar] = useState({
         searchText: '',
@@ -47,9 +38,6 @@ const ListReceipt = () => {
         }) => (
             <div style={{ padding: 8 }}>
                 <Input
-                    /*ref={node => {
-                      this.searchInput = node;
-                    }}*/
                     placeholder={`Search ${dataIndex}`}
                     value={selectedKeys[0]}
                     onChange={(e) =>
@@ -153,9 +141,9 @@ const ListReceipt = () => {
     ]
 
     const getRow = () => {
-        return comprobantes.map((comprobante, i) => {
+        return comprobantes.map((comprobante) => {
             return {
-                key: comprobante.receiptDetail._id,
+                key: comprobante.receiptDetail,
                 name: comprobante.number,
                 client: comprobante.client.name,
                 email: comprobante.client.email,
@@ -168,7 +156,7 @@ const ListReceipt = () => {
     const onClickEliminar = (id) => {
         Swal.fire({
             title: '¿Estas seguro?',
-            text: '!Si eliminas la localidad, sera dada de baja!',
+            text: '!Si eliminas el recibo, sera dada de baja!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
