@@ -37,8 +37,8 @@ export class ProfilePage implements OnInit {
   editClient = () => {
     this.store.dispatch(new ChangeProfile(this.cliente))
   }
-
+/*
   togglemenu = () => {
     this.menu.toggle()
-  }
+  }*/
 }

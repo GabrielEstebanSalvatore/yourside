@@ -3,12 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref='/'></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end" color="light">
+    <ion-buttons slot="end" color="purple">
       <ion-button (click)='togglemenu()'>
-          <ion-icon slot="icon-only" name="menu"></ion-icon>
+          <ion-icon color="purple" slot="icon-only" name="menu"></ion-icon>
       </ion-button>
   </ion-buttons>
-    <ion-title>Cart</ion-title>
+    <ion-title>Carrito</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,7 +26,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-title style="margin: 5px 0;">Total: ${{ trolley.total }}</ion-title>
-    <div><ion-button style="display: block;" color="danger" size="medium" *ngIf="trolley.articles.length !== 0" (click)="sendBuy()">BUY</ion-button></div>
+    <div><ion-button style="display: block;" color="danger" size="medium" *ngIf="trolley.articles.length !== 0" (click)="sendBuy()">Finalizar compra</ion-button></div>
   </ion-toolbar>
 </ion-footer>
 

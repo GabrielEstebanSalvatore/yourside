@@ -107,7 +107,7 @@ export class HomePage implements OnInit, OnDestroy {
             this.trolley.articles.push(article);
             await this.trolleyUdatePrice()
         } else {
-            this.showToast('You must be logged in', 1500);
+            this.showToast('Tienes que estar logueado', 1500);
             this.router.navigate(['/login']);
         }
         this.setLocalStore()

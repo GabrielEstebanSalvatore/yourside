@@ -1,8 +1,8 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
-        <ion-buttons class="menu" slot="end" color="light">
+        <ion-buttons class="menu" slot="end">
             <ion-button (click)='togglemenu()'>
-                <ion-icon slot="icon-only" name="menu"></ion-icon>
+                <ion-icon color="purple" slot="icon-only" name="menu"></ion-icon>
             </ion-button>
         </ion-buttons>
         <ion-title>Inicio</ion-title>
@@ -24,17 +24,18 @@
         <ion-slides style="padding: 10px 0;" pager='true' [options]="slideOpts">
             <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px; border: 1px solid #954e98; margin-right: 10px;"
                 *ngFor='let article of articlesWithOffer; let i = index'>
-                <ion-title style="color: black;">OFffers!</ion-title>
+                <ion-title style="color: black;">¡Ofertas!</ion-title>
                 <ion-img class="image" src="{{image_Path + article.image}}" [routerLink]="['/article-detail', article.id]"></ion-img>
                 <ion-text style="color: black;">{{article.description}}</ion-text>
                     <div><ion-label color='medium' style="text-decoration: line-through;">$ {{article.sellPrice}}</ion-label></div>
                     <div><ion-label color='primary' style="font-size: 150%;">${{article.sellPriceOffer}}</ion-label></div>
-                <ion-button style="padding: 0 25px; " color='purple' (click)="trolleyAddItem(this.article)">Add to Cart</ion-button>
+                <ion-button style="padding: 0 25px; " color='purple' (click)="trolleyAddItem(this.article)">Agregar al carrito</ion-button>
             </ion-slide>
         </ion-slides>
       
-      <ion-title size="large">Products</ion-title>
-      <div style="margin-top: 40px;">
+
+      <div>
+        <ion-title style='margin: 20px 0;' size="large">Productos</ion-title>
         <ion-card *ngFor="let article of articles">
           <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
           <ion-card-title>{{article.description}}</ion-card-title>
@@ -42,11 +43,11 @@
             <div *ngIf='article.offer !== null'>
               <ion-label color='medium' style="text-decoration: line-through;">$ {{article.sellPrice}}</ion-label>
               <div style="display: block;"><ion-label color='primary'style="font-size: 150%;">${{article.sellPriceOffer}}</ion-label></div>
-              <ion-button color='warning' (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Add to Cart</ion-button>
+              <ion-button color='purple' (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Agregar al carrito</ion-button>
             </div>
             <div *ngIf='article.offer === null'>
               <ion-label color='primary'><h1>$ {{article.sellPrice}}</h1></ion-label>
-              <ion-button color='purple' (click)="trolleyAddItem(this.article, this.article.sellPrice)">Add to Cart</ion-button>
+              <ion-button color='purple' (click)="trolleyAddItem(this.article, this.article.sellPrice)">Agregar al carrito</ion-button>
             </div>        
             </ion-card-content>
         </ion-card>

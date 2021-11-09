@@ -32,10 +32,10 @@ export class SignupPage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {}
-    
+    /*
     togglemenu = () => {
         this.menu.toggle()
-    }
+    }*/
 
     createRequest(): RegisterRequest {
         return {

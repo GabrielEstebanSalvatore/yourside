@@ -3,7 +3,7 @@
     <ion-buttons slot="start" >
       <ion-back-button defaultHref='/'></ion-back-button>
     </ion-buttons>
-    <ion-title>User Profile</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +18,6 @@
   <div class="card-body">
     <div class="user-meta">
       <div class="container">
-
         <ion-item>
           <ion-input name="name" type="text" [(ngModel)]='cliente.name' required></ion-input>
         </ion-item>
@@ -31,7 +30,7 @@
         <ion-item>
           <ion-input name="cel" type="text" [(ngModel)]='cliente.cell' required></ion-input>
         </ion-item>
-        <ion-button color='warning' (click)="editClient()">Edit Profile</ion-button>
+        <ion-button style="margin: 20px 0;" color='purple' (click)="editClient()">Editar perfil</ion-button>
       </div>
     </div>
    </div>   

@@ -28,10 +28,10 @@ export class LoginPage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {}
-    
+    /*
     togglemenu = () => {
         this.menu.toggle()
-      }
+      }*/
 
     createRequest(): AuthRequest {
         return {

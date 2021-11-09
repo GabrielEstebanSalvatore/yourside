@@ -36,23 +36,23 @@ export class CartPage implements OnInit {
 
   async showToast(message: string, duration: number = 1000) {
     const toast = await this.toastController.create({
-        message: message,
-        duration: duration,
-        position: 'bottom'
+      message: message,
+      duration: duration,
+      position: 'bottom'
     });
     toast.present();
-}
+  }
 
   trolleyRemoveItem(index: number): void {
     this.trolley.articles.splice(index, 1)
     this.trolleyUdatePrice()
     this.setLocalStore();
-    
+
     if (this.trolley.articles.length == 0) {
-      this.showToast('The cart is empty')
+      this.showToast('El carrito esta vacio')
       this.router.navigate(['/home'])
     } else {
-      this.showToast('Item removed')
+      this.showToast('Articulo eliminado')
     }
   }
 
@@ -77,7 +77,7 @@ export class CartPage implements OnInit {
   }
 
   sendBuy() {
-    this.showToast('Purchase completed', 2000)    
+    this.showToast('Compra completada', 2000)
     this.trolley.total = 0
     this.trolley.articles = []
     /*localStorage.removeItem('trolley')*/
