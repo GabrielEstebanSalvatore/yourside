@@ -115,23 +115,23 @@ const ListReceiptAdmin = () => {
         { ...buscarDatoTabla('date') },
         { title: 'Total', dataIndex: 'price' },
 
-        {
-            title: 'Acciones',
-            key: 'actions',
-            render: (text, record) => (
-                <div className="actions_table">
-                    <i>
-                        <DeleteOutlined
-                            onClick={() => onClickEliminar(record.key)}
-                            style={{ color: 'red' }}
-                        />
-                    </i>
-                    {/* <i>
-                        <EditOutlined onClick={(e) => setShowModalReciboAdmin(record)} style={{color: 'blue'}}/>
-                    </i> */}
-                </div>
-            ),
-        },
+        // {
+        //     title: 'Acciones',
+        //     key: 'actions',
+        //     render: (text, record) => (
+        //         <div className="actions_table">
+        //             {/* <i>
+        //                 <DeleteOutlined
+        //                     onClick={() => onClickEliminar(record.key)}
+        //                     style={{ color: 'red' }}
+        //                 />
+        //             </i> */}
+        //             {/* <i>
+        //                 <EditOutlined onClick={(e) => setShowModalReciboAdmin(record)} style={{color: 'blue'}}/>
+        //             </i> */}
+        //         </div>
+        //     ),
+        // },
     ]
 
     //ARMAR LA TABLA
