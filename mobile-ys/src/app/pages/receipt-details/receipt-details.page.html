@@ -12,18 +12,19 @@
     <table class='table table-white'>
         <thead class='thead-dark'>
             <tr>
-                <th>Imagen</th>
+                <!-- <th>Imagen</th> -->
                 <th>Descripcion</th>
                 <th>Importe</th>
             </tr>
         </thead>
         <tbody *ngFor='let item of articlesDetail; let i = index'>
           <tr>
-              <td><img src="{{image_Path +item.image}}" alt="Detalle" width="30px" height="30px"></td>  
+              <!-- <td><img src="{{image_Path +item.image}}" alt="Detalle" width="30px" height="30px"></td>   -->
               <td >{{item.description}}</td>        
               <td>${{item.sellPrice}}</td>            
           </tr>
       </tbody>
     </table>
+    <p style="text-align: right; font-weight: bold; margin-right: 20px;">Total: {{totalDetalle | currency}}</p>
   </div>
 </ion-content>

@@ -29,17 +29,24 @@ export class HomePage implements OnInit, OnDestroy {
         available: true,
         date: Date.now().toString(),
         total: 0,
-        articles: []
+        articles: [],
     }
 
     image_Path: string
 
     slideOpts = {
         initialSlide: 0,
-        speed: 400
+        speed: 400,
     }
 
-    constructor(private menu: MenuController, private articleApi: ArticleApi, private offerApi: OfferApi, private authService: AuthService, private store: Store<AppState>, private toastController: ToastController) {
+    constructor(
+        private menu: MenuController,
+        private articleApi: ArticleApi,
+        private offerApi: OfferApi,
+        private authService: AuthService,
+        private store: Store<AppState>,
+        private toastController: ToastController
+    ) {
         this.image_Path = environment.HOST_API
     }
     ngOnDestroy(): void {
@@ -51,7 +58,7 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (localStorage.getItem("token")) this.getClient()
+        if (localStorage.getItem('token')) this.getClient()
         this.getArticles()
         this.getOffers()
     }
@@ -64,14 +71,16 @@ export class HomePage implements OnInit, OnDestroy {
                 },
                 next: (articles) => {
                     this.articles = articles
-                    this.articlesWithOffer = this.articles.filter((article) => article.offer !== null);
+                    this.articlesWithOffer = this.articles.filter(
+                        (article) => article.offer !== null
+                    )
                 },
             })
         )
     }
 
     getOffers(): void {
-        console.log(this.articlesWithOffer)
+        // console.log(this.articlesWithOffer)
     }
 
     getClient(): void {
@@ -82,26 +91,28 @@ export class HomePage implements OnInit, OnDestroy {
         const toast = await this.toastController.create({
             message: `${articleName} added to cart`,
             duration: 1000,
-            position: 'bottom'
-        });
-        toast.present();
+            position: 'bottom',
+        })
+        toast.present()
     }
 
     trolleyAddItem(article: ArticleModel, price: number): void {
-        this.trolley.articles.push(article);
-        this.trolley.total += price;
+        this.trolley.articles.push(article)
+        this.trolley.total += price
 
         console.log(this.trolley)
     }
 
     trolleyRemoveItem(article: ArticleModel, price: number): void {
-        this.trolley.articles = this.trolley.articles.filter((item) => item.id !== article.id)
+        this.trolley.articles = this.trolley.articles.filter(
+            (item) => item.id !== article.id
+        )
         this.trolley.total -= price
 
         console.log(this.trolley)
     }
-    
+
     openTrolley() {
-        console.log("send")
+        console.log('send')
     }
 }
