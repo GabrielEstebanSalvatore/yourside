@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/core/services/auth.service'
 import { AppState } from '@capacitor/app'
 import { ToastController } from '@ionic/angular'
 import { TrolleyModel } from 'src/app/shared/models/trolley.model'
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'app-home',
@@ -27,7 +28,7 @@ export class HomePage implements OnInit, OnDestroy {
         id: null,
         client: null,
         available: true,
-        date: Date.now().toString(),
+        date: null,
         total: 0,
         articles: [],
     }
@@ -45,10 +46,12 @@ export class HomePage implements OnInit, OnDestroy {
         private offerApi: OfferApi,
         private authService: AuthService,
         private store: Store<AppState>,
-        private toastController: ToastController
-    ) {
+         private toastController: ToastController,
+         private router: Router
+     ) {
         this.image_Path = environment.HOST_API
     }
+
     ngOnDestroy(): void {
         // this.subscriptions.unsubscribe()
     }
@@ -58,9 +61,10 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (localStorage.getItem('token')) this.getClient()
-        this.getArticles()
-        this.getOffers()
+        if (localStorage.getItem("token")) this.getClient();
+        (localStorage.getItem('trolley') === null || undefined) ? this.setLocalStore() : this.getLocalStore();
+        this.getArticles();
+        this.getOffers();
     }
 
     getArticles(): void {
@@ -70,10 +74,9 @@ export class HomePage implements OnInit, OnDestroy {
                     console.error(error)
                 },
                 next: (articles) => {
-                    this.articles = articles
-                    this.articlesWithOffer = this.articles.filter(
-                        (article) => article.offer !== null
-                    )
+                    this.articles = articles;
+                    this.articlesWithOffer = articles.filter(
+                      (article) => article.offer !== null);
                 },
             })
         )
@@ -87,32 +90,52 @@ export class HomePage implements OnInit, OnDestroy {
         this.store.dispatch(new Auth.GetAuthenticatedClient())
     }
 
-    async openToast(articleName: string = 'Article') {
+    async showToast(message: string, duration: number = 1000) {
         const toast = await this.toastController.create({
-            message: `${articleName} added to cart`,
-            duration: 1000,
-            position: 'bottom',
-        })
-        toast.present()
+            message: message,
+            duration: duration,
+            position: 'bottom'
+        });
+        toast.present();
     }
 
-    trolleyAddItem(article: ArticleModel, price: number): void {
-        this.trolley.articles.push(article)
-        this.trolley.total += price
+    async trolleyAddItem(article: ArticleModel): Promise<void> {
+        if (localStorage.getItem('trolley') === null || undefined) this.trolley.articles = [];
+        console.log(article)
+        if (this.authService.loggedIn()) {
+            this.showToast(`${article.name} added to cart`);
+            this.trolley.articles.push(article);
+            await this.trolleyUdatePrice()
+        } else {
+            this.showToast('Tienes que estar logueado', 1500);
+            this.router.navigate(['/login']);
+        }
+        this.setLocalStore()
+    }
 
+    async trolleyRemoveItem(index: number): Promise<void> {
+        this.trolley.articles.slice(index,1)
+        await this.trolleyUdatePrice()
+        this.setLocalStore()
+    }
+  
+    async trolleyUdatePrice(): Promise<void> {
+        this.trolley.total = 0;
+        this.trolley.articles.forEach(e => { (e.offer === null) ? this.trolley.total += e.sellPrice : this.trolley.total += e.sellPriceOffer })
         console.log(this.trolley)
     }
 
-    trolleyRemoveItem(article: ArticleModel, price: number): void {
-        this.trolley.articles = this.trolley.articles.filter(
-            (item) => item.id !== article.id
-        )
-        this.trolley.total -= price
-
-        console.log(this.trolley)
+    setLocalStore(){
+        let {articles, total} = this.trolley;
+        localStorage.setItem('trolley', JSON.stringify({
+            articles,
+            total
+        }));
     }
 
-    openTrolley() {
-        console.log('send')
+    getLocalStore(){
+        let { articles, total } = JSON.parse(localStorage.getItem('trolley'));
+        this.trolley.articles = articles;
+        this.trolley.total = total;
     }
 }

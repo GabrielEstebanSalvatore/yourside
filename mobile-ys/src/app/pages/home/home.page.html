@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
-        <ion-buttons slot="end" color="light">
+        <ion-buttons class="menu" slot="end">
             <ion-button (click)='togglemenu()'>
                 <ion-icon slot="icon-only" name="menu"></ion-icon>
             </ion-button>
@@ -18,37 +18,40 @@
     </ion-header>
     
     <div class="container">
-        <img src="./../../../assets/logo-yourside-mobile.png" style="margin-bottom: 30px" title="Yourside" alt="Yourside" />
+      
+    <img src="./../../../assets/logo-yourside-mobile.png" style="margin-bottom: 30px" title="Yourside" alt="Yourside" />
+      
         <ion-slides style="padding: 10px 0;" pager='true' [options]="slideOpts">
-                <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px; border: 1px solid #954e98; margin-right: 10px;" *ngFor='let article of articlesWithOffer'>
-                    <ion-title style="color: black;">¡Ofertas!</ion-title>
-                    <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
-                    <ion-text style="color: black;">{{article.description}}</ion-text>
-                    <ion-title color='primary' size='medium'>$ {{article.sellPriceOffer}}</ion-title>
-                    <div style="margin-bottom: 40px;">
-                        <ion-button style="padding: 0 25px; " color='purple' (click)="openToast(this.article.name)">Ver</ion-button>
-                        <ion-button style="padding: 0 25px;" color='purple' (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Comprar</ion-button>
-                    </div>
-                    
-                </ion-slide>        
+            <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px; border: 1px solid #954e98; margin-right: 10px;"
+                *ngFor='let article of articlesWithOffer; let i = index'>
+                <ion-title style="color: black;">¡Ofertas!</ion-title>
+                <ion-img class="image" src="{{image_Path + article.image}}" [routerLink]="['/article-detail', article.id]"></ion-img>
+                <ion-text style="color: black;">{{article.description}}</ion-text>
+                    <div><ion-label color='medium' style="text-decoration: line-through;">$ {{article.sellPrice}}</ion-label></div>
+                    <div><ion-label color='primary' style="font-size: 150%;">${{article.sellPriceOffer}}</ion-label></div>
+                <ion-button style="padding: 0 25px; " color='purple' (click)="trolleyAddItem(this.article)">Agregar al carrito</ion-button>
+            </ion-slide>
         </ion-slides>
-        <div style="margin-top: 40px;">
-            <ion-title size="large">Artículos</ion-title>
-            
-            <ion-card style="margin-bottom: 20px;" *ngFor="let article of articles">
-                <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
-                <ion-card-title>{{article.description}}</ion-card-title>
-                <ion-card-content>
-                    <ion-label color='primary'>
-                        <h1>$ {{article.sellPrice}}</h1>
-                    </ion-label>
-                    <ion-button color='purple' (click)="trolleyAddItem(this.article, this.article.sellPrice)">Comprar
-                    </ion-button>
-                </ion-card-content>
-            </ion-card>
-        </div>
-       
+      
 
-    </div>
+      <div>
+        <ion-title style='margin: 20px 0;' size="large">Productos</ion-title>
+        <ion-card *ngFor="let article of articles">
+          <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
+          <ion-card-title>{{article.description}}</ion-card-title>
+          <ion-card-content>
+            <div *ngIf='article.offer !== null'>
+              <ion-label color='medium' style="text-decoration: line-through;">$ {{article.sellPrice}}</ion-label>
+              <div style="display: block;"><ion-label color='primary'style="font-size: 150%;">${{article.sellPriceOffer}}</ion-label></div>
+              <ion-button color='purple' (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Agregar al carrito</ion-button>
+            </div>
+            <div *ngIf='article.offer === null'>
+              <ion-label color='primary'><h1>$ {{article.sellPrice}}</h1></ion-label>
+              <ion-button color='purple' (click)="trolleyAddItem(this.article, this.article.sellPrice)">Agregar al carrito</ion-button>
+            </div>        
+            </ion-card-content>
+        </ion-card>
+        </div>
+  </div>
 
 </ion-content>

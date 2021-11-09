@@ -3,34 +3,30 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref='/'></ion-back-button>
     </ion-buttons>
-  <ion-buttons slot="end" color="light">
-      <ion-button (click)='togglemenu()'>
-          <ion-icon slot="icon-only" name="menu"></ion-icon>
-      </ion-button>
-  </ion-buttons>
-    <ion-title>Signup</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="container">
+  <div style="margin: 10px 0;" class="container">
+    
     <ion-item>
-      <ion-input name="name" type="text" placeholder="Enter your Name"  [(ngModel)]='cliente.name' required></ion-input>
+      <ion-input name="name" type="text" placeholder="Ingrese su nombre"  [(ngModel)]='cliente.name' required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input name="address" type="text" placeholder="Enter your Address" [(ngModel)]='cliente.address' required></ion-input>
+      <ion-input name="address" type="text" placeholder="Ingrese su direccion" [(ngModel)]='cliente.address' required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input name="email" type="email" placeholder="your@email.com" [(ngModel)]='cliente.email' required></ion-input>
+      <ion-input name="email" type="email" placeholder="Ingresecorreo@mail.com" [(ngModel)]='cliente.email' required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input name="password" type="password" placeholder="Enter a password" [(ngModel)]='cliente.password' required></ion-input>
+      <ion-input name="password" type="password" placeholder="Ingrese su contraseña" [(ngModel)]='cliente.password' required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input name="cel" type="text" placeholder="Enter your phones number" [(ngModel)]='cliente.cell' required></ion-input>
+      <ion-input name="cel" type="text" placeholder="Ingrese su numero de telefono" [(ngModel)]='cliente.cell' required></ion-input>
     </ion-item>
   
-    <ion-button (click)="createClient()">Submit</ion-button>
+    <ion-button style="margin: 10px 0;" color="purple" (click)="createClient()">Registrarse</ion-button>
 
   </div>
 </ion-content>

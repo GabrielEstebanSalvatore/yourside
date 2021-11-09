@@ -1,54 +1,54 @@
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <ion-app>
+  <ion-menu-toggle>
     <ion-menu side="end" menuId="first" contentId="main">
-        <ion-header>
-          <ion-toolbar color="light dark">
-              <ion-buttons slot="end">
-                  <ion-menu-button></ion-menu-button>
-              </ion-buttons>
-            <ion-title>Menú Principal</ion-title>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content>
-          <ion-list>
-            <ion-item [routerLink]="['/profile']">
-              <ion-icon name="person-circle"></ion-icon>
-              <span>Profile</span>
-            </ion-item>
-            <ion-item [routerLink]="['/cart']">
-              <ion-icon name="bag-handle"></ion-icon>
-              <!--<i class='bx bx-cart-alt' ></i> -->
-              <span class="links_name">Shop Cart</span>
-              </ion-item>
-            <ion-item [routerLink]="['/receipt']">
-              <ion-icon name="folder"></ion-icon>
-              <span>Receipt</span>
-            </ion-item> 
-          </ion-list>
-        </ion-content>
-        <ion-footer >
-          <div *ngIf="!this.authService.loggedIn()">
-            <ion-item >
-              <ion-buttons>
-                <ion-button [routerLink]="['/login']">
-                  LogIn
-                </ion-button>
-                <ion-button [routerLink]="['/signup']"expand="block" fill="outline">
-                  SignUp
-                </ion-button>
-              </ion-buttons>
-            </ion-item>
-          </div>
-          <div *ngIf="this.authService.loggedIn()">
-            <ion-item>
-              <ion-buttons>
-                <ion-button (click)="logOut()">
-                  LogOut
-                </ion-button>
-              </ion-buttons>
-            </ion-item>
-          </div>
-        </ion-footer>
-      </ion-menu>
-    <ion-router-outlet id="main" style="background-color: red;"></ion-router-outlet>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item [routerLink]="['/profile']">
+            <ion-icon style="margin-right: 10px;" size="large" name="person-circle"></ion-icon>
+            <span>Perfil</span>
+          </ion-item>
+          <ion-item [routerLink]="['/cart']">
+            <ion-icon style="margin-right: 10px;" size="large" name="bag-handle"></ion-icon>
+            <!--<i class='bx bx-cart-alt' ></i> -->
+            <span>Carrito</span>
+          </ion-item>
+          <ion-item>
+            <ion-icon style="margin-right: 10px;" size="large" name="document"></ion-icon>
+            <span>Tickets</span>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+      <ion-footer>
+        <div *ngIf="!this.authService.loggedIn()">
+          <ion-item>
+            <ion-buttons>
+              <ion-button color="primary" [routerLink]="['/login']">
+                Ingresar
+              </ion-button>
+              <ion-button color="primary" [routerLink]="['/signup']" expand="block" fill="outline">
+                Registrarse
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </div>
+        <div *ngIf="this.authService.loggedIn()">
+          <ion-item>
+            <ion-buttons>
+              <ion-button color="danger" (click)="logOut()">
+                Salir
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </div>
+      </ion-footer>
+    </ion-menu>
+  </ion-menu-toggle>
+  <ion-router-outlet id="main">
+  </ion-router-outlet>
 </ion-app>
