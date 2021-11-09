@@ -10,10 +10,11 @@ const ArticleList = () => {
     const { sacarArticuloCarrito } = appContext
 
     const clientContext = useContext(ClientContext)
-    const { trolley } = clientContext
+    const { trolley, client, authenticatedClient } = clientContext
 
-    const deleteArticle = (id) => {
-        sacarArticuloCarrito(id)
+    const deleteArticle = (articleId) => {
+        sacarArticuloCarrito(client.trolley._id, articleId)
+        authenticatedClient()
     }
 
     const columns = [
@@ -51,7 +52,7 @@ const ArticleList = () => {
     const onClickDelete = (id) => {
         Swal.fire({
             title: '¿Estas seguro?',
-            text: '!Si eliminas la localidad, sera dada de baja!',
+            text: '!Si eliminas el artículo, será dado de baja!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -63,7 +64,7 @@ const ArticleList = () => {
                 deleteArticle(id)
                 Swal.fire(
                     'Eliminado!',
-                    'La localidad se eliminó correctamente.',
+                    'El artículo se eliminó correctamente.',
                     'success'
                 )
             }

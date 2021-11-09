@@ -4,6 +4,7 @@ const { clientInputDto } = require('./../models/client/DTOs/clientInputDto')
 const ObjectId = require('mongoose').Types.ObjectId
 const { validationResult } = require('express-validator')
 const Trolley = require('../models/trolley/trolleyModel')
+const Article = require('../models/article/articleModel')
 const bcryptjs = require('bcryptjs')
 
 class ClientService {
@@ -71,10 +72,10 @@ class ClientService {
         const newClient = new Client(input)
 
         // crea el nuevo carrito
-        const clienteTrolley = new Trolley()
-        await clienteTrolley.save()
+        // const clienteTrolley = new Trolley()
+        // await clienteTrolley.save()
 
-        newClient.trolley = clienteTrolley._id
+        // newClient.trolley = clienteTrolley._id
         // Hashear el password
         const salt = await bcryptjs.genSalt(10)
         newClient.password = await bcryptjs.hash(input.password, salt)
@@ -161,34 +162,73 @@ class ClientService {
             },
         }
     }
-    static updateTrolley = async (req) => {
-        let client = req.body.client
-        const trolley = await Trolley.findByIdAndUpdate(
-            { _id: client.trolley._id },
-            { articles: [] }
-        )
-        return {
-            status: 200,
-            content: {
-                ok: true,
-                message: `The trolley was updated`,
-            },
-        }
-    }
-    static addToTrolley = async (req) => {
-        const trolley = await Trolley.findOneAndUpdate(
-            {
-                _id: req.body.client.trolley._id,
-            },
-            { $push: { articles: req.body.article.id } }
-        )
-        return {
-            status: 200,
-            content: {
-                ok: true,
-                message: `The trolley was updated`,
-            },
-        }
-    }
+    // static removeItemTrolley = async (trolleyId, itemId) => {
+    //     if (!ObjectId.isValid(trolleyId) && !ObjectId.isValid(itemId)) {
+    //         return {
+    //             status: 400,
+    //             content: {
+    //                 ok: false,
+    //                 err: {
+    //                     message: 'ID incorrect',
+    //                 },
+    //             },
+    //         }
+    //     }
+    //     const trolley = await Trolley.findOneAndUpdate(
+    //         {
+    //             _id: trolleyId,
+    //         },
+    //         { $pull: { articles: itemId } }
+    //     )
+    //     if (!trolley) {
+    //         return {
+    //             status: 404,
+    //             content: {
+    //                 ok: false,
+    //                 err: {
+    //                     message: 'Trolley not found',
+    //                 },
+    //             },
+    //         }
+    //     }
+
+    //     return {
+    //         status: 200,
+    //         content: {
+    //             ok: true,
+    //             message: `The trolley was updated`,
+    //         },
+    //     }
+    // }
+    // static updateTrolley = async (req) => {
+    //     let client = req.body.client
+    //     await Trolley.findByIdAndUpdate(
+    //         { _id: client.trolley._id },
+    //         { articles: [] }
+    //     )
+    //     return {
+    //         status: 200,
+    //         content: {
+    //             ok: true,
+    //             message: `The trolley was updated`,
+    //         },
+    //     }
+    // }
+    // static addToTrolley = async (req) => {
+    //     console.log(req.body)
+    //     await Trolley.findOneAndUpdate(
+    //         {
+    //             _id: req.body.client.trolley._id,
+    //         },
+    //         { $push: { articles: req.body.article.id } }
+    //     )
+    //     return {
+    //         status: 200,
+    //         content: {
+    //             ok: true,
+    //             message: `The trolley was updated`,
+    //         },
+    //     }
+    // }
 }
 module.exports = ClientService

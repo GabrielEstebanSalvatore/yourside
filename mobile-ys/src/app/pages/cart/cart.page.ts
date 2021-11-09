@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { TrolleyModel } from 'src/app/shared/models/trolley.model';
 import { environment } from 'src/environments/environment';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cart',
@@ -81,5 +82,9 @@ export class CartPage implements OnInit {
     this.trolley.articles = []
     /*localStorage.removeItem('trolley')*/
     this.router.navigate(['/home'])
+  }
+
+  togglemenu = () => {
+    this.menu.toggle()
   }
 }

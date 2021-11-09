@@ -5,15 +5,13 @@ import { ButtonItemView } from '../../components/button'
 import { ToastContainer, toast } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css'
+
 const ArticleView = () => {
+    
     const appContext = useContext(AppContext)
     const { handleModal, currentEdit, current, articleView } = appContext
     const clientContext = useContext(ClientContext)
     const { addArticleToSesionTrolley } = clientContext
-
-    useEffect(() => {
-        // eslint-disable-next-line
-    }, [])
 
     const [localState] = useState({
         modalView: 'Pucharse',
@@ -34,27 +32,6 @@ const ArticleView = () => {
 
         await delay(2000)
         handleModal(localState.modalViewCancel, localState.showModalCancel)
-        // current({})
-        // if(trolley)
-        // {
-        //     var counter = 0;
-
-        //     articleView.amount = 0;
-
-        //     trolley.forEach(element => {
-
-        //         if(element._id == articleView._id)
-        //         {
-        //             //console.log(articleView.amount, element.amount +1 )
-        //             counter++
-        //         }
-        //     });
-
-        //     articleView.amount += counter
-
-        //     console.log('3')
-        // }
-
         addArticleToSesionTrolley(articleView)
     }
 
@@ -87,8 +64,8 @@ const ArticleView = () => {
                             <div>
                                 {' '}
                                 <h4 className="precion_ahora">
-                                    ${articleView.sellPriceOffer} (%{' '}
-                                    {articleView.offer.percent} de Descuento)
+                                    ${articleView.sellPriceOffer} 
+                                    ( {articleView.offer} % {' '} de Descuento)
                                 </h4>{' '}
                             </div>
                         ) : (
@@ -96,6 +73,7 @@ const ArticleView = () => {
                                 ${articleView.sellPrice}{' '}
                             </h4>
                         )}
+
                     </div>
                     <div className="articleView_card_icons">
                         <div>

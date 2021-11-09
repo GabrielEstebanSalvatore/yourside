@@ -34,6 +34,7 @@ const ClientState = (props) => {
                     payload: response.data,
                 })
                 authenticatedClient()
+                handleModal('', false)
             } else {
                 handleModal('MensajeRegistro', true)
                 setMessage('NO SE PUEDO CREAR EL CLIENTE!!')
@@ -75,9 +76,7 @@ const ClientState = (props) => {
                 'x-auth-token': token,
             }
             const response = await clienteAxios.get('/auth', { headers })
-            if (response.data.client[0].trolley.articles === []) {
-                response.data.client.trolley.articles = []
-            }
+
             dispatch({
                 type: ClientConstant.GET_USER,
                 payload: response.data,
@@ -88,9 +87,11 @@ const ClientState = (props) => {
             })
         }
     }
+
     useEffect(() => {
         authenticatedClient()
     }, [])
+
     const closeSesion = async () => {
         await clienteAxios.post('/clientstrolley', {
             client: state.client,
@@ -104,10 +105,10 @@ const ClientState = (props) => {
     }
 
     const addArticleToSesionTrolley = async (article) => {
-        await clienteAxios.post('/addtotrolley', {
-            client: state.client,
-            article: article,
-        })
+        // await clienteAxios.post('/addtotrolley', {
+        //     client: state.client,
+        //     article: article,
+        // })
         dispatch({
             type: ClientConstant.ADD_ARTICLE_TO_TROLLEY,
             payload: article,

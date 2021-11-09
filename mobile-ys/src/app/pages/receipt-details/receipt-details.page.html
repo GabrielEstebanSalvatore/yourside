@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Receipt Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)='closeModal()' name="close-circle"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="col-md-14 mt-5">
+    <table class='table table-white'>
+        <thead class='thead-dark'>
+            <tr>
+                <!-- <th>Imagen</th> -->
+                <th>Descripcion</th>
+                <th>Importe</th>
+            </tr>
+        </thead>
+        <tbody *ngFor='let item of articlesDetail; let i = index'>
+          <tr>
+              <!-- <td><img src="{{image_Path +item.image}}" alt="Detalle" width="30px" height="30px"></td>   -->
+              <td >{{item.description}}</td>        
+              <td>${{item.sellPrice}}</td>            
+          </tr>
+      </tbody>
+    </table>
+    <p style="text-align: right; font-weight: bold; margin-right: 20px;">Total: {{totalDetalle | currency}}</p>
+  </div>
+</ion-content>

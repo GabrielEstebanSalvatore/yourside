@@ -20,6 +20,7 @@ const AppState = (props) => {
         loadingApp: false,
         message: '',
         configuration: {},
+        comprobante: null,
     }
 
     const [state, dispatch] = useReducer(AppReducer, initialState)
@@ -63,6 +64,7 @@ const AppState = (props) => {
             setMessage('Error al crear la configuración')
         }
     }
+
     const getConfiguration = async (data) => {
         try {
             const response = await clienteAxios.get('/configuration', data)
@@ -102,6 +104,7 @@ const AppState = (props) => {
             setMessage('Error al traer el Tipo de Artículo')
         }
     }
+
     const deleteArticleType = async (tipoArticuloId) => {
         try {
             await clienteAxios.delete(`/articlestype/${tipoArticuloId}`)
@@ -249,20 +252,23 @@ const AppState = (props) => {
             setMessage('Error al eliminar el artículo')
         }
     }
-    const sacarArticuloCarrito = async (articlesId) => {
+
+    const sacarArticuloCarrito = async (trolleyId, articleId) => {
         try {
-            dispatch({
-                type: AppConstant.SACAR_CARRITO,
-                payload: articlesId,
+            await clienteAxios.put(`/trolley/removeitem`, {
+                trolley: trolleyId,
+                article: articleId,
             })
         } catch {
             handleModal('MensajeRegistro', true)
             setMessage('Error al sacar el artículo')
         }
     }
+
     const purchaseApp = async (data) => {
         try {
             const response = await clienteAxios.post(`/soldarticles`, data)
+            console.log(response)
             dispatch({
                 type: AppConstant.SUCCESSFUL_PURCHASE,
                 payload: response.data,
@@ -273,11 +279,13 @@ const AppState = (props) => {
         }
     }
 
-    const traerComprobantes = async (cliente) => {
+    const traerComprobantes = async (client) => {
+        console.log("lista de comprobantes1",client)
         try {
-            const respuesta = await clienteAxios.get(`/receipts`, {
-                id: cliente._id,
+            const respuesta = await clienteAxios.get(`/receiptsclient`, {
+                params: { client: client._id },
             })
+            console.log("lista de comprobantes",respuesta)
             dispatch({
                 type: AppConstant.AGREGAR_COMPROBANTES,
                 payload: respuesta.data.response,
@@ -287,12 +295,28 @@ const AppState = (props) => {
         }
     }
 
+    const traerComprobante = async (receiptId) => {
+        try {
+            const respuesta = await clienteAxios.get(
+                `/receiptsdetail/${receiptId}`
+            )
+            console.log(respuesta.data.receiptDetail)
+            dispatch({
+                type: AppConstant.AGREGAR_DETALLE_COMPROBANTE,
+                payload: respuesta.data.receiptDetail,
+            })
+        } catch (error) {
+            setMessage('Error al traer los comprobantes')
+        }
+    }
+
     const traerComprobantesAdmin = async () => {
         try {
             const respuesta = await clienteAxios.get(`/receipts`)
+            console.log(respuesta)
             dispatch({
                 type: AppConstant.AGREGAR_COMPROBANTES,
-                payload: respuesta.data.comprobantes,
+                payload: respuesta.data.response,
             })
         } catch {
             handleModal('MensajeRegistro', true)
@@ -347,6 +371,7 @@ const AppState = (props) => {
             setMessage('Error al traer las marcas')
         }
     }
+
     const newOffer = async (data) => {
         try {
             const response = await clienteAxios.post('/offer', data)
@@ -384,6 +409,7 @@ const AppState = (props) => {
                 articles: state.articles,
                 currentState: state.currentState,
                 comprobantes: state.comprobantes,
+                comprobante: state.comprobante,
                 brandList: state.brandList,
                 articleView: state.articleView,
                 offerList: state.offerList,
@@ -417,6 +443,7 @@ const AppState = (props) => {
                 getOffers,
                 getBox,
                 addArticleView,
+                traerComprobante,
             }}
         >
             {props.children}

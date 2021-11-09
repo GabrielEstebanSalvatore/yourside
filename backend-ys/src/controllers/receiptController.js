@@ -11,7 +11,7 @@ class receiptController {
     }
     static async getByUser(req, res) {
         try {
-            const response = await receiptService.getByUser(req.body.client)
+            const response = await receiptService.getByUser(req.query.client)
             res.status(response.status).json(response.content)
         } catch (err) {
             res.send(err)

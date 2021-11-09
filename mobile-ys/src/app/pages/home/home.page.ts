@@ -30,17 +30,25 @@ export class HomePage implements OnInit, OnDestroy {
         available: true,
         date: null,
         total: 0,
-        articles: []
+        articles: [],
     }
 
     image_Path: string
 
     slideOpts = {
         initialSlide: 0,
-        speed: 400
+        speed: 400,
     }
 
-    constructor(private menu: MenuController, private articleApi: ArticleApi, private offerApi: OfferApi, private authService: AuthService, private store: Store<AppState>, private toastController: ToastController, private router: Router) {
+    constructor(
+        private menu: MenuController,
+        private articleApi: ArticleApi,
+        private offerApi: OfferApi,
+        private authService: AuthService,
+        private store: Store<AppState>,
+         private toastController: ToastController,
+         private router: Router //T0D0:*
+     ) {
         this.image_Path = environment.HOST_API
     }
 
@@ -67,14 +75,15 @@ export class HomePage implements OnInit, OnDestroy {
                 },
                 next: (articles) => {
                     this.articles = articles;
-                    this.articlesWithOffer = articles.filter((article) => article.offer !== null);
+                    this.articlesWithOffer = articles.filter(
+                      (article) => article.offer !== null);
                 },
             })
         )
     }
 
     getOffers(): void {
-        console.log(this.articlesWithOffer)
+        // console.log(this.articlesWithOffer)
     }
 
     getClient(): void {
@@ -109,7 +118,7 @@ export class HomePage implements OnInit, OnDestroy {
         await this.trolleyUdatePrice()
         this.setLocalStore()
     }
-
+  
     async trolleyUdatePrice(): Promise<void> {
         this.trolley.total = 0;
         this.trolley.articles.forEach(e => { (e.offer === null) ? this.trolley.total += e.sellPrice : this.trolley.total += e.sellPriceOffer })

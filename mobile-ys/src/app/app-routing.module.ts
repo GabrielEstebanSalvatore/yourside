@@ -36,7 +36,17 @@ const routes: Routes = [
     {
         path:'article-detail/:id',
         loadChildren: () => import('./pages/article-detail/article-detail.module').then(m => m.ArticleDetailPageModule),
-    }    
+    },
+    {
+        path: 'receipt',
+        loadChildren: () => 
+            import('./pages/receipt/receipt.module').then( m => m.ReceiptPageModule)
+    },
+    {
+        path: 'receipt-details',
+        loadChildren: () =>
+            import('./pages/receipt-details/receipt-details.module').then( m => m.ReceiptDetailsPageModule)
+    }
 
 ]
 

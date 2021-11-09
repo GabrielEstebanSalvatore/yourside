@@ -22,12 +22,6 @@ const ReceiptContainer = () => {
     return (
         <ContainerGeneral
             title={'Listado de Comprobantes'}
-            total={
-                (comprobantes.map(
-                    (comprobante, i) => (contador += comprobante.price)
-                ),
-                (<p>{`$ ${contador}`}</p>))
-            }
             modal={showModal !== false ? <ModalContainer /> : null}
             list={<ListReceipt />}
         />

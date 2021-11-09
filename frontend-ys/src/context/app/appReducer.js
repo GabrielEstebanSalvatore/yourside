@@ -72,6 +72,11 @@ export default (state, action) => {
                 ...state,
                 comprobantes: action.payload,
             }
+        case AppConstant.AGREGAR_DETALLE_COMPROBANTE:
+            return {
+                ...state,
+                comprobante: action.payload,
+            }
         case AppConstant.TRAER_MARCAS:
             return {
                 ...state,

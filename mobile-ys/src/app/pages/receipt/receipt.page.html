@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/'></ion-back-button>
+    </ion-buttons>
+      <ion-buttons slot="end" color="light">
+          <ion-button (click)='togglemenu()'>
+              <ion-icon slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title>Receipts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="col-md-14 mt-5">
+    <table class='table table-white'>
+        <thead class='thead-dark'>
+            <tr>
+                <th>N°</th>
+                <!-- <th>Nombre</th> -->
+                <th class="hidden-md">Email</th>
+                <th>Importe</th>
+                <th>Fecha</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody *ngFor='let item of receipts; let i = index'>
+          <tr>
+              <td>{{item.number}}</td>
+              <!-- <td>{{client.name}}</td>   -->
+              <td class="hidden-md">{{client.email}}</td>          
+              <td>${{item.price}}</td>  
+              <td >{{item.date.toString().split("T")[0]}}</td> 
+              <td><ion-button color="purple" (click)="getReceiptDetail(item.receiptDetail._id)">
+                  + Mas Info
+                </ion-button>
+              </td>            
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>
+

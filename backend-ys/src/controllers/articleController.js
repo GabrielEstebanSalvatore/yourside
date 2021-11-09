@@ -67,19 +67,18 @@ class articleController {
     static async articlesSold(req, res) {
         const body = req.body.trolley
         const cliente = req.body.client
-
         let idArray = []
         let totalPrice = 0
 
         try {
             //ARMADO DEL COMPROBANTE DETALLE
             for (const element of body) {
-                idArray.push(element._id)
+                idArray.push(element.id)
                 totalPrice += element.sellPrice
             }
 
             let comprobanteDetalle = new ReceiptDetail({
-                article: idArray,
+                articles: idArray,
                 price: totalPrice,
             })
 
@@ -90,15 +89,16 @@ class articleController {
             let comprobante = new Receipt({
                 number: configuration.lastSellName,
                 client: cliente._id,
-                comprobantDetail: respuestaComprobanteDetalle._id,
+                receiptDetail: respuestaComprobanteDetalle._id,
                 price: totalPrice,
             })
+
             await comprobante.save()
             for (const element of body) {
                 try {
-                    var articule = await Article.findOne({ _id: element._id })
+                    var articule = await Article.findOne({ id: element.id })
                     await Article.findOneAndUpdate(
-                        { _id: element._id },
+                        { _id: element.id },
                         { amount: articule.amount-- }
                     )
                 } catch (error) {
@@ -108,7 +108,6 @@ class articleController {
                     })
                 }
             }
-
             //CREO EL TICKET
             const ticket = new Ticket({
                 number: configuration.lastSellName++,
@@ -116,7 +115,6 @@ class articleController {
             })
 
             await ticket.save()
-
             let condiguracionId = configuration._id
             await Configuration.replaceOne(
                 { condiguracionId },

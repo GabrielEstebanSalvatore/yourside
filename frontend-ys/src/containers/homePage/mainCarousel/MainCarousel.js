@@ -106,7 +106,6 @@ const MainCarousel = () => {
                                                     </h2>
                                                 </div>
                                             </div>
-                                            {/* <p>Tipo: <strong>{articulo.articleType.name}</strong></p> */}
                                         </div>
                                         <div
                                             data-swiper-parallax="-400"
@@ -124,8 +123,7 @@ const MainCarousel = () => {
                                                     </h2>
                                                 </div>
                                                 <p className="descuento">
-                                                    % {article.offer.percent} de
-                                                    Descuento
+                                                    {article.offer} % de Descuento
                                                 </p>
                                             </div>
                                             <div

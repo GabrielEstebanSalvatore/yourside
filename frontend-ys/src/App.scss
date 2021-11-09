@@ -168,7 +168,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 80%;
     width: 100%;
     font-family: 'Russo One', sans-serif;
     color: rgba(20, 20, 20, 0.945);
@@ -179,13 +179,16 @@ body {
 
         &_titulo {
             margin-top: 2vh;
-            font-size: 5vh;
+            font-size: 3vh;
         }
     }
     &_image {
         height: 100%;
         width: 100%;
         margin: 0;
+    }
+    &_image img {
+        object-fit: contain;
     }
     &_detail {
         display: flex;
@@ -236,6 +239,9 @@ body {
             margin: auto;
         }
     }
+}
+.card_product_img {
+    object-fit: contain;
 }
 /*--------------------ARTICULE CARROUSELSECUNDARY--------*/
 .article_carrouselsecundary {
@@ -420,7 +426,8 @@ body {
             img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: contain;
+                background: #ffffff;
             }
         }
         .articleView_card_details {
