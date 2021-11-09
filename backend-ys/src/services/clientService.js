@@ -60,9 +60,7 @@ class ClientService {
             }
         }
         const input = clientInputDto(req.body)
-
-        const client = await Client.findOne({ name: input.name })
-
+        const client = await Client.findOne({ email: input.email })
         if (client) {
             return {
                 status: 400,
