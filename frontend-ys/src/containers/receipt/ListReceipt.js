@@ -104,7 +104,7 @@ const ListReceipt = () => {
     }
 
     const showRecipt = (reciptId) => {
-        history.push('/comprobantes/' + reciptId)
+        history.push('/comprobantes/' + reciptId._id)
     }
 
     const columns = [
@@ -121,13 +121,6 @@ const ListReceipt = () => {
             key: 'actions',
             render: (text, record) => (
                 <div className="actions_table">
-                    <i>
-                        <DeleteOutlined
-                            onClick={() => onClickEliminar(record.key)}
-                            style={{ color: 'red' }}
-                            title="Eliminar comprobante"
-                        />
-                    </i>
                     <i>
                         <ProfileOutlined
                             onClick={() => showRecipt(record.key)}
