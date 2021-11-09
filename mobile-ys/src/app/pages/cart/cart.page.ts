@@ -83,8 +83,4 @@ export class CartPage implements OnInit {
     /*localStorage.removeItem('trolley')*/
     this.router.navigate(['/home'])
   }
-
-  togglemenu = () => {
-    this.menu.toggle()
-  }
 }

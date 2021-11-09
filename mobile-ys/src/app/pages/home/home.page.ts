@@ -47,7 +47,7 @@ export class HomePage implements OnInit, OnDestroy {
         private authService: AuthService,
         private store: Store<AppState>,
          private toastController: ToastController,
-         private router: Router //T0D0:*
+         private router: Router
      ) {
         this.image_Path = environment.HOST_API
     }
