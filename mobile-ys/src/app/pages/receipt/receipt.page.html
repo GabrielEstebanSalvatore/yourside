@@ -18,7 +18,7 @@
         <thead class='thead-dark'>
             <tr>
                 <th>N°</th>
-                <th>Nombre</th>
+                <!-- <th>Nombre</th> -->
                 <th class="hidden-md">Email</th>
                 <th>Importe</th>
                 <th>Fecha</th>
@@ -27,12 +27,12 @@
         </thead>
         <tbody *ngFor='let item of receipts; let i = index'>
           <tr>
-              <td>{{i+1}}</td>
-              <td>{{client.name}}</td>  
+              <td>{{item.number}}</td>
+              <!-- <td>{{client.name}}</td>   -->
               <td class="hidden-md">{{client.email}}</td>          
               <td>${{item.price}}</td>  
               <td >{{item.date.toString().split("T")[0]}}</td> 
-              <td><ion-button (click)="getReceiptDetail(item.id)">
+              <td><ion-button color="purple" (click)="getReceiptDetail(item.receiptDetail._id)">
                   + Mas Info
                 </ion-button>
               </td>            
