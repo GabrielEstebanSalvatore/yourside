@@ -67,7 +67,6 @@ class articleController {
     static async articlesSold(req, res) {
         const body = req.body.trolley
         const cliente = req.body.client
-
         let idArray = []
         let totalPrice = 0
 
@@ -79,7 +78,7 @@ class articleController {
             }
 
             let comprobanteDetalle = new ReceiptDetail({
-                article: idArray,
+                articles: idArray,
                 price: totalPrice,
             })
 
@@ -90,10 +89,10 @@ class articleController {
             let comprobante = new Receipt({
                 number: configuration.lastSellName,
                 client: cliente._id,
-                comprobantDetail: respuestaComprobanteDetalle._id,
+                receiptDetail: respuestaComprobanteDetalle._id,
                 price: totalPrice,
             })
-            
+
             await comprobante.save()
             for (const element of body) {
                 try {
