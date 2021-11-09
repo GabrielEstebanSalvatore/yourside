@@ -21,13 +21,13 @@
     
         <ion-slides style="padding: 10px 0;" pager='true' [options]="slideOpts">
             <ion-slide style="display: block; padding: 10px 0; background-color: #fff; border-radius: 15px;"
-                *ngFor='let article of articlesWithOffer'>
+                *ngFor='let article of articlesWithOffer; let i = index'>
                 <ion-title style="color: black;">OFFERS</ion-title>
-                <ion-img class="image" src="{{image_Path + article.image}}" alt="{{article.name}}"></ion-img>
+                <ion-img class="image" src="{{image_Path + article.image}}" [routerLink]="['/article-detail', article.id]"></ion-img>
                 <ion-text style="color: black;">{{article.description}}</ion-text>
-                <ion-title color='primary' size='medium'>$ {{article.sellPriceOffer}}</ion-title>
-                <ion-button style="padding: 0 25px; " color='warning'
-                    (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Add to Cart</ion-button>
+                    <div><ion-label color='medium' style="text-decoration: line-through;">$ {{article.sellPrice}}</ion-label></div>
+                    <div><ion-label color='primary' style="font-size: 150%;">${{article.sellPriceOffer}}</ion-label></div>
+                <ion-button style="padding: 0 25px; " color='warning' (click)="trolleyAddItem(this.article)">Add to Cart</ion-button>
             </ion-slide>
         </ion-slides>
 
@@ -38,9 +38,10 @@
             <ion-card-title>{{article.description}}</ion-card-title>
             <ion-card-content>
                 <div *ngIf='article.offer !== null'>
-                    <ion-label color='primary'>
-                        <h1>$ {{article.sellPriceOffer}}</h1>
-                    </ion-label>
+                    <ion-label color='medium' style="text-decoration: line-through;">$ {{article.sellPrice}}</ion-label>
+                    <div style="display: block;">
+                        <ion-label color='primary'style="font-size: 150%;">${{article.sellPriceOffer}}</ion-label>
+                    </div>
                     <ion-button color='warning' (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Add to Cart
                     </ion-button>
                 </div>

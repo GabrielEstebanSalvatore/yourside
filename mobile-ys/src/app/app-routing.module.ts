@@ -10,8 +10,7 @@ const routes: Routes = [
     },
     {
         path: 'home',
-        loadChildren: () =>
-            import('./pages/home/home.module').then((m) => m.HomePageModule)
+        loadChildren: () => import('./pages/home/home.module').then((m) => m.HomePageModule),
     },
     {
         path: 'login',
@@ -25,15 +24,20 @@ const routes: Routes = [
     },
     {
         path: 'cart',
-        loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule),
+        loadChildren: () => import('./pages/cart/cart.module').then(m => m.CartPageModule),
         canActivate: [AuthGuard]
     },
     {
         path: 'profile',
-        loadChildren: () => 
-            import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
-            canActivate: [AuthGuard]
-    }
+        loadChildren: () =>
+            import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
+        canActivate: [AuthGuard]
+    },
+    {
+        path:'article-detail/:id',
+        loadChildren: () => import('./pages/article-detail/article-detail.module').then(m => m.ArticleDetailPageModule),
+    }    
+
 ]
 
 @NgModule({

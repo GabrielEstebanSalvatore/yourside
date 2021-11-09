@@ -28,7 +28,7 @@ export class HomePage implements OnInit, OnDestroy {
         id: null,
         client: null,
         available: true,
-        date: Date.now().toString(),
+        date: null,
         total: 0,
         articles: []
     }
@@ -53,9 +53,10 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (localStorage.getItem("token")) this.getClient()
-        this.getArticles()
-        this.getOffers()
+        if (localStorage.getItem("token")) this.getClient();
+        (localStorage.getItem('trolley') === null || undefined) ? this.setLocalStore() : this.getLocalStore();
+        this.getArticles();
+        this.getOffers();
     }
 
     getArticles(): void {
@@ -90,28 +91,42 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     async trolleyAddItem(article: ArticleModel): Promise<void> {
-        
+        if (localStorage.getItem('trolley') === null || undefined) this.trolley.articles = [];
+        console.log(article)
         if (this.authService.loggedIn()) {
             this.showToast(`${article.name} added to cart`);
             this.trolley.articles.push(article);
-            this.trolley.total = 0
-            this.trolley.articles.forEach(e => {(e.offer === null) ? this.trolley.total += e.sellPrice : this.trolley.total += e.sellPriceOffer})
-
-            console.log(this.trolley)
+            await this.trolleyUdatePrice()
         } else {
             this.showToast('You must be logged in', 1500);
             this.router.navigate(['/login']);
         }
+        this.setLocalStore()
     }
 
-    trolleyRemoveItem(article: ArticleModel, price: number): void {
-        this.trolley.articles = this.trolley.articles.filter((item) => item.id !== article.id)
-        this.trolley.total -= price
+    async trolleyRemoveItem(index: number): Promise<void> {
+        this.trolley.articles.slice(index,1)
+        await this.trolleyUdatePrice()
+        this.setLocalStore()
+    }
 
+    async trolleyUdatePrice(): Promise<void> {
+        this.trolley.total = 0;
+        this.trolley.articles.forEach(e => { (e.offer === null) ? this.trolley.total += e.sellPrice : this.trolley.total += e.sellPriceOffer })
         console.log(this.trolley)
     }
-    
-    openTrolley() {
-        console.log("send")
+
+    setLocalStore(){
+        let {articles, total} = this.trolley;
+        localStorage.setItem('trolley', JSON.stringify({
+            articles,
+            total
+        }));
+    }
+
+    getLocalStore(){
+        let { articles, total } = JSON.parse(localStorage.getItem('trolley'));
+        this.trolley.articles = articles;
+        this.trolley.total = total;
     }
 }
