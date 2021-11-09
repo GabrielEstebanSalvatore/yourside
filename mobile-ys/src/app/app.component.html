@@ -3,26 +3,23 @@
   <ion-menu-toggle>
     <ion-menu side="end" menuId="first" contentId="main">
       <ion-header>
-        <ion-toolbar color="light">
-          <ion-buttons slot="end">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
+        <ion-toolbar>
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
           <ion-item [routerLink]="['/profile']">
-            <ion-icon name="person-circle"></ion-icon>
+            <ion-icon style="margin-right: 10px;" size="large" name="person-circle"></ion-icon>
             <span>Perfil</span>
           </ion-item>
           <ion-item [routerLink]="['/cart']">
-            <ion-icon name="bag-handle"></ion-icon>
+            <ion-icon style="margin-right: 10px;" size="large" name="bag-handle"></ion-icon>
             <!--<i class='bx bx-cart-alt' ></i> -->
-            <span class="links_name">Carrito</span>
+            <span>Carrito</span>
           </ion-item>
           <ion-item>
-            <i class='bx bx-folder'> </i>
+            <ion-icon style="margin-right: 10px;" size="large" name="document"></ion-icon>
             <span>Tickets</span>
           </ion-item>
         </ion-list>
@@ -31,10 +28,10 @@
         <div *ngIf="!this.authService.loggedIn()">
           <ion-item>
             <ion-buttons>
-              <ion-button [routerLink]="['/login']">
+              <ion-button color="primary" [routerLink]="['/login']">
                 Ingresar
               </ion-button>
-              <ion-button [routerLink]="['/signup']" expand="block" fill="outline">
+              <ion-button color="primary" [routerLink]="['/signup']" expand="block" fill="outline">
                 Registrarse
               </ion-button>
             </ion-buttons>
@@ -43,7 +40,7 @@
         <div *ngIf="this.authService.loggedIn()">
           <ion-item>
             <ion-buttons>
-              <ion-button (click)="logOut()">
+              <ion-button color="danger" (click)="logOut()">
                 Salir
               </ion-button>
             </ion-buttons>
