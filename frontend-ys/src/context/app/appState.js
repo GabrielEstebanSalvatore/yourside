@@ -268,7 +268,6 @@ const AppState = (props) => {
     const purchaseApp = async (data) => {
         try {
             const response = await clienteAxios.post(`/soldarticles`, data)
-            console.log(response)
             dispatch({
                 type: AppConstant.SUCCESSFUL_PURCHASE,
                 payload: response.data,
@@ -280,12 +279,10 @@ const AppState = (props) => {
     }
 
     const traerComprobantes = async (client) => {
-        console.log("lista de comprobantes1",client)
         try {
             const respuesta = await clienteAxios.get(`/receiptsclient`, {
                 params: { client: client._id },
             })
-            console.log("lista de comprobantes",respuesta)
             dispatch({
                 type: AppConstant.AGREGAR_COMPROBANTES,
                 payload: respuesta.data.response,
@@ -313,7 +310,6 @@ const AppState = (props) => {
     const traerComprobantesAdmin = async () => {
         try {
             const respuesta = await clienteAxios.get(`/receipts`)
-            console.log(respuesta)
             dispatch({
                 type: AppConstant.AGREGAR_COMPROBANTES,
                 payload: respuesta.data.response,

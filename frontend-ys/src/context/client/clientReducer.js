@@ -38,7 +38,16 @@ export default (state, action) => {
         case ClientConstant.ADD_ARTICLE_TO_TROLLEY:
             return {
                 ...state,
-                trolley: [...state.trolley, action.payload],
+                trolley: [...state.trolley, action.payload]
+            }
+        case ClientConstant.DELETE_ARTICLE_TO_TROLLEY:
+     
+            return {
+                ...state,
+                trolley: state.trolley.filter(
+                    (article) => article.id !== action.payload
+                )
+                
             }
         case ClientConstant.SUCCESSFULL_PURCHASE_CLIENT:
             return {

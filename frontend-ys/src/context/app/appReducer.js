@@ -64,8 +64,8 @@ export default (state, action) => {
             return {
                 ...state,
                 trolley: state.trolley.filter(
-                    (article) => article._id !== action.payload
-                ),
+                    (article) => article.id !== action.payload
+                )
             }
         case AppConstant.AGREGAR_COMPROBANTES:
             return {
