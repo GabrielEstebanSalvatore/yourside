@@ -33,8 +33,7 @@ const ClientState = (props) => {
                     type: ClientConstant.SIGNUP_SUCCEEDED,
                     payload: response.data,
                 })
-                authenticatedClient()
-                handleModal('', false)
+                loginUser({ email: data.email, password: data.password })
             } else {
                 handleModal('MensajeRegistro', true)
                 setMessage('NO SE PUEDO CREAR EL CLIENTE!!')
