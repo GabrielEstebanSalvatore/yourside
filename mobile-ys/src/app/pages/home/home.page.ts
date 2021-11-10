@@ -86,7 +86,7 @@ export class HomePage implements OnInit, OnDestroy {
     async trolleyAddItem(article: ArticleModel): Promise<void> {
         if (this.authService.loggedIn()) {
             this.addNewArticle(article)
-            this.showToast(`${article.name} added to cart`)
+            this.showToast(`${article.name} agregado al carrito`)
         } else {
             this.showToast('Tienes que estar logueado', 1500)
             this.router.navigate(['/login'])
