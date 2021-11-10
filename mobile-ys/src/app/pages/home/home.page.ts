@@ -61,7 +61,6 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (localStorage.getItem("token")) this.getClient();
         (localStorage.getItem('trolley') === null || undefined) ? this.setLocalStore() : this.getLocalStore();
         this.getArticles();
         this.getOffers();
@@ -84,10 +83,6 @@ export class HomePage implements OnInit, OnDestroy {
 
     getOffers(): void {
         // console.log(this.articlesWithOffer)
-    }
-
-    getClient(): void {
-        this.store.dispatch(new Auth.GetAuthenticatedClient())
     }
 
     async showToast(message: string, duration: number = 1000) {

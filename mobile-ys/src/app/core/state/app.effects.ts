@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
+import { AppState } from '@capacitor/app'
 import { Actions, Effect, ofType } from '@ngrx/effects'
-import { Action } from '@ngrx/store'
+import { Action, Store } from '@ngrx/store'
 import { Observable, of } from 'rxjs'
 import {
     catchError,
     exhaustMap,
     map,
-    mergeMap,
+    mapTo,
     switchMap,
     tap,
 } from 'rxjs/operators'
@@ -23,6 +24,7 @@ import {
     ChangeProfile,
 } from './app.action'
 import { AppConstant } from './app.constant'
+import * as Auth from 'src/app/core/state/app.action'
 
 @Injectable()
 export class AppEffects {
@@ -37,6 +39,16 @@ export class AppEffects {
                     catchError((error) => of(new GetError(error)))
                 )
             )
+        })
+    )
+    
+    @Effect({dispatch: false})
+    loggedUser$: Observable<Action> = this.actions$.pipe(
+        ofType<LoggedUser>(AppConstant.LOGGED_USER),
+        tap((r: any) => {
+            localStorage.setItem('token', r.payload.token)
+            this.router.navigate(['/home'])  
+            this.store.dispatch(new Auth.GetAuthenticatedClient())
         })
     )
 
@@ -67,8 +79,8 @@ export class AppEffects {
                 )
             )
         })
-    )
-
+        )
+        
     @Effect({ dispatch: false })
     loginError$: Observable<Action> = this.actions$.pipe(
         ofType<GetError>(AppConstant.ERROR),
@@ -85,15 +97,6 @@ export class AppEffects {
     )
 
     @Effect({ dispatch: false })
-    loggedUser$: Observable<Action> = this.actions$.pipe(
-        ofType<LoggedUser>(AppConstant.LOGGED_USER),
-        tap((r: any) => {
-            localStorage.setItem('token', r.payload.token)
-            this.router.navigate(['/home'])
-        })
-    )
-
-    @Effect({ dispatch: false })
     loggedClient$: Observable<Action> = this.actions$.pipe(
         ofType<AuthenticatedClient>(AppConstant.AUTHENTICATED_CLIENT)
     )
@@ -102,6 +105,7 @@ export class AppEffects {
         private actions$: Actions,
         private authService: AuthService,
         private clientService: ClientApi,
-        private router: Router
+        private router: Router,
+        private store: Store<AppState>
     ) {}
 }
