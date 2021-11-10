@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref='/'></ion-back-button>
     </ion-buttons>
-      <ion-title>Receipts</ion-title>
+      <ion-title>Comprobantes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,6 @@
             <tr>
                 <th>N°</th>
                 <!-- <th>Nombre</th> -->
-                <th class="hidden-md">Email</th>
                 <th>Importe</th>
                 <th>Fecha</th>
                 <th></th>
@@ -23,8 +22,7 @@
         <tbody *ngFor='let item of receipts; let i = index'>
           <tr>
               <td>{{item.number}}</td>
-              <!-- <td>{{client.name}}</td>   -->
-              <td class="hidden-md">{{client.email}}</td>          
+              <!-- <td>{{client.name}}</td>   -->      
               <td>${{item.price}}</td>  
               <td >{{item.date.toString().split("T")[0]}}</td> 
               <td><ion-button color="purple" (click)="getReceiptDetail(item.receiptDetail._id)">
