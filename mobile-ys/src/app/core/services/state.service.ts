@@ -19,4 +19,7 @@ export class StateService {
     get getCurrentCustomer(): any {
         return this.customerState
     }
+    getCustomer() {
+        return this.store.select((state) => state)
+    }
 }
