@@ -40,12 +40,14 @@ const routes: Routes = [
     {
         path: 'receipt',
         loadChildren: () => 
-            import('./pages/receipt/receipt.module').then( m => m.ReceiptPageModule)
+            import('./pages/receipt/receipt.module').then( m => m.ReceiptPageModule),
+            canActivate: [AuthGuard]
     },
     {
         path: 'receipt-details',
         loadChildren: () =>
-            import('./pages/receipt-details/receipt-details.module').then( m => m.ReceiptDetailsPageModule)
+            import('./pages/receipt-details/receipt-details.module').then( m => m.ReceiptDetailsPageModule),
+            canActivate: [AuthGuard]
     }
 
 ]
