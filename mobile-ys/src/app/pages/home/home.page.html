@@ -43,11 +43,11 @@
             <div *ngIf='article.offer !== null'>
               <ion-label color='medium' style="text-decoration: line-through;">$ {{article.sellPrice}}</ion-label>
               <div style="display: block;"><ion-label color='primary'style="font-size: 150%;">${{article.sellPriceOffer}}</ion-label></div>
-              <ion-button color='purple' (click)="trolleyAddItem(this.article, this.article.sellPriceOffer)">Agregar al carrito</ion-button>
+              <ion-button color='purple' (click)="trolleyAddItem(article)">Agregar al carrito</ion-button>
             </div>
             <div *ngIf='article.offer === null'>
               <ion-label color='primary'><h1>$ {{article.sellPrice}}</h1></ion-label>
-              <ion-button color='purple' (click)="trolleyAddItem(this.article, this.article.sellPrice)">Agregar al carrito</ion-button>
+              <ion-button color='purple' (click)="trolleyAddItem(article)">Agregar al carrito</ion-button>
             </div>        
             </ion-card-content>
         </ion-card>
