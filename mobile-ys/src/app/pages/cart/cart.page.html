@@ -9,19 +9,19 @@
 
 <ion-content>
   <ion-list lines="full">
-    <ion-item *ngFor="let article of trolley.articles; let i = index">
+    <ion-item *ngFor="let article of articles; let i = index">
       <ion-thumbnail slot="start">
         <ion-img style="object-fit: contain;" src="{{image_Path + article.image}}"></ion-img>
       </ion-thumbnail>      
-      <ion-label style="padding-left: 10px;">{{ article.name }}</ion-label>
+      <ion-label style="padding-left: 10px;">{{ article?.name }}</ion-label>
       <ion-icon name="trash-outline" color='danger' (click)="trolleyRemoveItem(i)"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <ion-title style="margin: 5px 0;">Total: ${{ trolley.total }}</ion-title>
-    <div><ion-button style="display: block;" color="danger" size="medium" *ngIf="trolley.articles.length !== 0" (click)="sendBuy()">Finalizar compra</ion-button></div>
+    <ion-title style="margin: 5px 0;">Total: {{ totalCart | currency }}</ion-title>
+    <div><ion-button style="display: block;" color="danger" size="medium" *ngIf="articles?.length !== 0 && articles" (click)="sendBuy()">Finalizar compra</ion-button></div>
   </ion-toolbar>
 </ion-footer>
 

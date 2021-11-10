@@ -6,7 +6,6 @@ import {
 } from '@angular/core'
 import { Router } from '@angular/router'
 import { ToastController } from '@ionic/angular'
-import { TrolleyModel } from 'src/app/shared/models/trolley.model'
 import { environment } from 'src/environments/environment'
 import { Subscription } from 'rxjs'
 import { ArticleApi } from 'src/app/shared/api/article.api'
@@ -22,19 +21,12 @@ export class CartPage implements OnInit, OnDestroy {
     private subscriptions = new Subscription()
     client: any
     image_Path: string
-    trolley: TrolleyModel = {
-        id: null,
-        client: null,
-        available: true,
-        date: null,
-        total: 0,
-        articles: [],
-    }
     slideOpts = {
         initialSlide: 0,
         speed: 400,
     }
-
+    articles: any
+    totalCart: number
     constructor(
         private toastController: ToastController,
         private router: Router,
@@ -54,10 +46,7 @@ export class CartPage implements OnInit, OnDestroy {
             const client = x.app.client
             this.client = client
         })
-        localStorage.getItem('trolley') === null || undefined
-            ? this.setLocalStore()
-            : this.getLocalStore()
-        console.log(this.trolley)
+        this.getLocalStore()
     }
 
     async showToast(message: string, duration: number = 1000) {
@@ -70,11 +59,16 @@ export class CartPage implements OnInit, OnDestroy {
     }
 
     trolleyRemoveItem(index: number): void {
-        this.trolley.articles.splice(index, 1)
-        this.trolleyUdatePrice()
-        this.setLocalStore()
+        this.articles.splice(index, 1)
+        const articles = this.articles
+        localStorage.setItem(
+            'trolley',
+            JSON.stringify({
+                articles,
+            })
+        )
 
-        if (this.trolley.articles.length == 0) {
+        if (this.articles.length === 0) {
             this.showToast('El carrito esta vacio')
             this.router.navigate(['/home'])
         } else {
@@ -82,36 +76,29 @@ export class CartPage implements OnInit, OnDestroy {
         }
     }
 
-    trolleyUdatePrice(): void {
-        this.trolley.total = 0
-        this.trolley.articles.forEach((e) => {
-            e.offer === null
-                ? (this.trolley.total += e.sellPrice)
-                : (this.trolley.total += e.sellPriceOffer)
-        })
-        //console.log(this.trolley)
-    }
-
-    setLocalStore() {
-        let { articles, total } = this.trolley
-        localStorage.setItem(
-            'trolley',
-            JSON.stringify({
-                articles,
-                total,
-            })
-        )
-    }
-
     getLocalStore() {
-        let { articles, total } = JSON.parse(localStorage.getItem('trolley'))
-        this.trolley.articles = articles
-        this.trolley.total = total
+        const listAarticles = localStorage.getItem('trolley')
+        if (listAarticles === null || undefined) {
+            const articles = []
+
+            localStorage.setItem(
+                'trolley',
+                JSON.stringify({
+                    articles,
+                })
+            )
+        } else {
+            const articles = JSON.parse(localStorage.getItem('trolley'))
+            if (articles.articles.length > 0) {
+                this.articles = articles.articles
+                this.totalCart = this.articles
+                    .map((x) => x.sellPrice)
+                    .reduce((prev, acum) => prev + acum)
+            }
+        }
     }
 
     sendBuy() {
-        console.log(this.trolley.articles)
-
         this.initService.isInitModuleFinished().subscribe((is) => {
             if (is) {
                 this.makePurchase()
@@ -119,9 +106,10 @@ export class CartPage implements OnInit, OnDestroy {
         })
     }
     makePurchase(): void {
+        const articles = JSON.parse(localStorage.getItem('trolley'))
         this.subscriptions.add(
             this.articleApi
-                .makePurchase(this.client, this.trolley.articles)
+                .makePurchase(this.client, articles.articles)
                 .subscribe({
                     error: (error: any) => {
                         console.error(error)
@@ -129,9 +117,7 @@ export class CartPage implements OnInit, OnDestroy {
                     next: (response) => {
                         if (response.ok) {
                             this.showToast('Compra completada', 2000)
-                            this.trolley.total = 0
-                            this.trolley.articles = []
-                            /*localStorage.removeItem('trolley')*/
+                            localStorage.removeItem('trolley')
                             this.router.navigate(['/home'])
                         }
                     },
