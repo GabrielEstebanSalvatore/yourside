@@ -12,7 +12,6 @@ const ReceiptAdminContainer = () => {
 
     useEffect(() => {
         traerComprobantesAdmin(client)
-        console.log(comprobantes)
     }, [])
 
     return (

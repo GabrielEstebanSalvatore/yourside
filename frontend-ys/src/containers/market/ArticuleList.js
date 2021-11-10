@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useEffect } from 'react'
 import AppContext from '../../context/app/appContext'
 import ClientContext from '../../context/client/clientContext'
 import { Table } from 'antd'
@@ -10,11 +10,13 @@ const ArticleList = () => {
     const { sacarArticuloCarrito } = appContext
 
     const clientContext = useContext(ClientContext)
-    const { trolley, client, authenticatedClient } = clientContext
+    const { trolley, client, authenticatedClient,deleteArticleToSesionTrolley } = clientContext
+
+    useEffect(() => {
+    }, [trolley])
 
     const deleteArticle = (articleId) => {
-        sacarArticuloCarrito(client.trolley._id, articleId)
-        authenticatedClient()
+        deleteArticleToSesionTrolley(articleId)
     }
 
     const columns = [
@@ -29,7 +31,7 @@ const ArticleList = () => {
                 <div className="actions_table">
                     <i>
                         <DeleteOutlined
-                            onClick={() => onClickDelete(record.key)}
+                            onClick={() => onClickDelete(record)}
                             style={{ color: 'red' }}
                         />
                     </i>
@@ -44,12 +46,14 @@ const ArticleList = () => {
                 key: article.id,
                 name: article.name,
                 articleType: article.articleType.name,
-                sellPrice: article.sellPrice,
+                sellPrice: article.sellPriceOffer ? 
+                           article.sellPriceOffer:
+                           article.sellPrice
             }
         })
     }
 
-    const onClickDelete = (id) => {
+    const onClickDelete = (data) => {
         Swal.fire({
             title: '¿Estas seguro?',
             text: '!Si eliminas el artículo, será dado de baja!',
@@ -61,7 +65,7 @@ const ArticleList = () => {
             confirmButtonText: 'Si, eliminar',
         }).then((result) => {
             if (result.value) {
-                deleteArticle(id)
+                deleteArticle(data.key)
                 Swal.fire(
                     'Eliminado!',
                     'El artículo se eliminó correctamente.',
