@@ -43,7 +43,6 @@ const ClientState = (props) => {
         } catch (error) {
             handleModal('MensajeRegistro', true)
             setMessage(error.response.data.msg)
-            console.log(error)
         }
     }
 
@@ -114,6 +113,15 @@ const ClientState = (props) => {
             payload: article,
         })
     }
+
+    const deleteArticleToSesionTrolley = async (article) => {
+      
+        dispatch({
+            type: ClientConstant.DELETE_ARTICLE_TO_TROLLEY,
+            payload: article,
+        })
+    }
+
     const purchaseClient = async () => {
         dispatch({
             type: ClientConstant.SUCCESSFULL_PURCHASE_CLIENT,
@@ -142,6 +150,7 @@ const ClientState = (props) => {
                 authenticatedClient,
                 addArticleToSesionTrolley,
                 purchaseClient,
+                deleteArticleToSesionTrolley
             }}
         >
             {props.children}
