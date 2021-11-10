@@ -61,7 +61,7 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (localStorage.getItem("token")) this.getClient();
+        // if (localStorage.getItem("token")) this.getClient();
         (localStorage.getItem('trolley') === null || undefined) ? this.setLocalStore() : this.getLocalStore();
         this.getArticles();
         this.getOffers();
