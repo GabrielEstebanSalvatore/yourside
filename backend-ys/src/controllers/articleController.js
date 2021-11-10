@@ -81,7 +81,6 @@ class articleController {
                 articles: idArray,
                 price: totalPrice,
             })
-
             let respuestaComprobanteDetalle = await comprobanteDetalle.save()
             //MODIFICO LA CONFIGURACION
             //ARMADO DEL COMPROBANTE
@@ -96,7 +95,7 @@ class articleController {
             await comprobante.save()
             for (const element of body) {
                 try {
-                    var articule = await Article.findOne({ id: element.id })
+                    var articule = await Article.findOne({ _id: element.id })
                     await Article.findOneAndUpdate(
                         { _id: element.id },
                         { amount: articule.amount-- }

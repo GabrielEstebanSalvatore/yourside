@@ -39,15 +39,16 @@ const LoginModal = (props) => {
             cliente.password === '' ||
             cliente.name === '' ||
             cliente.address === '' ||
-            cliente.role === '' ||
             cliente.cell === ''
         ) {
             handleModal('MensajeRegistro', true)
             setMessage('Tododos Los Campos son Necesarios')
             return
         } else {
+            // Only users
+            cliente.role = 'USER_ROLE'
             registerUser(cliente)
-            handleModal('', false)
+            props.isOpen()
         }
     }
 
@@ -126,14 +127,14 @@ const LoginModal = (props) => {
                                 onChange={onChange}
                             />
 
-                            <label htmlFor="roleId">Categoría</label>
+                            {/* <label htmlFor="roleId">Categoría</label>
                             <select id="roleId" name="role" onChange={onChange}>
                                 <option defaultValue="" disabled hidden>
                                     Seleccione...
                                 </option>
                                 <option value="USER_ROLE">USUARIO</option>
                                 <option value="ADMIN_ROLE">ADMIN</option>
-                            </select>
+                            </select> */}
                         </div>
                     </div>
                 </div>
